@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.GotchaCarMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.GotchaCar">
+    <id property="id" column="id" />
+    <result property="carId" column="car_id"/>
+    <result property="partId" column="part_id"/>
+    <result property="partNum" column="part_num"/>
+    <result property="goldLowLimit" column="gold_low_limit"/>
+    <result property="goldUpperLimit" column="gold_upper_limit"/>
+    <result property="goldPayLimit" column="gold_pay_limit"/>
+  </resultMap>
+
+	<select id="getGotchaCar" parameterType="String" resultMap="baseMap">
+	    SELECT * from gotcha_car where car_id = #{carId}
+	</select>
+	
+	<select id="getGotchaCarById" parameterType="int" resultMap="baseMap">
+	    SELECT * from gotcha_car where id = #{id}
+	</select>
+	
+	<select id="getGotchaCarList" resultMap="baseMap">
+	    SELECT * from gotcha_car
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.GotchaCar" keyProperty="id" useGeneratedKeys="true">
+	    insert into gotcha_car(car_id,part_id,part_num,gold_low_limit,gold_upper_limit,gold_pay_limit) 
+	    values(#{carId},#{partId},#{partNum},#{goldLowLimit},#{goldUpperLimit},#{goldPayLimit})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.GotchaCar">
+	    update gotcha_car set 
+      car_id=#{carId},
+      part_id=#{partId},
+      part_num=#{partNum},
+      gold_low_limit=#{goldLowLimit},
+      gold_upper_limit=#{goldUpperLimit},
+      gold_pay_limit=#{goldPayLimit}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from gotcha_car where id=#{id}
+	</delete>
+	
+</mapper>

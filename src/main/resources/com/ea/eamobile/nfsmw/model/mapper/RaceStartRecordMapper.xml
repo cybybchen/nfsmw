@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.RaceStartRecordMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.RaceStartRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="firstConsumebleId" column="first_consumeble_id" />
+		<result property="secondConsumebleId" column="second_consumeble_id" />
+		<result property="thirdConsumebleId" column="third_consumeble_id" />
+		<result property="time" column="time" />
+	</resultMap>
+
+	<select id="getRaceStartRecord" parameterType="long" resultMap="baseMap">
+		SELECT * from race_start_record where user_id = #{userId}
+	</select>
+
+	<select id="getRaceStartRecordList" resultMap="baseMap">
+		SELECT * from race_start_record
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.RaceStartRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		replace into
+		race_start_record(user_id,first_consumeble_id,second_consumeble_id,third_consumeble_id)
+		values(#{userId},#{firstConsumebleId},#{secondConsumebleId},#{thirdConsumebleId})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.RaceStartRecord">
+		update race_start_record set
+		first_consumeble_id=#{firstConsumebleId},
+		second_consumeble_id=#{secondConsumebleId},
+		third_consumeble_id=#{thirdConsumebleId},
+		time=#{time} where id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from race_start_record where id=#{id}
+	</delete>
+
+</mapper>

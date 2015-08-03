@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserGotchaMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserGotcha">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="gotchaId" column="gotcha_id"/>
+    <result property="gold" column="gold"/>
+    <result property="missFragCount" column="miss_frag_count"/>
+
+  </resultMap>
+
+	<select id="getUserGotcha" parameterType="int" resultMap="baseMap">
+	    SELECT * from user_gotcha where id = #{id}
+	</select>
+	
+	<select id="getUserGotchaByUidGid"  resultMap="baseMap">
+	    SELECT * from user_gotcha where user_id = #{userId} and gotcha_id=#{gotchaId}
+	</select>
+	
+	<select id="getUserGotchaList" resultMap="baseMap">
+	    SELECT * from user_gotcha
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserGotcha" keyProperty="id" useGeneratedKeys="true">
+
+	    insert into user_gotcha(user_id,gotcha_id,gold,miss_frag_count) 
+	    values(#{userId},#{gotchaId},#{gold},#{missFragCount})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserGotcha">
+	    update user_gotcha set 
+      gotcha_id=#{gotchaId},
+      gold=#{gold}, miss_frag_count=#{missFragCount}     where id = #{id}
+
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from user_gotcha where id=#{id}
+	</delete>
+	
+</mapper>

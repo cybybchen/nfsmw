@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserGhostModMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserGhostMod">
+		<id property="id" column="id" />
+		<result property="ghostId" column="ghost_id" />
+		<result property="modeType" column="mode_type" />
+		<result property="modeValue" column="mode_value" />
+		<result property="modeLevel" column="mode_level" />
+		<result property="modeId" column="mode_id" />
+		
+	</resultMap>
+
+	<select id="getGhostModByGhostId" parameterType="long"
+		resultMap="baseMap">
+		SELECT * from user_ghost_mod where ghost_id = #{ghostId}
+	</select>
+
+	<select id="getGhostModList" resultMap="baseMap">
+		SELECT * from user_ghost_mod
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserGhostMod"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into user_ghost_mod(ghost_id,mode_type,mode_value,mode_level,mode_id)
+		values(#{ghostId},#{modeType},#{modeValue},#{modeLevel},#{modeId})
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.ea.eamobile.nfsmw.model.UserGhostMod">
+		insert into user_ghost_mod(ghost_id,mode_type,mode_value,mode_level,mode_id) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.ghostId},#{item.modeType},#{item.modeValue},#{item.modeLevel},#{item.modeId})
+		</foreach>
+	</insert>
+
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.UserGhostMod">
+		update user_ghost_mod set
+		ghost_id=#{ghostId},
+		mode_type=#{modeType},
+		mode_value=#{modeValue} where id = #{id}
+	</update>
+
+	<delete id="deleteByGhostId" parameterType="long">
+		delete from user_ghost_mod where ghost_id=#{ghostId}
+	</delete>
+
+</mapper>

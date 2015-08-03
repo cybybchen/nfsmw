@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.GotchaExpenseMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.GotchaExpense">
+		<id property="id" column="id" />
+		<result property="gotchaId" column="gotcha_id" />
+		<result property="level" column="level" />
+		<result property="price" column="price" />
+		<result property="priceType" column="price_type" />
+		<result property="count" column="count" />
+		<result property="maxFreeTimes" column="max_free_times" />
+		<result property="dailyFreeTimes" column="daily_free_times" />
+	</resultMap>
+
+	<select id="getGotchaExpense" resultMap="baseMap">
+		SELECT * from
+		gotcha_expense where gotcha_id = #{gotchaId} and
+		level=#{level}
+	</select>
+
+	<select id="getGotchaExpenseList" parameterType="int" resultMap="baseMap">
+		SELECT * from gotcha_expense where gotcha_id=#{gotchaId}
+	</select>
+	
+	<select id="getAllGotchaExpenseList" parameterType="int" resultMap="baseMap">
+		SELECT * from gotcha_expense 
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.GotchaExpense"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		gotcha_expense(gotcha_id,price,price_type,count,level,max_free_times,daily_free_times)
+		values(#{gotchaId},#{price},#{priceType},#{count},#{level},#{maxFreeTimes},#{dailyFreeTimes})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.GotchaExpense">
+		update gotcha_expense set
+		gotcha_id=#{gotchaId},
+		price=#{price},
+		count=#{count},
+		price_type=#{priceType},level=#{level}
+		,max_free_times=#{maxFreeTimes},daily_free_times=#{dailyFreeTimes}
+		where id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from gotcha_expense
+		where id=#{id}
+	</delete>
+
+
+</mapper>

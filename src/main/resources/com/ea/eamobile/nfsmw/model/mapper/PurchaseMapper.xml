@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.PurchaseMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.Purchase">
+		<id property="id" column="id" />
+		<result property="priceType" column="price_type" />
+		<result property="price" column="price" />
+		<result property="isAvailable" column="is_available" />
+		<result property="discount" column="discount" />
+		<result property="discountNum" column="discount_num" />
+		<result property="displayPrice" column="display_price" />
+		<result property="buyCount" column="buy_count" />
+		<result property="limitTime" column="limit_time" />
+		<result property="isDiscount" column="is_discount" />
+		<result property="name" column="name" />
+		<result property="itemType" column="item_type" />
+		<result property="energySerialNumber" column="energy_serial_number" />
+		<result property="isHot" column="is_hot" />
+		<result property="isNew" column="is_new" />
+		<result property="isBestSell" column="is_best_sell" />
+	</resultMap>
+
+	<select id="getPurchase" parameterType="int" resultMap="baseMap">
+		SELECT * from purchase where id = #{id}
+	</select>
+
+	<select id="getPurchaseList" resultMap="baseMap">
+		SELECT * from purchase where is_available=1
+	</select>
+
+
+
+
+
+</mapper>

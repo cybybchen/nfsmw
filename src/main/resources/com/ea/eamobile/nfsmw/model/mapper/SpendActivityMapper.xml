@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.SpendActivityMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.SpendActivity">
+    <id property="id" column="id" />
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="displayName" column="display_name"/>
+  </resultMap>
+
+	<select id="getSpendActivity" parameterType="int" resultMap="baseMap">
+	    SELECT * from spend_activity where id = #{id}
+	</select>
+	
+	<select id="getSpendActivityList" resultMap="baseMap">
+	    SELECT * from spend_activity
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.SpendActivity" keyProperty="id" useGeneratedKeys="true">
+	    insert into spend_activity(start_time,end_time,display_name) 
+	    values(#{startTime},#{endTime},#{displayName})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.SpendActivity">
+	    update spend_activity set 
+      start_time=#{startTime},
+      end_time=#{endTime},
+      display_name=#{displayName}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from spend_activity where id=#{id}
+	</delete>
+	
+</mapper>

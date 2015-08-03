@@ -1,0 +1,264 @@
+body {
+	margin: 0;
+	padding: 6px;
+	border: 1px solid #000;
+}
+
+.frame {
+	border: 1px solid #d30000;
+	width: 802px;
+	height: 558px;
+	overflow: hidden;
+	background: url(/nfsmw/images/mod/grey-house.jpg) bottom right no-repeat
+}
+
+headtext {
+	font-size: 20px;
+	color: red;
+	font-weight: bold;
+}
+
+.scrolling {
+	min-height: 558px;
+	height: 558px;
+	overflow: auto;
+	overflow-scrolling: touch;
+}
+
+.main {
+	float: left;
+	width: 527px;
+}
+
+.title_line {
+	height: 42px;
+	padding-top: 5px;
+	text-align: right;
+	position: relative
+}
+
+.title_bg {
+	position: absolute;
+	left: 0;
+	background: url(/nfsmw/images/mod/ipad/title-bg.png) no-repeat;
+	height: 42px;
+	width: 100%;
+}
+
+.mw_log {
+	position: absolute;
+	right: 3px;
+	top: -33px;
+	z-index: 33
+}
+
+.announce_pic {
+	position: absolute;
+	left: 0px;
+	bottom: 2px
+}
+
+.right_bg {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+.announce_title {
+	font-size: 16px;
+	position: absolute;
+	left: 0px;
+	bottom: 2px;
+	font-weight: bolder;
+	padding-left: 15px;
+	line-height: 21px;
+	height: 21px;
+}
+
+.announce ul {
+	list-style-type: square;
+}
+
+.announce ul li {
+	padding: 3px 0px;
+}
+
+.announce ul li ul {
+	list-style-type: circle;
+}
+
+.announce p {
+	pading: 0;
+	padding-left: 15px;
+	margin: 5px 0px;
+}
+
+.announce p a {
+	color: blue
+}
+
+.sidebar {
+	width: 260px;
+	position: relative;
+	float: right;
+	border-left: 1px dashed #515151;
+	padding: 5px 5px 5px 5px;
+}
+
+.leaderboard {
+	padding: 5px 5px 5px 5px;
+	background: #DEDEDE;
+}
+
+.lb_title {
+	background: url(/nfsmw/images/mod/ipad/mw-on-logo.png) no-repeat;
+	width: 250px;
+	height: 59px;
+	text-align: right;
+}
+
+.eachone {
+	width: 250px;
+	height: 65px;
+	padding: 5px 0px 0px 0px;
+}
+
+.eachone_n {
+	background: url(/nfsmw/images/mod/ipad/lb-bg.png) no-repeat;
+}
+
+.eachone_m {
+	background: url(/nfsmw/images/mod/ipad/lb-bg-me.png) no-repeat;
+}
+
+.rank {
+	float: left;
+	width: 30px;
+	height: 45px;
+	margin: 5px;
+	font-size: 40px;
+	text-align: center;
+}
+
+.rn1 {
+	background: url(/nfsmw/images/mod/ipad/n1.png) center no-repeat;
+}
+
+.rn2 {
+	background: url(/nfsmw/images/mod/ipad/n2.png) center no-repeat;
+}
+
+.rn3 {
+	background: url(/nfsmw/images/mod/ipad/n3.png) center no-repeat;
+}
+
+.rn4 {
+	background: url(/nfsmw/images/mod/ipad/n4.png) center no-repeat;
+}
+
+.rn5 {
+	background: url(/nfsmw/images/mod/ipad/n5.png) center no-repeat;
+}
+
+.rn6 {
+	background: url(/nfsmw/images/mod/ipad/n6.png) center no-repeat;
+}
+
+.rn7 {
+	background: url(/nfsmw/images/mod/ipad/n7.png) center no-repeat;
+}
+
+.rn8 {
+	background: url(/nfsmw/images/mod/ipad/n8.png) center no-repeat;
+}
+
+.rn9 {
+	background: url(/nfsmw/images/mod/ipad/n9.png) center no-repeat;
+}
+
+.rn10 {
+	background: url(/nfsmw/images/mod/ipad/n10.png) center no-repeat;
+}
+
+.rm1 {
+	background: url(/nfsmw/images/mod/ipad/m1.png) center no-repeat;
+}
+
+.rm2 {
+	background: url(/nfsmw/images/mod/ipad/m2.png) center no-repeat;
+}
+
+.rm3 {
+	background: url(/nfsmw/images/mod/ipad/m3.png) center no-repeat;
+}
+
+.rm4 {
+	background: url(/nfsmw/images/mod/ipad/m4.png) center no-repeat;
+}
+
+.rm5 {
+	background: url(/nfsmw/images/mod/ipad/m5.png) center no-repeat;
+}
+
+.rm6 {
+	background: url(/nfsmw/images/mod/ipad/m6.png) center no-repeat;
+}
+
+.rm7 {
+	background: url(/nfsmw/images/mod/ipad/m7.png) center no-repeat;
+}
+
+.rm8 {
+	background: url(/nfsmw/images/mod/ipad/m8.png) center no-repeat;
+}
+
+.rm9 {
+	background: url(/nfsmw/images/mod/ipad/m9.png) center no-repeat;
+}
+
+.rm10 {
+	background: url(/nfsmw/images/mod/ipad/m10.png) center no-repeat;
+}
+
+.rk1 {
+	color: #D30000;
+}
+
+.userhead {
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin: 3px 0px 2px 0px;
+}
+
+.username {
+	float: left;
+	width: 145px;
+	height: 30px;
+	text-align: right;
+	margin: 3px 0px 0px 10px;
+	font-size: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.username_n {
+	color: #3F3F3F;
+}
+
+.username_m {
+	color: #4A0303;
+}
+
+.userscore {
+	float: left;
+	width: 155px;
+	height: 20px;
+	text-align: right;
+	margin: 0px 0px 3px 0px;
+	padding: 2px 0px 0px 0px;
+	font-size: 15px;
+	color: #FFFFFF;
+	white-space: nowrap;
+	overflow: hidden;
+}

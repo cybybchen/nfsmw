@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.PurchaseRecordMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.PurchaseRecord">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="type" column="type"/>
+    <result property="buyTime" column="buy_time"/>
+    <result property="purchaseId" column="purchase_id"/>
+  </resultMap>
+
+	<select id="getPurchaseRecord" parameterType="int" resultMap="baseMap">
+	    SELECT * from purchase_record where id = #{id}
+	</select>
+	
+
+	<select id="getBuyedNumByPurchaseId" resultType="Integer">
+	    SELECT count(*) from purchase_record where  purchase_id=#{purchaseId} and user_id=#{userId}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.PurchaseRecord" keyProperty="id" useGeneratedKeys="true">
+	    insert into purchase_record(user_id,type,buy_time,purchase_id) 
+	    values(#{userId},#{type},#{buyTime},#{purchaseId})
+	</insert>
+	
+	
+</mapper>

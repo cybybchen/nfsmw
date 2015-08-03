@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.GarageLeaderboardMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.GarageLeaderboard">
+		<id property="userId" column="user_id" />
+		<result property="name" column="name" />
+		<result property="weiboName" column="weibo_name" />
+		<result property="headUrl" column="head_url" />
+		<result property="carNum" column="car_num" />
+		<result property="carTotalScore" column="car_total_score" />
+		<result property="rank" column="rank" />
+		<result property="rpLevel" column="rp_level" />
+		<result property="rpNum" column="rp_num" />
+		<result property="mwNum" column="mw_num" />
+		<result property="tier" column="tier" />
+		<result property="zone" column="zone" />
+		<result property="latitude" column="latitude" />
+		<result property="longitude" column="longitude" />
+	</resultMap>
+
+	<select id="getGarageLeaderboard" parameterType="int" resultMap="baseMap">
+		SELECT * from garage_leaderboard where user_id = #{userId}
+	</select>
+
+	<select id="getList" resultMap="baseMap">
+		SELECT * from garage_leaderboard
+		order by rank
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.GarageLeaderboard"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		garage_leaderboard(user_id,name,weibo_name,head_url,car_num,car_total_score,rank)
+		values(#{userId},#{name},#{weiboName},#{headUrl},#{carNum},#{carTotalScore},#{rank})
+	</insert>
+
+	<insert id="insertBatch" parameterType="com.ea.eamobile.nfsmw.model.GarageLeaderboard">
+		insert into
+		garage_leaderboard(user_id,name,weibo_name,head_url,car_num,car_total_score,rank,rp_level,rp_num,mw_num,tier,
+		zone,latitude,longitude)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.userId},#{item.name},#{item.weiboName},#{item.headUrl},#{item.carNum},#{item.carTotalScore},#{item.rank},
+			#{item.rpLevel},#{item.rpNum},#{item.mwNum},#{item.tier},#{item.zone},#{item.latitude},#{item.longitude})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.GarageLeaderboard">
+		update garage_leaderboard set
+		name=#{name},
+		weibo_name=#{weiboName},
+		head_url=#{headUrl},
+		car_num=#{carNum},
+		car_total_score=#{carTotalScore},rank=#{rank} where
+		user_id = #{userId}
+	</update>
+
+	<delete id="deleteAll">
+		delete from garage_leaderboard
+	</delete>
+
+</mapper>

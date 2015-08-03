@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.DailyRaceCarIdMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.DailyRaceCarId">
+    <id property="id" column="id" />
+    <result property="carId" column="car_id"/>
+    <result property="tier" column="tier"/>
+    <result property="carDisplayName" column="car_display_name"/>
+  </resultMap>
+
+	<select id="getDailyRaceCarId" parameterType="int" resultMap="baseMap">
+	    SELECT * from daily_race_car_id where id = #{id}
+	</select>
+	
+	<select id="getDailyRaceCarIdList" resultMap="baseMap">
+	    SELECT * from daily_race_car_id
+	</select>
+	
+	<select id="getDailyRaceCarIdListByTier" resultMap="baseMap">
+	    SELECT * from daily_race_car_id where tier=#{tier}
+	</select>
+
+	
+</mapper>

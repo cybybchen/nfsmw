@@ -1,0 +1,15 @@
+body{margin:0;padding:6px; border: 1px solid #000;}
+.frame{border: 1px solid #d30000; height:558px; overflow:hidden;background:url(../images/ipad/grey-house.jpg) bottom right no-repeat }
+.scrolling{min-height:558px; height:558px; overflow:auto;overflow-scrolling: touch;}
+.banner{background:url(../images/ipad/banner.png) right bottom no-repeat; height:136px; width:100%; }
+.title_line { height:42px; border-bottom: 1px dashed #515151; text-align:right; position:relative }
+.title_bg {position:absolute; left:0;background:url(../images/ipad/title-line-bg.png) repeat-x;  height:42px; }
+.mw_log {position:absolute; right:3px; top: -33px; z-index:33}
+.announce_pic{position:absolute; left:0px; bottom:2px}
+.right_bg {position:absolute;right:0px; bottom:0px; }
+.announce_title {font-size:16px;position:absolute; left:0px; bottom:2px;font-weight:bolder;padding-left:5px; border-left:10px solid #515151; line-height:21px; height:21px; }
+.announce ul { list-style-type:square; }
+.announce ul li{ padding: 3px 0px;}
+.announce ul li ul {list-style-type:circle;}
+.announce p {pading:0;padding-left:15px; margin: 5px 0px;}
+.announce p a {color:blue}

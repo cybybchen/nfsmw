@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentOnlineMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TournamentOnline">
+		<id property="id" column="id" />
+		<result property="tournamentId" column="tournament_id" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="isFinish" column="is_finish" />
+		<result property="info" column="info" />
+		<result property="orderId" column="order_id" />
+		<result property="startContent" column="start_content" />
+		<result property="endContent" column="end_content" />
+		<result property="weiboShareContent" column="weibo_share_content" />
+	</resultMap>
+
+	<select id="getTournamentOnline" parameterType="int" resultMap="baseMap">
+		SELECT * from tournament_online where id = #{id}
+	</select>
+
+	<select id="getTournamentOnlineList" resultMap="baseMap">
+		SELECT * from
+		tournament_online order by order_id
+	</select>
+	
+	<select id="getTournamentOnlineListByEndTime" resultMap="baseMap">
+		SELECT * from
+		tournament_online where end_time&gt;#{firstTime} and end_time&lt;#{secondTime}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.TournamentOnline"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		tournament_online(tournament_id,start_time,end_time,is_finish,info,order_id,start_content,end_content,weibo_share_content)
+		values(#{tournamentId},#{startTime},#{endTime},#{isFinish},#{info},#{orderId},#{startContent},#{endContent},#{weiboShareContent})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.TournamentOnline">
+		update tournament_online set
+		tournament_id=#{tournamentId},
+		start_time=#{startTime},
+		end_time=#{endTime},
+		is_finish=#{isFinish},info=#{info},order_id=#{orderId},start_content=#{startContent}
+		,
+		end_content=#{endContent},weibo_share_content=#{weiboShareContent}
+		where id = #{id}
+	</update>
+	<delete id="deleteById" parameterType="int">
+		delete from tournament_online where id = #{id}
+	</delete>
+
+
+
+</mapper>

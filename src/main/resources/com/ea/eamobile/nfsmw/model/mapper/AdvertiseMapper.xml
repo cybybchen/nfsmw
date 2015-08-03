@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.AdvertiseMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.Advertise">
+    <id property="id" column="id" />
+    <result property="hintString" column="hint_string"/>
+    <result property="adviseString" column="advise_string"/>
+  </resultMap>
+
+	<select id="getAdvertise" parameterType="int" resultMap="baseMap">
+	    SELECT * from advertise where id = #{id}
+	</select>
+	
+	<select id="getAdvertiseList" resultMap="baseMap">
+	    SELECT * from advertise
+	</select>
+	
+</mapper>

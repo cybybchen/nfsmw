@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.ResourceMapper">
+
+	<resultMap id="resourceMap" type="com.ea.eamobile.nfsmw.model.Resource">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="fileName" column="file_name" />
+		<result property="version" column="version" />
+		<result property="md5" column="md5" />
+		<result property="size" column="size" />
+		<result property="orderId" column="order_id" />
+		<result property="platform" column="platform" />
+		<result property="frequency" column="frequency" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<insert id="insertBatch" parameterType="com.ea.eamobile.nfsmw.model.Resource">
+		insert into
+		resource(name,file_name,version,md5,size,order_id,platform,frequency,status)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.name},#{item.fileName},#{item.version},#{item.md5},#{item.size},#{item.orderId},#{item.platform},
+			#{item.frequency},#{item.status})
+		</foreach>
+	</insert>
+
+	<select id="getResourceList" resultMap="resourceMap">
+		select * from resource
+	</select>
+
+	<select id="queryResourceListByVersion" parameterType="int"
+		resultMap="resourceMap">
+		select * from resource where version > #{version}
+	</select>
+
+	<select id="getResource" parameterType="int" resultMap="resourceMap">
+		select *
+		from resource where id=#{id}
+	</select>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.Resource">
+		update resource set
+		order_id=#{orderId},status=#{status} where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from resource where
+		id=#{id}
+	</delete>
+
+
+</mapper>

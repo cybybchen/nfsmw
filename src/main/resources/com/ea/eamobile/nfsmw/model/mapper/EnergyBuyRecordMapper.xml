@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.EnergyBuyRecordMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.EnergyBuyRecord">
+    <id property="id" column="id" />
+    <id property="userId" column="user_id" />
+    <result property="buyDate" column="buy_date"/>
+  </resultMap>
+
+	<select id="getEnergyBuyRecord" parameterType="int" resultMap="baseMap">
+	    SELECT * from energy_buy_record where id = #{id}
+	</select>
+	
+	<select id="getEnergyBuyRecordList" resultMap="baseMap">
+	    SELECT * from energy_buy_record
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.EnergyBuyRecord" keyProperty="id" useGeneratedKeys="true">
+	    insert into energy_buy_record(user_id,buy_date) 
+	    values(#{userId},#{buyDate})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.EnergyBuyRecord">
+	    update energy_buy_record set 
+      buy_date=#{buyDate}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from energy_buy_record where id=#{id}
+	</delete>
+	
+</mapper>

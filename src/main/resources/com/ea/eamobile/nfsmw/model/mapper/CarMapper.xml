@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CarMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.Car">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="type" column="type" />
+		<result property="tier" column="tier" />
+		<result property="price" column="price" />
+		<result property="priceType" column="price_type" />
+		<result property="unlockMwNum" column="unlock_mw_num" />
+		<result property="isHot" column="is_hot" />
+		<result property="isNew" column="is_new" />
+		<result property="isBestSell" column="is_best_sell" />
+		<result property="needTransport" column="need_transport" />
+		<result property="transportTime" column="transport_time" />
+		<result property="score" column="score" />
+		<result property="visible" column="visible" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="isSpecialCar" column="is_special_car" />
+	</resultMap>
+
+	<select id="getCar" parameterType="int" resultMap="baseMap">
+		SELECT * from
+		car where id = #{id}
+	</select>
+
+	<select id="getCarList" resultMap="baseMap">
+		SELECT * from car where visible=0
+	</select>
+
+</mapper>

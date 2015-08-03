@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserConfigMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserConfig">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="type" column="type"/>
+    <result property="content" column="content"/>
+  </resultMap>
+
+	<select id="getUserConfig" resultMap="baseMap">
+	    SELECT * from user_config where user_id = #{userId} and type=#{type}
+	</select>
+	
+	<select id="getUserConfigList" resultMap="baseMap">
+	    SELECT * from user_config where user_id=#{userId}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserConfig" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_config(user_id,type,content) 
+	    values(#{userId},#{type},#{content})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserConfig">
+	    update user_config set 
+      type=#{type},
+      content=#{content}  where id = #{id}
+	</update>
+	
+</mapper>

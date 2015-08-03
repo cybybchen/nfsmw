@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.JaguarOwnInfoMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.JaguarOwnInfo">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="mobile" column="mobile" />
+		<result property="email" column="email" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="buyYear" column="buy_year" />
+		<result property="buySeason" column="buy_season" />
+		<result property="testArea" column="test_area" />
+		<result property="budget" column="budget" />
+		<result property="ip" column="ip" />
+		<result property="createTime" column="create_time" />
+		<result property="device" column="device" />
+		<result property="age" column="age" />
+	</resultMap>
+
+	<resultMap id="Device" type="com.ea.eamobile.nfsmw.view.DeviceCount">
+		<result property="device" column="device" />
+		<result property="count" column="count" />
+	</resultMap>
+
+	<select id="getDeviceCount" resultMap="Device">
+		SELECT device,count(1) as
+		count from jaguar_own_info group by device
+	</select>
+
+	<select id="getTotal" resultType="int">
+		SELECT count(1)
+		from
+		jaguar_own_info
+	</select>
+
+	<select id="getJaguarOwnInfoList" parameterType="int" resultMap="baseMap">
+		SELECT * from
+		jaguar_own_info where id &gt; #{id} limit 10
+	</select>
+
+	<select id="getByEmail" parameterType="String" resultMap="baseMap">
+		SELECT
+		* from
+		jaguar_own_info where email=#{email}
+	</select>
+	<select id="getByMobile" parameterType="String" resultMap="baseMap">
+		SELECT * from
+		jaguar_own_info where mobile=#{mobile}
+	</select>
+
+	<select id="getByMobileOrEmail" resultMap="baseMap">
+		SELECT * from
+		jaguar_own_info where mobile=#{mobile} or email=#{email} limit 1
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.JaguarOwnInfo"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		jaguar_own_info(name,gender,mobile,email,province,city,buy_year,buy_season,test_area,budget,ip,create_time,device,age)
+		values(#{name},#{gender},#{mobile},#{email},#{province},#{city},#{buyYear},#{buySeason},#{testArea},#{budget},
+		#{ip},#{createTime},#{device},#{age})
+	</insert>
+
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.ModeStandardResultMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.ModeStandardResult">
+    <id property="id" column="id" />
+    <result property="modeId" column="mode_id"/>
+    <result property="carId" column="car_id"/>
+    <result property="raceTime" column="race_time"/>
+    <result property="averageSpeed" column="average_speed"/>
+    <result property="nitrousBurnAddTime" column="nitrous_burn_add_time"/>
+    <result property="powerPackAddTime" column="power_pack_add_time"/>
+    <result property="nitrousBurnAddSpeed" column="nitrous_burn_add_speed"/>
+    <result property="powerPackAddSpeed" column="power_pack_add_speed"/>
+  </resultMap>
+
+	<select id="getModeStandardResult" parameterType="int" resultMap="baseMap">
+	    SELECT * from mode_standard_result where mode_id=#{modeId} and car_id=#{carId}
+	</select>
+	
+	<select id="getModeStandardResultList" resultMap="baseMap">
+	    SELECT * from mode_standard_result
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.ModeStandardResult" keyProperty="id" useGeneratedKeys="true">
+	    insert into mode_standard_result(mode_id,car_id,race_time,average_speed,nitrous_burn_add_time,power_pack_add_time,nitrous_burn_add_speed,power_pack_add_speed) 
+	    values(#{modeId},#{carId},#{raceTime},#{averageSpeed},#{nitrousBurnAddTime},#{powerPackAddTime},#{nitrousBurnAddSpeed},#{powerPackAddSpeed})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.ModeStandardResult">
+	    update mode_standard_result set 
+      mode_id=#{modeId},
+      car_id=#{carId},
+      race_time=#{raceTime},
+      average_speed=#{averageSpeed},
+      nitrous_burn_add_time=#{nitrousBurnAddTime},
+      power_pack_add_time=#{powerPackAddTime},
+      nitrous_burn_add_speed=#{nitrousBurnAddSpeed},
+      power_pack_add_speed#{powerPackAddSpeed}       where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from mode_standard_result where id=#{id}
+	</delete>
+	
+</mapper>

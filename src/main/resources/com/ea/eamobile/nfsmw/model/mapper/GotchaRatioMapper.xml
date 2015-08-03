@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.GotchaRatioMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.GotchaRatio">
+    <id property="id" column="id" />
+    <result property="gotchaId" column="gotcha_id"/>
+    <result property="rewardId" column="reward_id"/>
+    <result property="weight" column="weight"/>
+  </resultMap>
+
+	<select id="getGotchaRatio" parameterType="int" resultMap="baseMap">
+	    SELECT * from gotcha_ratio where id = #{id}
+	</select>
+	
+	<select id="getGotchaRatioList" parameterType="int" resultMap="baseMap">
+	    SELECT * from gotcha_ratio where gotcha_id=#{gotchaId}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.GotchaRatio" keyProperty="id" useGeneratedKeys="true">
+	    insert into gotcha_ratio(gotcha_id,reward_id,weight) 
+	    values(#{gotchaId},#{rewardId},#{weight})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.GotchaRatio">
+	    update gotcha_ratio set 
+      gotcha_id=#{gotchaId},
+      reward_id=#{rewardId},
+      weight=#{weight}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from gotcha_ratio where id=#{id}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CarChangeTimeMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CarChangeTime">
+		<id property="id" column="id" />
+		<result property="carId" column="car_id" />
+		<result property="time" column="time" />
+	</resultMap>
+
+	<select id="getCarChangeTimeListByTime" parameterType="int"
+		resultMap="baseMap">
+		SELECT * from car_change_time where time &gt; #{time}
+	</select>
+
+
+	<select id="getCarChangeTimeList" resultMap="baseMap">
+		SELECT * from
+		car_change_time
+	</select>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CarChangeTime"
+		keyProperty="id" useGeneratedKeys="true">
+		replace into
+		car_change_time(car_id,time)
+		values(#{carId},#{time})
+	</insert>
+
+
+</mapper>

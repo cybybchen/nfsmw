@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CensorWordMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CensorWord">
+		<id property="content" column="content" />
+	</resultMap>
+
+	<select id="getCensorWordList" resultType="String">
+		SELECT * from censor_word
+	</select>
+	
+	<select id="getCensorWord" resultType="String">
+		SELECT * from censor_word where content=#{word}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CensorWord">
+		insert into censor_word(content)
+		values(#{content})
+	</insert>
+
+</mapper>

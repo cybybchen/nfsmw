@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CheatUserInfoRecordMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.CheatUserInfoRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="cheatType" column="cheat_type" />
+		<result property="version" column="version" />
+		<result property="carName" column="car_name" />
+		<result property="middleGearSpeed" column="middle_gear_speed" />
+		<result property="topGearSpeed" column="top_gear_speed" />
+		<result property="md5" column="md5" />
+		<result property="userSelectCarId" column="user_select_car_id" />
+	</resultMap>
+
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CheatUserInfoRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		cheat_user_info_record(user_id,cheat_type,version,car_name,middle_gear_speed,top_gear_speed,md5,user_select_car_id)
+		values(#{userId},#{cheatType},#{version},#{carName},#{middleGearSpeed},#{topGearSpeed},#{md5},#{userSelectCarId})
+	</insert>
+
+
+
+</mapper>

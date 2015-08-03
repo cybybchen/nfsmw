@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ea.eamobile.nfsmw.model.mapper.UserGetSpendRewardRecordMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.UserGetSpendRewardRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="spendActivityId" column="spend_activity_id" />
+		<result property="spendRewardId" column="spend_reward_id" />
+		<result property="time" column="time" />
+	</resultMap>
+
+
+
+	<select id="getUserGetSpendRewardRecordList" resultMap="baseMap">
+		SELECT *
+		from user_get_spend_reward_record where user_id=#{userId} and
+		spend_activity_id=#{spendActivityId}
+	</select>
+	
+	<select id="getUserGetSpendRewardRecordByUserIdAndRewardId" resultMap="baseMap">
+		SELECT *
+		from user_get_spend_reward_record where user_id=#{userId} and
+		spend_reward_id=#{spendRewardId} and spend_activity_id=#{spendActivityId}
+	</select>
+
+	<insert id="insert"
+		parameterType="com.ea.eamobile.nfsmw.model.UserGetSpendRewardRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		user_get_spend_reward_record(user_id,spend_activity_id,spend_reward_id)
+		values(#{userId},#{spendActivityId},#{spendRewardId})
+	</insert>
+
+
+</mapper>

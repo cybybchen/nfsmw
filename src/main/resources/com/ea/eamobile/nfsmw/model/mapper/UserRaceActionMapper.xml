@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserRaceActionMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserRaceAction">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="valueId" column="value_id"/>
+    <result property="value" column="value"/>
+  </resultMap>
+
+	<select id="getUserRaceAction" parameterType="long" resultMap="baseMap">
+	    SELECT * from user_race_action where id = #{id}
+	</select>
+
+	<select id="getUserRaceActionByUserIdAndValueId" resultMap="baseMap">
+	    SELECT * from user_race_action where user_id=#{userId} and value_id=#{valueId}
+	</select>
+
+	<select id="getUserRaceActionListByUserId" parameterType="long" resultMap="baseMap">
+	    SELECT * from user_race_action where user_id = #{userId}
+	</select>
+	
+	<select id="getUserRaceActionList" resultMap="baseMap">
+	    SELECT * from user_race_action
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserRaceAction" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_race_action(user_id,value_id,value) 
+	    values(#{userId},#{valueId},#{value})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserRaceAction">
+	    update user_race_action set 
+      value_id=#{valueId},
+      value=#{value}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="long">
+	    delete from user_race_action where id=#{id}
+	</delete>
+	
+</mapper>

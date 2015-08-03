@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserPayMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserPay">
+		<id property="userId" column="user_id" />
+		<result property="payment" column="payment" />
+		<result property="expenseGold" column="expense_gold" />
+		<result property="expenseMoney" column="expense_money" />
+	</resultMap>
+
+	<select id="getUserPay" parameterType="long" resultMap="baseMap">
+		SELECT *
+		from user_pay where user_id = #{userId}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserPay"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		user_pay(user_id,payment,expense_gold,expense_money)
+		values(#{userId},#{payment},#{expenseGold},#{expenseMoney})
+		on
+		duplicate key update
+		payment=payment+#{payment},expense_gold=expense_gold+#{expenseGold},expense_money=expense_money+#{expenseMoney}
+	</insert>
+
+	<delete id="deleteById" parameterType="long">
+		delete from user_pay where
+		user_id = #{userId}
+	</delete>
+
+</mapper>

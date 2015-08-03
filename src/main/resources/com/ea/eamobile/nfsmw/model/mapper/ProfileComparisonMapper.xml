@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.ProfileComparisonMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.ProfileComparison">
+    <id property="id" column="id" />
+    <result property="orderIndex" column="order_index"/>
+    <result property="title" column="title"/>
+    <result property="subTitle" column="sub_title"/>
+    <result property="valueType" column="value_type"/>
+    <result property="hasProgressBar" column="has_progress_bar"/>
+  </resultMap>
+
+	<select id="getProfileComparison" parameterType="int" resultMap="baseMap">
+	    SELECT * from profile_comparison where id = #{id}
+	</select>
+
+	<select id="getProfileComparisonByOrder" parameterType="int" resultMap="baseMap">
+	    SELECT * from profile_comparison where order_index = #{orderIndex}
+	</select>
+	
+	<select id="getProfileComparisonList" resultMap="baseMap">
+	    SELECT * from profile_comparison order by order_index
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.ProfileComparison" keyProperty="id" useGeneratedKeys="true">
+	    insert into profile_comparison(order_index,title,sub_title,value_type,has_progress_bar) 
+	    values(#{orderIndex},#{title},#{subTitle},#{valueType},#{hasProgressBar})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.ProfileComparison">
+	    update profile_comparison set 
+      order_index=#{orderIndex},
+      title=#{title},
+      sub_title=#{subTitle},
+      value_type=#{valueType},
+      has_progress_bar=#{hasProgressBar}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from profile_comparison where id=#{id}
+	</delete>
+	
+</mapper>

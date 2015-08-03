@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ea.eamobile.nfsmw.model.mapper.LeaderboardChangeRecordMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.LeaderboardChangeRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="modeId" column="mode_id" />
+		<result property="raceTime" column="race_time" />
+		<result property="averageSpeed" column="average_speed" />
+		<result property="time" column="time" />
+		<result property="carId" column="car_id" />
+		<result property="firstConsumbleId" column="first_consumble_id" />
+		<result property="secondConsumbleId" column="second_consumble_id" />
+		<result property="thirdConsumbleId" column="third_consumble_id" />
+	</resultMap>
+
+	<select id="getLeaderboardChangeRecord" parameterType="int"
+		resultMap="baseMap">
+		SELECT * from leaderboard_change_record where id = #{id}
+	</select>
+
+	<select id="getLeaderboardChangeRecordByUserIdAndRaceTime"
+		resultMap="baseMap">
+		SELECT * from leaderboard_change_record where user_id = #{userId} and
+		race_time&lt;#{raceTime}+1 and race_time&gt;#{raceTime}-1 limit 1
+	</select>
+
+	<select id="getLeaderboardChangeRecordByUserIdAndAverageSpeed"
+		resultMap="baseMap">
+		SELECT * from leaderboard_change_record where user_id = #{userId} and
+		average_speed&lt;#{averageSpeed}+1 and average_speed&gt;#{averageSpeed}-1 limit 1
+	</select>
+
+
+	<select id="getLeaderboardChangeRecordList" resultMap="baseMap">
+		SELECT * from leaderboard_change_record
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.LeaderboardChangeRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		leaderboard_change_record(user_id,mode_id,race_time,average_speed,car_id,first_consumble_id,second_consumble_id,third_consumble_id)
+		values(#{userId},#{modeId},#{raceTime},#{averageSpeed},#{carId},#{firstConsumbleId},#{secondConsumbleId},#{thirdConsumbleId})
+	</insert>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.SpendRewardMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.SpendReward">
+		<id property="id" column="id" />
+		<result property="goldAmount" column="gold_amount" />
+		<result property="addGold" column="add_gold" />
+		<result property="addMoney" column="add_money" />
+		<result property="addEnergy" column="add_energy" />
+		<result property="displayName" column="display_name" />
+	</resultMap>
+
+	<select id="getSpendReward" parameterType="int" resultMap="baseMap">
+		SELECT * from spend_reward where id = #{id}
+	</select>
+
+	<select id="getSpendRewardList" resultMap="baseMap">
+		SELECT * from spend_reward
+	</select>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.SpendReward"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		spend_reward(gold_amount,add_gold,add_money,add_energy,display_name)
+		values(#{goldAmount},#{addGold},#{addMoney},#{addEnergy},#{displayName})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.SpendReward">
+		update spend_reward set
+		gold_amount=#{goldAmount},
+		add_gold=#{addGold},
+		add_money=#{addMoney},
+		add_energy=#{addEnergy},
+		display_name=#{displayName} where id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from spend_reward where id=#{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.RaceModeUnlockMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.RaceModeUnlock">
+    <result property="trackId" column="track_id"/>
+    <result property="unlockValue" column="unlock_value"/>
+    <result property="modeId" column="mode_id"/>
+  </resultMap>
+
+	<select id="getRaceModeUnlock" parameterType="int" resultMap="baseMap">
+	    SELECT * from race_mode_unlock where id = #{id}
+	</select>
+	
+	<select id="getRaceModeUnlockList" resultMap="baseMap">
+	    SELECT * from race_mode_unlock
+	</select>
+	
+</mapper>

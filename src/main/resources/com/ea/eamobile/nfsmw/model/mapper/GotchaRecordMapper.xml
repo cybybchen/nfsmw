@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.GotchaRecordMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.GotchaRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="gotchaId" column="gotcha_id" />
+		<result property="spendGoldNum" column="spend_gold_num" />
+		<result property="getGoldNum" column="get_gold_num" />
+		<result property="getMoneyNum" column="get_money_num" />
+		<result property="getGasNum" column="get_gas_num" />
+		<result property="fragId" column="frag_id" />
+		<result property="fragNum" column="frag_num" />
+		<result property="carId" column="car_id" />
+		<result property="time" column="time" />
+		<result property="isBingoCar" column="is_bingo_car" />
+	</resultMap>
+
+	<select id="getGotchaRecord" parameterType="int" resultMap="baseMap">
+		SELECT * from gotcha_record where id = #{id}
+	</select>
+
+	<select id="getGotchaRecordList" resultMap="baseMap">
+		SELECT * from
+		gotcha_record
+	</select>
+
+	<select id="getMaxTimeByUserId" resultType="int" >
+		SELECT max(time) from
+		gotcha_record where user_id=#{userId}
+	</select>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.GotchaRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		gotcha_record(user_id,gotcha_id,spend_gold_num,get_gold_num,get_money_num,get_gas_num,frag_id,frag_num,car_id,is_bingo_car,time)
+		values(#{userId},#{gotchaId},#{spendGoldNum},#{getGoldNum},#{getMoneyNum},#{getGasNum},#{fragId},#{fragNum},#{carId},#{isBingoCar},#{time})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.GotchaRecord">
+		update gotcha_record set
+		gotcha_id=#{gotchaId},
+		spend_gold_num=#{spendGoldNum},
+		get_gold_num=#{getGoldNum},
+		get_money_num=#{getMoneyNum},
+		get_gas_num=#{getGasNum},
+		frag_id=#{fragId},
+		frag_num=#{fragNum},
+		time=#{time},
+		car_id=#{carId} where id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from gotcha_record
+		where id=#{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.IapCheckInfoMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.IapCheckInfo">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="transactionId" column="transaction_id" />
+		<result property="quantity" column="quantity" />
+		<result property="productId" column="product_id" />
+		<result property="createTime" column="create_time" />
+		<result property="version" column="version" />
+		<result property="rmbNum" column="rmb_num" />
+		<result property="paymentMode" column="payment_mode" />
+	</resultMap>
+
+	<select id="getIapCheckInfoByTransactionId" parameterType="long"
+		resultMap="baseMap">
+		SELECT * from iap_check_info where transaction_id =
+		#{transactionId}
+	</select>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.IapCheckInfo"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		iap_check_info(user_id,transaction_id,quantity,product_id,create_time,version,rmb_num,payment_mode)
+		values(#{userId},#{transactionId},#{quantity},#{productId},#{createTime},#{version},#{rmbNum},#{paymentMode})
+	</insert>
+
+	<select id="getIapCheckInfoByUserIdAndProductId" parameterType="com.ea.eamobile.nfsmw.model.IapCheckInfo"
+		resultMap="baseMap">
+		SELECT * from iap_check_info where user_id =
+		#{userId} and product_id = #{productId} limit 1
+	</select>
+
+</mapper>

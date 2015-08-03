@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.OperateActivityMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.OperateActivity">
+    <id property="id" column="id" />
+    <result property="careerRpTimes" column="career_rp_times"/>
+    <result property="tournamentRpTimes" column="tournament_rp_times"/>
+    <result property="careerGoldTimes" column="career_gold_times"/>
+    <result property="tournamentGoldTimes" column="tournament_gold_times"/>
+    <result property="careerMoneyTimes" column="career_money_times"/>
+    <result property="tournamentMoneyTimes" column="tournament_money_times"/>
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+  </resultMap>
+
+	<select id="getOperateActivity" parameterType="int" resultMap="baseMap">
+	    SELECT * from operate_activity where id = #{id}
+	</select>
+	
+	
+	<select id="getOperateActivityByTime" parameterType="int" resultMap="baseMap">
+	    SELECT * from operate_activity where start_time&lt; #{time} and end_time&gt;#{time} limit 1
+	</select>
+	
+	<select id="getMaxEndTime" resultType="Integer">
+	    SELECT max(end_time) from operate_activity 
+	</select>
+	
+	
+	<select id="getOperateActivityList" resultMap="baseMap">
+	    SELECT * from operate_activity
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.OperateActivity" keyProperty="id" useGeneratedKeys="true">
+	    insert into operate_activity(career_rp_times,tournament_rp_times,career_gold_times,tournament_gold_times,career_money_times,tournament_money_times,start_time,end_time) 
+	    values(#{careerRpTimes},#{tournamentRpTimes},#{careerGoldTimes},#{tournamentGoldTimes},#{careerMoneyTimes},#{tournamentMoneyTimes},#{startTime},#{endTime})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.OperateActivity">
+	    update operate_activity set 
+      career_rp_times=#{careerRpTimes},
+      tournament_rp_times=#{tournamentRpTimes},
+      career_gold_times=#{careerGoldTimes},
+      tournament_gold_times=#{tournamentGoldTimes},
+      career_money_times=#{careerMoneyTimes},
+      tournament_money_times=#{tournamentMoneyTimes},
+      start_time=#{startTime},
+      end_time=#{endTime}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from operate_activity where id=#{id}
+	</delete>
+	
+</mapper>

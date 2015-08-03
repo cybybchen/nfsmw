@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/ea/eamobile/nfsmw/chain/CoreScreen.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/chain/RequestScreen.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/service/JsonService.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/service/UserInfoMessageService.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/service/UserService.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/service/command/GotchaCommandService.java=UTF-8
+encoding//src/main/java/com/ea/eamobile/nfsmw/service/command/LoginCommandService.java=UTF-8

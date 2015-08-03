@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TierCarLimitMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TierCarLimit">
+		<id property="id" column="id" />
+		<result property="tierId" column="tier_id" />
+		<result property="carId" column="car_id" />
+	</resultMap>
+
+	<select id="getTierCarLimit" parameterType="int" resultMap="baseMap">
+		SELECT * from tier_car_limit where id = #{id}
+	</select>
+
+	<select id="getTierCarLimitList" resultMap="baseMap">
+		SELECT * from tier_car_limit
+	</select>
+
+	<select id="getTierCarLimitListByTierId" resultType="String">
+		SELECT car_id from tier_car_limit where tier_id=#{tierId};
+	</select>
+
+</mapper>

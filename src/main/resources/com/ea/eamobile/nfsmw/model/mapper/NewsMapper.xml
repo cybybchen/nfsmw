@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.NewsMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.News">
+		<id property="id" column="id" />
+		<result property="type" column="type" />
+		<result property="content" column="content" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<select id="getNews" parameterType="int" resultMap="baseMap">
+		SELECT * from news where id = #{id}
+	</select>
+
+	<select id="getNewsByType" parameterType="int" resultMap="baseMap">
+		SELECT * from news where type=#{type} limit 1
+	</select>
+
+	<select id="getNewsList" resultMap="baseMap">
+		SELECT * from news order by type
+	</select>
+
+	<select id="getMaxTime" resultType="int">
+		SELECT max(create_time) from news
+	</select>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.News"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into news(type,content,create_time)
+		values(#{type},#{content},#{createTime})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.News">
+		update news set
+		type=#{type},
+		content=#{content},
+		create_time=#{createTime} where id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from news where id=#{id}
+	</delete>
+
+</mapper>

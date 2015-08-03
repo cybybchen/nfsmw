@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:cloud="http://schema.cloudfoundry.org/spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+		http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring-0.8.xsd">
+
+	<!-- Scans the classpath of this application for @Components to deploy as 
+		beans -->
+	<context:component-scan base-package="com.ea.eamobile.nfsmw.base" />
+	<context:component-scan base-package="com.ea.eamobile.nfsmw.action" />
+	<context:component-scan base-package="com.ea.eamobile.nfsmw.service" />
+	<context:component-scan base-package="com.ea.eamobile.nfsmw.cache" />
+	<!-- nfsmw request chain -->
+	<bean id="genericErrorHandle" class="com.ea.eamobile.nfsmw.chain.GenericErrorHandle" />
+	<bean id="nullUserErrorHandle" class="com.ea.eamobile.nfsmw.chain.NullUserErrorHandle" />
+
+	<bean id="headScreen" class="com.ea.eamobile.nfsmw.chain.HeadScreen" />
+	<bean id="logScreen" class="com.ea.eamobile.nfsmw.chain.LogScreen" />
+	<bean id="cheatScreen" class="com.ea.eamobile.nfsmw.chain.CheatScreen" />
+	<bean id="coreScreen" class="com.ea.eamobile.nfsmw.chain.CoreScreen" />
+	<bean id="operateScreen" class="com.ea.eamobile.nfsmw.chain.OperateScreen" />
+	<bean id="dumpScreen" class="com.ea.eamobile.nfsmw.chain.DumpScreen" />
+	<bean id="telemetryScreen" class="com.ea.eamobile.nfsmw.chain.TelemetryScreen" />
+	<bean id="responseScreen" class="com.ea.eamobile.nfsmw.chain.ResponseScreen" />
+	<bean id="pushCommandScreen" class="com.ea.eamobile.nfsmw.chain.PushCommandScreen" />
+	<bean id="chainOfScreens" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="headScreen" />
+				<ref bean="logScreen" />
+				<ref bean="cheatScreen" />
+				<ref bean="coreScreen" />
+				<ref bean="operateScreen" />
+				<ref bean="dumpScreen" />
+				<ref bean="telemetryScreen" />
+				<ref bean="pushCommandScreen" />
+				<!-- <ref bean="responseScreen" /> -->
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Configures the @Controller programming model -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="alwaysUseFullPath" value="true" />
+	</bean>
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/nfsmw/images/**" location="/images/" />
+	<mvc:resources mapping="/nfsmw/js/**" location="/js/" />
+	<mvc:resources mapping="/nfsmw/css/**" location="/css/" />
+
+	<bean id="viewresolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- DB configurations below -->
+	<bean id="dataSource" class="com.ea.eamobile.nfsmw.utils.DataSource"
+		destroy-method="close" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- MyBatis configurations below -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.ea.eamobile.nfsmw.model" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ea.eamobile.nfsmw.model.mapper" />
+	</bean>
+	<!-- new cache config REMEMBER servers will be set using ConfigUtil.MEMCACHE_SERVERS 
+		which can be override -->
+	<bean id="cacheFactory" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+		<property name="protocol" value="BINARY" />
+		<property name="transcoder">
+			<bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+				<property name="compressionThreshold" value="1024" />
+			</bean>
+		</property>
+		<property name="daemon" value="true" />
+		<property name="opTimeout" value="2000" />
+		<property name="hashAlg">
+			<value type="net.spy.memcached.DefaultHashAlgorithm">KETAMA_HASH</value>
+		</property>
+		<property name="locatorType" value="CONSISTENT" />
+		<property name="failureMode" value="Redistribute" />
+		<property name="useNagleAlgorithm" value="false" />
+	</bean>
+	<context:property-placeholder location="classpath:nfsmw.properties"
+		ignore-unresolvable="true" />
+
+	<bean name="bootstrapServlet" class="com.ea.eamobile.nfsmw.servlet.BootstrapServlet"
+		init-method="initialize" destroy-method="cleanup" />
+
+	<bean name="memcacheClient" class="com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient"/>
+
+</beans>

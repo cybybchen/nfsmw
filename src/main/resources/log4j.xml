@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 开发调试使用 -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm} %5p %c{1} - %m%n" />
+		</layout>
+	</appender>
+	<appender name="appender-request-log" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="file" value="${user.home}/logs/request.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	<logger name="RequestLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="appender-request-log" />
+	</logger>
+	
+	<appender name="appender-response-log" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="file" value="${user.home}/logs/response.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	<logger name="ResponseLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="appender-response-log" />
+	</logger>
+	
+	<appender name="binding" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="File" value="${user.home}/logs/binding.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd-HH:mm} %5p - %m%n" />
+		</layout>
+	</appender>
+	<logger name="binding" additivity="false">
+		<level value="info" />
+		<appender-ref ref="binding" />
+	</logger>
+	
+	
+	<appender name="appender-telemetry-log" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="file" value="${user.home}/logs/telemetry.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	<logger name="TelemetryLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="appender-telemetry-log" />
+	</logger>
+	
+	
+	
+	<root>
+		<level value="debug" />
+		<appender-ref ref="consoleAppender" />
+	</root>
+</log4j:configuration>

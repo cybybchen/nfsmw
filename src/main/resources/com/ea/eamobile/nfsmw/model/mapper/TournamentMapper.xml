@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.Tournament">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="logo" column="logo" />
+		<result property="type" column="type" />
+		<result property="levelLimit" column="level_limit" />
+		<result property="tierLimit" column="tier_limit" />
+		<result property="modeType" column="mode_type" />
+		<result property="scheduleType" column="schedule_type" />
+		<result property="lastTime" column="last_time" />
+		<result property="specialFlag" column="special_flag" />
+		<result property="orderId" column="order_id" />
+		<result property="adId" column="ad_id" />
+		<result property="feedId" column="feed_id" />
+		<result property="raceNum" column="race_num" />
+		<result property="backgroundPictureId" column="background_picture_id" />
+		<result property="noConsumble" column="no_consumble" />
+	</resultMap>
+
+	<select id="getTournament" parameterType="int" resultMap="baseMap">
+		SELECT * from tournament where id = #{id}
+	</select>
+
+	<select id="getTournamentList" resultMap="baseMap">
+		SELECT * from tournament
+	</select>
+
+</mapper>

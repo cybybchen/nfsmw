@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentCarLimitMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TournamentCarLimit">
+    <id property="id" column="id" />
+    <result property="groupId" column="group_id"/>
+    <result property="carId" column="car_id"/>
+  </resultMap>
+
+	<select id="getTournamentCarLimitByGroupId" parameterType="int" resultType="String">
+	    SELECT car_id from tournament_car_limit where group_id = #{groupId}
+	</select>
+	
+	<select id="getTournamentCarLimitList" resultMap="baseMap">
+	    SELECT * from tournament_car_limit
+	</select>
+	
+</mapper>

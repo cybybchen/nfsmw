@@ -1,0 +1,2145 @@
+Aug 2, 2014 3:50:17 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+Aug 2, 2014 3:50:17 PM org.apache.catalina.startup.SetAllPropertiesRule begin
+WARNING: [SetAllPropertiesRule]{Server/Service/Connector} Setting property 'maxSpareThreads' to '2048' did not find a matching property.
+Aug 2, 2014 3:50:18 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+Aug 2, 2014 3:50:18 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Aug 2, 2014 3:50:18 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1431 ms
+Aug 2, 2014 3:50:18 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 2, 2014 3:50:18 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.52
+Aug 2, 2014 3:50:18 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /home/ybchen/apache-tomcat-7.0.52/webapps/HappyRunCoolServer.war
+Aug 2, 2014 3:50:21 PM org.apache.tomcat.websocket.server.WsSci onStartup
+INFO: JSR 356 WebSocket (Java WebSocket 1.0) support is not available when running on Java 6. To suppress this message, run Tomcat on Java 7, remove the WebSocket JARs from $CATALINA_HOME/lib or add the WebSocketJARs to the tomcat.util.scan.DefaultJarScanner.jarsToSkip property in $CATALINA_BASE/conf/catalina.properties. Note that the deprecated Tomcat 7 WebSocket API will be available. 
+ERROR  <clinit>, Unable to set localhost. This prevents creation of a GUID. Cause was: .: .
+java.net.UnknownHostException: .: .
+	at java.net.InetAddress.getLocalHost(InetAddress.java:1426)
+	at net.sf.ehcache.Cache.<clinit>(Cache.java:200)
+	at net.sf.ehcache.config.ConfigurationHelper.createCache(ConfigurationHelper.java:302)
+	at net.sf.ehcache.config.ConfigurationHelper.createDefaultCache(ConfigurationHelper.java:218)
+	at net.sf.ehcache.CacheManager.configure(CacheManager.java:600)
+	at net.sf.ehcache.CacheManager.init(CacheManager.java:359)
+	at net.sf.ehcache.CacheManager.<init>(CacheManager.java:289)
+	at org.springframework.cache.ehcache.EhCacheManagerFactoryBean.afterPropertiesSet(EhCacheManagerFactoryBean.java:139)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1479)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor.getAdvice(AbstractBeanFactoryPointcutAdvisor.java:86)
+	at org.springframework.aop.support.AbstractPointcutAdvisor.getOrder(AbstractPointcutAdvisor.java:51)
+	at org.springframework.core.OrderComparator.getOrder(OrderComparator.java:70)
+	at org.springframework.core.OrderComparator.compare(OrderComparator.java:58)
+	at java.util.Arrays.mergeSort(Arrays.java:1283)
+	at java.util.Arrays.sort(Arrays.java:1223)
+	at java.util.Collections.sort(Collections.java:176)
+	at org.springframework.core.OrderComparator.sort(OrderComparator.java:83)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.sortAdvisors(AbstractAdvisorAutoProxyCreator.java:144)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAutoProxyCreator.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAdvisorAutoProxyCreator.java:69)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:359)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1488)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4973)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5467)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:632)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1073)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1857)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Aug 2, 2014 3:50:25 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ybchen/apache-tomcat-7.0.52/webapps/host-manager
+Aug 2, 2014 3:50:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ybchen/apache-tomcat-7.0.52/webapps/manager
+Aug 2, 2014 3:50:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ybchen/apache-tomcat-7.0.52/webapps/ROOT
+Aug 2, 2014 3:50:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ybchen/apache-tomcat-7.0.52/webapps/docs
+Aug 2, 2014 3:50:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /home/ybchen/apache-tomcat-7.0.52/webapps/examples
+Aug 2, 2014 3:50:26 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+Aug 2, 2014 3:50:26 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Aug 2, 2014 3:50:26 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 8436 ms
+2014-08-02 15:50:54,719 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 22313 actions: 2average cost: 48
+2014-08-02 15:50:58,657 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,430 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:50:59,496 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:50:59,496 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:50:59,496 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:50:59,496 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:50:59,496 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:50:59,503 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:50:59,591 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,592 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,594 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,595 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,597 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,599 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,601 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,602 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,604 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,606 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,607 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,609 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,611 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,612 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,614 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,616 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,619 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,621 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,623 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,624 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,626 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,628 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,630 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,631 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,633 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,635 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,636 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,638 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,640 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,641 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,643 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,644 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,646 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,648 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,649 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,651 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,652 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:50:59,654 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:51:00,152 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 5433 actions: 5average cost: 401
+2014-08-02 15:51:00,308 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:51:05,958 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 5806 actions: 5average cost: 54
+2014-08-02 15:51:28,880 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 22922 actions: 1average cost: 1
+2014-08-02 15:51:53,454 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 24574 actions: 1average cost: 1
+Aug 2, 2014 3:52:36 PM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/HappyRunCoolServer]
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/HappyRunCoolServer] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/HappyRunCoolServer] appears to have started a thread named [FileWatchdog] but has failed to stop it. This is very likely to create a memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@17fe0dcb]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@283b96bb]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@6024e39f]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@15dc0d09]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@223c8087]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@321a30a0]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@556e7212]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@4603278f]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@791a4131]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@2aae3614]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@136070f0]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@2096a680]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@28d2e37]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@347f65f2]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@2d51e30]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:37 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /home/ybchen/apache-tomcat-7.0.52/webapps/HappyRunCoolServer.war
+ERROR  <clinit>, Unable to set localhost. This prevents creation of a GUID. Cause was: .: .
+java.net.UnknownHostException: .: .
+	at java.net.InetAddress.getLocalHost(InetAddress.java:1426)
+	at net.sf.ehcache.Cache.<clinit>(Cache.java:200)
+	at net.sf.ehcache.config.ConfigurationHelper.createCache(ConfigurationHelper.java:302)
+	at net.sf.ehcache.config.ConfigurationHelper.createDefaultCache(ConfigurationHelper.java:218)
+	at net.sf.ehcache.CacheManager.configure(CacheManager.java:600)
+	at net.sf.ehcache.CacheManager.init(CacheManager.java:359)
+	at net.sf.ehcache.CacheManager.<init>(CacheManager.java:289)
+	at org.springframework.cache.ehcache.EhCacheManagerFactoryBean.afterPropertiesSet(EhCacheManagerFactoryBean.java:139)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1479)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor.getAdvice(AbstractBeanFactoryPointcutAdvisor.java:86)
+	at org.springframework.aop.support.AbstractPointcutAdvisor.getOrder(AbstractPointcutAdvisor.java:51)
+	at org.springframework.core.OrderComparator.getOrder(OrderComparator.java:70)
+	at org.springframework.core.OrderComparator.compare(OrderComparator.java:58)
+	at java.util.Arrays.mergeSort(Arrays.java:1283)
+	at java.util.Arrays.sort(Arrays.java:1223)
+	at java.util.Collections.sort(Collections.java:176)
+	at org.springframework.core.OrderComparator.sort(OrderComparator.java:83)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.sortAdvisors(AbstractAdvisorAutoProxyCreator.java:144)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAutoProxyCreator.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAdvisorAutoProxyCreator.java:69)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:359)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1488)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4973)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5467)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:632)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1073)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1857)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load java.lang.ObjectBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.ConsoleAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:43 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+2014-08-02 15:52:51,171 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 6669 actions: 2average cost: 44
+Aug 2, 2014 3:52:51 PM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/HappyRunCoolServer]
+Aug 2, 2014 3:52:51 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/HappyRunCoolServer] appears to have started a thread named [FileWatchdog] but has failed to stop it. This is very likely to create a memory leak.
+Aug 2, 2014 3:52:51 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@4ea14b94]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@3f6909e0]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:51 PM org.apache.catalina.loader.WebappClassLoader checkThreadLocalMapForLeaks
+SEVERE: The web application [/HappyRunCoolServer] created a ThreadLocal with key of type [net.sf.json.AbstractJSON.CycleSet] (value [net.sf.json.AbstractJSON$CycleSet@4ea14b94]) and a value of type [java.lang.ref.SoftReference] (value [java.lang.ref.SoftReference@90771a6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+Aug 2, 2014 3:52:52 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive /home/ybchen/apache-tomcat-7.0.52/webapps/HappyRunCoolServer.war
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load java.lang.ObjectBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.ConsoleAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:53 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.LayoutBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load java.lang.ObjectBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:805)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.RollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.FileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.WriterAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.AppenderSkeletonBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load java.lang.ObjectBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:250)
+	at java.beans.Introspector.<init>(Introspector.java:404)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.configureRootCategory(PropertyConfigurator.java:648)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:514)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.ConsoleAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppender.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:785)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.PatternLayout.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at org.apache.log4j.helpers.Loader.loadClass(Loader.java:185)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByClassName(OptionConverter.java:327)
+	at org.apache.log4j.helpers.OptionConverter.instantiateByKey(OptionConverter.java:124)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:797)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:98)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+Aug 2, 2014 3:52:55 PM org.apache.catalina.loader.WebappClassLoader loadClass
+INFO: Illegal access: this web application instance has been stopped already.  Could not load org.apache.log4j.DailyRollingFileAppenderBeanInfo.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.
+java.lang.IllegalStateException
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1610)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1569)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:63)
+	at com.sun.beans.finder.ClassFinder.findClass(ClassFinder.java:105)
+	at java.beans.Introspector.instantiate(Introspector.java:1488)
+	at java.beans.Introspector.findExplicitBeanInfo(Introspector.java:446)
+	at java.beans.Introspector.<init>(Introspector.java:395)
+	at java.beans.Introspector.getBeanInfo(Introspector.java:189)
+	at org.apache.log4j.config.PropertySetter.introspect(PropertySetter.java:83)
+	at org.apache.log4j.config.PropertySetter.getPropertyDescriptor(PropertySetter.java:294)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:140)
+	at org.apache.log4j.config.PropertySetter.setProperties(PropertySetter.java:104)
+	at org.apache.log4j.PropertyConfigurator.parseAppender(PropertyConfigurator.java:842)
+	at org.apache.log4j.PropertyConfigurator.parseCategory(PropertyConfigurator.java:768)
+	at org.apache.log4j.PropertyConfigurator.parseCatsAndRenderers(PropertyConfigurator.java:672)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:516)
+	at org.apache.log4j.PropertyConfigurator.doConfigure(PropertyConfigurator.java:395)
+	at org.apache.log4j.PropertyWatchdog.doOnChange(PropertyConfigurator.java:955)
+	at org.apache.log4j.helpers.FileWatchdog.checkAndConfigure(FileWatchdog.java:89)
+	at org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:108)
+ERROR  <clinit>, Unable to set localhost. This prevents creation of a GUID. Cause was: .: .
+java.net.UnknownHostException: .: .
+	at java.net.InetAddress.getLocalHost(InetAddress.java:1426)
+	at net.sf.ehcache.Cache.<clinit>(Cache.java:200)
+	at net.sf.ehcache.config.ConfigurationHelper.createCache(ConfigurationHelper.java:302)
+	at net.sf.ehcache.config.ConfigurationHelper.createDefaultCache(ConfigurationHelper.java:218)
+	at net.sf.ehcache.CacheManager.configure(CacheManager.java:600)
+	at net.sf.ehcache.CacheManager.init(CacheManager.java:359)
+	at net.sf.ehcache.CacheManager.<init>(CacheManager.java:289)
+	at org.springframework.cache.ehcache.EhCacheManagerFactoryBean.afterPropertiesSet(EhCacheManagerFactoryBean.java:139)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1479)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:198)
+	at org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor.getAdvice(AbstractBeanFactoryPointcutAdvisor.java:86)
+	at org.springframework.aop.support.AbstractPointcutAdvisor.getOrder(AbstractPointcutAdvisor.java:51)
+	at org.springframework.core.OrderComparator.getOrder(OrderComparator.java:70)
+	at org.springframework.core.OrderComparator.compare(OrderComparator.java:58)
+	at java.util.Arrays.mergeSort(Arrays.java:1283)
+	at java.util.Arrays.sort(Arrays.java:1223)
+	at java.util.Collections.sort(Collections.java:176)
+	at org.springframework.core.OrderComparator.sort(OrderComparator.java:83)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.sortAdvisors(AbstractAdvisorAutoProxyCreator.java:144)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAutoProxyCreator.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAdvisorAutoProxyCreator.java:69)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:359)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:322)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1488)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4973)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5467)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:632)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1073)
+	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1857)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+2014-08-02 15:52:57,001 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,537 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:52:57,569 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:52:57,569 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:52:57,569 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:52:57,569 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:52:57,569 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:52:57,579 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:52:57,729 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,731 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,733 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,734 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,736 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,737 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,739 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,740 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,742 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,744 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,745 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,746 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,748 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,749 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,751 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,753 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,755 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,757 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,758 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,760 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,761 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,762 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,764 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,766 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,767 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,769 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,771 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,773 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,775 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,776 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,777 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,780 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,781 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,783 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,786 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,787 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,789 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,790 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:57,792 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:52:58,255 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:53:09,995 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 13572 actions: 9average cost: 183
+2014-08-02 15:53:15,302 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:15,303 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:15,305 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:15,306 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:15,306 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:15,310 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 5315 actions: 1average cost: 16
+2014-08-02 15:53:32,807 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 17497 actions: 1average cost: 1
+2014-08-02 15:53:45,410 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 12603 actions: 1average cost: 0
+2014-08-02 15:53:48,067 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,072 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,074 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,092 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,092 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,092 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,092 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:53:48,092 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:53:48,094 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,095 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,100 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,100 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,101 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,102 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,109 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,109 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,109 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:48,109 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:53:48,109 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:53:48,111 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:53:50,867 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 5457 actions: 4average cost: 17
+2014-08-02 15:53:59,828 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 8961 actions: 1average cost: 1
+2014-08-02 15:54:18,370 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 18542 actions: 3average cost: 1
+2014-08-02 15:54:20,890 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:20,908 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:20,910 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:20,911 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:20,911 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:20,911 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:54:20,911 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:54:20,913 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:21,074 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:21,156 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:22,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:22,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:22,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:54:22,617 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:54:22,619 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:54:22,703 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,706 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,708 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,710 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,711 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,714 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,716 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,718 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,721 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,723 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,725 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,727 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,729 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,731 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,732 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,734 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,736 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,737 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,739 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,744 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,746 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,747 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,749 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,750 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,752 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,754 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,755 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,756 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,758 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,759 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,760 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,762 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,763 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,765 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,766 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,767 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,768 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,770 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:22,771 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:54:23,477 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 5107 actions: 15average cost: 69
+2014-08-02 15:55:04,246 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 40769 actions: 5average cost: 18
+2014-08-02 15:55:14,188 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 9942 actions: 1average cost: 1
+2014-08-02 15:55:26,520 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 12332 actions: 1average cost: 0
+2014-08-02 15:55:29,287 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:55:29,320 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:55:29,323 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:55:29,323 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:55:29,323 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:55:29,323 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:55:29,323 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:55:29,325 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:55:29,665 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:10,308 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 43788 actions: 10average cost: 43
+2014-08-02 15:56:17,471 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 7163 actions: 3average cost: 12
+2014-08-02 15:56:17,964 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:56:17,964 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:56:17,964 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:56:17,965 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:56:17,965 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:
+2014-08-02 15:56:17,966 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to int error:null
+2014-08-02 15:56:18,035 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,036 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,038 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,039 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,040 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,042 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,043 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,044 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,045 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,046 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,047 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,049 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,050 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,051 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,052 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,053 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,054 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,055 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,056 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,058 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,059 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,060 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,061 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,062 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,064 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,065 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,066 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,067 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,068 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,069 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,071 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,072 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,074 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,075 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,076 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,078 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,079 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,080 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:18,081 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:56:36,220 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 18749 actions: 8average cost: 85
+2014-08-02 15:57:30,505 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 54285 actions: 1average cost: 0
+2014-08-02 15:57:41,509 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 11004 actions: 1average cost: 1
+2014-08-02 15:57:49,288 ERROR [com.trans.happyruncool.controller.BaseController] - ybchen Time: 7779 actions: 3average cost: 28
+2014-08-02 15:57:49,439 ERROR [com.trans.happyruncool.util.CommonUtil] - parse str to long error:null
+2014-08-02 15:57:49,455 ERROR [com.trans.happyruncool.u

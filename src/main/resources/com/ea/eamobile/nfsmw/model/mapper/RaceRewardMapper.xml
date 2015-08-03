@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.RaceRewardMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.RaceReward">
+		<id property="id" column="id" />
+		<result property="rpLevel" column="rp_level" />
+		<result property="gameMode" column="game_mode" />
+		<result property="raceType" column="race_type" />
+		<result property="position" column="position" />
+		<result property="isFinish" column="is_finish" />
+		<result property="rewardId" column="reward_id" />
+	</resultMap>
+
+	<select id="getRewardId" parameterType="int" resultType="integer">
+		SELECT
+		reward_id from race_reward where rp_level=#{rpLevel} and
+		game_mode=#{gameMode} and
+		race_type=#{raceType}
+		and position=#{position}
+		and is_finish=#{isFinish}
+	</select>
+
+	<select id="getRaceRewards" resultMap="baseMap">
+		select * from race_reward
+		order by position
+	</select>
+
+</mapper>

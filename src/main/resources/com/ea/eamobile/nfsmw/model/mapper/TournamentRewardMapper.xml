@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentRewardMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TournamentReward">
+		<id property="id" column="id" />
+		<result property="groupId" column="group_id" />
+		<result property="rankMax" column="rank_max" />
+		<result property="rankMin" column="rank_min" />
+		<result property="specialNumber" column="special_number" />
+		<result property="rewardId" column="reward_id" />
+		<result property="orderId" column="order_id" />
+	</resultMap>
+
+	<select id="getTournamentRewardByRank" parameterType="int"
+		resultMap="baseMap">
+		SELECT * from tournament_reward where rank_max&gt;=#{rank} and rank_min
+		&lt;=#{rank} and group_id=#{groupId}
+	</select>
+
+	<select id="getTournamentRewardList" resultMap="baseMap">
+		SELECT * from tournament_reward
+	</select>
+
+
+	<select id="getTournamentRewardListByGroupId" resultMap="baseMap">
+		SELECT * from tournament_reward where group_id=#{groupId} order by order_id
+	</select>
+
+
+</mapper>

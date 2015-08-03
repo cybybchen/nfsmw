@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TrackMapper">
+
+	<resultMap id="trackMap" type="com.ea.eamobile.nfsmw.model.Track">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="tier" column="tier" />
+		<result property="star" column="star" />
+		<result property="unlockStarNum" column="unlock_star_num" />
+		<result property="unlockTier" column="unlock_tier" />
+		<result property="firstMode" column="first_mode" />
+		<result property="rewardId" column="reward_id" />
+		<result property="carLimitDisplay" column="car_limit_display" />
+		<result property="completeStarNum" column="complete_star_num" />
+		<result property="mostStarNum" column="most_star_num" />
+		<result property="displayString" column="display_string" />
+	</resultMap>
+
+	<select id="getTracks" resultMap="trackMap">
+		SELECT * from track
+	</select>
+
+	<select id="getTierCount" resultType="int">
+		select count(distinct tier)
+		from track
+	</select>
+
+	<select id="getTracksByTier" parameterType="int" resultMap="trackMap">
+		SELECT * from track where tier=#{tier} order by star
+	</select>
+
+	<select id="queryById" parameterType="int" resultMap="trackMap">
+		SELECT *
+		from track where id = #{id}
+	</select>
+
+	<select id="queryByTierAndStarNum" resultMap="trackMap">
+		SELECT *
+		from track
+		where tier = #{tier} and star=#{star}
+	</select>
+
+
+</mapper>

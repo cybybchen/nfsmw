@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CarSlotMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CarSlot">
+    <id property="id" column="id" />
+    <result property="carId" column="car_id"/>
+    <result property="sn" column="sn"/>
+    <result property="level" column="level"/>
+    <result property="score" column="score"/>
+    <result property="price" column="price"/>
+    <result property="priceType" column="price_type"/>
+    <result property="description" column="description"/>
+    <result property="nextAddScore" column="next_add_score"/>
+  </resultMap>
+
+	<select id="getCarSlot" parameterType="int" resultMap="baseMap">
+	    SELECT * from car_slot where id = #{id}
+	</select>
+	
+	<select id="getFirstCarSlot" parameterType="String" resultMap="baseMap">
+	    SELECT * from car_slot where car_id = #{carId} and sn=1 and level =1
+	</select>
+	
+	<select id="getCarSlotList" resultMap="baseMap">
+	    SELECT * from car_slot
+	</select>
+
+</mapper>

@@ -1,0 +1,270 @@
+body {
+	margin: 0;
+	padding: 6px;
+	border: 1px solid #000;
+	align: center;
+}
+
+.frame {
+	border: 1px solid #d30000;
+	width: 437px; 
+	height: 200px;
+	overflow: hidden;
+	background: url(/nfsmw/images/mod/grey-house.jpg) bottom right no-repeat
+}
+
+headtext {
+	font-size: 12px;
+	color: red;
+	font-weight: bold;
+}
+
+.scrolling {
+	min-height: 370px;
+	max-height: 370px;
+	height: 370px;
+	overflow: auto;
+	overflow-scrolling: touch;
+}
+
+.main {
+	float: left;
+	width: 255px;
+	height:1024px;
+}
+
+.title_line {
+	height: 26px;
+	padding-top: 5px;
+	text-align: right;
+	position: relative
+}
+
+.title_bg {
+	position: absolute;
+	left: 0;
+	background: url(/nfsmw/images/mod/iphone/title-bg.png) no-repeat;
+	height: 26px;
+	width: 100%;
+}
+
+.mw_log {
+	position: absolute;
+	right: 3px;
+	top: -33px;
+	z-index: 33
+}
+
+.announce_pic {
+	position: absolute;
+	left: 0px;
+	bottom: 2px
+}
+
+.right_bg {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+.announce_title {
+	font-size: 12px;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	font-weight: bolder;
+	padding-left: 10px;
+	line-height: 21px;
+	height: 21px;
+}
+
+.announce ul {
+	list-style-type: square;
+}
+
+.announce ul li {
+	font-size:10px;
+	padding: 3px 0px;
+}
+
+.announce ul li ul {
+	list-style-type: circle;
+}
+
+.announce p {
+	font-size:10px;
+	pading: 0;
+	padding-left: 10px;
+	margin: 2px 0px;
+}
+
+.announce p a {
+	color: blue
+}
+
+.sidebar {
+	width: 167px;
+	position: relative;
+	float: right;
+	border-left: 1px dashed #515151;
+	padding: 5px 5px 5px 5px;
+}
+
+.leaderboard {
+	padding: 5px 5px 5px 5px;
+	background: #DEDEDE;
+}
+
+.lb_title {
+	background: url(/nfsmw/images/mod/iphone/mw-on-logo.png) no-repeat;
+	width: 157px;
+	height: 38px;
+	text-align: right;
+	font-size: 12px;
+}
+
+.eachone {
+	width: 157px;
+	height: 45px;
+	padding: 2px 0px 0px 0px;
+}
+
+.eachone_n {
+	background: url(/nfsmw/images/mod/iphone/lb-bg.png) no-repeat;
+}
+
+.eachone_m {
+	background: url(/nfsmw/images/mod/iphone/lb-bg-me.png) no-repeat;
+}
+
+.rank {
+	float: left;
+	width: 27px;
+	height: 41px;
+	margin: 0px;
+	font-size: 40px;
+	text-align: center;
+}
+
+.rn1 {
+	background: url(/nfsmw/images/mod/iphone/n1.png) center no-repeat;
+}
+
+.rn2 {
+	background: url(/nfsmw/images/mod/iphone/n2.png) center no-repeat;
+}
+
+.rn3 {
+	background: url(/nfsmw/images/mod/iphone/n3.png) center no-repeat;
+}
+
+.rn4 {
+	background: url(/nfsmw/images/mod/iphone/n4.png) center no-repeat;
+}
+
+.rn5 {
+	background: url(/nfsmw/images/mod/iphone/n5.png) center no-repeat;
+}
+
+.rn6 {
+	background: url(/nfsmw/images/mod/iphone/n6.png) center no-repeat;
+}
+
+.rn7 {
+	background: url(/nfsmw/images/mod/iphone/n7.png) center no-repeat;
+}
+
+.rn8 {
+	background: url(/nfsmw/images/mod/iphone/n8.png) center no-repeat;
+}
+
+.rn9 {
+	background: url(/nfsmw/images/mod/iphone/n9.png) center no-repeat;
+}
+
+.rn10 {
+	background: url(/nfsmw/images/mod/iphone/n10.png) center no-repeat;
+}
+
+.rm1 {
+	background: url(/nfsmw/images/mod/iphone/m1.png) center no-repeat;
+}
+
+.rm2 {
+	background: url(/nfsmw/images/mod/iphone/m2.png) center no-repeat;
+}
+
+.rm3 {
+	background: url(/nfsmw/images/mod/iphone/m3.png) center no-repeat;
+}
+
+.rm4 {
+	background: url(/nfsmw/images/mod/iphone/m4.png) center no-repeat;
+}
+
+.rm5 {
+	background: url(/nfsmw/images/mod/iphone/m5.png) center no-repeat;
+}
+
+.rm6 {
+	background: url(/nfsmw/images/mod/iphone/m6.png) center no-repeat;
+}
+
+.rm7 {
+	background: url(/nfsmw/images/mod/iphone/m7.png) center no-repeat;
+}
+
+.rm8 {
+	background: url(/nfsmw/images/mod/iphone/m8.png) center no-repeat;
+}
+
+.rm9 {
+	background: url(/nfsmw/images/mod/iphone/m9.png) center no-repeat;
+}
+
+.rm10 {
+	background: url(/nfsmw/images/mod/iphone/m10.png) center no-repeat;
+}
+
+.rk1 {
+	color: #D30000;
+}
+
+.userhead {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 1px 0px 2px 0px;
+}
+
+.username {
+	float: left;
+	width: 80px;
+	height: 18px;
+	text-align: right;
+	margin: 3px 5px 0px 5px;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.username_n {
+	color: #3F3F3F;
+}
+
+.username_m {
+	color: #4A0303;
+}
+
+.userscore {
+	float: left;
+	width: 88px;
+	height: 10px;
+	text-align: right;
+	margin: 0px 2px 3px 0px;
+	padding: 2px 0px 0px 0px;
+	font-size: 9px;
+	color: #FFFFFF;
+	white-space: nowrap;
+	overflow: hidden;
+}

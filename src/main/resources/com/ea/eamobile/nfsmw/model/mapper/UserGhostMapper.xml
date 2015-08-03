@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserGhostMapper">
+
+	<resultMap id="user_ghostMap" type="com.ea.eamobile.nfsmw.model.UserGhost">
+		<id property="id" column="id" />
+		<result property="modeId" column="mode_id" />
+		<result property="eventName" column="event_name" />
+		<result property="raceTime" column="race_time" />
+		<result property="userId" column="user_id" />
+		<result property="carId" column="car_id" />
+		<result property="carColorIndex" column="car_color_index" />
+		<result property="eol" column="eol" />
+		<result property="averageSpeed" column="average_speed" />
+		<result property="carScore" column="car_score" />
+	</resultMap>
+
+
+
+	<select id="getByUserIdAndModeId" resultMap="user_ghostMap">
+		SELECT * from
+		user_ghost where user_id=#{userId} and mode_id=#{modeId}
+	</select>
+	
+	<select id="getGhostList"  resultMap="user_ghostMap">
+		SELECT * from user_ghost limit #{from},#{limit}
+	</select>
+	
+	<select id="getMaxGhostId"  resultType="Long">
+		SELECT max(id) from user_ghost 
+	</select>
+
+
+	<select id="getGhostListById" resultMap="user_ghostMap">
+		SELECT * from user_ghost
+		where id > #{id}
+	</select>
+
+	<select id="getGhostListByModeIdEolNum" resultMap="user_ghostMap">
+		SELECT * from
+		user_ghost where user_id!=#{userId} and mode_id=#{modeId} and
+		eol=#{eol} limit #{num}
+	</select>
+
+	<select id="queryOpponentUserListByUseridAndEolAndFloatValue"
+		resultMap="user_ghostMap">
+		select * from user_ghost
+		where user_id != #{0}
+		and eol &gt;=
+		(#{1}-#{2})
+		and eol &lt;= (#{1}+#{2})
+		and mode_id=#{3}
+		order by user_id
+		limit #{4}
+	</select>
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserGhost"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		user_ghost(mode_id,event_name,race_time,user_id,car_id,car_color_index,eol,average_speed,car_score)
+		values(#{modeId},#{eventName},#{raceTime},#{userId},#{carId},#{carColorIndex},#{eol},#{averageSpeed},#{carScore})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.UserGhost">
+		update user_ghost set
+		event_name=#{eventName},race_time=#{raceTime},
+		car_id=#{carId},car_color_index=#{carColorIndex},eol=#{eol},average_speed=#{averageSpeed},car_score=#{carScore}
+		where id = #{id}
+	</update>
+
+
+</mapper>

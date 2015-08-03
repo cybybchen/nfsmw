@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserLbsMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserLbs">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="latitude" column="latitude"/>
+    <result property="longitude" column="longitude"/>
+    <result property="country" column="country"/>
+    <result property="locality" column="locality"/>
+    <result property="subLocality" column="sub_locality"/>
+    <result property="thoroughfare" column="thoroughfare"/>
+    <result property="subThoroughfare" column="sub_thoroughfare"/>
+    <result property="deviceName" column="device_name"/>
+    <result property="mac" column="mac"/>
+  </resultMap>
+
+	<select id="getUserLbs" parameterType="int" resultMap="baseMap">
+	    SELECT * from user_lbs where user_id = #{userId} limit 1
+	</select>
+	
+	<select id="getUserLbsList" resultMap="baseMap">
+	    SELECT * from user_lbs
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserLbs" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_lbs(user_id,latitude,longitude,country,locality,sub_locality,thoroughfare,sub_thoroughfare,device_name,mac) 
+	    values(#{userId},#{latitude},#{longitude},#{country},#{locality},#{subLocality},#{thoroughfare},#{subThoroughfare},#{deviceName},#{mac})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserLbs">
+	    update user_lbs set 
+      latitude=#{latitude},
+      longitude=#{longitude},
+      country=#{country},
+      locality=#{locality},
+      sub_locality=#{subLocality},
+      thoroughfare=#{thoroughfare},
+      sub_thoroughfare=#{subThoroughfare}
+      mac=#{mac}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from user_lbs where id=#{id}
+	</delete>
+	
+</mapper>

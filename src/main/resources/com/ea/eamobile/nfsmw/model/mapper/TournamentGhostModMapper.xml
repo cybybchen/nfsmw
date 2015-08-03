@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentGhostModMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TournamentGhostMod">
+    <id property="id" column="id" />
+    <result property="tournamentGhostId" column="tournament_ghost_id"/>
+    <result property="modeType" column="mode_type"/>
+    <result property="modeValue" column="mode_value"/>
+    <result property="modeLevel" column="mode_level" />
+	<result property="modeId" column="mode_id" />
+  </resultMap>
+
+	<select id="getTournamentGhostModByTournamentGhostid" parameterType="long" resultMap="baseMap">
+	    SELECT * from tournament_ghost_mod where tournament_ghost_id = #{tournamentGhostId}
+	</select>
+	
+	<select id="getTournamentGhostModList" resultMap="baseMap">
+	    SELECT * from tournament_ghost_mod
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.TournamentGhostMod" keyProperty="id" useGeneratedKeys="true">
+	    insert into tournament_ghost_mod(tournament_ghost_id,mode_type,mode_value,mode_level,mode_id) 
+	    values(#{tournamentGhostId},#{modeType},#{modeValue},#{modeLevel},#{modeId})
+	</insert>
+	
+	<insert id="insertBatch" parameterType="com.ea.eamobile.nfsmw.model.TournamentGhostMod">
+		insert into tournament_ghost_mod(tournament_ghost_id,mode_type,mode_value,mode_level,mode_id) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.tournamentGhostId},#{item.modeType},#{item.modeValue},#{item.modeLevel},#{item.modeId})
+		</foreach>
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.TournamentGhostMod">
+	    update tournament_ghost_mod set 
+      tournament_ghost_id=#{tournamentGhostId},
+      mode_type=#{modeType},
+      mode_value=#{modeValue}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="long">
+	    delete from tournament_ghost_mod where tournament_ghost_id=#{tournamentGhostId}
+	</delete>
+	
+</mapper>

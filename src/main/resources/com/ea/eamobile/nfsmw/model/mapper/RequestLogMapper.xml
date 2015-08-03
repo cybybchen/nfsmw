@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.RequestLogMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.RequestLog">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="requestName" column="request_name" />
+		<result property="createTime" column="create_time" />
+		<result property="param" column="param" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.RequestLog" keyProperty="id" useGeneratedKeys="true">
+		insert into request_log(user_id,request_name,create_time,param)
+		values(#{userId},#{requestName},#{createTime},#{param})
+	</insert>
+
+
+</mapper>

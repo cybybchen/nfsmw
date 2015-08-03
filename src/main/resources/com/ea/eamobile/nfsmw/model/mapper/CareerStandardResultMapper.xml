@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CareerStandardResultMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CareerStandardResult">
+    <id property="id" column="id" />
+    <result property="modeType" column="mode_type"/>
+    <result property="raceTime" column="race_time"/>
+    <result property="averageSpeed" column="average_speed"/>
+  </resultMap>
+
+	<select id="getCareerStandardResult" parameterType="int" resultMap="baseMap">
+	    SELECT * from career_standard_result where mode_type = #{modeType}
+	</select>
+	
+	<select id="getCareerStandardResultList" resultMap="baseMap">
+	    SELECT * from career_standard_result
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CareerStandardResult" keyProperty="id" useGeneratedKeys="true">
+	    insert into career_standard_result(mode_type,race_time,average_speed) 
+	    values(#{modeType},#{raceTime},#{averageSpeed})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.CareerStandardResult">
+	    update career_standard_result set 
+      mode_type=#{modeType},
+      race_time=#{raceTime},
+      average_speed=#{averageSpeed}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from career_standard_result where id=#{id}
+	</delete>
+	
+</mapper>

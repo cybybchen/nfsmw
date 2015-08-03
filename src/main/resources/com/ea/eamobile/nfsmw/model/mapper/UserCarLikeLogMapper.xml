@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserCarLikeLogMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserCarLikeLog">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="userCarId" column="user_car_id"/>
+    <result property="likedUserId" column="liked_user_id"/>
+  </resultMap>
+
+	<select id="getUserCarLikeLog" parameterType="long" resultMap="baseMap">
+	    SELECT * from user_car_like_log where id = #{id}
+	</select>
+
+	<select id="getUserCarLikeLogByUserIdAndUserCarId" resultMap="baseMap">
+	    SELECT * from user_car_like_log where user_id = #{userId} and user_car_id=#{userCarId} limit 1
+	</select>
+	
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserCarLikeLog" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_car_like_log(user_id,user_car_id,liked_user_id) 
+	    values(#{userId},#{userCarId},#{likedUserId})
+	</insert>
+	
+
+	
+</mapper>

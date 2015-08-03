@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CarChartletMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CarChartlet">
+    <id property="id" column="id" />
+    <result property="carId" column="car_id"/>
+    <result property="name" column="name"/>
+    <result property="diffuseTexturePath" column="diffuse_texture_path"/>
+    <result property="diffuseMaskPath" column="diffuse_mask_path"/>
+    <result property="brdfPath" column="brdf_path"/>
+    <result property="brdfSpecularPath" column="brdf_specular_path"/>
+    <result property="numberPlatePath" column="number_plate_path"/>
+    <result property="swatchColor" column="swatch_color"/>
+    <result property="swatchColor2" column="swatch_color2"/>
+    <result property="paintType" column="paint_type"/>
+    <result property="useVinylMap" column="use_vinyl_map"/>
+    <result property="resource" column="resource"/>
+    <result property="price" column="price"/>
+    <result property="priceType" column="price_type"/>
+    <result property="tenancy" column="tenancy"/>
+    <result property="isHot" column="is_hot"/>
+    <result property="isNew" column="is_new"/>
+    <result property="isBestSell" column="is_best_sell" />
+    <result property="invisible" column="invisible" />
+    <result property="orderId" column="order_id" />
+    <result property="score" column="score" />
+  </resultMap>
+
+	<select id="getCarChartlet" parameterType="int" resultMap="baseMap">
+	    SELECT * from car_chartlet where id = #{id}
+	</select>
+	
+	<select id="getCarChartletList" resultMap="baseMap">
+	    SELECT * from car_chartlet order by order_id
+	</select>
+	
+</mapper>

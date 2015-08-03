@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserCarSlotMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserCarSlot">
+    <id property="id" column="id" />
+    <result property="userCarId" column="user_car_id"/>
+    <result property="slotId" column="slot_id"/>
+    <result property="createTime" column="create_time"/>
+    <result property="consumableId" column="consumable_id"/>
+  </resultMap>
+
+	<select id="getUserCarSlot" parameterType="long" resultMap="baseMap">
+	    SELECT * from user_car_slot where id = #{id}
+	</select>
+	
+	<select id="getSlotListByUserCarId" parameterType="long" resultMap="baseMap">
+	    SELECT * from user_car_slot where user_car_id = #{userCarId}
+	</select>
+	
+	<select id="getUserCarSlotList" resultMap="baseMap">
+	    SELECT * from user_car_slot
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserCarSlot" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_car_slot(user_car_id,slot_id,create_time,consumable_id) 
+	    values(#{userCarId},#{slotId},#{createTime},#{consumableId})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserCarSlot">
+	    update user_car_slot set 
+      user_car_id=#{userCarId},
+      slot_id=#{slotId},
+      create_time=#{createTime},
+      consumable_id=#{consumableId}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from user_car_slot where id=#{id}
+	</delete>
+	
+</mapper>

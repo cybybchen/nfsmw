@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.BuyCarRecordMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.BuyCarRecord">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="spendGoldNum" column="spend_gold_num"/>
+    <result property="carId" column="car_id"/>
+    <result property="fragNum" column="frag_num"/>
+    <result property="time" column="time"/>
+  </resultMap>
+
+	<select id="getBuyCarRecord" parameterType="int" resultMap="baseMap">
+	    SELECT * from buy_car_record where id = #{id}
+	</select>
+	
+	<select id="getBuyCarRecordList" resultMap="baseMap">
+	    SELECT * from buy_car_record
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.BuyCarRecord" keyProperty="id" useGeneratedKeys="true">
+	    insert into buy_car_record(user_id,spend_gold_num,car_id,frag_num) 
+	    values(#{userId},#{spendGoldNum},#{carId},#{fragNum})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.BuyCarRecord">
+	    update buy_car_record set 
+      spend_gold_num=#{spendGoldNum},
+      car_id=#{carId},
+      frag_num=#{fragNum},
+      time=#{time}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from buy_car_record where id=#{id}
+	</delete>
+	
+</mapper>

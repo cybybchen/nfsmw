@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CareerGhostMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CareerGhost">
+		<id property="id" column="id" />
+		<result property="modeType" column="mode_type" />
+		<result property="eventName" column="event_name" />
+		<result property="raceTime" column="race_time" />
+		<result property="userId" column="user_id" />
+		<result property="carId" column="car_id" />
+		<result property="carColorIndex" column="car_color_index" />
+		<result property="averageSpeed" column="average_speed" />
+		<result property="carScore" column="car_score" />
+		<result property="isGoldCar" column="is_gold_car" />
+		<result property="isHasConsumble" column="is_has_consumble" />
+	</resultMap>
+
+	<select id="getCareerGhost" parameterType="int" resultMap="baseMap">
+		SELECT * from career_ghost where id = #{id}
+	</select>
+
+
+	<select id="getCareerGhostByUserIdAndModeType" resultMap="baseMap">
+		SELECT
+		* from career_ghost where user_id=#{userId} and
+		mode_type=#{modeType}
+	</select>
+
+
+	<select id="getCareerGhostNumByRaceTime" resultType="int">
+		SELECT
+		count(*) from career_ghost where
+		race_time=#{raceTime} and
+		mode_type=#{modeType}
+	</select>
+
+
+	<select id="getLessRaceTimeCareerGhostNumByRaceTime" resultType="int">
+		SELECT
+		count(*) from career_ghost where
+		race_time&lt;=#{raceTime} and
+		mode_type=#{modeType}
+	</select>
+
+	<select id="getMoreRaceTimeCareerGhostNumByRaceTime" resultType="int">
+		SELECT
+		count(*) from career_ghost where
+		race_time&gt;=#{raceTime} and
+		mode_type=#{modeType}
+	</select>
+
+
+	<select id="getCareerGhostList" resultMap="baseMap">
+		SELECT *
+		from
+		career_ghost
+	</select>
+
+	<select id="getCareerGhostMaxRaceTimeByModeType" resultType="Float">
+		SELECT max(race_time)
+		from
+		career_ghost where mode_type=#{modeType}
+	</select>
+
+	<select id="getCareerGhostMinRaceTimeByModeType" resultType="Float">
+		SELECT min(race_time)
+		from
+		career_ghost where mode_type=#{modeType}
+	</select>
+
+	<select id="getCareerGhostListByRaceTime" resultType="int">
+		SELECT id
+		from career_ghost where
+		race_time=#{raceTime} and mode_type=#{modeType}
+		order by id desc
+		limit
+		100
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CareerGhost"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		career_ghost(mode_type,event_name,race_time,user_id,car_id,car_color_index,average_speed,car_score,is_gold_car,is_has_consumble)
+		values(#{modeType},#{eventName},#{raceTime},#{userId},#{carId},#{carColorIndex},#{averageSpeed},#{carScore},#{isGoldCar},#{isHasConsumble})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.CareerGhost">
+		update career_ghost set
+		mode_type=#{modeType},
+		event_name=#{eventName},
+		race_time=#{raceTime},
+		car_id=#{carId},
+		car_color_index=#{carColorIndex},
+		average_speed=#{averageSpeed},
+		car_score=#{carScore},
+		is_gold_car=#{isGoldCar},
+		is_has_consumble=#{isHasConsumble} where id =
+		#{id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from career_ghost
+		where id=#{id}
+	</delete>
+
+
+
+</mapper>

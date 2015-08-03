@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.DailyRaceRecordMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.DailyRaceRecord">
+		<id property="id" column="id" />
+		<result property="modeIndex" column="mode_index" />
+		<result property="carIndex" column="car_index" />
+		<result property="createTime" column="create_time" />
+		<result property="tier" column="tier" />
+		<result property="carId" column="car_id" />
+		<result property="displayName" column="display_name" />
+	</resultMap>
+
+
+
+	<select id="getDailyRaceRecordByTierAndDate" resultMap="baseMap">
+		SELECT * from daily_race_record where tier = #{tier} and
+		create_time=#{createTime}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.DailyRaceRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert ignore into
+		daily_race_record(mode_index,car_index,create_time,tier,car_id,display_name)
+		values(#{modeIndex},#{carIndex},#{createTime},#{tier},#{carId},#{displayName})
+	</insert>
+
+
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentLeaderboardMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.TournamentLeaderboard">
+		<id property="id" column="id" />
+		<result property="tournamentOnlineId" column="tournament_online_id" />
+		<result property="raceTime" column="race_time" />
+		<result property="classId" column="class_id" />
+		<result property="userId" column="user_id" />
+		<result property="averageSpeed" column="average_speed" />
+		<result property="result" column="result" />
+		<result property="userName" column="user_name" />
+		<result property="headIndex" column="head_index" />
+		<result property="headUrl" column="head_url" />
+	</resultMap>
+
+	<select id="getLeaderboard" resultMap="baseMap">
+		SELECT * from
+		tournament_leaderboard where tournament_online_id =
+		#{tournamentOnlineId} and class_id=#{classId}
+	</select>
+
+	<select id="getLeaderboardByUserId" resultMap="baseMap">
+		SELECT * from
+		tournament_leaderboard where tournament_online_id =
+		#{tournamentOnlineId} and class_id=#{classId} and user_id=#{userId}
+	</select>
+	
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.TournamentLeaderboard"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		tournament_leaderboard(tournament_online_id,race_time,class_id,user_id,average_speed,result,user_name,head_index,head_url)
+		values(#{tournamentOnlineId},#{raceTime},#{classId},#{userId},#{averageSpeed},#{result},#{userName},#{headIndex},#{headUrl})
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.TournamentLeaderboard">
+		update tournament_leaderboard
+		set
+		tournament_online_id=#{tournamentOnlineId},
+		race_time=#{raceTime},
+		class_id=#{classId},
+		average_speed=#{averageSpeed},
+		user_id=#{userId},
+		result=#{result},
+		user_name=#{userName},
+		head_index=#{headIndex},
+		head_url=#{headUrl}
+		where id=#{id}
+	</update>
+	
+	<select id="getSpeedRankNumberOneList" resultMap="baseMap">
+		SELECT user_id,max(result) from tournament_leaderboard where  tournament_online_id=#{tournamentOnlineId}  group by class_id
+	</select>
+
+	<select id="getRankNumberOneList" resultMap="baseMap">
+		SELECT user_id,min(result) from tournament_leaderboard where  tournament_online_id=#{tournamentOnlineId}  group by class_id
+	</select>
+
+
+	<delete id="deleteByUserId" parameterType="long">
+		delete from tournament_leaderboard where user_id=#{userId}
+	</delete>
+
+</mapper>

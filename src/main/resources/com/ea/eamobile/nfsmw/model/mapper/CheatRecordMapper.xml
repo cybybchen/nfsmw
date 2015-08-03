@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.CheatRecordMapper">
+
+	<resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.CheatRecord">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="modeId" column="mode_id" />
+		<result property="raceTime" column="race_time" />
+		<result property="carId" column="car_id" />
+		<result property="isRaceStart" column="is_race_start" />
+		<result property="reason" column="reason" />
+		<result property="gameMode" column="game_mode" />
+	</resultMap>
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.CheatRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		cheat_record(user_id,mode_id,race_time,car_id,is_race_start,reason,game_mode)
+		values(#{userId},#{modeId},#{raceTime},#{carId},#{isRaceStart},#{reason},#{gameMode})
+	</insert>
+
+
+</mapper>

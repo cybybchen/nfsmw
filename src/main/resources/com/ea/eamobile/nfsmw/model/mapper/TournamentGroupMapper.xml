@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.TournamentGroupMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.TournamentGroup">
+    <id property="id" column="id" />
+    <result property="name" column="name"/>
+    <result property="modeId" column="mode_id"/>
+    <result property="tournamentId" column="tournament_id"/>
+    <result property="rpDownLevel" column="rp_down_level"/>
+    <result property="rpUpLevel" column="rp_up_level"/>
+    <result property="carTypeLimit" column="car_type_limit"/>
+    <result property="isProvide" column="is_provide"/>
+    <result property="carProvide" column="car_provide"/>
+    <result property="personNum" column="person_num"/>
+    <result property="fee" column="fee"/>
+    <result property="feeType" column="fee_type"/>
+    <result property="trackId" column="track_id"/>
+    <result property="isConsumeEnergy" column="is_consume_energy"/>
+    <result property="useEnergy" column="use_energy"/>
+    <result property="trafficNum" column="traffic_num"/>
+    <result property="cops" column="cops"/>
+    <result property="matchDescribe" column="match_describe"/>
+  </resultMap>
+
+	<select id="getTournamentGroup" parameterType="int" resultMap="baseMap">
+	    SELECT * from tournament_group where id = #{id}
+	</select>
+	
+	<select id="getTournamentGroupByModeId" parameterType="int" resultMap="baseMap">
+	    SELECT * from tournament_group where mode_id = #{modeId}
+	</select>
+	
+	<select id="getTournamentGroupListByTid" parameterType="int" resultMap="baseMap">
+	    SELECT * from tournament_group where tournament_id=#{tournamentId}
+	</select>
+	
+	<select id="getTournamentGroupByUser" resultType="Integer">
+	    SELECT id from tournament_group where tournament_id=#{tournamentId} and #{userLevel}&gt;=rp_down_level and #{userLevel}&lt;=rp_up_level
+	</select>
+
+	
+</mapper>

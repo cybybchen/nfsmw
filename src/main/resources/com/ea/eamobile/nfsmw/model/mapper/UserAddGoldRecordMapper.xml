@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserAddGoldRecordMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserAddGoldRecord">
+    <id property="id" column="id" />
+    <id property="userId" column="user_id" />
+    <result property="addGold" column="add_gold"/>
+    <result property="time" column="time"/>
+  </resultMap>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserAddGoldRecord" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_add_gold_record(user_id,add_gold) 
+	    values(#{userId},#{addGold})
+	</insert>
+	
+	
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ea.eamobile.nfsmw.model.mapper.CareerBestRacetimeRecordMapper">
+
+	<resultMap id="baseMap"
+		type="com.ea.eamobile.nfsmw.model.CareerBestRacetimeRecord">
+		<id property="id" column="id" />
+		<result property="modeType" column="mode_type" />
+		<result property="userId" column="user_id" />
+		<result property="raceTime" column="race_time" />
+		<result property="averageSpeed" column="average_speed" />
+	</resultMap>
+
+	<select id="getCareerBestRacetimeRecordByModeIdAndUserId"
+		resultMap="baseMap">
+		SELECT * from career_best_racetime_record where user_id =
+		#{userId} and
+		mode_type=#{modeType}
+	</select>
+
+	<select id="getList" resultMap="baseMap">
+		SELECT
+		id,mode_type,race_time,average_speed
+		from career_best_racetime_record
+		where id>=#{from} and id&lt;#{to}
+	</select>
+	
+	<select id="getMaxId" resultType="Integer">
+		select max(id) from career_best_racetime_record;
+	</select>
+
+	<!-- only admin use -->
+	<select id="getByUserId" parameterType="int" resultMap="baseMap">
+		SELECT *
+		from career_best_racetime_record where user_id = #{userId}
+	</select>
+
+	<select id="getTopTenByRaceTime" resultMap="baseMap">
+		SELECT * from
+		career_best_racetime_record where
+		mode_type=#{modeType} order by
+		race_time limit 10
+	</select>
+
+	<select id="getTopTenByAverageSpeed" resultMap="baseMap">
+		SELECT * from
+		career_best_racetime_record where
+		mode_type=#{modeType} order by
+		average_speed desc limit 10
+	</select>
+
+	<select id="getRank" resultType="Integer">
+		SELECT count(*) from
+		career_best_racetime_record where mode_type=#{modeType} and
+		race_time&lt;#{raceTime}
+	</select>
+
+	<select id="getRankBySpeed" resultType="Integer">
+		SELECT count(*) from
+		career_best_racetime_record where mode_type=#{modeType} and
+		#{averageSpeed}&lt;average_speed
+	</select>
+
+	<insert id="insert"
+		parameterType="com.ea.eamobile.nfsmw.model.CareerBestRacetimeRecord"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		career_best_racetime_record(mode_type,user_id,race_time,average_speed)
+		values(#{modeType},#{userId},#{raceTime},#{averageSpeed})
+	</insert>
+
+	<update id="update"
+		parameterType="com.ea.eamobile.nfsmw.model.CareerBestRacetimeRecord">
+		update career_best_racetime_record set
+		mode_type=#{modeType},
+		race_time=#{raceTime},
+		average_speed=#{averageSpeed} where id = #{id}
+	</update>
+
+	<delete id="deleteByUserId" parameterType="long">
+		delete from
+		career_best_racetime_record where user_id=#{userId}
+	</delete>
+
+
+
+</mapper>

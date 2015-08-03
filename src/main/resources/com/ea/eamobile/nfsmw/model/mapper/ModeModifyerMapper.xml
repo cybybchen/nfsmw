@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.ModeModifyerMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.ModeModifyer">
+    <result property="modeId" column="mode_id"/>
+    <result property="modifyer1" column="modifyer1"/>
+    <result property="modifyer2" column="modifyer2"/>
+    <result property="modifyer3" column="modifyer3"/>
+    <result property="modifyer4" column="modifyer4"/>
+    <result property="modifyer5" column="modifyer5"/>
+    <result property="modifyer6" column="modifyer6"/>
+    <result property="standardTime" column="standard_time"/>
+  </resultMap>
+
+	<select id="getModeModifyer" parameterType="int" resultMap="baseMap">
+	    SELECT * from mode_modifyer where id = #{id}
+	</select>
+	
+	<select id="getModeModifyerList" resultMap="baseMap">
+	    SELECT * from mode_modifyer
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.ModeModifyer" keyProperty="id" useGeneratedKeys="true">
+	    insert into mode_modifyer(mode_id,modifyer1,modifyer2,modifyer3,modifyer4,modifyer5,modifyer6,standard_time) 
+	    values(#{modeId},#{modifyer1},#{modifyer2},#{modifyer3},#{modifyer4},#{modifyer5},#{modifyer6},#{standardTime})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.ModeModifyer">
+	    update mode_modifyer set 
+      mode_id=#{modeId},
+      modifyer1=#{modifyer1},
+      modifyer2=#{modifyer2},
+      modifyer3=#{modifyer3},
+      modifyer4=#{modifyer4},
+      modifyer5=#{modifyer5},
+      modifyer6=#{modifyer6},
+      standard_time=#{standardTime}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from mode_modifyer where id=#{id}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserMapper">
+
+	<resultMap id="userMap" type="com.ea.eamobile.nfsmw.model.User">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="level" column="level" />
+		<result property="money" column="money" />
+		<result property="eol" column="eol" />
+		<result property="energy" column="energy" />
+		<result property="headUrl" column="head_url" />
+		<result property="headIndex" column="head_index" />
+		<result property="tier" column="tier" />
+		<result property="dailyRewardDate" column="daily_reward_date" />
+		<result property="starNum" column="star_num" />
+		<result property="lastWinOrNot" column="last_win_or_not" />
+		<result property="duraMatchNum" column="dura_match_num" />
+		<result property="maxMatchWinNum" column="max_match_win_num" />
+		<result property="maxMatchLoseNum" column="max_match_lose_num" />
+		<result property="lastRegainEnergyDate" column="last_regain_energy_date" />
+		<result property="rpNum" column="rp_num" />
+		<result property="gold" column="gold" />
+		<result property="createTime" column="create_time" />
+		<result property="version" column="version" />
+		<result property="isRaceStart" column="is_race_start" />
+		<result property="isNicknameChanged" column="is_nickname_changed" />
+		<result property="isOldUser" column="is_old_user" />
+		<result property="isWriteJaguar" column="is_write_jaguar" />
+		<result property="willowtreeToken" column="willowtree_token" />
+		<result property="eventOptionVersion" column="event_option_version" />
+		<result property="isGetTutorialReward" column="is_get_tutorial_reward" />
+		<result property="isRewardedBind" column="is_rewarded_bind" />
+		<result property="tierStatus" column="tier_status" />
+		<result property="certType" column="cert_type" />
+		<result property="accountStatus" column="account_status" />
+		<result property="accessToken" column="access_token" />
+		<result property="uid" column="uid" />
+	</resultMap>
+
+	<resultMap id="namemap" type="java.lang.String">
+		<result property="name" column="name" />
+	</resultMap>
+
+	<select id="queryById" parameterType="long" resultMap="userMap">
+		SELECT *
+		from user where id = #{id}
+	</select>
+
+	<select id="getUserByName" parameterType="string" resultMap="userMap">
+		SELECT * from user where name = #{name}
+	</select>
+
+	<select id="getUserByWillowtreeToken" parameterType="string"
+		resultMap="userMap">
+		SELECT * from user where willowtree_token =
+		#{willowtreeToken}
+	</select>
+
+	<select id="getTopHundredUser" resultMap="userMap">
+		SELECT id,head_url,head_index,rp_num,name,level,star_num from user order
+		by rp_num desc limit 100
+	</select>
+
+	<select id="getResouceVersionUserCount" parameterType="int"
+		resultType="int">
+		SELECT count(1) from user where version = #{version}
+	</select>
+
+	<select id="getNickNameCount" parameterType="string" resultType="int">
+		SELECT count(*) from user where name = #{nickname}
+	</select>
+
+
+	<select id="getRpRank" parameterType="int" resultType="Integer">
+		SELECT
+		count(*) from user where #{rpNum}&lt;rp_num
+	</select>
+
+
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		user(id,name,level,money,energy,head_url,tier,daily_reward_date,star_num,last_win_or_not,
+		dura_match_num,max_match_win_num,max_match_lose_num,eol,last_regain_energy_date,rp_num,gold
+		,create_time,version,is_race_start,is_nickname_changed,is_old_user,is_write_jaguar,willowtree_token,
+		event_option_version,is_get_tutorial_reward,is_rewarded_bind,tier_status,cert_type,account_status,
+		access_token,uid)
+		values(#{id},#{name},#{level},#{money},#{energy},#{headUrl},#{tier},#{dailyRewardDate},0,
+		0,0,0,0,#{eol},#{lastRegainEnergyDate},0,#{gold},#{createTime},#{version},#{isRaceStart},#{isNicknameChanged},#{isOldUser},#{isWriteJaguar},
+		#{willowtreeToken},#{eventOptionVersion},#{isGetTutorialReward},#{isRewardedBind},#{tierStatus},#{certType},#{accountStatus},
+		#{accessToken},#{uid})
+
+	</insert>
+
+	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.User">
+		update user set
+		name=#{name},level=#{level},money=#{money},gold=#{gold},head_index=#{headIndex}
+		,energy=#{energy},head_url=#{headUrl} ,tier=#{tier}
+		,daily_reward_date=#{dailyRewardDate},star_num=#{starNum},last_win_or_not=#{lastWinOrNot},dura_match_num=#{duraMatchNum},
+		max_match_win_num=#{maxMatchWinNum},max_match_lose_num=#{maxMatchLoseNum},eol=#{eol},last_regain_energy_date=#{lastRegainEnergyDate},
+		rp_num=#{rpNum},version=#{version},is_race_start=#{isRaceStart},is_nickname_changed=#{isNicknameChanged},is_old_user=#{isOldUser},is_write_jaguar=#{isWriteJaguar}
+		,willowtree_token=#{willowtreeToken},event_option_version=#{eventOptionVersion},is_get_tutorial_reward=#{isGetTutorialReward},is_rewarded_bind=#{isRewardedBind},
+		tier_status=#{tierStatus},cert_type=#{certType},account_status=#{accountStatus},access_token=#{accessToken},uid=#{uid}
+		where id = #{id}
+	</update>
+
+	<update id="updateConsumeEnergy">
+		update user set
+		energy=energy-#{1}
+		where id = #{0}
+	</update>
+
+	<update id="updateRpNum">
+		update user set
+		rp_num=rp_num+#{1}
+		where
+		id = #{0}
+	</update>
+
+	<update id="updateStarNum">
+		update user set
+		star_num=star_num+#{1}
+		where id = #{0}
+	</update>
+
+	<update id="updateTier">
+		update user set
+		tier=#{1}
+		where id = #{0}
+	</update>
+
+
+	<update id="updateReward">
+		update user set
+		rp_num=rp_num+#{1},star_num=star_num+#{2},money=money+#{3},gold=gold+#{4},energy=energy+#{5}
+		where id = #{0}
+	</update>
+
+	<delete id="deleteById">
+		delete from user where id=#{id}
+	</delete>
+
+
+	<!-- only admin use -->
+	<select id="getUsersByIds" resultMap="userMap">
+		SELECT * from user where id in
+		<foreach item="item" collection="array" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getUsersByTokens" resultMap="userMap">
+		SELECT * from user where willowtree_token in
+		<foreach item="item" collection="array" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<update id="updateStatusByIds">
+		update user set
+		account_status=#{accountStatus}
+		where id in
+		<foreach item="item" collection="ids" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</update>
+
+
+</mapper>

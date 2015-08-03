@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ea.eamobile.nfsmw.model.mapper.UserCarFragmentMapper">
+
+  <resultMap id="baseMap" type="com.ea.eamobile.nfsmw.model.UserCarFragment">
+    <id property="id" column="id" />
+    <result property="userId" column="user_id" />
+    <result property="fragmentId" column="fragment_id"/>
+    <result property="count" column="count"/>
+  </resultMap>
+
+	<select id="getUserCarFragment" resultMap="baseMap">
+	    SELECT * from user_car_fragment where user_id = #{userId} and fragment_id=#{fragmentId}
+	</select>
+	
+	<select id="getUserCarFragmentList" parameterType="int" resultMap="baseMap">
+	    SELECT * from user_car_fragment where user_id=#{userId}
+	</select>
+
+	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserCarFragment" keyProperty="id" useGeneratedKeys="true">
+	    insert into user_car_fragment(user_id,fragment_id,count) 
+	    values(#{userId},#{fragmentId},#{count})
+	</insert>
+	
+	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserCarFragment">
+	    update user_car_fragment set 
+      fragment_id=#{fragmentId},
+      count=#{count}      where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+	    delete from user_car_fragment where id=#{id}
+	</delete>
+	
+</mapper>
