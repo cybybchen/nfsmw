@@ -453,7 +453,7 @@ public class BaseCommandService {
                 return false;
             }
             Track track = trackService.queryTrack(Integer.parseInt(raceMode.getTrackId()));
-            if (track != null && track.getTier() > 2) {
+            if (track != null) { //&& track.getTier() > 2) {
                 return true;
             }
         }
