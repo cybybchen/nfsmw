@@ -46,10 +46,14 @@ public class Match {
     public static final int DAY_MINUTES = 1440;
 
     public static final int EVERDAY_GET_ENERGY_NUM = 120;
+    
+    public static final int EVERY5MINUTE_GET_ENERGY_NUM = 1;
 
     public static final int EVERTIME_GET_ENERGY_NUM = 1;
     
     public static final int ENERGY_MAX = 200;
+    
+    public static final int ENERGY_BUY_MAX = 1000;
 
     public static final int MAX_LEVEL = 100;
 

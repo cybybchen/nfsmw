@@ -620,14 +620,21 @@ public class CoreScreen extends RequestScreen {
         return true;
     }
 
+//    private void regainEnergy(Builder responseBuilder, User user) {
+//        Date regainTime = new Date(user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L);
+//        Date currentTime = new Date(System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L);
+//        int days = Math.abs(DateUtil.intervalDays(currentTime, regainTime));
+//        if (days >= 1 && user.getEnergy() < Match.ENERGY_MAX) {
+//            user = userService.regainEnergy(user);
+//            pushService.pushUserInfoCommand(responseBuilder, user);
+//        }
+//    }
+    
     private void regainEnergy(Builder responseBuilder, User user) {
-        Date regainTime = new Date(user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L);
-        Date currentTime = new Date(System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L);
-        int days = Math.abs(DateUtil.intervalDays(currentTime, regainTime));
-        if (days >= 1 && user.getEnergy() < Match.ENERGY_MAX) {
-            user = userService.regainEnergy(user);
-            pushService.pushUserInfoCommand(responseBuilder, user);
-        }
+    	if (user.getEnergy() < Match.ENERGY_MAX) {
+    		user = userService.regainEnergy(user);
+//            pushService.pushUserInfoCommand(responseBuilder, user);
+    	}
     }
 
     @Override

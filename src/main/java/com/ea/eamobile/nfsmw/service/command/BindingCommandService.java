@@ -362,7 +362,7 @@ public class BindingCommandService {
         	User deleteUser = userService.getUserByWillowtreeToken(originalToken);
             if (deleteUser != null) {
             	//开始删除数据 避免出错暂时不清理 rename
-                user.setName("DELETE_" + deleteUser.getId());
+            	deleteUser.setName("DELETE_" + deleteUser.getId());
                 userService.updateUser(deleteUser);
                 long userId = deleteUser.getId();
                 leaderboardService.deleteByUserId(userId);
@@ -374,6 +374,7 @@ public class BindingCommandService {
             }
         } else {
         	user.setUid("");
+        	user.setAccessToken("");
         	//开始删除数据 避免出错暂时不清理 rename
             user.setName("DELETE_" + user.getId());
             userService.updateUser(user);

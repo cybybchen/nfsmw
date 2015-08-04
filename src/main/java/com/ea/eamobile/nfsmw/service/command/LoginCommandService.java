@@ -2,6 +2,7 @@ package com.ea.eamobile.nfsmw.service.command;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ import com.ea.eamobile.nfsmw.service.UserRefreshTimeService;
 import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.service.UserSessionService;
 import com.ea.eamobile.nfsmw.service.UserVersionUpdateRewardService;
+import com.ea.eamobile.nfsmw.utils.DateUtil;
 import com.ea.eamobile.nfsmw.utils.StringUtil;
 import com.ea.eamobile.nfsmw.view.BaseView;
 import com.ea.eamobile.nfsmw.view.CarView;
@@ -118,8 +120,9 @@ public class LoginCommandService {
                 pushService.pushUserInfoCommand(response, user);
             }
         }
+        
+        regainEnergy(response, user);
         setPushCommand(response, user, head.getSession(), reqcmd, head.getVersion());
-
     }
 
     private void setPushCommand(Commands.ResponseCommand.Builder responseBuilder, User user, String session,
@@ -384,4 +387,11 @@ public class LoginCommandService {
 		
 		return u;
 	}
+	
+	private void regainEnergy(Builder responseBuilder, User user) {
+		if (user.getEnergy() < Match.ENERGY_MAX) {
+    		user = userService.regainEnergy(user);
+//            pushService.pushUserInfoCommand(responseBuilder, user);
+    	}
+    }
 }

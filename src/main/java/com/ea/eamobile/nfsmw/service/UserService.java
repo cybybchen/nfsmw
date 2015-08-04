@@ -206,32 +206,51 @@ public class UserService {
         userDao.updateStarNum(userId, starNum);
     }
 
+//    public User regainEnergy(User user) {
+//        long regainTime = 0;
+//        long currentTime = 0;
+//        long startTime = DateUtil.getDateTime("2013-04-13 00:00:00").getTime();
+//        long lastRecoveryTime = DateUtil.getDateTime("2013-04-13 03:00:00").getTime();
+//        if (System.currentTimeMillis() < startTime) {
+//            regainTime = user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L;
+//            currentTime = System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L;
+//        } else {
+//            regainTime = user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS_AFTER_APRIL_THIRTEEN
+//                    * 1000L;
+//            currentTime = System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS_AFTER_APRIL_THIRTEEN * 1000L;
+//        }
+//        Date regainDate = new Date(regainTime);
+//        Date currentDate = new Date(currentTime);
+//        int days = Math.abs(DateUtil.intervalDays(currentDate, regainDate));
+//        if (user.getLastRegainEnergyDate() * 1000L <= lastRecoveryTime
+//                && System.currentTimeMillis() >= lastRecoveryTime) {
+//            days = days + 1;
+//        }
+//        int energy = Math.min(Match.ENERGY_MAX, user.getEnergy() + days * Match.EVERDAY_GET_ENERGY_NUM);
+//        if (user.getEnergy() < Match.ENERGY_MAX) {
+//            user.setEnergy(energy);
+//        }
+//
+//        user.setLastRegainEnergyDate((int) (System.currentTimeMillis() / 1000));
+//        updateUser(user);
+//
+//        return user;
+//    }
+    
     public User regainEnergy(User user) {
-        long regainTime = 0;
-        long currentTime = 0;
-        long startTime = DateUtil.getDateTime("2013-04-13 00:00:00").getTime();
-        long lastRecoveryTime = DateUtil.getDateTime("2013-04-13 03:00:00").getTime();
-        if (System.currentTimeMillis() < startTime) {
-            regainTime = user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L;
-            currentTime = System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L;
-        } else {
-            regainTime = user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS_AFTER_APRIL_THIRTEEN
-                    * 1000L;
-            currentTime = System.currentTimeMillis() - Match.ENERGY_REGAIN_HOUR_SECONDS_AFTER_APRIL_THIRTEEN * 1000L;
-        }
-        Date regainDate = new Date(regainTime);
-        Date currentDate = new Date(currentTime);
-        int days = Math.abs(DateUtil.intervalDays(currentDate, regainDate));
-        if (user.getLastRegainEnergyDate() * 1000L <= lastRecoveryTime
-                && System.currentTimeMillis() >= lastRecoveryTime) {
-            days = days + 1;
-        }
-        int energy = Math.min(Match.ENERGY_MAX, user.getEnergy() + days * Match.EVERDAY_GET_ENERGY_NUM);
+        long lastRecoveryTime = user.getLastRegainEnergyDate() * 1000L;
+        long currentTime = System.currentTimeMillis();
+        
+        int minutes = Math.abs(DateUtil.intervalMinute(currentTime, lastRecoveryTime));
+        int energy = Math.min(Match.ENERGY_MAX, user.getEnergy() + (int) (minutes / DateUtil.MINUTE_PER_RECOVER) * Match.EVERY5MINUTE_GET_ENERGY_NUM);
+        int recoverEnergy = energy - user.getEnergy();
+        lastRecoveryTime = lastRecoveryTime + recoverEnergy * DateUtil.MILLIONSECONDS_PER_RECOVER;
         if (user.getEnergy() < Match.ENERGY_MAX) {
             user.setEnergy(energy);
-        }
+        } else
+        	lastRecoveryTime = 0;
 
-        user.setLastRegainEnergyDate((int) (System.currentTimeMillis() / 1000));
+        user.setLastRegainEnergyDate((int) (lastRecoveryTime / 1000));
         updateUser(user);
 
         return user;

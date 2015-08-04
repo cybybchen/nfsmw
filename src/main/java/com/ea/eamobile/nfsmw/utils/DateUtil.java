@@ -27,6 +27,7 @@ public class DateUtil {
     public static final long D = 1000 * 60 * 60 * 24;
 
     // 时间相关参数
+    public  static final long MINUTE_PER_RECOVER = 5;
     private static final long HOURS_PER_DAY = 24;
     private static final long MINUTES_PER_HOUR = 60;
     private static final long SECONDS_PER_MINUTE = 60;
@@ -36,6 +37,9 @@ public class DateUtil {
             * MINUTES_PER_HOUR;
     private static final long MILLION_SECOND_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE
             * MILLIONSECONDS_PER_SECOND;
+    private static final long MILLION_SECOND_PER_MINUTE = SECONDS_PER_MINUTE
+            * MILLIONSECONDS_PER_SECOND;
+    public static final long MILLIONSECONDS_PER_RECOVER = MINUTE_PER_RECOVER * MILLION_SECOND_PER_MINUTE;
 
     private DateUtil() {
     }
@@ -206,6 +210,20 @@ public class DateUtil {
         return ret;
     }
 
+    /**
+     * 获得两个时间之间相差的分钟数(返回值去掉了小数部分，即只返回)。（time1 - time2）
+     * 
+     * @param time1
+     * @param time2
+     * @return 返回两个时间之间的分钟数，如果time1晚于time1，则返回正数，否则返回负数或者0
+     */
+    public static int intervalMinute(long time1, long time2) {
+        long intervalMillSecond = time1 - time2;
+
+        // 相差的分钟数 = 相差的毫秒数 / 每分钟的毫秒数 (小数位采用去尾制)
+        return (int) (intervalMillSecond / MILLION_SECOND_PER_MINUTE);
+    }
+    
     /**
      * 获得两个日期之间相差的天数(返回值去掉了小数部分，即只返回)。（date1 - date2）
      * 
