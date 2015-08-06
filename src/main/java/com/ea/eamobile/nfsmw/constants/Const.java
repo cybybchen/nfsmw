@@ -31,6 +31,8 @@ public class Const {
     public static final int TUTORIAL_REWARDID = 2;
 
     public static final int BIND_REWARDID = 3;
+    
+    public static final int GET_SEND_ENERGY_REWARDID = 5;
 
     public static final int NOT_INVISIBLE = 0;
 
@@ -60,6 +62,10 @@ public class Const {
     public static final int JAGUAR_HINT_SIZE = 4;
 
     public static final String GET_REWARD = "获得奖励";
+    
+    public static final String GET_SEND_ENERGY = "汽油领取成功";
+    
+    public static final String GET_SEND_ENERGY_FAILED = "汽油领取失败";
 
     public static final int HAVE_GET_REWARD = 1;
 

@@ -36,6 +36,7 @@
 		<result property="accountStatus" column="account_status" />
 		<result property="accessToken" column="access_token" />
 		<result property="uid" column="uid" />
+		<result property="lastSendEnergyDate" column="last_send_energy_date" />
 	</resultMap>
 
 	<resultMap id="namemap" type="java.lang.String">
@@ -86,11 +87,11 @@
 		dura_match_num,max_match_win_num,max_match_lose_num,eol,last_regain_energy_date,rp_num,gold
 		,create_time,version,is_race_start,is_nickname_changed,is_old_user,is_write_jaguar,willowtree_token,
 		event_option_version,is_get_tutorial_reward,is_rewarded_bind,tier_status,cert_type,account_status,
-		access_token,uid)
+		access_token,uid, last_send_energy_date)
 		values(#{id},#{name},#{level},#{money},#{energy},#{headUrl},#{tier},#{dailyRewardDate},0,
 		0,0,0,0,#{eol},#{lastRegainEnergyDate},0,#{gold},#{createTime},#{version},#{isRaceStart},#{isNicknameChanged},#{isOldUser},#{isWriteJaguar},
 		#{willowtreeToken},#{eventOptionVersion},#{isGetTutorialReward},#{isRewardedBind},#{tierStatus},#{certType},#{accountStatus},
-		#{accessToken},#{uid})
+		#{accessToken},#{uid}, #{lastSendEnergyDate})
 
 	</insert>
 
@@ -102,7 +103,7 @@
 		max_match_win_num=#{maxMatchWinNum},max_match_lose_num=#{maxMatchLoseNum},eol=#{eol},last_regain_energy_date=#{lastRegainEnergyDate},
 		rp_num=#{rpNum},version=#{version},is_race_start=#{isRaceStart},is_nickname_changed=#{isNicknameChanged},is_old_user=#{isOldUser},is_write_jaguar=#{isWriteJaguar}
 		,willowtree_token=#{willowtreeToken},event_option_version=#{eventOptionVersion},is_get_tutorial_reward=#{isGetTutorialReward},is_rewarded_bind=#{isRewardedBind},
-		tier_status=#{tierStatus},cert_type=#{certType},account_status=#{accountStatus},access_token=#{accessToken},uid=#{uid}
+		tier_status=#{tierStatus},cert_type=#{certType},account_status=#{accountStatus},access_token=#{accessToken},uid=#{uid},last_send_energy_date=#{lastSendEnergyDate}
 		where id = #{id}
 	</update>
 

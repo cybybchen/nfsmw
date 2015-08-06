@@ -338,7 +338,16 @@ public class PushCommandService {
             rpbuilder.setHeading(Const.GET_REWARD);
             rpbuilder.setPopScreen(1);
             rpbuilder.setText(reward.getDisplayName());
+        } else if (type == Match.SEND_ENERGY_POPUP) {
+        	rpbuilder.setHeading(Const.GET_SEND_ENERGY);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText(ctaContentService.getCtaContent(CtaContentConst.GET_ENERGY_SUCCESS).getContent());
+        } else if (type == Match.SEND_ENERGY_FAILED_POPUP) {
+        	rpbuilder.setHeading(Const.GET_SEND_ENERGY_FAILED);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText(ctaContentService.getCtaContent(CtaContentConst.GET_ENERGY_FAILED).getContent());
         }
+        
         return rpbuilder.build();
     }
 

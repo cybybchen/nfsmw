@@ -41,7 +41,9 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingTokenCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -951,6 +953,20 @@ public class TelemetryScreen extends RequestScreen {
 
 	@Override
 	protected boolean handleCommand(RequestBindingInfoCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestEnergyTimeCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestCollectEnergyCommand cmd,
 			Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
 		return true;

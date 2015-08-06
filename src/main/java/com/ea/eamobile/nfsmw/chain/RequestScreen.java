@@ -18,7 +18,9 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingTokenCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -148,6 +150,10 @@ public abstract class RequestScreen implements RequestHandle {
     
     protected abstract boolean handleCommand(RequestBindingTokenCommand cmd, Builder responseBuilder, User user);
     protected abstract boolean handleCommand(RequestBindingInfoCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestEnergyTimeCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestCollectEnergyCommand cmd, Builder responseBuilder, User user);
 
     @Override
     public boolean handleRequest(NFSRequest req, NFSResponse rep) {
@@ -427,6 +433,20 @@ public abstract class RequestScreen implements RequestHandle {
         if (request.hasGotchaCommand()) {
         	logger.info("99999999999999999 hasGotchaCommand");
             RequestGotchaCommand cmd = request.getGotchaCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasEnergyTimeCommand()) {
+        	RequestEnergyTimeCommand cmd = request.getEnergyTimeCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasCollectEnergyCommand()) {
+        	RequestCollectEnergyCommand cmd = request.getCollectEnergyCommand();
             if (result) {
                 result = handleCommand(cmd, responseBuilder, user);
             }

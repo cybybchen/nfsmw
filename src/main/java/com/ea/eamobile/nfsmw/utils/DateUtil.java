@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.ea.eamobile.nfsmw.constants.Const;
 
 /**
  * 日期操作类
@@ -16,6 +20,16 @@ public class DateUtil {
     /** 单例 */
     private static final DateUtil instance = new DateUtil();
 
+    public static final String STARTTIME_STRING = "start_time";
+    public static final String ENDTIME_STRING = "end_time";
+//    public static final int SEND_ENERGY_DELHOURS_MIN = 2;
+    public static final int SEND_ENERGY_DELHOURS = 4;
+    
+    private static final String ENERGY_SEND_START_TIME_AM = "12:00:00";
+    private static final String ENERGY_SEND_END_TIME_AM = "14:00:00";
+    private static final String ENERGY_SEND_START_TIME_PM = "18:00:00";
+    private static final String ENERGY_SEND_END_TIME_PM = "20:00:00";
+    
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String DATE_FORMAT_INT = "yyyyMMdd";
     public static final String DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -532,5 +546,46 @@ public class DateUtil {
     	}
     	return false;
     }
+    
+    public static Map<String, Integer> getEnergyTimeMap() {
+    	Map<String, Integer> timeMap = new HashMap<String, Integer>();
+    	int startSeconds = 0;
+    	int endSeconds = 0;
+    	Date currentDate = getDate(getCurrentDateString(), DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyStartDateAM = getDate(ENERGY_SEND_START_TIME_AM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyEndDateAM = getDate(ENERGY_SEND_END_TIME_AM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyStartDatePM = getDate(ENERGY_SEND_START_TIME_PM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyEndDatePM = getDate(ENERGY_SEND_END_TIME_PM, DEFAULT_TIME_FORMAT, null);
+    	if (currentDate.after(sendEnergyEndDateAM) && currentDate.before(sendEnergyEndDatePM)) {
+    		startSeconds = intervalSeconds(sendEnergyStartDatePM, currentDate);
+    		endSeconds = intervalSeconds(sendEnergyEndDatePM, currentDate);
+    	} else {
+    		startSeconds = intervalSeconds(sendEnergyStartDateAM, currentDate);
+    		endSeconds = intervalSeconds(sendEnergyEndDateAM, currentDate);
+    	}
+    	timeMap.put(STARTTIME_STRING, startSeconds);
+    	timeMap.put(ENDTIME_STRING, endSeconds);
+    	
+    	return timeMap;
+    }
+    
+    public static boolean canSendEnergy(long lastSendEnergyDate) {
+    	long currentTime = System.currentTimeMillis();
+    	int hours = intervalHours(lastSendEnergyDate, currentTime);
+    	if (hours < SEND_ENERGY_DELHOURS)
+    		return false;
+    	
+    	Date currentDate = getDate(getCurrentDateString(), DEFAULT_TIME_FORMAT, null);
 
+    	Date sendEnergyStartDateAM = getDate(ENERGY_SEND_START_TIME_AM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyEndDateAM = getDate(ENERGY_SEND_END_TIME_AM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyStartDatePM = getDate(ENERGY_SEND_START_TIME_PM, DEFAULT_TIME_FORMAT, null);
+    	Date sendEnergyEndDatePM = getDate(ENERGY_SEND_END_TIME_PM, DEFAULT_TIME_FORMAT, null);
+    	if ((currentDate.after(sendEnergyStartDateAM) && currentDate.before(sendEnergyEndDateAM)) 
+    			|| (currentDate.after(sendEnergyStartDatePM) && currentDate.before(sendEnergyEndDatePM))) {
+    		return true;
+    	} 
+    	
+    	return false;
+    }
 }

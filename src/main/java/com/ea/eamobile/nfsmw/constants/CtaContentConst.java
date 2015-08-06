@@ -69,5 +69,9 @@ public class CtaContentConst {
     public static final int SLOT_UP_LEVEL_IS_LOCK = 28;
     
     public static final int SLOT_ALREADY_HAVE = 29;
+    
+    public static final int GET_ENERGY_SUCCESS = 30;
+    
+    public static final int GET_ENERGY_FAILED = 31;
 
 }

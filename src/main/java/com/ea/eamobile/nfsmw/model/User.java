@@ -80,6 +80,8 @@ public class User extends Markable implements Serializable {
     protected String accessToken;
     
     protected String uid;
+    
+    protected int lastSendEnergyDate;
 
     // db field
     protected static final String ID = "id";
@@ -115,6 +117,7 @@ public class User extends Markable implements Serializable {
     protected static final String ACCOUNT_STATUS = "account_status";
     protected static final String ACCESS_TOKEN = "access_token";
     protected static final String UID = "uid";
+    protected static final String LAST_SEND_ENERGY_DATE = "last_send_energy_date";
 
     public int getAccountStatus() {
         return accountStatus;
@@ -434,6 +437,15 @@ public class User extends Markable implements Serializable {
     public void setUid(String uid) {
         this.uid = uid;
         mark(UID, uid);
+    }
+    
+    public int getLastSendEnergyDate() {
+        return lastSendEnergyDate;
+    }
+
+    public void setLastSendEnergyDate(int lastSendEnergyDate) {
+        this.lastSendEnergyDate = lastSendEnergyDate;
+        mark(LAST_SEND_ENERGY_DATE, lastSendEnergyDate);
     }
     
     @Override

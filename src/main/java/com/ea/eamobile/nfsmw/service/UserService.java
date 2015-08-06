@@ -255,6 +255,28 @@ public class UserService {
 
         return user;
     }
+    
+    public boolean canGetSendEnergy(User user) {
+    	long lastSendEnergyDate = user.getLastSendEnergyDate() * 1000L;
+    	boolean canSendEnergy = DateUtil.canSendEnergy(lastSendEnergyDate);
+        
+    	int energy = 0;
+        long currentTime = System.currentTimeMillis();
+        
+        if (canSendEnergy) {
+        	energy = Math.min(Match.ENERGY_BUY_MAX, user.getEnergy() + Match.SEND_ENERGY_AMOUNT);
+        	user.setLastSendEnergyDate((int)(currentTime / 1000));
+        }else {
+        	return false;
+//        	energy = user.getEnergy();
+        }
+        
+        user.setEnergy(energy);
+        updateUser(user);
+
+        return true;
+//        return user;
+    }
 
     public User regainEnergyNew(User user) {
         Date regainTime = new Date(user.getLastRegainEnergyDate() * 1000L - Match.ENERGY_REGAIN_HOUR_SECONDS * 1000L);

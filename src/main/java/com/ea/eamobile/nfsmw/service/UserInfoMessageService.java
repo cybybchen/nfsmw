@@ -32,6 +32,7 @@ public class UserInfoMessageService {
         builder.setRpLevel(user.getLevel());
         builder.setRpExp(user.getRpNum());
         builder.setEnergy(user.getEnergy());
+        builder.setEnergytime((int)(System.currentTimeMillis() / 1000) - user.getLastRegainEnergyDate());
         builder.setNickname(user.getName());
         builder.setAccessToken(user.getAccessToken());
         builder.setUid(user.getUid());

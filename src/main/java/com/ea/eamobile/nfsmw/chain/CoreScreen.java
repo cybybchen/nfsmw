@@ -1,7 +1,6 @@
 package com.ea.eamobile.nfsmw.chain;
 
 import java.sql.SQLException;
-import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.User;
-import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingConfirmCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingResultCommand;
@@ -19,7 +17,9 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingTokenCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -57,6 +57,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBindingTokenCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseIapCheckCommand;
@@ -88,6 +89,7 @@ import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.service.command.BindingCommandService;
 import com.ea.eamobile.nfsmw.service.command.ChanllengeMatchInfoCommandService;
 import com.ea.eamobile.nfsmw.service.command.ConfigCommandService;
+import com.ea.eamobile.nfsmw.service.command.EnergyCommandService;
 import com.ea.eamobile.nfsmw.service.command.GarageCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostRecordCommandService;
@@ -117,7 +119,6 @@ import com.ea.eamobile.nfsmw.service.command.tournament.TournamentRaceResultComm
 import com.ea.eamobile.nfsmw.service.command.tournament.TournamentRaceStartCommandService;
 import com.ea.eamobile.nfsmw.service.command.tournament.TournamentRewardDetailCommandService;
 import com.ea.eamobile.nfsmw.service.command.tournament.TournamentSignUpCommandService;
-import com.ea.eamobile.nfsmw.utils.DateUtil;
 
 @Service
 public class CoreScreen extends RequestScreen {
@@ -190,6 +191,8 @@ public class CoreScreen extends RequestScreen {
     private ConfigCommandService configService;
     @Autowired
     private GotchaCommandService gotchaCommandService;
+    @Autowired
+    private EnergyCommandService energyCommandService;
     
     @Override
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
@@ -664,6 +667,24 @@ public class CoreScreen extends RequestScreen {
         }
         return true;
     }
+
+	@Override
+	protected boolean handleCommand(RequestEnergyTimeCommand cmd,
+			Builder responseBuilder, User user) {
+		ResponseEnergyTimeCommand etcmd = energyCommandService.getEnergyTimeCommand();
+        responseBuilder.setEnergyTimeCommand(etcmd);
+
+        return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestCollectEnergyCommand cmd,
+			Builder responseBuilder, User user) {
+		ResponseModifyUserInfoCommand modifycmd = energyCommandService.getModifyUserInfoCommand(responseBuilder, user);
+        responseBuilder.setModifyUserInfoCommand(modifycmd);
+
+        return true;
+	}
 
 //	@Override
 //	protected boolean handleCommand(RequestSendCar cmd,

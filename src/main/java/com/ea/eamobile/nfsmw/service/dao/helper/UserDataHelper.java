@@ -50,6 +50,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.accountStatus = data.getAccountStatus();
 		this.accessToken = data.getAccessToken();
 		this.uid = data.getUid();
+		this.lastSendEnergyDate = data.getLastSendEnergyDate();
 
 		setMarks(data.getMarks());
 	}
@@ -89,6 +90,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.accountStatus = rs.getInt("account_status");
 		this.accessToken = rs.getString("access_token");
 		this.uid = rs.getString("uid");
+		this.lastSendEnergyDate = rs.getInt("last_send_energy_date");
 	}
 
 	@Override

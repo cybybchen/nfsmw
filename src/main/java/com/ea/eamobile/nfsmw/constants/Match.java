@@ -76,6 +76,10 @@ public class Match {
     public static final int TIER_POPUP = 3;
 
     public static final int USER_VERSION_UPDATE_POPUP = 4;
+    
+    public static final int SEND_ENERGY_POPUP = 5;
+    
+    public static final int SEND_ENERGY_FAILED_POPUP = 6;
 
     public static final int NO_RANK = 0;
 
@@ -90,6 +94,8 @@ public class Match {
     public static final int TIER_HAVE_BEEN_RUN = 1;
        
     public static final int YELLOW_LINE_TOURNAMENT_MODE_ID=300030;
+    
+    public static final int SEND_ENERGY_AMOUNT = 90;
 
     public static final Map<Integer, Float> ONE_VS_FIVE_MAP = new HashMap<Integer, Float>() {
         /**
@@ -120,5 +126,9 @@ public class Match {
     };
 
     public static final int NOT_RACE_START = 0;
+    
+    public static enum GET_SEND_ENERGY_STATUS {
+    	
+    }
 
 }
