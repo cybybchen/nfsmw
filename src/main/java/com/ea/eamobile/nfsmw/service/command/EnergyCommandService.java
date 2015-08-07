@@ -42,9 +42,9 @@ public class EnergyCommandService {
      * @param 
      * @return
      */
-    public ResponseEnergyTimeCommand getEnergyTimeCommand() {
+    public ResponseEnergyTimeCommand getEnergyTimeCommand(User user) {
         ResponseEnergyTimeCommand.Builder builder = ResponseEnergyTimeCommand.newBuilder();
-        Map<String, Integer> timeMap = DateUtil.getEnergyTimeMap();
+        Map<String, Integer> timeMap = DateUtil.getEnergyTimeMap(user.getLastSendEnergyDate() * 1000L);
         builder.setStarttime(timeMap.get(DateUtil.STARTTIME_STRING));
         builder.setEndtime(timeMap.get(DateUtil.ENDTIME_STRING));
         builder.setEnergy(Match.SEND_ENERGY_AMOUNT);

@@ -173,7 +173,7 @@ public class StoreDetailCommandService {
         if (purchaseGift != null) {
 //            user.setEnergy(user.getEnergy() + purchaseGift.getEnergy());
         	//energy最大不超过1000
-            user.setEnergy(Math.max(user.getEnergy() + purchaseGift.getEnergy(), Match.ENERGY_BUY_MAX));
+            user.setEnergy(Math.min(user.getEnergy() + purchaseGift.getEnergy(), Match.ENERGY_BUY_MAX));
             user.setGold(user.getGold() + purchaseGift.getGold());
             user.setMoney(user.getMoney() + purchaseGift.getMoney());
             user.setStarNum(user.getStarNum() + purchaseGift.getStarNum());

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,12 @@ import com.ea.eamobile.nfsmw.service.JsonService;
 import com.ea.eamobile.nfsmw.service.RpLeaderBoardService;
 import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
+import com.ea.eamobile.nfsmw.utils.DateUtil;
 
 @Service
 public class RpLeaderboardCommandService {
-
+	private static final Logger log = LoggerFactory.getLogger(RpLeaderboardCommandService.class);
+	
     @Autowired
     private UserService userService;
     @Autowired
@@ -67,6 +71,7 @@ public class RpLeaderboardCommandService {
         // 构建leaderboard message
         buildRpLeaderboardCommand(builder, list, userId, reqcmd.hasHasProfileUI());
         // 如果自己在50名开外 设置下rank
+        log.debug("selfrank={}, builder selfRank={}", selfRank, builder.getSelfRank());
         if (selfRank > 0) {
             builder.setSelfRank(selfRank);
         }

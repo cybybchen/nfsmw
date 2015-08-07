@@ -97,6 +97,12 @@ public class RpLeaderBoardService {
 		List<User> list = getTop100();
 		for (int i = 0; i < list.size(); i++) {
 			User lbuser = list.get(i);
+			if (lbuser.getName().contains("DELETE_") || (lbuser.getAccountStatus() & Const.IS_BAN) == 1) {
+				list.remove(lbuser);
+				--i;
+				continue;
+			}
+			
 			if (user.getId() == lbuser.getId()) {
 				return i + 1;
 			}

@@ -7,7 +7,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ea.eamobile.nfsmw.constants.Const;
+import com.ea.eamobile.nfsmw.service.command.EnergyCommandService;
 
 /**
  * 日期操作类
@@ -17,6 +21,7 @@ import com.ea.eamobile.nfsmw.constants.Const;
  * @since 1.0
  */
 public class DateUtil {
+	private static final Logger log = LoggerFactory.getLogger(DateUtil.class);
     /** 单例 */
     private static final DateUtil instance = new DateUtil();
 
@@ -86,6 +91,15 @@ public class DateUtil {
         return new SimpleDateFormat(DEFAULT_DATE_FORMAT).format(new Date());
     }
 
+    /**
+     * 获得当天的格式化时间。
+     * 
+     * @return
+     */
+    public static String getCurrentTimeString() {
+        return new SimpleDateFormat(DEFAULT_TIME_FORMAT).format(new Date());
+    }
+    
     public static int getDateId() {
         return Integer.parseInt(new SimpleDateFormat(DATE_FORMAT_INT).format(new Date()));
     }
@@ -146,6 +160,7 @@ public class DateUtil {
         try {
             d = new SimpleDateFormat(format).parse(date);
         } catch (ParseException e) {
+        	log.debug("parse error={}", e);
             d = defVal;
         }
         return d;
@@ -547,21 +562,35 @@ public class DateUtil {
     	return false;
     }
     
-    public static Map<String, Integer> getEnergyTimeMap() {
+    public static Map<String, Integer> getEnergyTimeMap(long lastSendEnergyDate) {
+    	long currentTime = System.currentTimeMillis();
+    	int hours = intervalHours(lastSendEnergyDate, currentTime);
+    	boolean isGet = false;
+    	if (hours < SEND_ENERGY_DELHOURS)
+    		isGet = true;
     	Map<String, Integer> timeMap = new HashMap<String, Integer>();
     	int startSeconds = 0;
     	int endSeconds = 0;
-    	Date currentDate = getDate(getCurrentDateString(), DEFAULT_TIME_FORMAT, null);
+    	Date currentDate = getDate(getCurrentTimeString(), DEFAULT_TIME_FORMAT, null);
     	Date sendEnergyStartDateAM = getDate(ENERGY_SEND_START_TIME_AM, DEFAULT_TIME_FORMAT, null);
     	Date sendEnergyEndDateAM = getDate(ENERGY_SEND_END_TIME_AM, DEFAULT_TIME_FORMAT, null);
     	Date sendEnergyStartDatePM = getDate(ENERGY_SEND_START_TIME_PM, DEFAULT_TIME_FORMAT, null);
     	Date sendEnergyEndDatePM = getDate(ENERGY_SEND_END_TIME_PM, DEFAULT_TIME_FORMAT, null);
+//    	log.debug("startAM={}, endAm={}", sendEnergyStartDateAM, sendEnergyEndDateAM);
+//    	log.debug("startPM={}, endPM={}", sendEnergyStartDatePM, sendEnergyEndDatePM);
+//    	log.debug("currentDate={}", currentDate);
     	if (currentDate.after(sendEnergyEndDateAM) && currentDate.before(sendEnergyEndDatePM)) {
-    		startSeconds = intervalSeconds(sendEnergyStartDatePM, currentDate);
-    		endSeconds = intervalSeconds(sendEnergyEndDatePM, currentDate);
+    		int addTime = 0;
+    		if (currentDate.after(sendEnergyStartDatePM) && hours < SEND_ENERGY_DELHOURS)
+    			addTime = 18 * 60 * 60;
+    		startSeconds = intervalSeconds(sendEnergyStartDatePM, currentDate) * addTime;
+    		endSeconds = intervalSeconds(sendEnergyEndDatePM, currentDate) + addTime;
     	} else {
-    		startSeconds = intervalSeconds(sendEnergyStartDateAM, currentDate);
-    		endSeconds = intervalSeconds(sendEnergyEndDateAM, currentDate);
+    		int addTime = 0;
+    		if (currentDate.after(sendEnergyStartDateAM) && hours < SEND_ENERGY_DELHOURS)
+    			addTime = 18 * 60 * 60;
+    		startSeconds = intervalSeconds(sendEnergyStartDateAM, currentDate) + addTime;
+    		endSeconds = intervalSeconds(sendEnergyEndDateAM, currentDate) + addTime;
     	}
     	timeMap.put(STARTTIME_STRING, startSeconds);
     	timeMap.put(ENDTIME_STRING, endSeconds);
@@ -575,7 +604,7 @@ public class DateUtil {
     	if (hours < SEND_ENERGY_DELHOURS)
     		return false;
     	
-    	Date currentDate = getDate(getCurrentDateString(), DEFAULT_TIME_FORMAT, null);
+    	Date currentDate = getDate(getCurrentTimeString(), DEFAULT_TIME_FORMAT, null);
 
     	Date sendEnergyStartDateAM = getDate(ENERGY_SEND_START_TIME_AM, DEFAULT_TIME_FORMAT, null);
     	Date sendEnergyEndDateAM = getDate(ENERGY_SEND_END_TIME_AM, DEFAULT_TIME_FORMAT, null);

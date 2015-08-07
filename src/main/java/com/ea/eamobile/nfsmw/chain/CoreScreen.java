@@ -671,7 +671,7 @@ public class CoreScreen extends RequestScreen {
 	@Override
 	protected boolean handleCommand(RequestEnergyTimeCommand cmd,
 			Builder responseBuilder, User user) {
-		ResponseEnergyTimeCommand etcmd = energyCommandService.getEnergyTimeCommand();
+		ResponseEnergyTimeCommand etcmd = energyCommandService.getEnergyTimeCommand(user);
         responseBuilder.setEnergyTimeCommand(etcmd);
 
         return true;
