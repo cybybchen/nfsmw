@@ -198,6 +198,7 @@ public class CoreScreen extends RequestScreen {
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
         try {
             loginCommandService.buildResponseUserInfo(request, responseBuilder);
+            log.debug("login energyTime={}", responseBuilder.getUserInfoCommand().getUserInfo().getEnergytime());
         } catch (Exception e) {
         	e.printStackTrace();
             log.error("login err", e.getMessage());
@@ -463,7 +464,7 @@ public class CoreScreen extends RequestScreen {
         ResponseBuyItemCommand response = storeDetailCommandService.getResponseBuyItemCommand(cmd, user,
                 responseBuilder);
         responseBuilder.setBuyItemCommand(response);
-        regainEnergy(responseBuilder, user);
+//        regainEnergy(responseBuilder, user);
         return true;
     }
 
@@ -634,10 +635,10 @@ public class CoreScreen extends RequestScreen {
 //    }
     
     private void regainEnergy(Builder responseBuilder, User user) {
-    	if (user.getEnergy() < Match.ENERGY_MAX) {
+//    	if (user.getEnergy() < Match.ENERGY_MAX) {
     		user = userService.regainEnergy(user);
 //            pushService.pushUserInfoCommand(responseBuilder, user);
-    	}
+//    	}
     }
 
     @Override

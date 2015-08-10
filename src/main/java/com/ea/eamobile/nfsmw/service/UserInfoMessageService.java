@@ -2,6 +2,8 @@ package com.ea.eamobile.nfsmw.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import com.ea.eamobile.nfsmw.view.UserView;
 
 @Service
 public class UserInfoMessageService {
+	Logger log = LoggerFactory.getLogger(UserInfoMessageService.class);
 
     @Autowired
     private RpLevelService levelService;
@@ -33,6 +36,8 @@ public class UserInfoMessageService {
         builder.setRpExp(user.getRpNum());
         builder.setEnergy(user.getEnergy());
         builder.setEnergytime((int)(System.currentTimeMillis() / 1000) - user.getLastRegainEnergyDate());
+//        log.debug("current={}, lasttime={}", System.currentTimeMillis(), user.getLastRegainEnergyDate());
+//        log.debug("energyTime={}", builder.getEnergytime());
         builder.setNickname(user.getName());
         builder.setAccessToken(user.getAccessToken());
         builder.setUid(user.getUid());

@@ -121,7 +121,6 @@ public class LoginCommandService {
             }
         }
         
-        regainEnergy(response, user);
         setPushCommand(response, user, head.getSession(), reqcmd, head.getVersion());
     }
 
@@ -371,6 +370,8 @@ public class LoginCommandService {
 
 		headBuilder.setSession(session);
 
+		regainEnergy(responseBuilder, u);
+		
 		fillUserInfoBuilder(builder, u);
 		builder.setToken(u.getWillowtreeToken());
 		builder.setDefaultHint(hintsService.getRandomHint());
@@ -389,9 +390,9 @@ public class LoginCommandService {
 	}
 	
 	private void regainEnergy(Builder responseBuilder, User user) {
-		if (user.getEnergy() < Match.ENERGY_MAX) {
+//		if (user.getEnergy() < Match.ENERGY_MAX) {
     		user = userService.regainEnergy(user);
 //            pushService.pushUserInfoCommand(responseBuilder, user);
-    	}
+//    	}
     }
 }

@@ -241,15 +241,20 @@ public class UserService {
         long lastRecoveryTime = user.getLastRegainEnergyDate() * 1000L;
         long currentTime = System.currentTimeMillis();
         
-        int minutes = Math.abs(DateUtil.intervalMinute(currentTime, lastRecoveryTime));
-        int energy = Math.min(Match.ENERGY_MAX, user.getEnergy() + (int) (minutes / DateUtil.MINUTE_PER_RECOVER) * Match.EVERY5MINUTE_GET_ENERGY_NUM);
-        int recoverEnergy = energy - user.getEnergy();
-        lastRecoveryTime = lastRecoveryTime + recoverEnergy * DateUtil.MILLIONSECONDS_PER_RECOVER;
         if (user.getEnergy() < Match.ENERGY_MAX) {
-            user.setEnergy(energy);
+	        int minutes = Math.abs(DateUtil.intervalMinute(currentTime, lastRecoveryTime));
+	        int energy = Math.min(Match.ENERGY_MAX, user.getEnergy() + (int) (minutes / DateUtil.MINUTE_PER_RECOVER) * Match.EVERY5MINUTE_GET_ENERGY_NUM);
+	        int recoverEnergy = energy - user.getEnergy();
+	        lastRecoveryTime = lastRecoveryTime + recoverEnergy * DateUtil.MILLIONSECONDS_PER_RECOVER;
+	        user.setEnergy(energy);
+        }
+        if (user.getEnergy() < Match.ENERGY_MAX) {
+//            user.setEnergy(energy);
         } else
-        	lastRecoveryTime = 0;
+        	lastRecoveryTime = currentTime;
 
+//        log.debug("current={}, lasttime={}", currentTime, lastRecoveryTime);
+        
         user.setLastRegainEnergyDate((int) (lastRecoveryTime / 1000));
         updateUser(user);
 

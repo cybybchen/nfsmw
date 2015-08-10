@@ -376,7 +376,7 @@ public class BindingCommandService {
         	user.setUid("");
         	user.setAccessToken("");
         	//开始删除数据 避免出错暂时不清理 rename
-            user.setName("DELETE_" + user.getId());
+//            user.setName("DELETE_" + user.getId());
             userService.updateUser(user);
             long userId = user.getId();
             leaderboardService.deleteByUserId(userId);

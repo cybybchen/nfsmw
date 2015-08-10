@@ -583,12 +583,12 @@ public class DateUtil {
     		int addTime = 0;
     		if (currentDate.after(sendEnergyStartDatePM) && hours < SEND_ENERGY_DELHOURS)
     			addTime = 18 * 60 * 60;
-    		startSeconds = intervalSeconds(sendEnergyStartDatePM, currentDate) * addTime;
+    		startSeconds = intervalSeconds(sendEnergyStartDatePM, currentDate) + addTime;
     		endSeconds = intervalSeconds(sendEnergyEndDatePM, currentDate) + addTime;
     	} else {
     		int addTime = 0;
     		if (currentDate.after(sendEnergyStartDateAM) && hours < SEND_ENERGY_DELHOURS)
-    			addTime = 18 * 60 * 60;
+    			addTime = 6 * 60 * 60;
     		startSeconds = intervalSeconds(sendEnergyStartDateAM, currentDate) + addTime;
     		endSeconds = intervalSeconds(sendEnergyEndDateAM, currentDate) + addTime;
     	}
