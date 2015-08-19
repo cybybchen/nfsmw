@@ -10,11 +10,12 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Base64;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -68,53 +69,71 @@ public class IapCheckCommandService extends BaseCommandService {
         IapFailtureRecord iapFailtureRecord = new IapFailtureRecord();
         iapFailtureRecord.setReceiptData(reqcmd.getReceiptData());
         iapFailtureRecord.setUserId(userId);
-        IapCheckInfo iapCheckInfo = getGoldFromIap(reqcmd.getReceiptData(), iapFailtureRecord, userId, responseBuilder
+        List<IapCheckInfo> iapCheckInfoList = getGoldFromIap(reqcmd.getReceiptData(), iapFailtureRecord, userId, responseBuilder
                 .build().getHead().getVersion());
 
-        if (iapCheckInfo.getTransactionId() == 0) {
-            iapFailtureRecord.setReason("wrong receipt data");
-            iapFailtureRecordService.insert(iapFailtureRecord);
+        boolean allWrong = true;
+        for (IapCheckInfo iapCheckInfo : iapCheckInfoList) {
+        	if (iapCheckInfo.getTransactionId() == 0) {
+                iapFailtureRecord.setReason("wrong receipt data");
+                iapFailtureRecordService.insert(iapFailtureRecord);
+            } else
+            	allWrong = false;
+        }
+        
+        if (allWrong) {
             builder.setSuccess(false);
             builder.setMessage(ctaContentService.getCtaContent(CtaContentConst.WRONG_ITEM_INFO).getContent());
             //
 
             return builder.build();
         }
-        IapCheckInfo oldIapCheckInfo = iapCheckInfoService.getIapCheckInfoByTransactionId(iapCheckInfo
-                .getTransactionId());
-        if (oldIapCheckInfo != null) {
-            iapFailtureRecord.setReason("double add");
-            iapFailtureRecordService.insert(iapFailtureRecord);
-            builder.setSuccess(false);
+        boolean allUsefulCheck = false;
+        for (IapCheckInfo iapCheckInfo : iapCheckInfoList) {
+	        IapCheckInfo oldIapCheckInfo = iapCheckInfoService.getIapCheckInfoByTransactionId(iapCheckInfo
+	                .getTransactionId());
+	        
+	        if (oldIapCheckInfo != null) {
+	            iapFailtureRecord.setReason("double add");
+	            iapFailtureRecordService.insert(iapFailtureRecord);
+	            continue;
+	        } else
+	        	allUsefulCheck = true;
+	        
+	        int addGold = 0;
+	        Integer itemValue = IapConst.GOLD_VALUE_MAP.get(iapCheckInfo.getProductId());
+	        if (itemValue != null) {
+	            addGold = itemValue * iapCheckInfo.getQuantity();
+	        }
+	        Integer rmbNum = 0;
+	        int additionGold = getAdditionGold(iapCheckInfo.getProductId(), responseBuilder, userId);
+	        addGold = addGold + additionGold;
+	        user.setGold(user.getGold() + addGold);
+	        try {
+				sendCarOfFirstBuyGold(iapCheckInfo.getProductId(), responseBuilder, userId);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        iapCheckInfo.setCreateTime((int) (new Date().getTime() / 1000));
+	        iapCheckInfo.setUserId(userId);
+	        int payMent = 0;
+	        if (IapConst.RMB_MAP.get(iapCheckInfo.getProductId()) != null) {
+	            payMent = IapConst.RMB_MAP.get(iapCheckInfo.getProductId());
+	            rmbNum = IapConst.RMB_MAP.get(iapCheckInfo.getProductId());
+	        }
+	        iapCheckInfo.setRmbNum(rmbNum);
+	        UserPay userPay = userPayService.buildUserPay(userId, payMent, 0, 0);
+	        userPayService.insertOrUpdate(userPay);
+	        iapCheckInfoService.insert(iapCheckInfo); 
+        }
+        
+        if (!allUsefulCheck) {
+	        builder.setSuccess(false);
             builder.setMessage(ctaContentService.getCtaContent(CtaContentConst.MONEY_ALREADY_ADDED).getContent());
             return builder.build();
         }
-        int addGold = 0;
-        Integer itemValue = IapConst.GOLD_VALUE_MAP.get(iapCheckInfo.getProductId());
-        if (itemValue != null) {
-            addGold = itemValue * iapCheckInfo.getQuantity();
-        }
-        Integer rmbNum = 0;
-        int additionGold = getAdditionGold(iapCheckInfo.getProductId(), responseBuilder, userId);
-        addGold = addGold + additionGold;
-        user.setGold(user.getGold() + addGold);
-        try {
-			sendCarOfFirstBuyGold(iapCheckInfo.getProductId(), responseBuilder, userId);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        iapCheckInfo.setCreateTime((int) (new Date().getTime() / 1000));
-        iapCheckInfo.setUserId(userId);
-        int payMent = 0;
-        if (IapConst.RMB_MAP.get(iapCheckInfo.getProductId()) != null) {
-            payMent = IapConst.RMB_MAP.get(iapCheckInfo.getProductId());
-            rmbNum = IapConst.RMB_MAP.get(iapCheckInfo.getProductId());
-        }
-        iapCheckInfo.setRmbNum(rmbNum);
-        UserPay userPay = userPayService.buildUserPay(userId, payMent, 0, 0);
-        userPayService.insertOrUpdate(userPay);
-        iapCheckInfoService.insert(iapCheckInfo);
+        
         userService.updateUser(user);
         builder.setSuccess(true);
         builder.setMessage(ctaContentService.getCtaContent(CtaContentConst.HAVE_BEEN_ADDED_MONEY).getContent());
@@ -166,11 +185,12 @@ public class IapCheckCommandService extends BaseCommandService {
         return result;
     }
 
-    private IapCheckInfo getGoldFromIap(String receiptData, IapFailtureRecord iapFailtureRecord, long userId,
+    private List<IapCheckInfo> getGoldFromIap(String receiptData, IapFailtureRecord iapFailtureRecord, long userId,
             int version) {
-        IapCheckInfo iapCheckInfo = new IapCheckInfo();
-        iapCheckInfo.setTransactionId(0);
-        iapCheckInfo.setVersion(version);
+    	List<IapCheckInfo> checkList = new ArrayList<IapCheckInfo>();
+//        IapCheckInfo iapCheckInfo = new IapCheckInfo();
+//        iapCheckInfo.setTransactionId(0);
+//        iapCheckInfo.setVersion(version);
         JSONObject json = getResultJsonByUrl(Const.IAP_URL, receiptData);
         log.debug("iap check return json is:" + json);
         if (json != null) {
@@ -179,16 +199,25 @@ public class IapCheckCommandService extends BaseCommandService {
                 try {
                     int status = json.getInt("status");
                     if (status == 0) {
-                        JSONObject receiptResult = json.getJSONObject("receipt");
-                        long transactionId = receiptResult.getLong("transaction_id");
-                        iapCheckInfo.setTransactionId(transactionId);
-                        String productId = receiptResult.getString("product_id");
-                        int num = receiptResult.getInt("quantity");
-                        iapCheckInfo.setProductId(productId);
-                        iapCheckInfo.setQuantity(num);
-                        iapCheckInfo.setPaymentMode("appleStore");
+                    	JSONObject receiptResult = json.getJSONObject("receipt");
+                        JSONArray in_app = receiptResult.getJSONArray("in_app");
+                        for (int i = 0;i < in_app.length(); ++i) {
+                        	IapCheckInfo iapCheckInfo = new IapCheckInfo();
+                            iapCheckInfo.setTransactionId(0);
+                            iapCheckInfo.setVersion(version);
+                            JSONObject checkInfo = in_app.getJSONObject(i);
+                            long transactionId = checkInfo.getLong("transaction_id");
+                            iapCheckInfo.setTransactionId(transactionId);
+                            String productId = checkInfo.getString("product_id");
+                            int num = checkInfo.getInt("quantity");
+                            iapCheckInfo.setProductId(productId);
+                            iapCheckInfo.setQuantity(num);
+                            iapCheckInfo.setPaymentMode("appleStore");
+                            checkList.add(iapCheckInfo);
+                        } 
                     } else if (ConfigUtil.SANBOX_OPEN && status == Const.SAND_BOX_STATUS
                             && version == Const.VERSION_THREE_NUM) {
+//                            && ((environment != null && environment.equals("Sandbox"))|| status == Const.SAND_BOX_STATUS)) {
                         json = getResultJsonByUrl(Const.SANDBOX_URL, receiptData);
                         log.debug("iap check of sanbox return json is:" + json);
                         if (json != null) {
@@ -197,32 +226,41 @@ public class IapCheckCommandService extends BaseCommandService {
                                 status = json.getInt("status");
                                 if (status == 0) {
                                     JSONObject receiptResult = json.getJSONObject("receipt");
-                                    long transactionId = receiptResult.getLong("transaction_id");
-                                    iapCheckInfo.setTransactionId(transactionId);
-                                    String productId = receiptResult.getString("product_id");
-                                    int num = receiptResult.getInt("quantity");
-                                    iapCheckInfo.setProductId(productId);
-                                    iapCheckInfo.setQuantity(num);
-                                    iapCheckInfo.setPaymentMode("sandbox");
+                                    JSONArray in_app = receiptResult.getJSONArray("in_app");
+                                    for (int i = 0;i < in_app.length(); ++i) {
+                                    	IapCheckInfo iapCheckInfo = new IapCheckInfo();
+                                        iapCheckInfo.setTransactionId(0);
+                                        iapCheckInfo.setVersion(version);
+                                        JSONObject checkInfo = in_app.getJSONObject(i);
+                                        long transactionId = checkInfo.getLong("transaction_id");
+                                        iapCheckInfo.setTransactionId(transactionId);
+                                        String productId = checkInfo.getString("product_id");
+                                        int num = checkInfo.getInt("quantity");
+                                        iapCheckInfo.setProductId(productId);
+                                        iapCheckInfo.setQuantity(num);
+                                        iapCheckInfo.setPaymentMode("sandbox");
+                                        checkList.add(iapCheckInfo);
+                                    } 
                                 }
                             }
                         }
-                    }
+                    } 
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    log.error(e.getMessage());
                 }
 
             }
         }
-        return iapCheckInfo;
+        return checkList;
     }
 
     private JSONObject getResultJsonByUrl(String url, String receiptData) {
         String encoding = "UTF-8";
-        byte[] bse64;
+//        byte[] bse64;
         try {
-            bse64 = Base64.encodeBase64(hexToString(receiptData, IapConst.HEX_VALUE_MAP).getBytes(encoding));
+//            bse64 = hexToString(receiptData, IapConst.HEX_VALUE_MAP).getBytes(encoding);
+//        	bse64 = receiptData.getBytes();
             URL dataUrl = new URL(url);
             HttpURLConnection con = (HttpURLConnection) dataUrl.openConnection();
             con.setRequestMethod("POST");
@@ -231,34 +269,35 @@ public class IapCheckCommandService extends BaseCommandService {
             con.setDoOutput(true);
             con.setDoInput(true);
             OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream(), encoding);
-            String str = String.format(Locale.CHINA, "{\"receipt-data\":\"" + new String(bse64, encoding) + "\"}");
-            System.out.println(str);
+//            String str = String.format(Locale.CHINA, "{\"receipt-data\":\"" + new String(bse64, encoding) + "\"}");
+            String str = "{\"receipt-data\":\"" + receiptData + "\"}";
+            log.debug("ios request str={}", str);
             out.write(str);
             out.flush();
             out.close();
             InputStream is = con.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, encoding));
             String line = null;
+            String content = "";
             while ((line = reader.readLine()) != null) {
-                try {
-                    if (!line.startsWith("{")) {
-                        line = "{" + line;
-                    }
-                    if (!line.endsWith("}")) {
-                        line = line + "}";
-                    }
-                    JSONObject json = new JSONObject(line);
-                    if (json.toString().length() > 2) {
-                        reader.close();
-                        return json;
-                    }
-                } catch (JSONException e) {
-
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+//                if (!line.startsWith("{")) {
+//                    line = "{" + line;
+//                }
+//                if (!line.endsWith("}")) {
+//                    line = line + "}";
+//                }
+                
+                content += line;
             }
-            reader.close();
+        	try {
+        		log.debug("content={}", content);
+	            JSONObject json = new JSONObject(content);
+	            reader.close();
+	            return json;
+        	} catch (JSONException e) {
+                // TODO Auto-generated catch block
+                log.debug("json parse failed: " + content);
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
