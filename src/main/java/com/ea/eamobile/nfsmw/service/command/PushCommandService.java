@@ -346,6 +346,10 @@ public class PushCommandService {
         	rpbuilder.setHeading(Const.GET_SEND_ENERGY_FAILED);
         	rpbuilder.setPopScreen(1);
         	rpbuilder.setText(ctaContentService.getCtaContent(CtaContentConst.GET_ENERGY_FAILED).getContent());
+        } else if (type == Match.SEND_CAR_POPUP) {
+        	rpbuilder.setHeading(Const.GET_CAR);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText("获得" + content);
         }
         
         return rpbuilder.build();

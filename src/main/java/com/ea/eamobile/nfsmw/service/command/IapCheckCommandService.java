@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.CtaContentConst;
 import com.ea.eamobile.nfsmw.constants.IapConst;
+import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.IapCheckInfo;
 import com.ea.eamobile.nfsmw.model.IapFailtureRecord;
 import com.ea.eamobile.nfsmw.model.User;
@@ -94,8 +95,6 @@ public class IapCheckCommandService extends BaseCommandService {
 	                .getTransactionId());
 	        
 	        if (oldIapCheckInfo != null) {
-	            iapFailtureRecord.setReason("double add");
-	            iapFailtureRecordService.insert(iapFailtureRecord);
 	            continue;
 	        } else
 	        	allUsefulCheck = true;
@@ -129,6 +128,8 @@ public class IapCheckCommandService extends BaseCommandService {
         }
         
         if (!allUsefulCheck) {
+        	iapFailtureRecord.setReason("double add");
+            iapFailtureRecordService.insert(iapFailtureRecord);
 	        builder.setSuccess(false);
             builder.setMessage(ctaContentService.getCtaContent(CtaContentConst.MONEY_ALREADY_ADDED).getContent());
             return builder.build();
@@ -156,6 +157,8 @@ public class IapCheckCommandService extends BaseCommandService {
 	    			log.debug("send car success,carId is {}", carId);
 	    			pushService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarListByCarId(userId, carId),
 	                        userId);
+	    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, carId, 0,
+	                        0);
 	    		}
 	    	}
     	}

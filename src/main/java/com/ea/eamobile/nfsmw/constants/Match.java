@@ -80,6 +80,8 @@ public class Match {
     public static final int SEND_ENERGY_POPUP = 5;
     
     public static final int SEND_ENERGY_FAILED_POPUP = 6;
+    
+    public static final int SEND_CAR_POPUP = 7;
 
     public static final int NO_RANK = 0;
 
