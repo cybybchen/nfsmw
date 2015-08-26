@@ -104,7 +104,8 @@ public class RpLeaderboardCommandService {
         List<RpLeaderBoard> result = (List<RpLeaderBoard>) cache.get(CacheKey.FIREND_LEADERBOARD + user.getId());
         if (result == null) {
             result = new ArrayList<RpLeaderBoard>();
-            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+//            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+            if (user.getCertType() >= Const.CERT_TYPE_WEIBO) {
                 List<String> tokens = jsonService.getSinaFreindUserList(user.getWillowtreeToken());
                 List<User> friends = userService.getUsersByTokens(tokens.toArray(new String[tokens.size()]));
                 for (User friend : friends) {

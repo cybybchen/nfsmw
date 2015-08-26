@@ -130,7 +130,8 @@ public class BindingCommandService {
         log.info("build user info : otoken={},return token={}",originalToken,returnToken);
         log.info("ouser={},newuser={}",user,newUser);
         // 使用一个新的微博账号绑定设备
-        if (user.getCertType()==Const.CERT_TYPE_DEVICE) {
+//        if (user.getCertType()==Const.CERT_TYPE_DEVICE) {
+        if (user.getCertType()>=Const.CERT_TYPE_DEVICE) {
             //此处要兼容旧版本token变化情况
             if(newUser==null || originalToken.equals(returnToken)){
                 user.setWillowtreeToken(returnToken);
@@ -298,7 +299,8 @@ public class BindingCommandService {
         if (user == null) {
             return;
         }
-        if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
+//        if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
+        if (user.getCertType() < Const.CERT_TYPE_DEVICE) {
             return;
         }
         //开始删除数据 避免出错暂时不清理 rename
@@ -343,7 +345,7 @@ public class BindingCommandService {
             user.setAccessToken(accessToken);
             if (!nickName.trim().equals(""))
             	user.setName(nickName);
-            user.setUid(uid);
+            user.setUid(Integer.parseInt(uid));
             user.setCertType(Const.CERT_TYPE_WEIBO);
 //            if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
 //                return;
@@ -373,7 +375,7 @@ public class BindingCommandService {
                 userService.clearCacheUser(deleteUser.getId());
             }
         } else {
-        	user.setUid("");
+        	user.setUid(0);
         	user.setAccessToken("");
         	//开始删除数据 避免出错暂时不清理 rename
 //            user.setName("DELETE_" + user.getId());
@@ -390,7 +392,7 @@ public class BindingCommandService {
             user.setAccessToken(accessToken);
             if (!nickName.trim().equals(""))
             	user.setName(nickName);
-            user.setUid(uid);
+            user.setUid(Integer.parseInt(uid));
             user.setCertType(Const.CERT_TYPE_WEIBO);
             userService.updateUser(user);
             //clear cache

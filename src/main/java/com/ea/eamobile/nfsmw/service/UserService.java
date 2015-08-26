@@ -159,7 +159,7 @@ public class UserService {
         user.setCertType(Const.CERT_TYPE_DEVICE);// 鍒濆鍖栫敤鎴蜂竴瀹氭槸device
         user.setAccountStatus(Const.DEFAULT_USER_STATUS);
         user.setAccessToken("");
-        user.setUid("");
+        user.setUid(0);
 
         Long generatedId = -1L;
 

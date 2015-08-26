@@ -369,7 +369,8 @@ public class BaseCommandService {
         if (list == null || list.size() == 0) {
             ModeRankTypeHandler handler = rankTypeHandlerFactory.create(mode);
             list = new ArrayList<com.ea.eamobile.nfsmw.protoc.Commands.Leaderboard>();
-            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+//            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+            if (user.getCertType() >= Const.CERT_TYPE_WEIBO) {
                 List<String> friendTokens = jsonService.getSinaFreindUserList(user.getWillowtreeToken());
                 List<CareerBestRacetimeRecord> recordList = raceTimeRecordService.getUserRecordList(friendTokens, mode);
                 if (recordList != null && recordList.size() > 0) {
@@ -612,7 +613,8 @@ public class BaseCommandService {
         if (list == null || list.size() == 0) {
             list = new ArrayList<Leaderboard>();
             List<TournamentUser> tourUsers = new ArrayList<TournamentUser>();
-            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+//            if (user.getCertType() == Const.CERT_TYPE_WEIBO) {
+            if (user.getCertType() >= Const.CERT_TYPE_WEIBO) {
                 List<String> friendTokens = jsonService.getSinaFreindUserList(user.getWillowtreeToken());
                 // 构建tourUser列表
                 List<User> friends = userService

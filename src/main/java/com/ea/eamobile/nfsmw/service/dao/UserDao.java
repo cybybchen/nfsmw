@@ -29,6 +29,17 @@ public class UserDao {
 		return null;
 	}
 
+//	public User getUserByWillowtreeToken(String willowtreeToken) {
+//		return (User) userDaoHelper.getSingleByField("willowtree_token",
+//				willowtreeToken);
+//
+//	}
+//	
+//	public User getUserByUid(String uid) {
+//		return (User) userDaoHelper.getSingleByField("uid",
+//				uid);
+//	}
+	
 	public User getUserByWillowtreeToken(String willowtreeToken) {
 		return (User) userDaoHelper.getSingleByField("willowtree_token",
 				willowtreeToken);
@@ -36,9 +47,8 @@ public class UserDao {
 	}
 	
 	public User getUserByUid(String uid) {
-		return (User) userDaoHelper.getSingleByField("uid",
+		return (User) userDaoHelper.getSingleByField("cert_type",
 				uid);
-
 	}
 
 	public User getUserByName(String name) {

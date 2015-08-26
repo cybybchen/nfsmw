@@ -40,11 +40,12 @@ public class UserInfoMessageService {
 //        log.debug("energyTime={}", builder.getEnergytime());
         builder.setNickname(user.getName());
         builder.setAccessToken(user.getAccessToken());
-        builder.setUid(user.getUid());
+        builder.setUid("" + user.getUid());
         builder.setTutorialRewardIsGiven(user.getIsGetTutorialReward() == 1);
         builder.setIsNameChanged(user.getIsNicknameChanged());
         try {
-            if (weiboInfo == null && user.getCertType() == Const.CERT_TYPE_WEIBO) {
+//            if (weiboInfo == null && user.getCertType() == Const.CERT_TYPE_WEIBO) {
+        	if (weiboInfo == null && user.getCertType() >= Const.CERT_TYPE_WEIBO) {
                 weiboInfo = jsonService.getWeiboTokenInfo(user.getWillowtreeToken());
             }
             if (weiboInfo != null) {
