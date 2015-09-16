@@ -7,10 +7,30 @@ body {
 
 .frame {
 	border: 1px solid #d30000;
-	width: 437px; 
+	width: 437; 
 	height: 200px;
 	overflow: hidden;
 	background: url(/nfsmw/images/mod/grey-house.jpg) bottom right no-repeat
+}
+@media screen and (min-width: 500px) {
+.frame {
+	width: 532px; 
+	height: 257px;
+  }
+  .main {
+	float: left;
+	width: 305px;
+}
+}
+@media screen and (min-width: 800px) {
+.frame {
+	width: 880px; 
+	height: 432px;
+  }
+  .main {
+	float: left;
+	width: 425px;
+}
 }
 
 headtext {

@@ -8,25 +8,25 @@
   </resultMap>
 
 	<select id="getFeedContent" parameterType="int" resultMap="baseMap">
-	    SELECT * from feed_content where id = #{id}
+	    SELECT * from feed_content_new where id = #{id}
 	</select>
 	
 	<select id="getFeedContentList" resultMap="baseMap">
-	    SELECT * from feed_content
+	    SELECT * from feed_content_new
 	</select>
 
 	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.FeedContent" keyProperty="id" useGeneratedKeys="true">
-	    insert into feed_content(content) 
+	    insert into feed_content_new(content) 
 	    values(#{content})
 	</insert>
 	
 	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.FeedContent">
-	    update feed_content set 
+	    update feed_content_new set 
       content=#{content}      where id = #{id}
 	</update>
 	
 	<delete id="deleteById" parameterType="int">
-	    delete from feed_content where id=#{id}
+	    delete from feed_content_new where id=#{id}
 	</delete>
 	
 </mapper>

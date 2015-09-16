@@ -92,4 +92,15 @@ public class IapConst {
 //            put("com.ea.mtx.859318", "porsche_911_carrera_s_2012_desc");
         }
     };
+    
+    public static final Map<String, String> SENDCAR_CNNAME_MAP = new HashMap<String, String>() {
+        private static final long serialVersionUID = 1L;
+        {
+            put("ford_mustang_boss_302_2012_desc", "野马");
+            put("subaru_cosworth_impreza_sti_cs400_2010_desc", "斯巴鲁");
+            put("lamborghini_countach_5000qv_1985_desc", "兰博基尼COUNTACH");
+            put("mercedesbenz_sl65_amg_blackseries_2009_desc", "梅赛德斯奔驰 SL65");
+            put("porsche_911_carrera_s_2012_desc", "保时捷 911 CARRERA");
+        }
+    };
 }

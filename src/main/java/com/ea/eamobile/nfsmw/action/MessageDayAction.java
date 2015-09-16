@@ -105,6 +105,10 @@ public class MessageDayAction {
             return "msg_iphone4";
         case Const.DEVICE_IS_IPHONE5:
             return "msg_iphone5";
+        case Const.DEVICE_IS_IPHONE6:
+        	return "msg_iphone6";
+        case Const.DEVICE_IS_IPHONE6_PLUS:
+        	return "msg_iphone6_plus";
         }
         return "msg";
     }

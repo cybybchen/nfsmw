@@ -29,6 +29,7 @@ public class UserInfoMessageService {
     public void buildUserInfoMessage(UserInfo.Builder builder, User user, List<AccountInfo> accounts,
             UserWeiboInfo weiboInfo) {
         builder.setHeadUrl(user.getHeadUrl());
+    	builder.setHeadUrl("");
         builder.setHeadIndex(user.getHeadIndex());
         builder.setMostwantedNum(user.getStarNum());
         builder.setTier(user.getTier());
@@ -40,7 +41,7 @@ public class UserInfoMessageService {
 //        log.debug("energyTime={}", builder.getEnergytime());
         builder.setNickname(user.getName());
         builder.setAccessToken(user.getAccessToken());
-        builder.setUid("" + user.getUid());
+        builder.setUid(user.getUid());
         builder.setTutorialRewardIsGiven(user.getIsGetTutorialReward() == 1);
         builder.setIsNameChanged(user.getIsNicknameChanged());
         try {

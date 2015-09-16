@@ -374,6 +374,7 @@ public class LoginCommandService {
 		
 		fillUserInfoBuilder(builder, u);
 		builder.setToken(u.getWillowtreeToken());
+		log.debug("u is={}", u);
 		builder.setDefaultHint(hintsService.getRandomHint());
 
 		responseBuilder.setUserInfoCommand(builder.build());

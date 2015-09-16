@@ -37,6 +37,12 @@ public class DeviceCount {
         case Const.DEVICE_IS_IPHONE5:
             deviceName = "iphone5";
             break;
+        case Const.DEVICE_IS_IPHONE6:
+        	deviceName = "iphone7,2";
+        	break;
+        case Const.DEVICE_IS_IPHONE6_PLUS:
+        	deviceName = "ipone7,1";
+        	break;
         default:
             break;
         }

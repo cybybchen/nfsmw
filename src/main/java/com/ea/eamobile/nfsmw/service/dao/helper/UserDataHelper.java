@@ -37,8 +37,8 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.rpNum = data.getRpNum();
 		this.gold = data.getGold();
 		this.createTime = data.getCreateTime();
-//		this.isWriteJaguar = data.getIsWriteJaguar();
-//		this.willowtreeToken = data.getWillowtreeToken();
+		this.isWriteJaguar = data.getIsWriteJaguar();
+		this.willowtreeToken = data.getWillowtreeToken();
 		this.version = data.getVersion();
 		this.isRaceStart = data.getIsRaceStart();
 		this.isOldUser = data.getIsOldUser();
@@ -46,14 +46,11 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.isGetTutorialReward = data.getIsGetTutorialReward();
 		this.isRewardedBind = data.getIsRewardedBind();
 		this.tierStatus = data.getTierStatus();
-//		this.certType = data.getCertType();
+		this.certType = data.getCertType();
 		this.accountStatus = data.getAccountStatus();
-//		this.accessToken = data.getAccessToken();
-//		this.uid = data.getUid();
-//		this.lastSendEnergyDate = data.getLastSendEnergyDate();
-		this.willowtreeToken = data.getAccessToken();
-		this.certType = data.getUid();
-		this.isWriteJaguar = data.getLastSendEnergyDate();
+		this.accessToken = data.getAccessToken();
+		this.uid = data.getUid();
+		this.lastSendEnergyDate = data.getLastSendEnergyDate();
 
 		setMarks(data.getMarks());
 	}
@@ -80,8 +77,8 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.rpNum = rs.getInt("rp_num");
 		this.gold = rs.getInt("gold");
 		this.createTime = rs.getInt("create_time");
-//		this.isWriteJaguar = rs.getInt("is_write_jaguar");
-//		this.willowtreeToken = rs.getString("willowtree_token");
+		this.isWriteJaguar = rs.getInt("is_write_jaguar");
+		this.willowtreeToken = rs.getString("willowtree_token");
 		this.version = rs.getInt("version");
 		this.isRaceStart = rs.getInt("is_race_start");
 		this.isOldUser = rs.getInt("is_old_user");
@@ -89,14 +86,11 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.isGetTutorialReward = rs.getInt("is_get_tutorial_reward");
 		this.isRewardedBind = rs.getInt("is_rewarded_bind");
 		this.tierStatus = rs.getInt("tier_status");
-//		this.certType = rs.getInt("cert_type");
+		this.certType = rs.getInt("cert_type");
 		this.accountStatus = rs.getInt("account_status");
-//		this.accessToken = rs.getString("access_token");
-//		this.uid = rs.getString("uid");
-//		this.lastSendEnergyDate = rs.getInt("last_send_energy_date");
-		this.accessToken = rs.getString("willowtree_token");
-		this.uid = rs.getInt("cert_type");
-		this.lastSendEnergyDate = rs.getInt("is_write_jaguar");
+		this.accessToken = rs.getString("access_token");
+		this.uid = rs.getString("uid");
+		this.lastSendEnergyDate = rs.getInt("last_send_energy_date");
 	}
 
 	@Override

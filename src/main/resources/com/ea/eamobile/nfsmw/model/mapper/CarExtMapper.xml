@@ -12,16 +12,16 @@
   </resultMap>
 
 	<select id="getCarExt" parameterType="string" resultMap="baseMap">
-	    SELECT * from car_ext where car_id = #{carId}
+	    SELECT * from car_ext_new where car_id = #{carId}
 	</select>
 	
 	<select id="getCarExtList" resultMap="baseMap">
-	    SELECT * from car_ext
+	    SELECT * from car_ext_new
 	</select>
 
 	
 	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.CarExt">
-	    update car_ext set 
+	    update car_ext_new set 
       car_id=#{carId},
       start_time=#{startTime},
       end_time=#{endTime},

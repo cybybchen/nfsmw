@@ -24,11 +24,11 @@
 
 	<select id="getCar" parameterType="int" resultMap="baseMap">
 		SELECT * from
-		car where id = #{id}
+		car_new where id = #{id}
 	</select>
 
 	<select id="getCarList" resultMap="baseMap">
-		SELECT * from car where visible=0
+		SELECT * from car_new where visible=0
 	</select>
 
 </mapper>

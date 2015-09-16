@@ -26,13 +26,13 @@ public class CarService {
     private CarExtService carExtService;
 
     public Car getCar(String id) {
-        Car ret = (Car) InProcessCache.getInstance().get("car_getCar_" + id);
+        Car ret = (Car) InProcessCache.getInstance().get("car_getCar_new_" + id);
 
         if (ret != null) {
             return ret;
         }
         ret = carMapper.getCar(id);
-        InProcessCache.getInstance().set("car_getCar_" + id, ret);
+        InProcessCache.getInstance().set("car_getCar_new_" + id, ret);
         CarExt carExt = carExtService.getCarExt(id);
         if (carExt != null) {
             ret.setEndTime(carExt.getEndTime());
@@ -45,7 +45,7 @@ public class CarService {
 
     public List<Car> getCarList() {
         @SuppressWarnings("unchecked")
-        List<Car> ret = (List<Car>) InProcessCache.getInstance().get("car_carlist");
+        List<Car> ret = (List<Car>) InProcessCache.getInstance().get("car_carlist_new");
         if (ret != null) {
             return ret;
         }
@@ -61,12 +61,12 @@ public class CarService {
             }
             result.add(car);
         }
-        InProcessCache.getInstance().set("car_carlist", result);
+        InProcessCache.getInstance().set("car_carlist_new", result);
         return result;
     }
 
     public int insert(Car car) {
-        InProcessCache.getInstance().expire("car_carlist");
+        InProcessCache.getInstance().expire("car_carlist_new");
         return carMapper.insert(car);
     }
 

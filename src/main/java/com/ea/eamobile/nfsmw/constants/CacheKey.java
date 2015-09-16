@@ -50,9 +50,9 @@ public class CacheKey {
 
     public static final String TOURNAMENT_LEADERBOARD = "tournament_leaderboard_";
 
-    public static final String FEED = "feed_";
+    public static final String FEED = "feed_new_";
 
-    public static final String FEED_LIST = "feedlist_";
+    public static final String FEED_LIST = "feedlist_new_";
 
     public static final String USER_CAR_MAP = "usercar_map_";
 
@@ -68,9 +68,9 @@ public class CacheKey {
 
     public static final String USER_FRIEND_RACE_LB = "user_friend_race_lb_";
 
-    public static final String CAR_EXT_LIST = "car_ext_list_";
+    public static final String CAR_EXT_LIST = "car_ext_list_new_";
 
-    public static final String CAR_EXT_BYID = "car_ext_id_";
+    public static final String CAR_EXT_BYID = "car_ext_id_new_";
 
     public static final String OPERATE_ACTIVITY_BYID = "operate_adtivity_id_";
 

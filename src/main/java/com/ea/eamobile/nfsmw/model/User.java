@@ -79,7 +79,7 @@ public class User extends Markable implements Serializable {
     
     protected String accessToken;
     
-    protected int uid;
+    protected String uid;
     
     protected int lastSendEnergyDate;
 
@@ -430,11 +430,11 @@ public class User extends Markable implements Serializable {
         mark(ACCESS_TOKEN, accessToken);
     }
     
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
         mark(UID, uid);
     }

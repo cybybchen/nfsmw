@@ -8,11 +8,11 @@
   </resultMap>
 
 	<select id="getHints" parameterType="int" resultMap="baseMap">
-	    SELECT * from hints where id = #{id}
+	    SELECT * from hints_new where id = #{id}
 	</select>
 	
 	<select id="getHintsList" resultMap="baseMap">
-	    SELECT * from hints
+	    SELECT * from hints_new
 	</select>
 
 	

@@ -78,6 +78,8 @@ public class Const {
     public static final int DEVICE_IS_IPHONE = 1;
     public static final int DEVICE_IS_IPAD = 2;
     public static final int DEVICE_IS_IPHONE5 = 3;
+    public static final int DEVICE_IS_IPHONE6 = 4;
+    public static final int DEVICE_IS_IPHONE6_PLUS = 5;
 
     public static final int RENT_JAGUAR_IPAD = 1;
     public static final int RENT_JAGUAR_IPHONE = 2;

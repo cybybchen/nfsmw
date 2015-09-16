@@ -157,7 +157,7 @@ public class IapCheckCommandService extends BaseCommandService {
 	    			log.debug("send car success,carId is {}", carId);
 	    			pushService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarListByCarId(userId, carId),
 	                        userId);
-	    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, carId, 0,
+	    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
 	                        0);
 	    		}
 	    	}

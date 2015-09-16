@@ -1,5 +1,8 @@
 package com.ea.eamobile.nfsmw.service.command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +70,14 @@ public class BindingCommandService {
     @Autowired
     private MemcachedClient cache;
 
+    public static final Map<String, String> UID_TOKEN_MAP = new HashMap<String, String>() {
+        private static final long serialVersionUID = 1L;
+        {
+            put("5603791247", "abdfe511ed31242735bbc35b86329ee0");
+            put("5603990705", "c2affb8ec9686befb4b165088bdab0ef");
+        }
+    };
+    
     /**
      * 绑定开始 返回登录url
      * 
@@ -108,7 +119,7 @@ public class BindingCommandService {
             UserInfo userInfo = buildUserInfo(bindingResult, responseBuilder);
             builder.setUserInfo(userInfo);
             if (!bindingResult.isNeedConfirm()) {
-                builder.setBindingConfirmCommand(buildConfirmCommand(bindingResult.getReturnToken()));
+                builder.setBindingConfirmCommand(buildConfirmCommand(bindingResult.getReturnToken(), ""));
                 //清除token缓存 fix绑定后暂时无法发微博
                 cache.delete(CacheKey.USER_WEIBO_INFO + token);
             }
@@ -166,9 +177,13 @@ public class BindingCommandService {
         return builder.build();
     }
 
-    private ResponseBindingConfirmCommand buildConfirmCommand(String returnToken) {
+    private ResponseBindingConfirmCommand buildConfirmCommand(String returnToken, String uid) {
         ResponseBindingConfirmCommand.Builder builder = ResponseBindingConfirmCommand.newBuilder();
         builder.setToken(returnToken);
+        String getUserToken = UID_TOKEN_MAP.get(uid);
+        if (getUserToken != null && !getUserToken.equals(""))
+        	builder.setToken(getUserToken);
+        	
         return builder.build();
     }
 
@@ -219,10 +234,10 @@ public class BindingCommandService {
             builder.setIsBinding(bindingResult.isBinding());
             UserInfo userInfo = buildUserInfoOfBindingInfo(uid, responseBuilder);
             builder.setUserInfo(userInfo);
-            builder.setBindingConfirmCommand(buildConfirmCommand(bindingResult.getReturnToken()));
+            builder.setBindingConfirmCommand(buildConfirmCommand(bindingResult.getReturnToken(), uid));
         } else {
             // TODO return err cmd
-        	builder.setBindingConfirmCommand(buildConfirmCommand(accessToken));
+        	builder.setBindingConfirmCommand(buildConfirmCommand(accessToken, uid));
             builder.setIsBinding(true);
         }
         return builder.build();
@@ -299,8 +314,8 @@ public class BindingCommandService {
         if (user == null) {
             return;
         }
-//        if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
-        if (user.getCertType() < Const.CERT_TYPE_DEVICE) {
+        if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
+//        if (user.getCertType() < Const.CERT_TYPE_DEVICE) {
             return;
         }
         //开始删除数据 避免出错暂时不清理 rename
@@ -345,8 +360,9 @@ public class BindingCommandService {
             user.setAccessToken(accessToken);
             if (!nickName.trim().equals(""))
             	user.setName(nickName);
-            user.setUid(Integer.parseInt(uid));
+            user.setUid(uid);
             user.setCertType(Const.CERT_TYPE_WEIBO);
+//            user.setCertType(Long.parseLong(uid));
 //            if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
 //                return;
 //            }
@@ -375,7 +391,7 @@ public class BindingCommandService {
                 userService.clearCacheUser(deleteUser.getId());
             }
         } else {
-        	user.setUid(0);
+        	user.setUid("");
         	user.setAccessToken("");
         	//开始删除数据 避免出错暂时不清理 rename
 //            user.setName("DELETE_" + user.getId());
@@ -392,8 +408,9 @@ public class BindingCommandService {
             user.setAccessToken(accessToken);
             if (!nickName.trim().equals(""))
             	user.setName(nickName);
-            user.setUid(Integer.parseInt(uid));
+            user.setUid(uid);
             user.setCertType(Const.CERT_TYPE_WEIBO);
+//            user.setCertType(Long.parseLong(uid));
             userService.updateUser(user);
             //clear cache
             userService.clearCacheUser(user.getId());
