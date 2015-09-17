@@ -281,6 +281,8 @@ public class UserCarService {
      * @return
      */
     private CarView buildCarView(Car car, UserCar userCar, User u, boolean checkUnlock) {
+    	if (userCar == null && car.getId().equals("jaguar_cx16_concept_2012_desc"))
+    		return null;
         int currentTime = (int) (System.currentTimeMillis() / 1000);
         CarExt carExt = carExtService.getCarExt(car.getId());
         if (carExt != null) {

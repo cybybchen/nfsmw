@@ -68,6 +68,7 @@
 	
 	<root>
 		<level value="debug" />
+<!-- 		<level value="warn" /> -->
 		<appender-ref ref="consoleAppender" />
 	</root>
 </log4j:configuration>
