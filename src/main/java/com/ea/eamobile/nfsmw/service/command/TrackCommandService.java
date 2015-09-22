@@ -73,7 +73,7 @@ public class TrackCommandService extends BaseCommandService {
         ResponseTrackCommand.Builder builder = ResponseTrackCommand.newBuilder();
         int tierId = reqcmd.getRequestTier();
         // 只有客户端不知道的情况下才重新对tier赋值，tierid！=user.gettier,因为用户可能跑低级别赛道
-        if (tierId <= 0 || tierId > user.getTier()) {
+        if (tierId < 0 || tierId > user.getTier()) {
             TierInfo tier = getTierInfo(user);
             builder.setTier(tier);
             tierId = tier.getTierIndex();
