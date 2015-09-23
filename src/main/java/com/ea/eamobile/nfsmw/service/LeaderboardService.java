@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.model.Leaderboard;
 import com.ea.eamobile.nfsmw.model.RaceMode;
 import com.ea.eamobile.nfsmw.model.mapper.LeaderboardMapper;
+import com.ea.eamobile.nfsmw.service.command.TrackCommandService;
 import com.ea.eamobile.nfsmw.service.command.moderank.ModeRankTypeHandler;
 import com.ea.eamobile.nfsmw.service.command.moderank.ModeRankTypeHandlerFactory;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
@@ -19,6 +22,7 @@ import com.ea.eamobile.nfsmw.view.CacheUser;
 
 @Service
 public class LeaderboardService {
+	private static final Logger log = LoggerFactory.getLogger(LeaderboardService.class);
 
     @Autowired
     private LeaderboardMapper leaderboardMapper;
@@ -41,9 +45,11 @@ public class LeaderboardService {
 
     @SuppressWarnings("unchecked")
     public List<Leaderboard> getLeaderboardByMode(RaceMode mode) {
+    	log.debug("modeid type:" + mode.getModeType());
         List<Leaderboard> list = (List<Leaderboard>) cache.get(CacheKey.LEADERBOARD + mode.getModeType());
         if (list == null) {
             list = leaderboardMapper.getLeaderboardByMode(mode.getModeType());
+            log.debug("leaderboard list size is:" + list.size());
             List<Leaderboard> result = new ArrayList<Leaderboard>();
             if (list != null && list.size() > 0) {
                 for (Leaderboard board : list) {

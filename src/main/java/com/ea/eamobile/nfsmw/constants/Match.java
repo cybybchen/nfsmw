@@ -12,6 +12,8 @@ public class Match {
     public static final int TIER_MODE = 2;
 
     public static final int EVERYDAY_RACE_MODE = 3;
+    
+    public static final int GOLD_MODE = 4;
 
     // race type
     public static final int RACE_TYPE_1V5 = 0;

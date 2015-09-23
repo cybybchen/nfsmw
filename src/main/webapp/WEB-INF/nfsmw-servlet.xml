@@ -108,5 +108,55 @@
 		init-method="initialize" destroy-method="cleanup" />
 
 	<bean name="memcacheClient" class="com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient"/>
+	
+	<!-- 引入同文件夹下的redis属性配置文件 -->
+<!--     <import resource="redis-context.xml"/> -->
+	
+	<!-- 加载redis.properties文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		lazy-init="false">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/property/redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- redis 配置 -->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<property name="maxActive" value="${redis.maxActive}" />
+		<property name="maxWait" value="${redis.maxWait}" />
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${redis.pool.minEvictableIdleTimeMillis}" />
+	</bean>
+	<bean id="connectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
+		p:database="${redis.default.db}" p:timeout="${redis.timeout}" 
+		p:usePool="true" p:pool-config-ref="poolConfig" />
+<!-- 		p:usePool="true" -->
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+				<property name="valueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashValueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+	</bean> 
 
 </beans>

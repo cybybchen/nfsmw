@@ -14,6 +14,8 @@ public class RaceResultHandlerFactory {
     TierModeRaceResultHandler tierHandler;
     @Autowired
     DailyModeRaceResultHandler dailyHandler;
+    @Autowired
+    GoldModeRaceResultHandler goldHandler;
 
     public RaceResultHandler create(int gameMode) {
 
@@ -28,6 +30,9 @@ public class RaceResultHandlerFactory {
         case Match.EVERYDAY_RACE_MODE:
             handler = dailyHandler;
             break;
+        case Match.GOLD_MODE:
+        	handler = goldHandler;
+        	break;
         default:
             break;
         }

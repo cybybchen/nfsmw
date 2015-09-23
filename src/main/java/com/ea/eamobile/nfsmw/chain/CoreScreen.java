@@ -222,7 +222,7 @@ public class CoreScreen extends RequestScreen {
     @Override
     protected boolean handleCommand(RequestRaceResultCommand cmd, Builder responseBuilder, User user) {
         if (cmd.getGameMode() == Match.CAREER_MODE || cmd.getGameMode() == Match.TIER_MODE
-                || cmd.getGameMode() == Match.EVERYDAY_RACE_MODE) {
+                || cmd.getGameMode() == Match.EVERYDAY_RACE_MODE || cmd.getGameMode() == Match.GOLD_MODE) {
             ResponseRaceResultCommand response;
             try {
                 response = raceResultCommandService.getResponseRaceResultCommand(cmd, user, responseBuilder);

@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ea.eamobile.nfsmw.chain.CoreScreen;
 import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.RaceMode;
@@ -42,6 +45,8 @@ import com.ea.eamobile.nfsmw.service.UserTrackService;
  */
 @Service
 public class TrackCommandService extends BaseCommandService {
+	private static final Logger log = LoggerFactory.getLogger(TrackCommandService.class);
+	
     @Autowired
     private UserTrackService userTrackService;
     @Autowired
@@ -121,6 +126,7 @@ public class TrackCommandService extends BaseCommandService {
         // 以赛道Name为key的临时列表判断是否执行添加操作
         Map<String, Track> tempMap = new HashMap<String, Track>();
         TrackInfo.Builder builder = TrackInfo.newBuilder();
+        log.debug("tierTracks size:" + tierTracks.size());
         for (Track track : tierTracks) {
             // 同名赛道已添加后就不再添加了
             Track addedTrack = tempMap.get(track.getName());
@@ -128,12 +134,14 @@ public class TrackCommandService extends BaseCommandService {
                 continue;
             }
             String trackId = track.getId();
+            log.debug("trackId is:" + trackId);
             List<UserTrack> userTracks = userTrackService.getUserTracksByTrackId(userId, trackId);
             int finishRatio = userTrackService.calcTrackFinishRatio(track, userTracks);
             // 已完成的 并且不是最大星级的不添加
             if (finishRatio >= Const.TRACK_FINISH_RATIO && !isMaxLevelTrack(track, tierTracks)) {
                 continue;
             }
+            log.debug("finishRatio is:" + finishRatio);
             boolean hasTrack = (userTracks != null && userTracks.size() > 0);
             boolean unlock = hasTrack;
             boolean trackStatusUpdate = false;
@@ -149,6 +157,7 @@ public class TrackCommandService extends BaseCommandService {
             // create trackinfo
             list.add(builder.build());
             tempMap.put(track.getName(), track);
+            log.debug("list size:" + list.size());
         }
         return list;
     }
@@ -218,6 +227,7 @@ public class TrackCommandService extends BaseCommandService {
         List<ModeInfo> list = null;
         List<RaceMode> modes = modeService.getTrackModes(trackId);
         if (modes != null) {
+        	log.debug("modes size is:" + modes.size());
             list = new ArrayList<ModeInfo>();
             ModeInfo.Builder builder = ModeInfo.newBuilder();
             for (RaceMode mode : modes) {
