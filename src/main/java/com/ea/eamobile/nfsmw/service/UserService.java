@@ -358,4 +358,8 @@ public class UserService {
     public void clearCacheUser(long userId) {
         cache.delete(CacheKey.CACHE_USER + userId);
     }
+    
+    public void addLotteryReward() {
+    	
+    }
 }
