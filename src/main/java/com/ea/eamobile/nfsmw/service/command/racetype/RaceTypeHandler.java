@@ -15,7 +15,7 @@ public interface RaceTypeHandler {
      * @param mode
      * @return
      */
-    List<Reward> getRewards(User user, RaceMode mode);
+    List<Reward> getRewards(User user, RaceMode mode, int gameMode);
     
     /**
      * tournament mode 调用

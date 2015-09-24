@@ -53,11 +53,12 @@ public class GhostCommandService {
         int time = (int) (System.currentTimeMillis() / 1000);
         List<? extends BaseGhost> ghosts = null;
         RaceTypeHandler handler = raceTypeHandlerFactory.create(raceType);
-        if (gameMode == Match.CAREER_MODE) {
+        if (gameMode == Match.CAREER_MODE || gameMode == Match.GOLD_MODE) {
             ghosts = handler.getCareerGhosts(user, modeService.getModeById(reqcmd.getModeId()));
         } else if (gameMode == Match.TOURNAMENT_MODE) {
             ghosts = handler.getTournamentGhosts(user, reqcmd.getModeId());// 实际上是onlineid
         }
+        
         // 构建RacerInfo列表
         List<RacerInfo> racerInfos = new ArrayList<RacerInfo>();
         if (ghosts != null && ghosts.size() > 0) {

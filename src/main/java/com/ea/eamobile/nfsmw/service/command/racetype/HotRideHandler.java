@@ -18,8 +18,8 @@ import com.ea.eamobile.nfsmw.model.UserGhost;
 public class HotRideHandler extends RaceTypeBaseService implements RaceTypeHandler {
 
     @Override
-    public List<Reward> getRewards(User user, RaceMode mode) {
-        List<RaceReward> list = raceRewardService.getRaceRewards(user.getLevel(), Match.CAREER_MODE,
+    public List<Reward> getRewards(User user, RaceMode mode, int gameMode) {
+        List<RaceReward> list = raceRewardService.getRaceRewards(user.getLevel(), gameMode,
                 Match.RACE_TYPE_HOT_RIDE, 1, 1);
 
         return formatRaceRewards(list);

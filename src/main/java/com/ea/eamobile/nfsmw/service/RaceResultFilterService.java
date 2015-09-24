@@ -53,7 +53,7 @@ public class RaceResultFilterService {
     }
 
     public boolean isCheatCarId(int raceId, String carId, int gameMode, long userId) throws SQLException {
-        if (gameMode == Match.CAREER_MODE) {
+        if (gameMode == Match.CAREER_MODE || gameMode == Match.GOLD_MODE) {
             RaceMode raceMode = raceModeService.getModeById(raceId);
             if (raceMode == null) {
                 return true;

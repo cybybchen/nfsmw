@@ -315,7 +315,7 @@ public class CoreScreen extends RequestScreen {
     protected boolean handleCommand(RequestModeInfoCommand cmd, Builder responseBuilder, User user) {
         ResponseRacerForGhostCommand response = ghostCommandService.getResponseGhostCommand(cmd, user);
         responseBuilder.setGhostCommand(response);
-        if (cmd.getGameMode() == Match.CAREER_MODE) {
+        if (cmd.getGameMode() == Match.CAREER_MODE || cmd.getGameMode() == Match.GOLD_MODE) {
             ResponseModeInfoCommand modeInfoResponse = modeInfoCommandService.getResponseModeInfoCommand(cmd, user);
             responseBuilder.setModeInfoCommand(modeInfoResponse);
         }

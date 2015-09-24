@@ -16,10 +16,10 @@ import com.ea.eamobile.nfsmw.view.BaseGhost;
 public class OneVsFiveHandler extends RaceTypeBaseService implements RaceTypeHandler {
 
     @Override
-    public List<Reward> getRewards(User user, RaceMode mode) {
+    public List<Reward> getRewards(User user, RaceMode mode, int gameMode) {
 
         int position = 3; // 显示前三名的奖励
-        List<RaceReward> list = raceRewardService.getRaceRewards(user.getLevel(), Match.CAREER_MODE,
+        List<RaceReward> list = raceRewardService.getRaceRewards(user.getLevel(), gameMode,
                 Match.RACE_TYPE_1V5, position, 1);
 
         return formatRaceRewards(list);

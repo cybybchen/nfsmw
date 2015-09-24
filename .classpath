@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="/home/ybchen/java/Ice.jar"/>
 	<classpathentry kind="lib" path="/usr/lib/jvm/jre/lib/rt.jar"/>
 	<classpathentry kind="lib" path="/home/ybchen/java/spring-data-redis-1.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/ybchen/java/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

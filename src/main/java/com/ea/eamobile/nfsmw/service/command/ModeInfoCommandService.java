@@ -77,7 +77,7 @@ public class ModeInfoCommandService extends BaseCommandService {
             builder.addAllAcceptableCarIDs(carIds);
             builder.addAllFriendLeaderboard(getFriendLeaderboardList(raceMode, user));
             RaceTypeHandler handler = raceTypeHandlerFactory.create(reqcmd.getRaceType());
-            List<Reward> rewards = handler.getRewards(user, raceMode);
+            List<Reward> rewards = handler.getRewards(user, raceMode, reqcmd.getGameMode());
             builder.addAllRewards(buildRewards(rewards, raceMode));
         }
 

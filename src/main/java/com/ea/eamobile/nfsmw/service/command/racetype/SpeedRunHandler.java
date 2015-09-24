@@ -17,11 +17,11 @@ import com.ea.eamobile.nfsmw.model.UserGhost;
 public class SpeedRunHandler extends RaceTypeBaseService implements RaceTypeHandler {
 
     @Override
-    public List<Reward> getRewards(User user, RaceMode mode) {
+    public List<Reward> getRewards(User user, RaceMode mode, int gameMode) {
         // 显示位置是0的 完成和没完成的奖励
-        int id1 = raceRewardService.getRewardId(user.getLevel(), Match.CAREER_MODE, Match.RACE_TYPE_SPEED_RUN, 0, true);
+        int id1 = raceRewardService.getRewardId(user.getLevel(), gameMode, Match.RACE_TYPE_SPEED_RUN, 0, true);
         int id2 = raceRewardService
-                .getRewardId(user.getLevel(), Match.CAREER_MODE, Match.RACE_TYPE_SPEED_RUN, 0, false);
+                .getRewardId(user.getLevel(), gameMode, Match.RACE_TYPE_SPEED_RUN, 0, false);
         Reward reward1 = rewardService.getReward(id1);
         Reward reward2 = rewardService.getReward(id2);
         List<Reward> rewards = new ArrayList<Reward>();

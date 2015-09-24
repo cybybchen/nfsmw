@@ -91,7 +91,7 @@ public class RaceStartCommandService {
 
     private int getConsumeEnergy(RequestRaceStartCommand reqcmd, User user) throws SQLException {
         int consumeEnergy = 0;
-        if (reqcmd.getGameMode() == Match.CAREER_MODE) {
+        if (reqcmd.getGameMode() == Match.CAREER_MODE || reqcmd.getGameMode() == Match.GOLD_MODE) {
             RaceMode raceMode = raceModeService.getModeById(reqcmd.getModeId());
             consumeEnergy = raceMode.getEnergy();
         } else if (reqcmd.getGameMode() == Match.TOURNAMENT_MODE) {

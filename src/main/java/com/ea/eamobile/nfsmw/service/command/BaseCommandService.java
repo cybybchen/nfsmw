@@ -447,7 +447,7 @@ public class BaseCommandService {
         // }
         //
         // }
-        if (reqcmd.getGameMode() == Match.CAREER_MODE) {
+        if (reqcmd.getGameMode() == Match.CAREER_MODE || reqcmd.getGameMode() == Match.GOLD_MODE) {
             int modeId = reqcmd.getModeId();
             RaceMode raceMode = modeService.getModeById(modeId);
             if (raceMode == null) {
