@@ -477,7 +477,7 @@ public abstract class RequestScreen implements RequestHandle {
         BigDecimal racebd = new BigDecimal(raceTime);
         raceTime = racebd.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
         float avergeSpeed = reqcmd.getGhosts().getAverageSpd();
-        BigDecimal raceas = new BigDecimal(avergeSpeed);
+        BigDecimal raceas = new BigDecimal(Double.valueOf(avergeSpeed));
         avergeSpeed = raceas.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
         gBuilder.setRaceTime(raceTime);
         gBuilder.setAverageSpd(avergeSpeed);
