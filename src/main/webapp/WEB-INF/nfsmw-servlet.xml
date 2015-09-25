@@ -39,7 +39,7 @@
 				<ref bean="dumpScreen" />
 				<ref bean="telemetryScreen" />
 				<ref bean="pushCommandScreen" />
-				<!-- <ref bean="responseScreen" /> -->
+<!-- 				<ref bean="responseScreen" /> -->
 			</list>
 		</constructor-arg>
 	</bean>

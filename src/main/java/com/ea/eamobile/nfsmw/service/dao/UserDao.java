@@ -7,12 +7,14 @@ import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.service.dao.helper.UserDaoHelper;
 import com.ea.eamobile.nfsmw.service.dao.helper.UserDataHelper;
 
 @Component("userDao")
+//@Repository
 public class UserDao {
 
 	private static final UserDaoHelper userDaoHelper = new UserDaoHelper();

@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 
-public class LotteryRewardBean implements Serializable {
+public class RewardBean implements Serializable {
 	/**
 	 * 
 	 */
@@ -49,10 +49,10 @@ public class LotteryRewardBean implements Serializable {
 		
 		return json.toString();
 	}
-	public static LotteryRewardBean fromJson(String rewardStr) {
+	public static RewardBean fromJson(String rewardStr) {
 		if (rewardStr == null)
 			return null;
-		LotteryRewardBean reward = new LotteryRewardBean();
+		RewardBean reward = new RewardBean();
 		JSONObject json = (JSONObject) JSONObject.stringToValue(rewardStr);
 		
 		reward.setId(CommonUtil.jsonGetInt(json, "id"));

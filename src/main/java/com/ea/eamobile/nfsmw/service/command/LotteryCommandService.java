@@ -1,6 +1,5 @@
 package com.ea.eamobile.nfsmw.service.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;

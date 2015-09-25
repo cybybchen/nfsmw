@@ -13,7 +13,8 @@ import org.dom4j.io.SAXReader;
 
 import com.ea.eamobile.nfsmw.constants.XmlParseConst;
 import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
-import com.ea.eamobile.nfsmw.model.bean.LotteryRewardBean;
+import com.ea.eamobile.nfsmw.model.bean.RechargeDataBean;
+import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 
 public class XmlUtil extends CommonUtil {
 	private static Logger logger = Logger.getLogger(XmlUtil.class);
@@ -38,10 +39,10 @@ public class XmlUtil extends CommonUtil {
 						getElementAttr(lotteryElement, XmlParseConst.WEIGHT)));
 				lottery.setName(getElementAttr(lotteryElement, XmlParseConst.NAME));
 				List<?> rewardNodeList = lotteryElement.elements();
-				List<LotteryRewardBean> rewardList = new ArrayList<LotteryRewardBean>();
+				List<RewardBean> rewardList = new ArrayList<RewardBean>();
 				for (int k = 0; k < rewardNodeList.size(); ++k) {
 					Element rewardElement = (Element) rewardNodeList.get(k);
-					LotteryRewardBean reward = new LotteryRewardBean();
+					RewardBean reward = new RewardBean();
 					reward.setId(CommonUtil.stringToInt(
 							getElementAttr(rewardElement, XmlParseConst.ID)));
 					reward.setRewardId(CommonUtil.stringToInt(
@@ -58,6 +59,48 @@ public class XmlUtil extends CommonUtil {
 		}
 		
 		return lotteryList;
+	}
+	
+	public static List<RechargeDataBean> getRechargeDataList() {
+		List<RechargeDataBean> rechargeDataList = new ArrayList<RechargeDataBean>();
+		try {
+			String filePath = CommonUtil.getConfigFilePath(XmlParseConst.RECHARGE_DATA_FILE);
+			SAXReader reader = new SAXReader();
+			InputStream inStream = new FileInputStream(new File(filePath));
+			Document doc = reader.read(inStream);
+			// 获取根节点
+			Element root = doc.getRootElement();
+			List<?> rootList = root.elements();
+			for (int i = 0; i < rootList.size(); i++) {
+				RechargeDataBean recharge = new RechargeDataBean();
+				Element rechargeElement = (Element) rootList.get(i);
+				recharge.setId(CommonUtil.stringToInt(
+						getElementAttr(rechargeElement, XmlParseConst.ID)));
+				recharge.setExpense(CommonUtil.stringToInt(
+						getElementAttr(rechargeElement, XmlParseConst.EXPENSE)));
+				recharge.setName(getElementAttr(rechargeElement, XmlParseConst.NAME));
+				recharge.setTransactionId(getElementAttr(rechargeElement, XmlParseConst.TRANSACTIONID));
+				List<?> rewardNodeList = rechargeElement.elements();
+				List<RewardBean> rewardList = new ArrayList<RewardBean>();
+				for (int k = 0; k < rewardNodeList.size(); ++k) {
+					Element rewardElement = (Element) rewardNodeList.get(k);
+					RewardBean reward = new RewardBean();
+					reward.setId(CommonUtil.stringToInt(
+							getElementAttr(rewardElement, XmlParseConst.ID)));
+					reward.setRewardId(CommonUtil.stringToInt(
+							getElementAttr(rewardElement, XmlParseConst.REWARDID)));
+					reward.setRewardCount(CommonUtil.stringToInt(
+							getElementAttr(rewardElement, XmlParseConst.REWARDCOUNT)));
+					rewardList.add(reward);
+				}
+				recharge.setRewardList(rewardList);
+				rechargeDataList.add(recharge);
+			}
+		} catch (Exception e) {
+			logger.error("parse recharge_data.xml failed");
+		}
+		
+		return rechargeDataList;
 	}
 	
 	public static String getElementText(Element element, String name) {

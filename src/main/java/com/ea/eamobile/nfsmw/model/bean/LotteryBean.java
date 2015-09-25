@@ -18,7 +18,7 @@ public class LotteryBean implements Serializable {
 	private int id = 0;
 	private String name = "";
 	private int weight = 0;
-	private List<LotteryRewardBean> lotteryRewardList = new ArrayList<LotteryRewardBean>();
+	private List<RewardBean> lotteryRewardList = new ArrayList<RewardBean>();
 	public int getId() {
 		return id;
 	}
@@ -37,10 +37,10 @@ public class LotteryBean implements Serializable {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public List<LotteryRewardBean> getLotteryRewardList() {
+	public List<RewardBean> getLotteryRewardList() {
 		return lotteryRewardList;
 	}
-	public void setLotteryRewardList(List<LotteryRewardBean> lotteryRewardList) {
+	public void setLotteryRewardList(List<RewardBean> lotteryRewardList) {
 		this.lotteryRewardList = lotteryRewardList;
 	}
 	public String toJson() {
@@ -67,7 +67,7 @@ public class LotteryBean implements Serializable {
 		lottery.setName(CommonUtil.jsonGetString(json, "name"));
 		lottery.setWeight(CommonUtil.jsonGetInt(json, "weight"));
 		
-		List<LotteryRewardBean> rewardList = new ArrayList<LotteryRewardBean>();
+		List<RewardBean> rewardList = new ArrayList<RewardBean>();
 		JSONArray lotteryRewardArray = CommonUtil.jsonGetArray(json, "lotteryRewardList");
 		for (int i = 0;i < lotteryRewardArray.length(); ++i) {
 			String rewardStr = "";
@@ -77,7 +77,7 @@ public class LotteryBean implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			LotteryRewardBean reward = LotteryRewardBean.fromJson(rewardStr);
+			RewardBean reward = RewardBean.fromJson(rewardStr);
 			rewardList.add(reward);
 		}
 		lottery.setLotteryRewardList(rewardList);
