@@ -1,5 +1,6 @@
 package com.ea.eamobile.nfsmw.service.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
+import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.protoc.Commands;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
-import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseLotteryCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RewardN;
 import com.ea.eamobile.nfsmw.service.LotteryService;
 import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserInfoMessageService;
@@ -54,16 +58,24 @@ public class LotteryCommandService {
      * @param 
      * @return
      */
-    public ResponseModifyUserInfoCommand getModifyUserInfoCommand(Commands.ResponseCommand.Builder responseBuilder, User user) {
-    	ResponseModifyUserInfoCommand.Builder builder = ResponseModifyUserInfoCommand.newBuilder();
-        
-    	int type = 0;
+    public ResponseLotteryCommand getResponseLotteryCommand(RequestLotteryCommand reqcmd, User user, 
+    		Commands.ResponseCommand.Builder responseBuilder) {
+    	ResponseLotteryCommand.Builder builder = ResponseLotteryCommand.newBuilder();
+    	List<RewardN> list = new ArrayList<RewardN>();
+    	int type = reqcmd.getLotteryType();
     	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type);
         
-        
-        
-        
-               
+    	for (LotteryBean lottery : lotteryList) {
+    		List<RewardBean> rewardList = lottery.getLotteryRewardList();
+    		for (RewardBean reward : rewardList) {
+    			RewardN.Builder rewardBuilder = RewardN.newBuilder();
+    			rewardBuilder.setId(reward.getRewardId());
+    			rewardBuilder.setCount(reward.getRewardCount());
+    			list.add(rewardBuilder.build());	
+    		}
+    	}
+    	builder.addAllRewards(list);
+                
         return builder.build();
     }
 }

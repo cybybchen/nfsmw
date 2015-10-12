@@ -31,9 +31,6 @@ public class UserPropBean implements Serializable {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	public int getPropId() {
 		return propId;
 	}

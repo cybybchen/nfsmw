@@ -18,6 +18,7 @@ public class RewardBean implements Serializable {
 	private int id = 0;
 	private int rewardId = 0;
 	private int rewardCount = 0;
+	private boolean isContinued = false;
 	public int getId() {
 		return id;
 	}
@@ -36,12 +37,19 @@ public class RewardBean implements Serializable {
 	public void setRewardCount(int rewardCount) {
 		this.rewardCount = rewardCount;
 	}
+	public boolean isContinued() {
+		return isContinued;
+	}
+	public void setContinued(boolean isContinued) {
+		this.isContinued = isContinued;
+	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
 		try {
 			json.put("id", id);
 			json.put("rewardId", rewardId);
 			json.put("rewardCount", rewardCount);
+			json.put("isContinued", isContinued);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,6 +66,7 @@ public class RewardBean implements Serializable {
 		reward.setId(CommonUtil.jsonGetInt(json, "id"));
 		reward.setRewardId(CommonUtil.jsonGetInt(json, "rewardId"));
 		reward.setRewardCount(CommonUtil.jsonGetInt(json, "rewardCount"));
+		reward.setContinued(CommonUtil.jsonGetBoolean(json, "isContinued"));
 		
 
 		return reward;

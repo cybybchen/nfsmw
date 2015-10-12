@@ -12,8 +12,8 @@
 		<reward id="1" rewardid="4" rewardcount="50" />
 		<reward id="2" rewardid="5" rewardcount="1" />
 	</recharge>   
-	<recharge id="100" transactionid="1" name="获得人物4" expense="5" />
-		<reward id="1" rewardid="4" rewardcount="50" />
+	<recharge id="100" transactionid="1" name="获得人物4" expense="5" vipid="1" lasttime="365" />
+		<reward id="1" rewardid="4" rewardcount="50" iscontinued="true" />
 		<reward id="2" rewardid="5" rewardcount="1" />
 	</recharge> 
 </root>

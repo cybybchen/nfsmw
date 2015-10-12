@@ -20,11 +20,15 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestIapCheckCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
@@ -32,6 +36,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileUserDataCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileVSCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestPropPurchaseCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceResultCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRecordUserRaceActionCommand;
@@ -58,9 +63,11 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFansRewardTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseIapCheckCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseLotteryCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseProfileLikeCommand;
@@ -90,12 +97,15 @@ import com.ea.eamobile.nfsmw.service.command.BindingCommandService;
 import com.ea.eamobile.nfsmw.service.command.ChanllengeMatchInfoCommandService;
 import com.ea.eamobile.nfsmw.service.command.ConfigCommandService;
 import com.ea.eamobile.nfsmw.service.command.EnergyCommandService;
+import com.ea.eamobile.nfsmw.service.command.FansRewardCommandService;
 import com.ea.eamobile.nfsmw.service.command.GarageCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostRecordCommandService;
 import com.ea.eamobile.nfsmw.service.command.GotchaCommandService;
 import com.ea.eamobile.nfsmw.service.command.IapCheckCommandService;
 import com.ea.eamobile.nfsmw.service.command.LoginCommandService;
+import com.ea.eamobile.nfsmw.service.command.LotteryCommandService;
+import com.ea.eamobile.nfsmw.service.command.MissionCommandService;
 import com.ea.eamobile.nfsmw.service.command.ModeInfoCommandService;
 import com.ea.eamobile.nfsmw.service.command.ModifyUserInfoCommandService;
 import com.ea.eamobile.nfsmw.service.command.ProfileLikeCommandService;
@@ -103,6 +113,7 @@ import com.ea.eamobile.nfsmw.service.command.ProfileNextCarCommandService;
 import com.ea.eamobile.nfsmw.service.command.ProfileReportCommandService;
 import com.ea.eamobile.nfsmw.service.command.ProfileUserDataCommandService;
 import com.ea.eamobile.nfsmw.service.command.ProfileVSCommandService;
+import com.ea.eamobile.nfsmw.service.command.PropCommandService;
 import com.ea.eamobile.nfsmw.service.command.PushCommandService;
 import com.ea.eamobile.nfsmw.service.command.RaceResultCommandService;
 import com.ea.eamobile.nfsmw.service.command.RaceStartCommandService;
@@ -193,6 +204,14 @@ public class CoreScreen extends RequestScreen {
     private GotchaCommandService gotchaCommandService;
     @Autowired
     private EnergyCommandService energyCommandService;
+    @Autowired
+    private PropCommandService propCommandService;
+    @Autowired
+    private MissionCommandService missionCommandService;
+    @Autowired
+    private FansRewardCommandService fansRewardCommandService;
+    @Autowired
+    private LotteryCommandService lotteryCommandService;
     
     @Override
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
@@ -687,6 +706,51 @@ public class CoreScreen extends RequestScreen {
         return true;
 	}
 
+	@Override
+	protected boolean handleCommand(RequestPropPurchaseCommand cmd,
+			Builder responseBuilder, User user) {
+		ResponseModifyUserInfoCommand modifycmd = propCommandService.getPropPurchaseCommand(cmd, user, responseBuilder);
+        responseBuilder.setModifyUserInfoCommand(modifycmd);
+        
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFansRewardCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		ResponseFansRewardTimeCommand fansRewardCmd = fansRewardCommandService.getFansRewardTimeCommand(cmd, user, responseBuilder);
+		responseBuilder.setFansRewardTimeCommand(fansRewardCmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestMissionRewardCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		ResponseModifyUserInfoCommand modifycmd = missionCommandService.modifyUserTaskRewardStatus(cmd, user, responseBuilder);
+		responseBuilder.setModifyUserInfoCommand(modifycmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestMissionFinishCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		ResponseModifyUserInfoCommand modifycmd = missionCommandService.modifyUserTaskFinishStatus(cmd, user, responseBuilder);
+		responseBuilder.setModifyUserInfoCommand(modifycmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestLotteryCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		ResponseLotteryCommand lotterycmd = lotteryCommandService.getResponseLotteryCommand(cmd, user, responseBuilder);
+		responseBuilder.setLotteryCommand(lotterycmd);
+		return true;
+	}
+	
 //	@Override
 //	protected boolean handleCommand(RequestSendCar cmd,
 //			Builder responseBuilder, User user) {

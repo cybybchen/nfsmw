@@ -1,6 +1,5 @@
 package com.ea.eamobile.nfsmw.utils;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -233,11 +232,6 @@ public class CommonUtil {
 		return path;
 	}
 	
-	public static String getActivityFilePath(String file) {
-		String path = "/var/www/html/HappyRunCoolFile/conf_activity/" + file;
-		return path;
-	}
-	
 	public static String getConfigFilePath(String file) {
 		String path = "/var/www/html/NfsmwFile/conf_file/" + file;
 		return path;
@@ -399,28 +393,6 @@ public class CommonUtil {
         return sb.toString();
 	}
 	
-	public static String getXmlStringOfJidi(String rootStr, Map<String, String> elementMap) {
-		if (elementMap == null) {
-			return "";
-		}
-		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		sb.append("<" + rootStr + ">");
-		sb.append("<" + "hRet" + ">" + elementMap.get("hRet") + "</" + "hRet" + ">");
-		sb.append("<" + "message" + ">" + elementMap.get("message") + "</" + "message" + ">");
-		sb.append("</" + rootStr + ">");
-        
-        return sb.toString();
-	}
-	
-	public static String getUnicomXmlString(String rootStr, int ret) {
-		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		sb.append("<" + rootStr + ">");
-		sb.append(ret);
-		sb.append("</" + rootStr + ">");
-        
-        return sb.toString();
-	}
-	
 	public static String getBASE64(String s) {   
 		if (s == null) return null;   
 		return (new BASE64Encoder()).encode( s.getBytes());   
@@ -472,27 +444,6 @@ public class CommonUtil {
         return "0x" + hexStr;//0x表示十六进制  
 	}
 	
-	public static boolean isInvalidMail(String time) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String currentTimeStr = df.format(new Date());
-		Date currentDate = null;
-		Calendar calendar = Calendar.getInstance();   
-	    try {
-			calendar.setTime(df.parse(time));
-			currentDate = df.parse(currentTimeStr);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			logger.info("parse mail time failed");
-		}  
-	    calendar.set(Calendar.DAY_OF_MONTH , calendar.get(Calendar.DAY_OF_MONTH) + 7);
-	    Date lastDate = calendar.getTime();
-		
-		logger.info("currentDate is:" + currentDate + ": lastDate is:" + lastDate);
-		if (lastDate.after(currentDate))
-			return false;
-		return true;
-	}
-	
 	public static String base64URLDecode(String str) {
 		str = str.replace('-', '+');
 		str = str.replace('_', '/');
@@ -527,6 +478,10 @@ public class CommonUtil {
 	}
 	
 	public static boolean isTimeExpried(String time) {
+		logger.debug("111time is:" + time);
+		if (time == null || time.equals(""))
+			return false;
+		logger.debug("222time is:" + time);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = null;
 		Date currentDate = null;
@@ -553,70 +508,68 @@ public class CommonUtil {
 	    else i = 0;  
 	  
 	    return i;  
-	  
 	}  
 	
-	public static String getFileContentStrOfBase64(String fileName) {
-		String fileContent = "";
-		File file=new File(fileName);
-        if(!file.exists())
-        { 
-            logger.info("Can't Find " + fileName);
-        }
-
-        InputStream in = null;
-        byte[] data = null;
-        try {
-        	in = new FileInputStream(fileName);
-        	data = new byte[in.available()];
-        	in.read(data);
-        	in.close();
-        	return getBASE64(data);
-        } catch(Exception e) {
-        	logger.info("read file failed:" + fileName);
-        }
-        
-        return "";
+	/**
+	 * 判断是否是当天的第一次登录
+	 * 
+	 * @param lastLoginTime
+	 * @return
+	 */
+	public  static boolean isNextDay(String lastLoginTime) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		boolean nextDay = false;
+		if (lastLoginTime == null || lastLoginTime.trim().equals("")) {
+			return true;
+		}
+		try {
+			String now = df.format(new Date());
+			String last = df.format(df.parse(lastLoginTime));
+			if (now.equals(last)) {
+				nextDay = false;
+			} else {
+				nextDay = true;
+			}
+		} catch (ParseException e) {
+			nextDay = false;
+			e.printStackTrace();
+		}
+		
+		return nextDay;
 	}
 	
-	public static String getFileContentStr(String fileName) {
-		String fileContent = "";
-		File file=new File(fileName);
-        if(!file.exists())
-        { 
-            logger.info("Can't Find " + fileName);
-        }
-
-        try {
-        	InputStream is = new BufferedInputStream(new FileInputStream(
-        			fileName));
-        	return decodeBase64String(is);
-        } catch(Exception e) {
-        	logger.info("read file failed:" + fileName);
-        }
-        
-        return "";
-       
-		
-		
-		
-//        try 
-//        {
-//            BufferedReader in = new BufferedReader(new FileReader(file));
-//            String str = "";
-//            while ((str = in.readLine()) != null) 
-//            {
-//                  fileContent += str;
-//            }
-//            in.close();
-//            
-//            return fileContent;
-//        } 
-//        catch (IOException e) 
-//        {
-//            logger.info("read file failed:" + fileName);
-//        }
-        
-//        return fileContent;
+	public static String getCurrentTimeStr(String dateFormat) {
+		SimpleDateFormat df = new SimpleDateFormat(dateFormat);
+		String now = df.format(new Date());
+		return now;
+	}
+	
+	public String getExpiredTime(String time, int hour) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTimeStr = df.format(new Date());
+		Calendar calendar = Calendar.getInstance();   
+		Date expiredDate = null;
+		Date currentDate = null;
+	    try {
+	    	if (time.equals(""))
+	    		calendar.setTime(df.parse(currentTimeStr));
+	    	else  {
+	    		expiredDate = df.parse(time);
+		    	currentDate = df.parse(currentTimeStr);
+		    	if (expiredDate.after(currentDate))
+		    		calendar.setTime(expiredDate);
+		    	else
+		    		calendar.setTime(currentDate);
+	    	}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			logger.info("parse expired time failed");
+		}  
+	    calendar.set(Calendar.HOUR_OF_DAY , calendar.get(Calendar.HOUR_OF_DAY) + hour);
+	    expiredDate = calendar.getTime();
+	    
+	    logger.info("time is:" + time + "|hour is:" + hour + "|date is:" + expiredDate);
+	    
+	    return df.format(expiredDate);
 	}
 }

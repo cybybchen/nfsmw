@@ -140,11 +140,16 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
         }
         UnlockInfoMessage.Builder unlockBuilder = UnlockInfoMessage.newBuilder();
         UserTrack userTrack = userTrackService.getUserTrackByMode(userId, mode);
+        if (userTrack == null) {
+        	userTrackService.save(userId, trackId, mode.getId(), 0);
+        	userTrack = userTrackService.getUserTrackByMode(userId, mode);
+        }
         int finishRatioType = getFinishRatioType(reqcmd, user);
         int modeFinishRatio = userTrackService.calcModeFinishRatio(mode, userTrack, rank, userId, finish,
                 finishRatioType);
         int trackFinishRatio = userTrackService.calcTrackFinishRatio(track, userId);
         // 判断mode是否完成
+//        int gainMwNum = 0;
         int gainMwNum = modeFinishRatio >= Const.TRACK_FINISH_RATIO ? rewardService.getMwNumByRaceMode(mode) : 0;
         int trackRewardId = 0;
         int modeRewardId = 0;
@@ -178,6 +183,19 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
 
             }
         }
+        
+//        if (trackFinishRatio == Const.TRACK_FINISH_RATIO && userTrack.getIsFinish() == 0) {
+//        	userTrack.setIsFinish(1);
+//        	userTrackService.updateUserTrack(userTrack);
+//        	modeRewardId = mode.getRewardId();
+//            trackRewardId = track.getRewardId();
+//            Reward reward = rewardService.getReward(trackRewardId);
+//            if (reward != null) {
+//                pushService.pushPopupCommand(responseBuilder, reward, Match.TRACK_POPUP,
+//                        track.getDisplayString(), 0, 0);
+//            }
+//        }
+        
         // 做3个奖励 比赛奖励一定给
         user = rewardService.doRewards(user, raceRewardId, modeRewardId, trackRewardId);
         // 判断并添加解锁的mode
@@ -319,13 +337,20 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
         }
 
         // 取要解锁的mode 解锁条件: 赛道的完成度（不会解锁本赛道以外的关卡）
+        log.debug("2222222222");
         List<RaceModeUnlock> unlocks = raceModeUnlockService.getRaceModeUnlockListByTrackId(trackId);
+        log.debug("unlocks size is:" + unlocks.size());
         if (unlocks != null) {
             int trackFinishRatioValue = userTrackService.getFinishRatioByTrack(userId, trackId);
+            log.debug("trackFinishRatioValue is{}", trackFinishRatioValue);
             Map<Integer, UserTrack> userModes = userTrackService.getUserModeMap(userId);
             for (RaceModeUnlock unlock : unlocks) {
+            	log.debug("111trackid is{}, modeid is{}", unlock.getTrackId(), unlock.getModeId());
+            	log.debug("value is{}", unlock.getUnlockValue());
+            	log.debug("map size is{}", userModes.size());
                 // 判断大于解锁完成度 且用户没添加
                 if (trackFinishRatioValue >= unlock.getUnlockValue() && userModes.get(unlock.getModeId()) == null) {
+                	log.debug("111trackid is{}, modeid is{}", unlock.getTrackId(), unlock.getModeId());
                     unlockModes.add(unlock.getModeId());
                     userTrackService.save(userId, trackId, unlock.getModeId(), 0);
                     uimbuilder.setIsModeUnlocked(true);

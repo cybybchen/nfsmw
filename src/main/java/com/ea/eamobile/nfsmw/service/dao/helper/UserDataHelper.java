@@ -51,6 +51,13 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.accessToken = data.getAccessToken();
 		this.uid = data.getUid();
 		this.lastSendEnergyDate = data.getLastSendEnergyDate();
+		this.packageBuyRecord = data.getPackageBuyRecord();
+		this.vipEndTime = data.getVipEndTime();
+		this.vipLastRewardTime = data.getVipLastRewardTime();
+		this.fansRewardStatus = data.getFansRewardStatus();
+		this.fansRewardLastTime = data.getFansRewardLastTime();
+		this.missionRewardStatus = data.getMissionRewardStatus();
+		this.missionFinishStatus = data.getMissionFinishStatus();
 
 		setMarks(data.getMarks());
 	}
@@ -91,6 +98,13 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.accessToken = rs.getString("access_token");
 		this.uid = rs.getString("uid");
 		this.lastSendEnergyDate = rs.getInt("last_send_energy_date");
+		this.packageBuyRecord = rs.getInt("package_buy_record");
+		this.vipEndTime = rs.getString("vip_end_time");
+		this.vipLastRewardTime = rs.getString("vip_last_reward_time");
+		this.fansRewardStatus = rs.getInt("fans_reward_status");
+		this.fansRewardLastTime = rs.getInt("fans_reward_last_time");
+		this.missionRewardStatus = rs.getInt("mission_reward_status");
+		this.missionFinishStatus = rs.getInt("mission_finish_status");
 	}
 
 	@Override

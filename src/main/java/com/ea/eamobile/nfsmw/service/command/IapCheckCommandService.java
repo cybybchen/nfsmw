@@ -31,6 +31,8 @@ import com.ea.eamobile.nfsmw.model.IapCheckInfo;
 import com.ea.eamobile.nfsmw.model.IapFailtureRecord;
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.UserPay;
+import com.ea.eamobile.nfsmw.model.bean.RechargeDataBean;
+import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestIapCheckCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseIapCheckCommand;
@@ -38,6 +40,8 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseNotificationCommand;
 import com.ea.eamobile.nfsmw.service.CtaContentService;
 import com.ea.eamobile.nfsmw.service.IapCheckInfoService;
 import com.ea.eamobile.nfsmw.service.IapFailtureRecordService;
+import com.ea.eamobile.nfsmw.service.RechargeDataService;
+import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserPayService;
 import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.utils.ConfigUtil;
@@ -61,6 +65,10 @@ public class IapCheckCommandService extends BaseCommandService {
     private IapFailtureRecordService iapFailtureRecordService;
     @Autowired
     private UserPayService userPayService;
+    @Autowired
+    private RechargeDataService rechargeDataService;
+    @Autowired
+    private RewardService rewardService;
 
     public ResponseIapCheckCommand getResponseIapCheckCommand(RequestIapCheckCommand reqcmd, User user,
             Commands.ResponseCommand.Builder responseBuilder) {
@@ -114,6 +122,10 @@ public class IapCheckCommandService extends BaseCommandService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	        
+	        //购买礼包
+	        checkBuyPackageResult(iapCheckInfo.getProductId(), responseBuilder, user);
+	        
 	        iapCheckInfo.setCreateTime((int) (new Date().getTime() / 1000));
 	        iapCheckInfo.setUserId(userId);
 	        int payMent = 0;
@@ -161,6 +173,18 @@ public class IapCheckCommandService extends BaseCommandService {
 	                        0);
 	    		}
 	    	}
+    	}
+    }
+    
+    //check购买礼包结果
+    private void checkBuyPackageResult(String productId, Commands.ResponseCommand.Builder responseBuilder, 
+    		User user) {
+    	RechargeDataBean rechargeData = rechargeDataService.getRechargeData(productId);
+    	if (rechargeData != null) {
+    		List<RewardBean> rewardList = rechargeData.getRewardList();
+        	rewardService.doRewards(user, rewardList);
+        	user.setPackageBuyRecord(user.getPackageBuyRecord() + 1 << rechargeData.getId());
+        	log.debug("user package buy record is:" + user.getPackageBuyRecord());
     	}
     }
     

@@ -50,9 +50,9 @@ public class DateUtil {
     private static final long HOURS_PER_DAY = 24;
     private static final long MINUTES_PER_HOUR = 60;
     private static final long SECONDS_PER_MINUTE = 60;
-    private static final long MILLIONSECONDS_PER_SECOND = 1000;
+    public static final long MILLIONSECONDS_PER_SECOND = 1000;
     private static final long MILLIONSECONDS_PER_MINUTE = MILLIONSECONDS_PER_SECOND * SECONDS_PER_MINUTE;
-    private static final long MILLIONSECONDS_PER_HOUR = MILLIONSECONDS_PER_SECOND * SECONDS_PER_MINUTE
+    public static final long MILLIONSECONDS_PER_HOUR = MILLIONSECONDS_PER_SECOND * SECONDS_PER_MINUTE
             * MINUTES_PER_HOUR;
     private static final long MILLION_SECOND_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE
             * MILLIONSECONDS_PER_SECOND;

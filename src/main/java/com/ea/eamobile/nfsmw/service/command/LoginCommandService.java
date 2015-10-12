@@ -1,8 +1,6 @@
 package com.ea.eamobile.nfsmw.service.command;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,7 +19,6 @@ import com.ea.eamobile.nfsmw.model.UserRefreshTime;
 import com.ea.eamobile.nfsmw.model.UserSession;
 import com.ea.eamobile.nfsmw.model.UserVersionUpdateReward;
 import com.ea.eamobile.nfsmw.protoc.Commands;
-import com.ea.eamobile.nfsmw.protoc.Commands.AccountInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.ErrorCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.GPSInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.HeadInfo;
@@ -42,8 +39,7 @@ import com.ea.eamobile.nfsmw.service.UserRefreshTimeService;
 import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.service.UserSessionService;
 import com.ea.eamobile.nfsmw.service.UserVersionUpdateRewardService;
-import com.ea.eamobile.nfsmw.utils.DateUtil;
-import com.ea.eamobile.nfsmw.utils.StringUtil;
+import com.ea.eamobile.nfsmw.service.UserVipService;
 import com.ea.eamobile.nfsmw.view.BaseView;
 import com.ea.eamobile.nfsmw.view.CarView;
 import com.ea.eamobile.nfsmw.view.UserView;
@@ -77,6 +73,8 @@ public class LoginCommandService {
     private RewardService rewardService;
     @Autowired
     private UserRefreshTimeService userRefreshTimeService;
+    @Autowired
+    private UserVipService userVipService;
 
     private static final Logger log = LoggerFactory.getLogger(LoginCommandService.class);
 
@@ -98,6 +96,9 @@ public class LoginCommandService {
         	log.info(">>>>>>>>>>>>>>>>>>>>>2");
             return;
         }
+        
+        //领取贵族奖励
+        userVipService.addUserVipReward(user);
         
         head = headBuilder.build();
         response.setHead(head);

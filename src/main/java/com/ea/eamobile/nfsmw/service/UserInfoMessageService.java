@@ -1,5 +1,6 @@
 package com.ea.eamobile.nfsmw.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,12 +11,14 @@ import org.springframework.stereotype.Service;
 import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.model.RpLevel;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.model.bean.UserPropBean;
 import com.ea.eamobile.nfsmw.protoc.Commands.AccountInfo;
+import com.ea.eamobile.nfsmw.protoc.Commands.Prop;
 import com.ea.eamobile.nfsmw.protoc.Commands.RPMessage;
 import com.ea.eamobile.nfsmw.protoc.Commands.UserInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.UserWeiboInfo;
-import com.ea.eamobile.nfsmw.view.BaseView;
-import com.ea.eamobile.nfsmw.view.UserView;
+import com.ea.eamobile.nfsmw.utils.CommonUtil;
+import com.ea.eamobile.nfsmw.utils.DateUtil;
 
 @Service
 public class UserInfoMessageService {
@@ -28,6 +31,11 @@ public class UserInfoMessageService {
 
     public void buildUserInfoMessage(UserInfo.Builder builder, User user, List<AccountInfo> accounts,
             UserWeiboInfo weiboInfo) {
+    	buildUserInfoMessage(builder, user, accounts, weiboInfo, null);
+    }
+    
+    public void buildUserInfoMessage(UserInfo.Builder builder, User user, List<AccountInfo> accounts,
+            UserWeiboInfo weiboInfo, List<UserPropBean> userPropList) {
         builder.setHeadUrl(user.getHeadUrl());
     	builder.setHeadUrl("");
         builder.setHeadIndex(user.getHeadIndex());
@@ -44,6 +52,21 @@ public class UserInfoMessageService {
         builder.setUid(user.getUid());
         builder.setTutorialRewardIsGiven(user.getIsGetTutorialReward() == 1);
         builder.setIsNameChanged(user.getIsNicknameChanged());
+        builder.setIsNoble(CommonUtil.isTimeExpried(user.getVipEndTime()));
+        builder.setLeftNobleTime(0);
+//        builder.setLeftNobleTime(DateUtil.intervalSeconds(DateUtil.getDateTime(user.getVipEndTime()), 
+//        		DateUtil.getDateTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT))));
+        List<Prop> propListBuilder = new ArrayList<Prop>();
+        if (userPropList != null && userPropList.size() != 0) {
+        	for (UserPropBean userProp : userPropList) {
+        		Prop.Builder propBuilder = Prop.newBuilder();
+        		propBuilder.setId(userProp.getPropId());
+        		propBuilder.setCount(userProp.getPropCount());
+        		propListBuilder.add(propBuilder.build());
+        	}
+        }
+        builder.addAllPropnum(propListBuilder);
+        
         try {
 //            if (weiboInfo == null && user.getCertType() == Const.CERT_TYPE_WEIBO) {
         	if (weiboInfo == null && user.getCertType() >= Const.CERT_TYPE_WEIBO) {
@@ -81,7 +104,7 @@ public class UserInfoMessageService {
      * @param user
      */
     public void buildUserInfoMessage(UserInfo.Builder builder, User user) {
-    	buildUserInfoMessage(builder, user, null, null);
+    	buildUserInfoMessage(builder, user, null, null, null);
 //        BaseView view = jsonService.getUser(user.getWillowtreeToken());
 //        List<AccountInfo> accounts = null;
 //        if (view instanceof UserView) {
@@ -89,6 +112,14 @@ public class UserInfoMessageService {
 //            accounts = userView.getAccounts();
 //            buildUserInfoMessage(builder, user, accounts, userView.getWeiboInfo());
 //        }
+    }
+    
+    public void buildUserInfoMessage(UserInfo.Builder builder, User user, UserPropBean userProp) {
+    	List<UserPropBean> userPropList = new ArrayList<UserPropBean>();
+    	if (userProp != null)
+    		userPropList.add(userProp);
+    	buildUserInfoMessage(builder, user, null, null, userPropList);
+
     }
 
     private RPMessage buildRpMessage(int level, int rpNum) {

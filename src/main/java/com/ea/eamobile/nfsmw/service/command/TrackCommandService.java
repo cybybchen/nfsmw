@@ -145,12 +145,14 @@ public class TrackCommandService extends BaseCommandService {
             boolean hasTrack = (userTracks != null && userTracks.size() > 0);
             boolean unlock = hasTrack;
             boolean trackStatusUpdate = false;
+            log.debug("111unlock is{}", unlock);
             // 判断是否是解锁并保存
             if (!hasTrack && canUnlock(user, track)) {
                 unlock = true;
                 userTrackService.save(userId, track);
                 trackStatusUpdate = true;
             }
+            log.debug("222unlock is{}", unlock);
             // 取赛道以及用户的关卡信息数据
             List<ModeInfo> modes = getModeInfoList(userId, trackId);
             constructBuilder(builder, track, finishRatio, unlock, modes, trackStatusUpdate);

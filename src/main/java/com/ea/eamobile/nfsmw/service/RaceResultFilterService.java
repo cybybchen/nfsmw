@@ -53,13 +53,27 @@ public class RaceResultFilterService {
     }
 
     public boolean isCheatCarId(int raceId, String carId, int gameMode, long userId) throws SQLException {
-        if (gameMode == Match.CAREER_MODE || gameMode == Match.GOLD_MODE) {
+        if (gameMode == Match.CAREER_MODE) {
             RaceMode raceMode = raceModeService.getModeById(raceId);
             if (raceMode == null) {
                 return true;
             }
             String trackId = raceMode.getTrackId();
             List<String> carIds = trackCarTypeService.getCarTypesByTrack(trackId);
+            if (carIds == null || carIds.size() == 0) {
+                return true;
+            }
+            if (!carIds.contains(carId)) {
+                return true;
+            }
+        }
+        if (gameMode == Match.GOLD_MODE) {
+            RaceMode raceMode = raceModeService.getModeById(raceId);
+            if (raceMode == null) {
+                return true;
+            }
+            List<String> carIds = tierCarLimitService.getTierCarLimitListByTierId(1);
+            carIds.addAll(tierCarLimitService.getTierCarLimitListByTierId(2));
             if (carIds == null || carIds.size() == 0) {
                 return true;
             }

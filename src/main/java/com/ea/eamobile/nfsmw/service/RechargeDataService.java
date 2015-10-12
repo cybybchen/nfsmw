@@ -25,7 +25,7 @@ public class RechargeDataService {
     @Autowired
     private RechargeDataRedisService rechargeDataRedis;
 
-    public RechargeDataBean getLottery(String transactionId) {
+    public RechargeDataBean getRechargeData(String transactionId) {
     	RechargeDataBean rechargeData = rechargeDataRedis.getRechargeData(transactionId);
         if (rechargeData == null) {
         	parseAndSaveRechargeDataList();
@@ -47,5 +47,14 @@ public class RechargeDataService {
     	rechargeDataRedis.setRechargeDataList(rechargeDataList);
         
         return rechargeDataList;
+    }
+    
+    public RechargeDataBean getRechargeDataByVipId(int vipId) {
+    	List<RechargeDataBean> rechargeDataList = getRechargeDataList();
+        for (RechargeDataBean rechargeData : rechargeDataList) {
+        	if (rechargeData.getVipId() == vipId && rechargeData.getVipId() != 0)
+        		return rechargeData;
+        }
+        return null;
     }
 }

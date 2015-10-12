@@ -82,6 +82,20 @@ public class User extends Markable implements Serializable {
     protected String uid;
     
     protected int lastSendEnergyDate;
+    
+    protected int packageBuyRecord;
+    
+    protected String vipEndTime;
+    
+    protected String vipLastRewardTime;
+    
+    protected int fansRewardStatus;
+    
+    protected int fansRewardLastTime;
+    
+    protected int missionRewardStatus;
+    
+    protected int missionFinishStatus;
 
     // db field
     protected static final String ID = "id";
@@ -118,6 +132,13 @@ public class User extends Markable implements Serializable {
     protected static final String ACCESS_TOKEN = "access_token";
     protected static final String UID = "uid";
     protected static final String LAST_SEND_ENERGY_DATE = "last_send_energy_date";
+    protected static final String PACKAGE_BUY_RECORD = "package_buy_record";
+    protected static final String VIP_END_TIME = "vip_end_time";
+    protected static final String VIP_LAST_REWARD_TIME = "vip_last_reward_time";
+    protected static final String FANS_REWARD_STATUS = "fans_reward_status";
+    protected static final String FANS_REWARD_LAST_TIME = "fans_reward_last_time";
+    protected static final String MISSION_REWARD_STATUS = "mission_reward_status";
+    protected static final String MISSION_FINISH_STATUS = "mission_finish_status";
 
     public int getAccountStatus() {
         return accountStatus;
@@ -448,7 +469,70 @@ public class User extends Markable implements Serializable {
         mark(LAST_SEND_ENERGY_DATE, lastSendEnergyDate);
     }
     
-    @Override
+    public int getPackageBuyRecord() {
+        return packageBuyRecord;
+    }
+
+    public void setPackageBuyRecord(int packageBuyRecord) {
+        this.packageBuyRecord = packageBuyRecord;
+        mark(PACKAGE_BUY_RECORD, packageBuyRecord);
+    }
+    
+    public String getVipEndTime() {
+		return vipEndTime;
+	}
+
+	public void setVipEndTime(String vipEndTime) {
+		this.vipEndTime = vipEndTime;
+		mark(VIP_END_TIME, vipEndTime);
+	}
+
+	public String getVipLastRewardTime() {
+		return vipLastRewardTime;
+	}
+
+	public void setVipLastRewardTime(String vipLastRewardTime) {
+		this.vipLastRewardTime = vipLastRewardTime;
+		mark(VIP_LAST_REWARD_TIME, vipLastRewardTime);
+	}
+
+	public int getFansRewardStatus() {
+		return fansRewardStatus;
+	}
+
+	public void setFansRewardStatus(int fansRewardStatus) {
+		this.fansRewardStatus = fansRewardStatus;
+		mark(FANS_REWARD_STATUS, fansRewardStatus);
+	}
+
+	public int getFansRewardLastTime() {
+		return fansRewardLastTime;
+	}
+
+	public void setFansRewardLastTime(int fansRewardLastTime) {
+		this.fansRewardLastTime = fansRewardLastTime;
+		mark(FANS_REWARD_LAST_TIME, fansRewardLastTime);
+	}
+
+	public int getMissionRewardStatus() {
+		return missionRewardStatus;
+	}
+
+	public void setMissionRewardStatus(int missionRewardStatus) {
+		this.missionRewardStatus = missionRewardStatus;
+		mark(MISSION_REWARD_STATUS, missionRewardStatus);
+	}
+
+	public int getMissionFinishStatus() {
+		return missionFinishStatus;
+	}
+
+	public void setMissionFinishStatus(int missionFinishStatus) {
+		this.missionFinishStatus = missionFinishStatus;
+		mark(MISSION_FINISH_STATUS, missionFinishStatus);
+	}
+
+	@Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ",rp_num=" + rpNum + "]";
     }

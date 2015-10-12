@@ -20,11 +20,15 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestIapCheckCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
@@ -32,6 +36,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileUserDataCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileVSCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestPropPurchaseCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceResultCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRecordUserRaceActionCommand;
@@ -369,6 +374,41 @@ public class CheatScreen extends RequestScreen {
 
 	@Override
 	protected boolean handleCommand(RequestCollectEnergyCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestPropPurchaseCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFansRewardCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestMissionRewardCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestMissionFinishCommand cmd,
+			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestLotteryCommand cmd,
 			Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
 		return true;

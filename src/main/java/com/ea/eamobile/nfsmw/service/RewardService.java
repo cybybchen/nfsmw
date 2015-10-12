@@ -7,13 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.cache.InProcessCache;
 import com.ea.eamobile.nfsmw.constants.CacheKey;
+import com.ea.eamobile.nfsmw.constants.IapConst;
+import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.constants.ProfileComparisonType;
+import com.ea.eamobile.nfsmw.constants.RewardConst;
 import com.ea.eamobile.nfsmw.model.RaceMode;
 import com.ea.eamobile.nfsmw.model.Reward;
 import com.ea.eamobile.nfsmw.model.RpLevel;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.mapper.RewardMapper;
+import com.ea.eamobile.nfsmw.service.command.PushCommandService;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
+import com.ea.eamobile.nfsmw.view.ResultInfo;
 
 /**
  * @author ma.ruofei
@@ -35,6 +41,12 @@ public class RewardService {
 	private UserRaceActionService userRaceActionService;
     @Autowired
     private MemcachedClient cache;
+    @Autowired
+    private UserPropService userPropService;
+    @Autowired
+    private UserCarService userCarService;
+    @Autowired
+    private PushCommandService pushService;
 
     public Reward getReward(int id) {
         Reward ret = (Reward) InProcessCache.getInstance().get("getReward." + id);
@@ -189,6 +201,51 @@ public class RewardService {
     public int getMwNumByRaceMode(RaceMode mode) {
         Reward reward = getReward(mode.getRewardId());
         return reward != null ? reward.getMostwantedNum() : 0;
+    }
+    
+    public void doRewards(User user, List<RewardBean> rewardList) {
+    	int money = user.getMoney();
+    	int gold = user.getGold();
+    	int energy = user.getEnergy();
+    	for (RewardBean reward : rewardList) {
+    		int rewardId = reward.getRewardId();
+    		int rewardCount = reward.getRewardCount();
+    		switch (rewardId) {
+    			case RewardConst.TYPE_REWARD_ERENGY:
+    				energy += rewardCount;
+    				break;
+    			case RewardConst.TYPE_REWARD_GOLD:
+    				gold += rewardCount;
+    				break;
+    			case RewardConst.TYPE_REWARD_MONEY:
+    				money += rewardCount;
+    				break;
+    			default :
+    				int propId = rewardId - RewardConst.TYPE_REWARD_PROP;
+    				int carId = rewardId - RewardConst.TYPE_REWARD_CAR;
+    				if (carId > 0) {
+    					String carIdStr = RewardConst.REWARD_CAR_MAP.get(carId);
+    					if (carIdStr != null) {
+    			    		ResultInfo result = userCarService.sendCar(user.getId(), carIdStr);
+//    			    		if (result.isSuccess()) {
+//    			    			log.debug("send car success,carId is {}", carId);
+//    			    			pushService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarListByCarId(userId, carId),
+//    			                        userId);
+//    			    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
+//    			                        0);
+//    			    		}
+    			    	}
+    				} else if (propId > 0) {
+    					userPropService.addUserProp(user.getId(), propId, rewardCount);
+    				}
+    				break;
+    		}
+    	}
+    	
+    	user.setEnergy(energy);
+    	user.setGold(gold);
+    	user.setMoney(money);
+    	userService.updateUser(user);
     }
 
 }

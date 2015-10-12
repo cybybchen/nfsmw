@@ -19,6 +19,8 @@ public class RechargeDataBean implements Serializable {
 	public String transactionId = "";
 	public String name = "";
 	public int expense = 0;
+	public int vipId = 0;
+	public int lastTime = 0;
 	private List<RewardBean> rewardList = new ArrayList<RewardBean>();
 	public int getId() {
 		return id;
@@ -50,6 +52,18 @@ public class RechargeDataBean implements Serializable {
 	public void setRewardList(List<RewardBean> rewardList) {
 		this.rewardList = rewardList;
 	}
+	public int getVipId() {
+		return vipId;
+	}
+	public void setVipId(int vipId) {
+		this.vipId = vipId;
+	}
+	public int getLastTime() {
+		return lastTime;
+	}
+	public void setLastTime(int lastTime) {
+		this.lastTime = lastTime;
+	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
 		try {
@@ -57,6 +71,8 @@ public class RechargeDataBean implements Serializable {
 			json.put("transactionId", transactionId);
 			json.put("name", name);
 			json.put("expense", expense);
+			json.put("vipId", vipId);
+			json.put("lastTime", lastTime);
 			json.put("rewardList", rewardList);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -75,6 +91,8 @@ public class RechargeDataBean implements Serializable {
 		recharge.setTransactionId(CommonUtil.jsonGetString(json, "transactionId"));
 		recharge.setName(CommonUtil.jsonGetString(json, "name"));
 		recharge.setExpense(CommonUtil.jsonGetInt(json, "expense"));
+		recharge.setVipId(CommonUtil.jsonGetInt(json, "vipId"));
+		recharge.setLastTime(CommonUtil.jsonGetInt(json, "lastTime"));
 		
 		List<RewardBean> rewardList = new ArrayList<RewardBean>();
 		JSONArray lotteryRewardArray = CommonUtil.jsonGetArray(json, "rewardList");

@@ -21,11 +21,15 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestChallengeMathInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestIapCheckCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
@@ -33,6 +37,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileUserDataCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileVSCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestPropPurchaseCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceResultCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRaceStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestRecordUserRaceActionCommand;
@@ -154,6 +159,16 @@ public abstract class RequestScreen implements RequestHandle {
     protected abstract boolean handleCommand(RequestEnergyTimeCommand cmd, Builder responseBuilder, User user);
     
     protected abstract boolean handleCommand(RequestCollectEnergyCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestPropPurchaseCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestFansRewardCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestMissionRewardCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestMissionFinishCommand cmd, Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestLotteryCommand cmd, Builder responseBuilder, User user);
 
     @Override
     public boolean handleRequest(NFSRequest req, NFSResponse rep) {
@@ -447,6 +462,41 @@ public abstract class RequestScreen implements RequestHandle {
         
         if (request.hasCollectEnergyCommand()) {
         	RequestCollectEnergyCommand cmd = request.getCollectEnergyCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasPropPurchaseCommand()) {
+        	RequestPropPurchaseCommand cmd = request.getPropPurchaseCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasFansRewardCommand()) {
+        	RequestFansRewardCommand cmd = request.getFansRewardCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasMissionFinishCommand()) {
+        	RequestMissionFinishCommand cmd = request.getMissionFinishCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasMissionRewardCommand()) {
+        	RequestMissionRewardCommand cmd = request.getMissionRewardCommand();
+            if (result) {
+                result = handleCommand(cmd, responseBuilder, user);
+            }
+        }
+        
+        if (request.hasLotteryCommand()) {
+        	RequestLotteryCommand cmd = request.getLotteryCommand();
             if (result) {
                 result = handleCommand(cmd, responseBuilder, user);
             }
