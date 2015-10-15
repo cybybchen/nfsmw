@@ -24,6 +24,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.GPSInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.HeadInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.UserInfo;
@@ -99,6 +100,7 @@ public class LoginCommandService {
         
         //领取贵族奖励
         userVipService.addUserVipReward(user);
+        doMonthGoldCardReward(response, user);
         
         head = headBuilder.build();
         response.setHead(head);
@@ -353,6 +355,7 @@ public class LoginCommandService {
 			if(null == u) {
 				return null;
 			}
+			u.setIsNewUser(1);
 		} else {
 			u = userService.getUserByWillowtreeToken(reqcmd.getToken());
 			// 用户不存在
@@ -396,5 +399,12 @@ public class LoginCommandService {
     		user = userService.regainEnergy(user);
 //            pushService.pushUserInfoCommand(responseBuilder, user);
 //    	}
+    }
+	
+	private void doMonthGoldCardReward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.doUserMonthGoldCardReward(user);
+        if (ret) {
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "50金币", 0, 0);
+        }
     }
 }

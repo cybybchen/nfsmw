@@ -7,18 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.cache.InProcessCache;
 import com.ea.eamobile.nfsmw.constants.CacheKey;
-import com.ea.eamobile.nfsmw.constants.IapConst;
-import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.constants.ProfileComparisonType;
 import com.ea.eamobile.nfsmw.constants.RewardConst;
+import com.ea.eamobile.nfsmw.model.GotchaFragment;
 import com.ea.eamobile.nfsmw.model.RaceMode;
 import com.ea.eamobile.nfsmw.model.Reward;
 import com.ea.eamobile.nfsmw.model.RpLevel;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.model.UserCarFragment;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.mapper.RewardMapper;
 import com.ea.eamobile.nfsmw.service.command.PushCommandService;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
+import com.ea.eamobile.nfsmw.service.gotcha.GotchaFragmentService;
 import com.ea.eamobile.nfsmw.view.ResultInfo;
 
 /**
@@ -47,6 +48,12 @@ public class RewardService {
     private UserCarService userCarService;
     @Autowired
     private PushCommandService pushService;
+    @Autowired
+    private GotchaFragmentService gotchaFragmentService;
+    @Autowired
+    private UserCarFragmentService userCarFragmentService;
+    @Autowired
+    private CarService carService;
 
     public Reward getReward(int id) {
         Reward ret = (Reward) InProcessCache.getInstance().get("getReward." + id);
@@ -221,10 +228,28 @@ public class RewardService {
     				money += rewardCount;
     				break;
     			default :
+    				int fragmentId = rewardId - RewardConst.TYPE_REWARD_FRAGMENT;
     				int propId = rewardId - RewardConst.TYPE_REWARD_PROP;
     				int carId = rewardId - RewardConst.TYPE_REWARD_CAR;
-    				if (carId > 0) {
-    					String carIdStr = RewardConst.REWARD_CAR_MAP.get(carId);
+    				if (fragmentId > 0) {
+    					GotchaFragment gotchaFragment = gotchaFragmentService.getGotchaPart(fragmentId);
+    		            if (gotchaFragment == null) {
+    		                break;
+    		            }
+    		            UserCarFragment userCarFragment = userCarFragmentService.getUserCarFragment(user.getId(), fragmentId);
+
+    		            if (userCarFragment == null) {
+    		                userCarFragment = new UserCarFragment();
+    		                userCarFragment.setCount(0);
+    		                userCarFragment.setFragmentId(fragmentId);
+    		                userCarFragment.setUserId(user.getId());
+    		                userCarFragmentService.insert(userCarFragment);
+    		            }
+    		            userCarFragment.setCount(userCarFragment.getCount() + rewardCount);
+    		            userCarFragmentService.update(userCarFragment);
+    				} else if (carId > 0) {
+//    					String carIdStr = RewardConst.REWARD_CAR_MAP.get(carId);
+    					String carIdStr = carService.getCar(carId).getId();
     					if (carIdStr != null) {
     			    		ResultInfo result = userCarService.sendCar(user.getId(), carIdStr);
 //    			    		if (result.isSuccess()) {

@@ -42,6 +42,24 @@ public class CarService {
         }
         return ret;
     }
+    
+    public Car getCar(int primary_id) {
+        Car ret = (Car) InProcessCache.getInstance().get("car_getCar_new_" + primary_id);
+
+        if (ret != null) {
+            return ret;
+        }
+        ret = carMapper.getCarByPrimaryId(primary_id);
+        InProcessCache.getInstance().set("car_getCar_new_" + primary_id, ret);
+        CarExt carExt = carExtService.getCarExt(ret.getId());
+        if (carExt != null) {
+            ret.setEndTime(carExt.getEndTime());
+            ret.setStartTime(carExt.getStartTime());
+            ret.setPrice(carExt.getPrice());
+            ret.setPriceType(carExt.getPriceType());
+        }
+        return ret;
+    }
 
     public List<Car> getCarList() {
         @SuppressWarnings("unchecked")

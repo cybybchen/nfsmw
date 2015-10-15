@@ -41,7 +41,8 @@ public class FansRewardCommandService {
     	int fansRewardId = reqcmd.getId();
     	fansRewardService.addUserFansReward(user, fansRewardId);
     	
-               
+    	builder.setId(user.getFansRewardStatus());
+    	builder.setStarttime(user.getFansRewardLastTime());
         return builder.build();
     }
 }

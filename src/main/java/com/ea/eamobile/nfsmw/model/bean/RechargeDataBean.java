@@ -66,6 +66,7 @@ public class RechargeDataBean implements Serializable {
 	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("id", id);
 			json.put("transactionId", transactionId);
@@ -73,7 +74,10 @@ public class RechargeDataBean implements Serializable {
 			json.put("expense", expense);
 			json.put("vipId", vipId);
 			json.put("lastTime", lastTime);
-			json.put("rewardList", rewardList);
+			for (RewardBean reward : rewardList) {
+				jsonArray.put(reward.toJsonObject());
+			}
+			json.put("rewardList", jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,7 +89,13 @@ public class RechargeDataBean implements Serializable {
 		if (rechargeInfoStr == null)
 			return null;
 		RechargeDataBean recharge = new RechargeDataBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(rechargeInfoStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(rechargeInfoStr);
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		recharge.setId(CommonUtil.jsonGetInt(json, "id"));
 		recharge.setTransactionId(CommonUtil.jsonGetString(json, "transactionId"));

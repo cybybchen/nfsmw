@@ -38,7 +38,7 @@ public class LotteryService {
     
     public List<LotteryBean> getLotteryList(int type) {
     	List<LotteryBean> lotteryList = lotteryRedis.getLotteryList(type);
-        if (lotteryList == null) {
+        if (lotteryList == null || lotteryList.size() == 0) {
             lotteryList = parseAndSaveLotteryList(type);
         }
         return lotteryList;
@@ -46,14 +46,27 @@ public class LotteryService {
     
     public LotteryBean randomLottery(int type) {
     	List<LotteryBean> lotteryList = getLotteryList(type);
+    	int totalWeight = 0;
+    	for (LotteryBean lottery : lotteryList) {
+    		totalWeight += lottery.getWeight();
+    	}
     	Random rand = new Random();
     	int randNum = rand.nextInt(lotteryList.size());
-    	
-    	return lotteryList.get(randNum);
+		LotteryBean lottery = lotteryList.get(randNum);
+		while (rand.nextInt(totalWeight) > lottery.getWeight()) {
+			randNum = rand.nextInt(lotteryList.size());
+			lottery = lotteryList.get(randNum);
+		}
+		
+		return lottery;
     }
     
     public List<LotteryBean> randomLotteryList(int type) {
-    	List<LotteryBean> lotteryList = getLotteryList(type);
+    	List<LotteryBean> lotteryList = getLotteryList(TPYE_RANDOM_ONETIME);
+    	int totalWeight = 0;
+    	for (LotteryBean lottery : lotteryList) {
+    		totalWeight += lottery.getWeight();
+    	}
     	Random rand = new Random();
     	List<LotteryBean> randomLotteryList = new ArrayList<LotteryBean>();
     	int randomCount = RANDOM_COUNT_ONETIME;
@@ -63,7 +76,8 @@ public class LotteryService {
     	while (randomLotteryList.size() < randomCount) {
     		int randNum = rand.nextInt(lotteryList.size());
     		LotteryBean lottery = lotteryList.get(randNum);
-    		randomLotteryList.add(lottery);
+    		if (rand.nextInt(totalWeight) <= lottery.getWeight())
+    			randomLotteryList.add(lottery);
     	}
     	
     	if (type == TYPE_RANDOM_TENTIME) {

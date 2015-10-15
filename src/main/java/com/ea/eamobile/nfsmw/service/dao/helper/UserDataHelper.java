@@ -58,6 +58,11 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.fansRewardLastTime = data.getFansRewardLastTime();
 		this.missionRewardStatus = data.getMissionRewardStatus();
 		this.missionFinishStatus = data.getMissionFinishStatus();
+		this.goldModeUnlockStatus = data.getGoldModeUnlockStatus();
+		this.monthGoldCardEndTime = data.getMonthGoldCardEndTime();
+		this.monthGoldCardLastRewardTime = data.getMonthGoldCardLastRewardTime();
+		this.isNewUser = data.getIsNewUser();
+		this.playGameTimes = data.getPlayGameTimes();
 
 		setMarks(data.getMarks());
 	}
@@ -105,6 +110,11 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.fansRewardLastTime = rs.getInt("fans_reward_last_time");
 		this.missionRewardStatus = rs.getInt("mission_reward_status");
 		this.missionFinishStatus = rs.getInt("mission_finish_status");
+		this.goldModeUnlockStatus = rs.getInt(GOLD_MODE_UNLOCK_STATUS);
+		this.monthGoldCardEndTime = rs.getString(MONTH_GOLD_CARD_END_TIME);
+		this.monthGoldCardLastRewardTime = rs.getString(MONTH_GOLD_CARD_LAST_REWARD_TIME);
+		this.isNewUser = rs.getInt(IS_NEW_USER);
+		this.playGameTimes = rs.getInt(PLAY_GAME_TIMES);
 	}
 
 	@Override

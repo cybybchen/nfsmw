@@ -125,6 +125,8 @@ public class DateUtil {
      * @see #getDate(String, String, Date)
      */
     public static Date getDateTime(String date) {
+    	if (date == null || date.equals(""))
+    		date = CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT);
         return getDate(date, DEFAULT_DATETIME_FORMAT, null);
     }
 

@@ -32,8 +32,9 @@
 
 	<update id="update" parameterType="com.ea.eamobile.nfsmw.model.bean.UserPropBean">
 		update user_prop set
-		user_id=#{userId},prop_id=#{propId},prop_count=#{propCount}
-		where id = #{id}
+		prop_count=#{propCount}
+<!-- 		where id = #{id} -->
+		where user_id=#{userId} and prop_id=#{propId}
 	</update>
 
 	<delete id="deleteById">

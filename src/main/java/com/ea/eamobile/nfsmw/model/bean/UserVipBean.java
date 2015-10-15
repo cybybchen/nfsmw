@@ -69,7 +69,13 @@ public class UserVipBean implements Serializable {
 		if (userVipStr == null)
 			return null;
 		UserVipBean userVip = new UserVipBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(userVipStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(userVipStr);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		userVip.setId(CommonUtil.jsonGetInt(json, "id"));
 		userVip.setUserId(CommonUtil.jsonGetLong(json, "userId"));

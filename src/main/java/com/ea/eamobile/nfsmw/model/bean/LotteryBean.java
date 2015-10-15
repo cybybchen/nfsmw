@@ -18,6 +18,7 @@ public class LotteryBean implements Serializable {
 	private int id = 0;
 	private String name = "";
 	private int weight = 0;
+	private int leastTimes = 0;
 	private List<RewardBean> lotteryRewardList = new ArrayList<RewardBean>();
 	public int getId() {
 		return id;
@@ -37,6 +38,12 @@ public class LotteryBean implements Serializable {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	public int getLeastTimes() {
+		return leastTimes;
+	}
+	public void setLeastTimes(int leastTimes) {
+		this.leastTimes = leastTimes;
+	}
 	public List<RewardBean> getLotteryRewardList() {
 		return lotteryRewardList;
 	}
@@ -45,11 +52,16 @@ public class LotteryBean implements Serializable {
 	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("id", id);
 			json.put("name", name);
 			json.put("weight", weight);
-			json.put("lotteryRewardList", lotteryRewardList);
+			json.put("leastTimes", leastTimes);
+			for (RewardBean reward : lotteryRewardList) {
+				jsonArray.put(reward.toJsonObject());
+			}
+			json.put("lotteryRewardList", jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,11 +73,18 @@ public class LotteryBean implements Serializable {
 		if (lotteryStr == null)
 			return null;
 		LotteryBean lottery = new LotteryBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(lotteryStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(lotteryStr);
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		lottery.setId(CommonUtil.jsonGetInt(json, "id"));
 		lottery.setName(CommonUtil.jsonGetString(json, "name"));
 		lottery.setWeight(CommonUtil.jsonGetInt(json, "weight"));
+		lottery.setLeastTimes(CommonUtil.jsonGetInt(json, "leastTimes"));
 		
 		List<RewardBean> rewardList = new ArrayList<RewardBean>();
 		JSONArray lotteryRewardArray = CommonUtil.jsonGetArray(json, "lotteryRewardList");

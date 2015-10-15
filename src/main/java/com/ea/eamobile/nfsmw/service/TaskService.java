@@ -3,12 +3,15 @@ package com.ea.eamobile.nfsmw.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.bean.TaskBean;
+import com.ea.eamobile.nfsmw.service.command.MissionCommandService;
 import com.ea.eamobile.nfsmw.service.redis.TaskRedisService;
 import com.ea.eamobile.nfsmw.utils.XmlUtil;
 
@@ -19,6 +22,8 @@ import com.ea.eamobile.nfsmw.utils.XmlUtil;
  */
 @Service
 public class TaskService {
+	
+	private static final Logger log = LoggerFactory.getLogger(TaskService.class);
 
     @Autowired
     private TaskRedisService taskRedis;
@@ -49,10 +54,12 @@ public class TaskService {
     	if (task == null)
     		return;
     	int missionFinishStatus = user.getMissionFinishStatus();
+    	log.debug("missionFinishStatus is:" + missionFinishStatus);
     	if ((missionFinishStatus >> taskId & 1) == 0) {
-    		user.setMissionFinishStatus(missionFinishStatus + 1 << taskId);
+    		user.setMissionFinishStatus(missionFinishStatus + (1 << taskId));
     		
     		userService.updateUser(user);
+    		log.debug("222missionFinishStatus is:" + user.getMissionFinishStatus());
     	}
     }
     
@@ -66,7 +73,7 @@ public class TaskService {
     				(missionRewardStatus >> task.getId() & 1) == 1)
     			continue;
     		
-    		missionRewardStatus += 1 << task.getId();
+    		missionRewardStatus += (1 << task.getId());
     		List<RewardBean> rewardList = task.getRewardList();
         	rewardService.doRewards(user, rewardList);
     	}

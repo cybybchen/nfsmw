@@ -68,6 +68,8 @@ public class Const {
     public static final String GET_SEND_ENERGY_FAILED = "汽油领取失败";
     
     public static final String GET_CAR = "获得车辆";
+    
+    public static final String GET_MONTH_GOLD = "月卡金币领取成功";
 
     public static final int HAVE_GET_REWARD = 1;
 

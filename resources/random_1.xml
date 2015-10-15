@@ -1,18 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-	<lottery id="1" name="100金币" weight="5"  >
-		<reward id="1" rewardid="1" rewardcount="100" />
+	<lottery id="11" name="ford foucus rs500" weight="1500"  >
+		<reward id="1" rewardid="3017" rewardcount="1" />
 	</lottery>
-	<lottery id="2" name="40000银币+超级氮气*1" weight="5" >
-		<reward id="1" rewardid="2" rewardcount="40000" />
-		<reward id="2" rewardid="3" rewardcount="1" />
-	</lottery>
-	<lottery id="3" name="获得人物4" weight="5" />
-		<reward id="1" rewardid="4" rewardcount="50" />
-		<reward id="2" rewardid="5" rewardcount="1" />
+	<lottery id="12" name="lancia delta hf integrale evoluzione 2" weight="4000" >
+		<reward id="1" rewardid="3029" rewardcount="1" />
+		</lottery>
+	<lottery id="13" name="porsche 911 turbo 3.0" weight="500" >
+		<reward id="1" rewardid="3044" rewardcount="1" />
 	</lottery>   
-	<lottery id="100" name="获得人物4" weight="5" />
-		<reward id="1" rewardid="4" rewardcount="50" />
-		<reward id="2" rewardid="5" rewardcount="1" />
+	<lottery id="14" name="mitsubishi lancer evolution x" weight="2700" >
+		<reward id="1" rewardid="3039" rewardcount="1" />
+	</lottery> 
+	<lottery id="15" name="bmw m3 coupe" weight="3000" >
+		<reward id="1" rewardid="3008" rewardcount="1" />
+	</lottery> 
+	<lottery id="16" name="lancia delta hf integrale evoluzione 2 hfs edition" weight="1000" >
+		<reward id="1" rewardid="3030" rewardcount="1" />
+	</lottery> 
+	<lottery id="17" name="chevrolet camaro zl1 nfs edition" weight="300" >
+		<reward id="1" rewardid="3011" rewardcount="1" />
+	</lottery> 
+	<lottery id="21" name="hummer h1 alpha" weight="2000" >
+		<reward id="1" rewardid="3021" rewardcount="1" />
+	</lottery> 
+	<lottery id="22" name="ford f-150 svt rator" weight="400" >
+		<reward id="1" rewardid="3016" rewardcount="1" />
+	</lottery> 
+	<lottery id="23" name="tesla roadster sport" weight="2000" >
+		<reward id="1" rewardid="3048" rewardcount="1" />
+	</lottery> 
+	<lottery id="24" name="alfa romeo 4c concept 2011" weight="300" >
+		<reward id="1" rewardid="3001" rewardcount="1" />
+	</lottery> 
+	<lottery id="25" name="chevrolet camaro zl1" weight="2000" >
+		<reward id="1" rewardid="3010" rewardcount="1" />
+	</lottery> 
+	<lottery id="26" name="chevrolet corvettestingray 427" weight="600" >
+		<reward id="1" rewardid="3012" rewardcount="1" />
+	</lottery> 
+	<lottery id="27" name="land rover range rover evoque couple nfs edition" weight="50" >
+		<reward id="1" rewardid="3032" rewardcount="1" />
+	</lottery> 
+	<lottery id="31" name="land rover range rover evoque couple" weight="800" >
+		<reward id="1" rewardid="3031" rewardcount="1" />
+	</lottery> 
+	<lottery id="32" name="jeep grand cherokee srt8" weight="65" >
+		<reward id="1" rewardid="3024" rewardcount="1" />
+	</lottery> 
+	<lottery id="33" name="lexus lfa" weight="1000" >
+		<reward id="1" rewardid="3033" rewardcount="1" />
+	</lottery> 
+	<lottery id="34" name="audi r8 gt" weight="30" >
+		<reward id="1" rewardid="3004" rewardcount="1" />
+	</lottery> 
+	<lottery id="35" name="bmw m3 gtr" weight="30" >
+		<reward id="1" rewardid="3007" rewardcount="1" />
+	</lottery> 	
+	<lottery id="36" name="ford gt nfs edition" weight="20" >
+		<reward id="1" rewardid="3019" rewardcount="1" />
+	</lottery> 
+	<lottery id="37" name="chevrolet corvette zr1 ex" weight="5" >
+		<reward id="1" rewardid="3013" rewardcount="1" />
+	</lottery> 
+	<lottery id="41" name="jaguar xkr" weight="400" >
+		<reward id="1" rewardid="3023" rewardcount="1" />
+	</lottery> 
+	<lottery id="42" name="aston martin v12" weight="30" >
+		<reward id="1" rewardid="3002" rewardcount="1" />
+	</lottery> 
+	<lottery id="43" name="nissan gt-r" weight="15" >
+		<reward id="1" rewardid="3040" rewardcount="1" />
+	</lottery>
+    <lottery id="44" name="maserati granturismo" weight="300" >
+		<reward id="1" rewardid="3034" rewardcount="1" />
+	</lottery>
+    <lottery id="45" name="porsche panamera" weight="10" >
+		<reward id="1" rewardid="3045" rewardcount="1" />
+	</lottery>  
+    <lottery id="46" name="bentley continental" weight="8" >
+		<reward id="1" rewardid="3005" rewardcount="1" />
+	</lottery> 
+    <lottery id="47" name="mercedes-benz sls amg" weight="10" >
+		<reward id="1" rewardid="3038" rewardcount="1" />
+	</lottery> 	
+	<lottery id="48" name="bentley continental nfs edition" weight="5" >
+		<reward id="1" rewardid="3006" rewardcount="1" />
+	</lottery> 
+	<lottery id="49" name="ford gt" weight="50" >
+		<reward id="1" rewardid="3018" rewardcount="1" />
+	</lottery> 
+	<lottery id="50" name="mclaren mp4-12c" weight="4" >
+		<reward id="1" rewardid="3035" rewardcount="1" />
+	</lottery>
+    <lottery id="51" name="koenigsegg agera r" weight="1" >
+		<reward id="1" rewardid="3025" rewardcount="1" />
+	</lottery> 
+    <lottery id="52" name="mclaren mp4-12c nfs edition" weight="1" >
+		<reward id="1" rewardid="3036" rewardcount="1" />
+	</lottery> 	
+	<lottery id="53" name="lamborghini gallardo lp570 4 superleggera" weight="9" >
+		<reward id="1" rewardid="3028" rewardcount="1" />
 	</lottery> 
 </root>

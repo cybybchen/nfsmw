@@ -1,10 +1,7 @@
 package com.ea.eamobile.nfsmw.model.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -70,7 +67,13 @@ public class PropBean extends Merchandise implements Serializable {
 		if (rewardStr == null)
 			return null;
 		PropBean prop = new PropBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(rewardStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(rewardStr);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		prop.setId(CommonUtil.jsonGetInt(json, "id"));
 		prop.setDes(CommonUtil.jsonGetString(json, "des"));

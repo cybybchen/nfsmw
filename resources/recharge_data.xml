@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-	<recharge id="1" transactionid="1" name="100金币" expense="5"  >
-		<reward id="1" rewardid="1" rewardcount="100" />
-		<reward id="2" rewardid="2" rewardcount="1" />
+	<recharge id="1" transactionid="com.ea.mtx.871593" name="新手礼包" expense="1"  >
+		<reward id="1" rewardid="1002" rewardcount="999" />
+		<reward id="2" rewardid="1003" rewardcount="20" />
+		<reward id="3" rewardid="1001" rewardcount="120" />
+		<reward id="4" rewardid="2001" rewardcount="2" />
+		<reward id="5" rewardid="2004" rewardcount="1" />
 	</recharge>
-	<recharge id="2" transactionid="1" name="40000银币+超级氮气*1" expense="5" >
-		<reward id="1" rewardid="2" rewardcount="40000" />
-		<reward id="2" rewardid="3" rewardcount="1" />
+	<recharge id="2" transactionid="com.ea.mtx.871594" name="道具大礼包" expense="18" >
+		<reward id="1" rewardid="2001" rewardcount="16" />
+		<reward id="2" rewardid="2002" rewardcount="36" />
+		<reward id="3" rewardid="2003" rewardcount="16" />
 	</recharge>
-	<recharge id="3" transactionid="1" name="获得人物4" expense="5" />
-		<reward id="1" rewardid="4" rewardcount="50" />
-		<reward id="2" rewardid="5" rewardcount="1" />
+	<recharge id="3" transactionid="com.ea.mtx.871595" name="贵族年卡" expense="98" vipid="1" lasttime="365" >
+		<reward id="1" rewardid="1003" rewardcount="10" iscontinued="true" />
+		<reward id="2" rewardid="1002" rewardcount="100" iscontinued="true" />
+		<reward id="3" rewardid="2004" rewardcount="1" iscontinued="true" />
+		<reward id="4" rewardid="3041" rewardcount="1" />
 	</recharge>   
-	<recharge id="100" transactionid="1" name="获得人物4" expense="5" vipid="1" lasttime="365" />
-		<reward id="1" rewardid="4" rewardcount="50" iscontinued="true" />
-		<reward id="2" rewardid="5" rewardcount="1" />
+	<recharge id="4" transactionid="com.ea.mtx.871592" name="黄金典藏包" expense="30" />
+	<recharge id="5" transactionid="com.ea.mtx.871606" name="金币月卡" expense="25" lasttime="30" >
+		<reward id="1" rewardid="1003" rewardcount="50" iscontinued="true" />
 	</recharge> 
 </root>
+ 

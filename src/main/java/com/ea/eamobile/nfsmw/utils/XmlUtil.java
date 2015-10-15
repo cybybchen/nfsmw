@@ -23,9 +23,11 @@ public class XmlUtil extends CommonUtil {
 
 	
 	public static List<LotteryBean> getLotteryList(int type) {
+		logger.debug("parse random_" + type + ".xml");
 		List<LotteryBean> lotteryList = new ArrayList<LotteryBean>();
 		try {
 			String filePath = CommonUtil.getConfigFilePath(XmlParseConst.LOTTERY_FILE_PREFIX + type + ".xml");
+			logger.debug("filePath is:" + filePath);
 			SAXReader reader = new SAXReader();
 			InputStream inStream = new FileInputStream(new File(filePath));
 			Document doc = reader.read(inStream);
@@ -40,6 +42,8 @@ public class XmlUtil extends CommonUtil {
 				lottery.setWeight(CommonUtil.stringToInt(
 						getElementAttr(lotteryElement, XmlParseConst.WEIGHT)));
 				lottery.setName(getElementAttr(lotteryElement, XmlParseConst.NAME));
+				lottery.setLeastTimes(CommonUtil.stringToInt(
+						getElementAttr(lotteryElement, XmlParseConst.LEASTTIMES)));
 				List<?> rewardNodeList = lotteryElement.elements();
 				List<RewardBean> rewardList = new ArrayList<RewardBean>();
 				for (int k = 0; k < rewardNodeList.size(); ++k) {
@@ -57,7 +61,7 @@ public class XmlUtil extends CommonUtil {
 				lotteryList.add(lottery);
 			}
 		} catch (Exception e) {
-			logger.error("parse lottery.xml failed");
+			logger.error("parse random_" + type + ".xml failed");
 		}
 		
 		return lotteryList;
@@ -169,6 +173,8 @@ public class XmlUtil extends CommonUtil {
 						getElementAttr(lotteryElement, XmlParseConst.ID)));
 				task.setDes(getElementAttr(lotteryElement, XmlParseConst.DES));
 				task.setName(getElementAttr(lotteryElement, XmlParseConst.NAME));
+				task.setType(CommonUtil.stringToInt(
+						getElementAttr(lotteryElement, XmlParseConst.TYPE)));
 				List<?> rewardNodeList = lotteryElement.elements();
 				List<RewardBean> rewardList = new ArrayList<RewardBean>();
 				for (int k = 0; k < rewardNodeList.size(); ++k) {

@@ -61,7 +61,13 @@ public class UserPropBean implements Serializable {
 		if (userPropStr == null)
 			return null;
 		UserPropBean userProp = new UserPropBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(userPropStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(userPropStr);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		userProp.setId(CommonUtil.jsonGetInt(json, "id"));
 		userProp.setUserId(CommonUtil.jsonGetLong(json, "userId"));

@@ -18,6 +18,7 @@ public class TaskBean implements Serializable {
 	private int id = 0;
 	private String name = "";
 	private String des = "";
+	private int type = 0;
 	private List<RewardBean> rewardList = new ArrayList<RewardBean>();
 	public int getId() {
 		return id;
@@ -37,6 +38,12 @@ public class TaskBean implements Serializable {
 	public void setDes(String des) {
 		this.des = des;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public List<RewardBean> getRewardList() {
 		return rewardList;
 	}
@@ -45,11 +52,16 @@ public class TaskBean implements Serializable {
 	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("id", id);
 			json.put("name", name);
 			json.put("des", des);
-			json.put("rewardList", rewardList);
+			json.put("type", type);
+			for (RewardBean reward : rewardList) {
+				jsonArray.put(reward.toJsonObject());
+			}
+			json.put("rewardList", jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,15 +69,22 @@ public class TaskBean implements Serializable {
 		
 		return json.toString();
 	}
-	public static TaskBean fromJson(String lotteryStr) {
-		if (lotteryStr == null)
+	public static TaskBean fromJson(String taskStr) {
+		if (taskStr == null)
 			return null;
-		TaskBean lottery = new TaskBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(lotteryStr);
+		TaskBean task = new TaskBean();
+		JSONObject json = null;
+		try {
+			json = new JSONObject(taskStr);
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		lottery.setId(CommonUtil.jsonGetInt(json, "id"));
-		lottery.setName(CommonUtil.jsonGetString(json, "name"));
-		lottery.setDes(CommonUtil.jsonGetString(json, "des"));
+		task.setId(CommonUtil.jsonGetInt(json, "id"));
+		task.setName(CommonUtil.jsonGetString(json, "name"));
+		task.setDes(CommonUtil.jsonGetString(json, "des"));
+		task.setType(CommonUtil.jsonGetInt(json, "type"));
 		
 		List<RewardBean> rewardList = new ArrayList<RewardBean>();
 		JSONArray rewardArray = CommonUtil.jsonGetArray(json, "rewardList");
@@ -80,8 +99,8 @@ public class TaskBean implements Serializable {
 			RewardBean reward = RewardBean.fromJson(rewardStr);
 			rewardList.add(reward);
 		}
-		lottery.setRewardList(rewardList);
+		task.setRewardList(rewardList);
 
-		return lottery;
+		return task;
 	}
 }

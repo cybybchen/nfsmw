@@ -350,6 +350,10 @@ public class PushCommandService {
         	rpbuilder.setHeading(Const.GET_CAR);
         	rpbuilder.setPopScreen(1);
         	rpbuilder.setText("获得" + content);
+        } else if (type == Match.SEND_MONTH_GOLD_POPUP) {
+        	rpbuilder.setHeading(Const.GET_MONTH_GOLD);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText("获得" + content);
         }
         
         return rpbuilder.build();

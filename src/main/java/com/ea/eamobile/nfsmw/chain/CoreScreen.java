@@ -1,6 +1,7 @@
 package com.ea.eamobile.nfsmw.chain;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.protoc.Commands.Prop;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingConfirmCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingResultCommand;
@@ -92,6 +94,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseTutorialRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseUpgradeSlotCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseUseChartletCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.responseTournamentRewardCommand;
+import com.ea.eamobile.nfsmw.service.UserPropService;
 import com.ea.eamobile.nfsmw.service.UserService;
 import com.ea.eamobile.nfsmw.service.command.BindingCommandService;
 import com.ea.eamobile.nfsmw.service.command.ChanllengeMatchInfoCommandService;
@@ -212,6 +215,8 @@ public class CoreScreen extends RequestScreen {
     private FansRewardCommandService fansRewardCommandService;
     @Autowired
     private LotteryCommandService lotteryCommandService;
+    @Autowired
+    private UserPropService userPropService;
     
     @Override
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
@@ -244,6 +249,10 @@ public class CoreScreen extends RequestScreen {
                 || cmd.getGameMode() == Match.EVERYDAY_RACE_MODE || cmd.getGameMode() == Match.GOLD_MODE) {
             ResponseRaceResultCommand response;
             try {
+            	List<Prop> usePropList = cmd.getPropnumList();
+            	for (Prop prop : usePropList) {
+            		userPropService.useUserProp(user.getId(), prop.getId(), prop.getCount());
+            	}
                 response = raceResultCommandService.getResponseRaceResultCommand(cmd, user, responseBuilder);
                 if (response != null) {
                     responseBuilder.setRaceResultCommand(response);
@@ -366,6 +375,8 @@ public class CoreScreen extends RequestScreen {
 
     @Override
     protected boolean handleCommand(RequestRaceStartCommand cmd, Builder responseBuilder, User user) {
+    	if (cmd.getGameMode() == Match.CAREER_MODE)
+        	user.setPlayGameTimes(user.getPlayGameTimes() + 1);
         ResponseRaceStartCommand response = null;
         try {
             response = raceStartService.getResponseRaceStartCommand(cmd, user, responseBuilder);

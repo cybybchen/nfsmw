@@ -57,4 +57,13 @@ public class RechargeDataService {
         }
         return null;
     }
+    
+    public RechargeDataBean getRechargeDataById(int id) {
+    	List<RechargeDataBean> rechargeDataList = getRechargeDataList();
+        for (RechargeDataBean rechargeData : rechargeDataList) {
+        	if (rechargeData.getId() == id && rechargeData.getId() != 0)
+        		return rechargeData;
+        }
+        return null;
+    }
 }

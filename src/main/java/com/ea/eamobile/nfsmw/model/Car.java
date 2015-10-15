@@ -44,6 +44,8 @@ public class Car extends Merchandise implements Serializable {
     private int endTime;
 
     private int isSpecialCar;
+    
+    private int primaryId;
 
     public boolean needTransport() {
         return needTransport > 0;
@@ -189,4 +191,12 @@ public class Car extends Merchandise implements Serializable {
     public void setIsSpecialCar(int isSpecialCar) {
         this.isSpecialCar = isSpecialCar;
     }
+
+	public int getPrimaryId() {
+		return primaryId;
+	}
+
+	public void setPrimaryId(int primaryId) {
+		this.primaryId = primaryId;
+	}
 }

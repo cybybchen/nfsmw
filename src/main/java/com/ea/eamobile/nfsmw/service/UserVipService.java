@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ea.eamobile.nfsmw.constants.RewardConst;
 import com.ea.eamobile.nfsmw.model.RaceMode;
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.UserTrack;
@@ -79,5 +80,16 @@ public class UserVipService {
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataByVipId(1);
     	List<RewardBean> rewardList = rechargeData.getRewardList();
     	rewardService.doRewards(user, rewardList);
+    }
+    
+    public boolean doUserMonthGoldCardReward(User user) {
+    	if (!CommonUtil.isNextDay(user.getMonthGoldCardLastRewardTime()) || !CommonUtil.isTimeExpried(user.getMonthGoldCardEndTime()))
+    		return false;
+    	
+    	user.setMonthGoldCardLastRewardTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT));
+    	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataById(RewardConst.PACKAGE_GOLDCARD_MONTH_ID);
+    	List<RewardBean> rewardList = rechargeData.getRewardList();
+    	rewardService.doRewards(user, rewardList);
+    	return true;
     }
 }

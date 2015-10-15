@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-	<fansreward id="1" name="100金币" countdown="0.35" >
-		<reward id="1" rewardid="1" rewardcount="100" />
+	<fansreward id="1" name="24汽油" countdown="0.35" >
+		<reward id="1" rewardid="1001" rewardcount="24" />
 	</fansreward>
-	<fansreward id="2" name="40000银币+超级氮气*1" countdown="21" >
-		<reward id="1" rewardid="2" rewardcount="40000" />
-		<reward id="2" rewardid="3" rewardcount="1" />
+	<fansreward id="2" name="10金币" countdown="21" >
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</fansreward>
-	<fansreward id="3" name="获得人物4" countdown="21" />
-		<reward id="1" rewardid="4" rewardcount="50" />
-		<reward id="2" rewardid="5" rewardcount="1" />
+	<fansreward id="3" name="LANCER EVOLUTION" countdown="21" >
+		<reward id="1" rewardid="3039" rewardcount="1" />
 	</fansreward>   
 </root>

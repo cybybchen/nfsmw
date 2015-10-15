@@ -82,24 +82,33 @@ public class UserPropService {
     public UserPropBean useUserProp(long userId, int propId, int propCount) {
     	UserPropBean userProp = getUserPropByPropId(userId, propId);
     	if (userProp != null) {
-    		if (userProp.getPropCount() >= propCount) {
+    		if (userProp.getPropCount() >= 1) {
     			userProp.setPropCount(userProp.getPropCount() - propCount);
+    			updateUserProp(userProp);
     			return userProp;
+    		} else {
+    			userProp = buyProp(userId, propId, propCount - userProp.getPropCount());
+    			if (userProp != null) {
+    				userProp.setPropCount(userProp.getPropCount() - propCount);
+    				updateUserProp(userProp);
+    				return userProp;
+    			}
     		}
     	}
     	
     	return null;
     }
     
-    public UserPropBean buyProp(long userId, int propId) {
+    public UserPropBean buyProp(long userId, int propId, int propCount) {
         ResultInfo result = new ResultInfo(false, "");
         
         PropBean prop = propService.queryProp(propId);
+        prop.setPrice(prop.getPrice() * propCount);
         result = payService.buy(prop, userId);
         if (result.isSuccess()) {
             // insert car for user
 
-        	UserPropBean userProp = addUserProp(userId, propId, 1);
+        	UserPropBean userProp = addUserProp(userId, propId, propCount);
 
             log.debug("buy prop success,propId={},userid={}", propId, userId);
             

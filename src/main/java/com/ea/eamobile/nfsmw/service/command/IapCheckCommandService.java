@@ -27,6 +27,7 @@ import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.CtaContentConst;
 import com.ea.eamobile.nfsmw.constants.IapConst;
 import com.ea.eamobile.nfsmw.constants.Match;
+import com.ea.eamobile.nfsmw.constants.RewardConst;
 import com.ea.eamobile.nfsmw.model.IapCheckInfo;
 import com.ea.eamobile.nfsmw.model.IapFailtureRecord;
 import com.ea.eamobile.nfsmw.model.User;
@@ -44,6 +45,7 @@ import com.ea.eamobile.nfsmw.service.RechargeDataService;
 import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserPayService;
 import com.ea.eamobile.nfsmw.service.UserService;
+import com.ea.eamobile.nfsmw.utils.CommonUtil;
 import com.ea.eamobile.nfsmw.utils.ConfigUtil;
 import com.ea.eamobile.nfsmw.utils.DateUtil;
 import com.ea.eamobile.nfsmw.view.ResultInfo;
@@ -183,7 +185,13 @@ public class IapCheckCommandService extends BaseCommandService {
     	if (rechargeData != null) {
     		List<RewardBean> rewardList = rechargeData.getRewardList();
         	rewardService.doRewards(user, rewardList);
-        	user.setPackageBuyRecord(user.getPackageBuyRecord() + 1 << rechargeData.getId());
+        	int packageBuyStatus = user.getPackageBuyRecord();
+        	if ((packageBuyStatus >> rechargeData.getId() & 1) == 0)
+        		user.setPackageBuyRecord(user.getPackageBuyRecord() + (1 << rechargeData.getId()));
+        	if (rechargeData.getId() == RewardConst.PACKAGE_GOLD_ID)
+        		user.setGoldModeUnlockStatus(1);
+        	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLDCARD_MONTH_ID)
+        		user.setMonthGoldCardEndTime(CommonUtil.getExpiredTime(user.getMonthGoldCardEndTime(), rechargeData.getLastTime() * 24));
         	log.debug("user package buy record is:" + user.getPackageBuyRecord());
     	}
     }

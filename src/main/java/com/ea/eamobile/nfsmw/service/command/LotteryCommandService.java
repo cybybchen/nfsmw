@@ -67,7 +67,9 @@ public class LotteryCommandService {
         
     	for (LotteryBean lottery : lotteryList) {
     		List<RewardBean> rewardList = lottery.getLotteryRewardList();
+    		rewardService.doRewards(user, rewardList);
     		for (RewardBean reward : rewardList) {
+    			log.debug("reward string is:" + reward.toJson());
     			RewardN.Builder rewardBuilder = RewardN.newBuilder();
     			rewardBuilder.setId(reward.getRewardId());
     			rewardBuilder.setCount(reward.getRewardCount());

@@ -96,6 +96,16 @@ public class User extends Markable implements Serializable {
     protected int missionRewardStatus;
     
     protected int missionFinishStatus;
+    
+    protected int goldModeUnlockStatus;
+    
+    protected String monthGoldCardEndTime;
+    
+    protected String monthGoldCardLastRewardTime;
+    
+    protected int isNewUser;
+    
+    protected int playGameTimes;
 
     // db field
     protected static final String ID = "id";
@@ -139,6 +149,11 @@ public class User extends Markable implements Serializable {
     protected static final String FANS_REWARD_LAST_TIME = "fans_reward_last_time";
     protected static final String MISSION_REWARD_STATUS = "mission_reward_status";
     protected static final String MISSION_FINISH_STATUS = "mission_finish_status";
+    protected static final String GOLD_MODE_UNLOCK_STATUS = "gold_mode_unlock_status";
+    protected static final String MONTH_GOLD_CARD_END_TIME = "month_gold_card_end_time";
+    protected static final String MONTH_GOLD_CARD_LAST_REWARD_TIME = "month_gold_card_last_reward_time";
+    protected static final String IS_NEW_USER = "new_user";
+    protected static final String PLAY_GAME_TIMES = "play_game_times";
 
     public int getAccountStatus() {
         return accountStatus;
@@ -530,6 +545,51 @@ public class User extends Markable implements Serializable {
 	public void setMissionFinishStatus(int missionFinishStatus) {
 		this.missionFinishStatus = missionFinishStatus;
 		mark(MISSION_FINISH_STATUS, missionFinishStatus);
+	}
+
+	public int getGoldModeUnlockStatus() {
+		return goldModeUnlockStatus;
+	}
+
+	public void setGoldModeUnlockStatus(int goldModeUnlockStatus) {
+		this.goldModeUnlockStatus = goldModeUnlockStatus;
+		mark(GOLD_MODE_UNLOCK_STATUS, goldModeUnlockStatus);
+	}
+
+	public String getMonthGoldCardEndTime() {
+		return monthGoldCardEndTime;
+	}
+
+	public void setMonthGoldCardEndTime(String monthGoldCardEndTime) {
+		this.monthGoldCardEndTime = monthGoldCardEndTime;
+		mark(MONTH_GOLD_CARD_END_TIME, monthGoldCardEndTime);
+	}
+
+	public String getMonthGoldCardLastRewardTime() {
+		return monthGoldCardLastRewardTime;
+	}
+
+	public void setMonthGoldCardLastRewardTime(String monthGoldCardLastRewardTime) {
+		this.monthGoldCardLastRewardTime = monthGoldCardLastRewardTime;
+		mark(MONTH_GOLD_CARD_LAST_REWARD_TIME, monthGoldCardLastRewardTime);
+	}
+
+	public int getIsNewUser() {
+		return isNewUser;
+	}
+
+	public void setIsNewUser(int isNewUser) {
+		this.isNewUser = isNewUser;
+		mark(IS_NEW_USER, isNewUser);
+	}
+
+	public int getPlayGameTimes() {
+		return playGameTimes;
+	}
+
+	public void setPlayGameTimes(int playGameTimes) {
+		this.playGameTimes = playGameTimes;
+		mark(PLAY_GAME_TIMES, playGameTimes);
 	}
 
 	@Override

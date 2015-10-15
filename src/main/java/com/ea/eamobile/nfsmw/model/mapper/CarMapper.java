@@ -14,7 +14,8 @@ public interface CarMapper {
     
 
     public Car getCar(String id);
-
+    
+    public Car getCarByPrimaryId(int primary_id);
 
     public List<Car> getCarList();
 

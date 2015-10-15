@@ -237,7 +237,7 @@ public class TrackCommandService extends BaseCommandService {
                 int modeId = mode.getId();
                 builder.setModeId(modeId);
                 builder.setModeName(mode.getName());
-                builder.setModeType(mode.getType());
+                builder.setModeType(mode.getModeType());
                 UserTrack trackMode = userTrackService.getUserModeMap(userId).get(modeId);
                 int finishRatio = -1;
                 if (trackMode != null) {

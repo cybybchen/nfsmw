@@ -45,11 +45,15 @@ public class FansRewardBean implements Serializable {
 	}
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("id", id);
 			json.put("name", name);
 			json.put("countdown", countdown);
-			json.put("rewardList", rewardList);
+			for (RewardBean reward : rewardList) {
+				jsonArray.put(reward.toJsonObject());
+			}
+			json.put("rewardList", jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +65,13 @@ public class FansRewardBean implements Serializable {
 		if (lotteryStr == null)
 			return null;
 		FansRewardBean lottery = new FansRewardBean();
-		JSONObject json = (JSONObject) JSONObject.stringToValue(lotteryStr);
+		JSONObject json = null;
+		try {
+			json = new JSONObject(lotteryStr);
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		lottery.setId(CommonUtil.jsonGetInt(json, "id"));
 		lottery.setName(CommonUtil.jsonGetString(json, "name"));

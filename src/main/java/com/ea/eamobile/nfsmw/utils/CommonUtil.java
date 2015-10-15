@@ -242,7 +242,7 @@ public class CommonUtil {
 		try {
 			value = json.getJSONArray(property);
 		} catch (JSONException e) {
-//			logger.info("parse json to int error:" + property);
+			logger.info("parse json to int error:" + property + e);
 		}
 		return value;
 	}
@@ -544,7 +544,7 @@ public class CommonUtil {
 		return now;
 	}
 	
-	public String getExpiredTime(String time, int hour) {
+	public static String getExpiredTime(String time, int hour) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentTimeStr = df.format(new Date());
 		Calendar calendar = Calendar.getInstance();   

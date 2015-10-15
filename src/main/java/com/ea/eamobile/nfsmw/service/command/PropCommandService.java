@@ -44,8 +44,10 @@ public class PropCommandService {
     	UserInfo.Builder usbuilder = UserInfo.newBuilder();
         
         int propId = reqcmd.getId();
-        UserPropBean userProp = userPropService.buyProp(user.getId(), propId);
-        userInfoMessageService.buildUserInfoMessage(usbuilder, user, userProp);
+        int propCount = reqcmd.getCount();
+        UserPropBean userProp = userPropService.buyProp(user.getId(), propId, propCount);
+        user = userService.getUser(user.getId());
+        userInfoMessageService.buildUserInfoMessage(usbuilder, user);
         builder.setUserinfo(usbuilder.build());
                
         return builder.build();
