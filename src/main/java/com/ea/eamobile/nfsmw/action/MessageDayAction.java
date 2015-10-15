@@ -77,10 +77,12 @@ public class MessageDayAction {
             model.addAttribute("self", self);
             
             // add news
+            String newNoticeContent = newsService.getNewNoticeContent();
             String boards = newsService.getBoard();
             String actions = newsService.getAction();
             String css = newsService.getCss();
             String contact = newsService.getContact();
+            model.addAttribute("new_notice", newNoticeContent);
             model.addAttribute("boards", boards);
             model.addAttribute("actions", actions);
             model.addAttribute("css", css);

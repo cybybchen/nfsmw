@@ -24,6 +24,8 @@ public class NewsService {
     public static final int CSS_TYPE = 3;
     // 联系我们
     public static final int CONTACT_TYPE = 4;
+    
+    public static final int NEW_NOTICE_TYPE = 5;
 
     @Autowired
     private NewsMapper newsMapper;
@@ -60,6 +62,14 @@ public class NewsService {
         return news;
     }
 
+    public String getNewNoticeContent() {
+        News new_notice = getNewsByType(NEW_NOTICE_TYPE);
+        if (new_notice != null) {
+            return new_notice.getContent();
+        }
+        return "";
+    }
+    
     public String getBoard() {
         News board = getNewsByType(BOARD_TYPE);
         if (board != null) {
