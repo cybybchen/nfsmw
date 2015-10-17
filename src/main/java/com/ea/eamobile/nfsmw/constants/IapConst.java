@@ -1,6 +1,8 @@
 package com.ea.eamobile.nfsmw.constants;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class IapConst {
@@ -102,5 +104,19 @@ public class IapConst {
             put("mercedesbenz_sl65_amg_blackseries_2009_desc", "梅赛德斯奔驰 SL65");
             put("porsche_911_carrera_s_2012_desc", "保时捷 911 CARRERA");
         }
+    };
+    
+    public static final List<String> RESTORE_IAP_PRODUCTID_LIST = new ArrayList<String>() {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		{
+			add("com.ea.mtx.871593");
+			add("com.ea.mtx.871595");
+			add("com.ea.mtx.871592");
+			add("com.ea.mtx.871606");
+		}
     };
 }

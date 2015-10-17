@@ -30,6 +30,10 @@ public class IapCheckInfoService {
     public IapCheckInfo getIapCheckInfoByUserIdAndProductId(IapCheckInfo iapCheckInfo){
         return iapCheckInfoMapper.getIapCheckInfoByUserIdAndProductId(iapCheckInfo);
     }
+    
+    public IapCheckInfo getIapCheckInfoByUserIdAndTransactionId(IapCheckInfo iapCheckInfo){
+        return iapCheckInfoMapper.getIapCheckInfoByUserIdAndTransactionId(iapCheckInfo);
+    }
 
     public List<IapCheckInfo> getIapCheckInfoList(){
         return iapCheckInfoMapper.getIapCheckInfoList();

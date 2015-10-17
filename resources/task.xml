@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
 	<task id="1" name="初试身手" des="参加一场比赛来熟悉赛车的操控" type="1" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task>
 	<task id="2" name="第一台车" des="去车库中购买第一台属于自己的赛车" type="2" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task>
 	<task id="3" name="每日挑战" des="参加一场每日挑战赛，连续7天更有大奖" type="3" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task>   
 	<task id="4" name="报名锦标赛" des="参加一次锦标赛角逐，和高手一决雌雄" type="4" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="5" name="装配模组" des="在比赛前装配模组，提高你的赛车极限" type="5" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="6" name="B级赛道" des="在职业生涯中完成C级赛道的所有三场赛事" type="6" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="7" name="MW升级" des="在职业生涯中完成任意4场赛事" type="7" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task>
 	<task id="8" name="锦标赛领奖" des="成功在锦标赛结束后领取排名奖励" type="8" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 	
  	<task id="9" name="声望升级" des="声望是你在风港新城的实力体现，升到2级" type="9" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="10" name="进入T2" des="完成T1考级赛，成为真正的飞车手" type="10" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="11" name="开启黄金典藏关卡" des="解锁黄金典藏关卡" type="11" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="12" name="地下车手" des="黄金典藏关中的地下狂飙完成度达到100%" type="12" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="13" name="保时捷巡游" des="黄金典藏关中的保时捷之旅完成度达到100%" type="13" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="14" name="热力追踪" des="黄金典藏关中的热力追踪完成度达到100%" type="14" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="15" name="最高通缉" des="黄金典藏关中的最高通缉完成度达到100%" type="15" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 	<task id="16" name="我是好人" des="黄金典藏关中的无间风云完成度达到100%" type="16" >
-		<reward id="1" rewardid="1002" rewardcount="5" />
+		<reward id="1" rewardid="1003" rewardcount="10" />
 	</task> 
 </root>

@@ -16,6 +16,8 @@ public interface IapCheckInfoMapper {
     public IapCheckInfo getIapCheckInfoByTransactionId(long transactionId);
     
     public IapCheckInfo getIapCheckInfoByUserIdAndProductId(IapCheckInfo iapCheckInfo);
+    
+    public IapCheckInfo getIapCheckInfoByUserIdAndTransactionId(IapCheckInfo iapCheckInfo);
 
     public List<IapCheckInfo> getIapCheckInfoList();
 

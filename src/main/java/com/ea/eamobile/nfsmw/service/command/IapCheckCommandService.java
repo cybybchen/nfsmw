@@ -38,6 +38,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestIapCheckCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseIapCheckCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseNotificationCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.service.CtaContentService;
 import com.ea.eamobile.nfsmw.service.IapCheckInfoService;
 import com.ea.eamobile.nfsmw.service.IapFailtureRecordService;
@@ -45,6 +46,7 @@ import com.ea.eamobile.nfsmw.service.RechargeDataService;
 import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserPayService;
 import com.ea.eamobile.nfsmw.service.UserService;
+import com.ea.eamobile.nfsmw.service.UserVipService;
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 import com.ea.eamobile.nfsmw.utils.ConfigUtil;
 import com.ea.eamobile.nfsmw.utils.DateUtil;
@@ -71,6 +73,8 @@ public class IapCheckCommandService extends BaseCommandService {
     private RechargeDataService rechargeDataService;
     @Autowired
     private RewardService rewardService;
+    @Autowired
+    private UserVipService userVipService;
 
     public ResponseIapCheckCommand getResponseIapCheckCommand(RequestIapCheckCommand reqcmd, User user,
             Commands.ResponseCommand.Builder responseBuilder) {
@@ -101,8 +105,14 @@ public class IapCheckCommandService extends BaseCommandService {
         }
         boolean allUsefulCheck = false;
         for (IapCheckInfo iapCheckInfo : iapCheckInfoList) {
-	        IapCheckInfo oldIapCheckInfo = iapCheckInfoService.getIapCheckInfoByTransactionId(iapCheckInfo
+        	IapCheckInfo oldIapCheckInfo = new IapCheckInfo();
+        	iapCheckInfo.setUserId(userId);
+        	if (IapConst.RESTORE_IAP_PRODUCTID_LIST.contains(iapCheckInfo.getProductId())) {
+        		oldIapCheckInfo = iapCheckInfoService.getIapCheckInfoByUserIdAndTransactionId(iapCheckInfo);
+        	} else {
+        		oldIapCheckInfo = iapCheckInfoService.getIapCheckInfoByTransactionId(iapCheckInfo
 	                .getTransactionId());
+        	}
 	        
 	        if (oldIapCheckInfo != null) {
 	            continue;
@@ -193,6 +203,9 @@ public class IapCheckCommandService extends BaseCommandService {
         	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLDCARD_MONTH_ID)
         		user.setMonthGoldCardEndTime(CommonUtil.getExpiredTime(user.getMonthGoldCardEndTime(), rechargeData.getLastTime() * 24));
         	log.debug("user package buy record is:" + user.getPackageBuyRecord());
+        	//领取贵族奖励
+            doVipReward(responseBuilder, user);
+            doMonthGoldCardReward(responseBuilder, user);
     	}
     }
     
@@ -362,6 +375,20 @@ public class IapCheckCommandService extends BaseCommandService {
             }
         }
         return ret.toString();
+    }
+    
+    private void doVipReward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.addUserVipReward(user);
+        if (ret) {
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_VIPREWARD_POPUP, "每日登录获得[color=fbce54]10金币，$100，免费抽奖1次[/color] ", 0, 0);
+        }
+    }
+	
+	private void doMonthGoldCardReward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.doUserMonthGoldCardReward(user);
+        if (ret) {
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]50金币[/color] ", 0, 0);
+        }
     }
 
 }

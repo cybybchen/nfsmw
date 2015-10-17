@@ -73,13 +73,15 @@ public class UserVipService {
         return run.query("SELECT * FROM user_track WHERE user_id = ?", new UserTrackListHandler(), userId);
     }
 
-    public void addUserVipReward(User user) {
+    public boolean addUserVipReward(User user) {
     	if (!CommonUtil.isNextDay(user.getVipLastRewardTime()) || !CommonUtil.isTimeExpried(user.getVipEndTime()))
-    		return;
+    		return false;
     	user.setVipLastRewardTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT));
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataByVipId(1);
     	List<RewardBean> rewardList = rechargeData.getRewardList();
     	rewardService.doRewards(user, rewardList);
+    	
+    	return true;
     }
     
     public boolean doUserMonthGoldCardReward(User user) {

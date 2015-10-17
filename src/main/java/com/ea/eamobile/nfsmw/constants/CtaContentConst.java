@@ -73,5 +73,7 @@ public class CtaContentConst {
     public static final int GET_ENERGY_SUCCESS = 30;
     
     public static final int GET_ENERGY_FAILED = 31;
+    
+    public static final int ENERGY_IS_FULL = 32;
 
 }

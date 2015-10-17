@@ -33,5 +33,11 @@
 		SELECT * from iap_check_info where user_id =
 		#{userId} and product_id = #{productId} limit 1
 	</select>
+	
+	<select id="getIapCheckInfoByUserIdAndTransactionId" parameterType="com.ea.eamobile.nfsmw.model.IapCheckInfo"
+		resultMap="baseMap">
+		SELECT * from iap_check_info where user_id =
+		#{userId} and transaction_id = #{transactionId} limit 1
+	</select>
 
 </mapper>

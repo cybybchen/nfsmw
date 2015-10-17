@@ -86,6 +86,10 @@ public class Match {
     public static final int SEND_CAR_POPUP = 7;
     
     public static final int SEND_MONTH_GOLD_POPUP = 8;
+    
+    public static final int SEND_FANSREWARD_POPUP = 9;
+    
+    public static final int SEND_VIPREWARD_POPUP = 10;
 
     public static final int NO_RANK = 0;
 

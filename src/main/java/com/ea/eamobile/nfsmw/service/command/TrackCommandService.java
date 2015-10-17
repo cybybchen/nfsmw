@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ea.eamobile.nfsmw.chain.CoreScreen;
 import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.RaceMode;
@@ -244,7 +243,7 @@ public class TrackCommandService extends BaseCommandService {
                     finishRatio = calcModeFinishRatio(trackMode.getValue(), mode.getValue());
                 }
                 builder.setFinishRatio(finishRatio);
-                builder.setMostwantedNum(rewardService.getMwNumByRaceMode(mode));
+                builder.setMostwantedNum(rewardService.getGoldByRaceMode(mode));
                 builder.setIsNew(finishRatio == 0);
                 builder.setRealTrackIndex(mode.getRealTrackIndex());
                 // 取排行榜列表

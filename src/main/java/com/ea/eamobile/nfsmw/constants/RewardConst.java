@@ -1,7 +1,5 @@
 package com.ea.eamobile.nfsmw.constants;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class RewardConst {
 	public static final int PACKAGE_BUY_GOLD = 1 << 4;
@@ -20,13 +18,4 @@ public class RewardConst {
 	
 	public static final int PACKAGE_GOLD_ID = 4;
 	public static final int PACKAGE_GOLDCARD_MONTH_ID = 5;
-	
-	public static final Map<Integer, String> REWARD_CAR_MAP = new HashMap<Integer, String>() {
-        private static final long serialVersionUID = 1L;
-        {
-            put(1, "ford_mustang_boss_302_2012_desc");
-            put(2, "subaru_cosworth_impreza_sti_cs400_2010_desc");
-            put(2, "lamborghini_countach_5000qv_1985_desc");
-        }
-    };
 }

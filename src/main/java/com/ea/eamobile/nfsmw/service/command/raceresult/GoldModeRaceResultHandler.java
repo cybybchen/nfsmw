@@ -150,16 +150,16 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
         int trackFinishRatio = userTrackService.calcTrackFinishRatio(track, userId);
         // 判断mode是否完成
 //        int gainMwNum = 0;
-        int gainMwNum = modeFinishRatio >= Const.TRACK_FINISH_RATIO ? rewardService.getMwNumByRaceMode(mode) : 0;
+        int gainGold = modeFinishRatio >= Const.TRACK_FINISH_RATIO ? rewardService.getGoldByRaceMode(mode) : 0;
         int trackRewardId = 0;
         int modeRewardId = 0;
-        if (gainMwNum > 0) {
+        if (gainGold > 0) {
             // 只有mwNum有变化时才有可能解锁
             int originalMwNum = user.getStarNum();
             int currentMwNum = user.getStarNum();
             if (userTrack.getIsFinish() == 0) {
                 userTrack.setIsFinish(1);
-                currentMwNum = user.getStarNum() + gainMwNum;
+                currentMwNum = user.getGold() + gainGold;
                 userTrackService.updateUserTrack(userTrack);
                 modeRewardId = mode.getRewardId();
                 if (trackFinishRatio == Const.TRACK_FINISH_RATIO) {
@@ -212,7 +212,7 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
         // builder赋值
         builder.setUnlockInfo(unlockBuilder.build());
         builder.setRewards(buildReward(rewardService.getReward(raceRewardId), false));
-        builder.setGainMostWantedNum(gainMwNum);
+        builder.setGainMostWantedNum(gainGold);
         builder.setTrackFinishRatio(trackFinishRatio);
         builder.setModeFinishRatio(modeFinishRatio);
         // 推送更新用户

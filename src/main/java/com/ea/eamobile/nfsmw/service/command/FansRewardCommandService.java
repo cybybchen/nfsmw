@@ -5,15 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.model.bean.FansRewardBean;
 import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
-import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFansRewardTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.UserInfo;
 import com.ea.eamobile.nfsmw.service.FansRewardService;
 import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserInfoMessageService;
-import com.ea.eamobile.nfsmw.service.UserPropService;
-import com.ea.eamobile.nfsmw.service.UserService;
 
 @Service
 public class FansRewardCommandService {
@@ -21,28 +22,26 @@ public class FansRewardCommandService {
 	@Autowired
     private UserInfoMessageService userInfoMessageService;
 	@Autowired
-    private UserService userService;
-	@Autowired
     private RewardService rewardService;
 	@Autowired
     private PushCommandService pushService;
-	@Autowired
-    private UserPropService userPropService;
 	@Autowired
     private FansRewardService fansRewardService;
 	
 	private static final Logger log = LoggerFactory.getLogger(FansRewardCommandService.class);
     
-    public ResponseFansRewardTimeCommand getFansRewardTimeCommand(RequestFansRewardCommand reqcmd, User user,
+    public ResponseModifyUserInfoCommand getFansRewardCommand(RequestFansRewardCommand reqcmd, User user,
     		Commands.ResponseCommand.Builder responseBuilder) {
-    	ResponseFansRewardTimeCommand.Builder builder = ResponseFansRewardTimeCommand.newBuilder();
-    	
+    	ResponseModifyUserInfoCommand.Builder builder = ResponseModifyUserInfoCommand.newBuilder();
+    	UserInfo.Builder usbuilder = UserInfo.newBuilder();
         
     	int fansRewardId = reqcmd.getId();
-    	fansRewardService.addUserFansReward(user, fansRewardId);
+    	FansRewardBean fansReward = fansRewardService.addUserFansReward(user, fansRewardId);
     	
-    	builder.setId(user.getFansRewardStatus());
-    	builder.setStarttime(user.getFansRewardLastTime());
+    	userInfoMessageService.buildUserInfoMessage(usbuilder, user);
+        builder.setUserinfo(usbuilder.build());
+        if (fansReward != null)
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_FANSREWARD_POPUP, "[color=fbce54]" + fansReward.getName() + "[/color]！", 0, 0);
         return builder.build();
     }
 }

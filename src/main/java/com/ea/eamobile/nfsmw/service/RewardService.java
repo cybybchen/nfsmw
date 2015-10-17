@@ -210,6 +210,11 @@ public class RewardService {
         return reward != null ? reward.getMostwantedNum() : 0;
     }
     
+    public int getGoldByRaceMode(RaceMode mode) {
+        Reward reward = getReward(mode.getRewardId());
+        return reward != null ? reward.getGold() : 0;
+    }
+    
     public void doRewards(User user, List<RewardBean> rewardList) {
     	int money = user.getMoney();
     	int gold = user.getGold();

@@ -149,6 +149,15 @@ public class StoreDetailCommandService {
 
         }
 
+        if (purchase.getId() < 2000) {
+        	User user = userService.getUser(userId);
+        	if (user.getEnergy() >= Match.ENERGY_BUY_MAX) {
+        		builder.setSuccess(false);
+                builder.setMessage(ctaContentService.getCtaContent(CtaContentConst.ENERGY_IS_FULL).getContent());
+                return;
+        	}
+        }
+        
         ResultInfo result = payService.buy(purchase, userId);
         builder.setSuccess(result.isSuccess());
         builder.setMessage(result.getMessage());

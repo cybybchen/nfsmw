@@ -730,8 +730,8 @@ public class CoreScreen extends RequestScreen {
 	protected boolean handleCommand(RequestFansRewardCommand cmd,
 			Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
-		ResponseFansRewardTimeCommand fansRewardCmd = fansRewardCommandService.getFansRewardTimeCommand(cmd, user, responseBuilder);
-		responseBuilder.setFansRewardTimeCommand(fansRewardCmd);
+		ResponseModifyUserInfoCommand modifyUserInfo = fansRewardCommandService.getFansRewardCommand(cmd, user, responseBuilder);
+		responseBuilder.setModifyUserInfoCommand(modifyUserInfo);
 		return true;
 	}
 

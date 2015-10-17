@@ -42,22 +42,24 @@ public class FansRewardService {
         return fansRewardList;
     }
     
-    public void addUserFansReward(User user, int fansRewardId) {
+    public FansRewardBean addUserFansReward(User user, int fansRewardId) {
     	FansRewardBean fansReward = getFansReward(fansRewardId);
     	if (fansReward == null)
-    		return;
+    		return null;
     	if (user.getFansRewardLastTime() == 0)
     		user.setFansRewardLastTime(user.getCreateTime());
     	int intervalSeconds = DateUtil.intervalSeconds(System.currentTimeMillis(), 
     			(long)(user.getFansRewardLastTime() * DateUtil.MILLIONSECONDS_PER_SECOND + fansReward.getCountdown() * DateUtil.MILLIONSECONDS_PER_HOUR));
     	if (intervalSeconds < 0 || (user.getFansRewardStatus() >> fansReward.getId() & 1) == 1)
-    		return;
+    		return null;
     	
     	user.setFansRewardLastTime((int)(System.currentTimeMillis() / DateUtil.MILLIONSECONDS_PER_SECOND));
     	user.setFansRewardStatus(user.getFansRewardStatus() + (1 << fansReward.getId()));
     	
     	List<RewardBean> rewardList = fansReward.getRewardList();
     	rewardService.doRewards(user, rewardList);
+    	
+    	return fansReward;
     }
     
     private List<FansRewardBean> parseAndSaveFansRewardList() {

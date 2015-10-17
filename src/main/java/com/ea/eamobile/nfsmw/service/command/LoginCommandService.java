@@ -99,7 +99,7 @@ public class LoginCommandService {
         }
         
         //领取贵族奖励
-        userVipService.addUserVipReward(user);
+        doVipReward(response, user);
         doMonthGoldCardReward(response, user);
         
         head = headBuilder.build();
@@ -356,6 +356,7 @@ public class LoginCommandService {
 				return null;
 			}
 			u.setIsNewUser(1);
+        	u.setFansRewardLastTime(u.getCreateTime());
 		} else {
 			u = userService.getUserByWillowtreeToken(reqcmd.getToken());
 			// 用户不存在
@@ -401,10 +402,17 @@ public class LoginCommandService {
 //    	}
     }
 	
+	private void doVipReward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.addUserVipReward(user);
+        if (ret) {
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_VIPREWARD_POPUP, "每日登录获得[color=fbce54]10金币，$100，免费抽奖1次[/color] ", 0, 0);
+        }
+    }
+	
 	private void doMonthGoldCardReward(Builder responseBuilder, User user) {
         boolean ret = userVipService.doUserMonthGoldCardReward(user);
         if (ret) {
-        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "50金币", 0, 0);
+        	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]50金币[/color] ", 0, 0);
         }
     }
 }

@@ -353,7 +353,15 @@ public class PushCommandService {
         } else if (type == Match.SEND_MONTH_GOLD_POPUP) {
         	rpbuilder.setHeading(Const.GET_MONTH_GOLD);
         	rpbuilder.setPopScreen(1);
-        	rpbuilder.setText("获得" + content);
+        	rpbuilder.setText(content);
+        } else if (type == Match.SEND_FANSREWARD_POPUP) {
+        	rpbuilder.setHeading(Const.GET_FANSREWARD);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText("恭喜您获得回馈奖励：" + content);
+        } else if (type == Match.SEND_VIPREWARD_POPUP) {
+        	rpbuilder.setHeading(Const.GET_VIP_REWARD);
+        	rpbuilder.setPopScreen(1);
+        	rpbuilder.setText(content);
         }
         
         return rpbuilder.build();

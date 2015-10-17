@@ -27,11 +27,7 @@ public class LotteryCommandService {
 	@Autowired
     private UserInfoMessageService userInfoMessageService;
 	@Autowired
-    private UserService userService;
-	@Autowired
     private RewardService rewardService;
-	@Autowired
-    private PushCommandService pushService;
 	@Autowired
     private LotteryService lotteryService;
 	

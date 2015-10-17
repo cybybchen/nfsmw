@@ -69,7 +69,11 @@ public class Const {
     
     public static final String GET_CAR = "获得车辆";
     
-    public static final String GET_MONTH_GOLD = "月卡金币领取成功";
+    public static final String GET_MONTH_GOLD = "金币月卡";
+    
+    public static final String GET_FANSREWARD = "NFS21周年粉丝回馈";
+    
+    public static final String GET_VIP_REWARD = "贵族年卡";
 
     public static final int HAVE_GET_REWARD = 1;
 

@@ -19,6 +19,7 @@
 		<reward id="4" rewardid="3041" rewardcount="1" />
 	</recharge>   
 	<recharge id="4" transactionid="com.ea.mtx.871592" name="黄金典藏包" expense="30" />
+		<reward id="4" rewardid="3043" rewardcount="1" />
 	<recharge id="5" transactionid="com.ea.mtx.871606" name="金币月卡" expense="25" lasttime="30" >
 		<reward id="1" rewardid="1003" rewardcount="50" iscontinued="true" />
 	</recharge> 
