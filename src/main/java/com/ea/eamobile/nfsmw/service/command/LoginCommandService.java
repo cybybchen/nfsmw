@@ -403,7 +403,7 @@ public class LoginCommandService {
     }
 	
 	private void doVipReward(Builder responseBuilder, User user) {
-        boolean ret = userVipService.addUserVipReward(user);
+        boolean ret = userVipService.addUserVipReward(user, responseBuilder);
         if (ret) {
         	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_VIPREWARD_POPUP, "每日登录获得[color=fbce54]10金币，$100，免费抽奖1次[/color] ", 0, 0);
         }

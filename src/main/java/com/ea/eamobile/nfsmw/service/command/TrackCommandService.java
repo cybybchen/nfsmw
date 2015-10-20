@@ -243,7 +243,11 @@ public class TrackCommandService extends BaseCommandService {
                     finishRatio = calcModeFinishRatio(trackMode.getValue(), mode.getValue());
                 }
                 builder.setFinishRatio(finishRatio);
-                builder.setMostwantedNum(rewardService.getGoldByRaceMode(mode));
+                int track_id = Integer.parseInt(trackId);
+                if (track_id > 300 && track_id < 306)
+                	builder.setMostwantedNum(rewardService.getGoldByRaceMode(mode));
+                else 
+                	builder.setMostwantedNum(rewardService.getMwNumByRaceMode(mode));
                 builder.setIsNew(finishRatio == 0);
                 builder.setRealTrackIndex(mode.getRealTrackIndex());
                 // 取排行榜列表

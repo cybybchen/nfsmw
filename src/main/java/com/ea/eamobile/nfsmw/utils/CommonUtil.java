@@ -493,7 +493,7 @@ public class CommonUtil {
 			logger.error("parse time failed"+e);
 		}  
 		
-		if (currentDate.after(date))
+		if (date.after(currentDate))
 			return true;
 		
 		return false;

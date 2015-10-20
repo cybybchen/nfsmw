@@ -315,6 +315,10 @@ public class UserCarService {
             view.setLock(false);
             view.setStatus(CarConst.OWN);
         }
+        if (userCar != null) {
+            view.setLock(false);
+            view.setStatus(CarConst.OWN);
+        }
         // 运输中的车辆状态进行处理
         if (status == CarConst.TRANSPORTING) {
             int intervalTime = currentTime - userCar.getCreateTime();

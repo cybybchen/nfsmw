@@ -17,6 +17,7 @@ import com.ea.eamobile.nfsmw.model.bean.UserVipBean;
 import com.ea.eamobile.nfsmw.model.handler.UserTrackListHandler;
 import com.ea.eamobile.nfsmw.model.mapper.RewardMapper;
 import com.ea.eamobile.nfsmw.model.mapper.UserTrackMapper;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 import com.ea.eamobile.nfsmw.utils.DateUtil;
 import com.ea.eamobile.nfsmw.utils.RWSplit;
@@ -73,13 +74,13 @@ public class UserVipService {
         return run.query("SELECT * FROM user_track WHERE user_id = ?", new UserTrackListHandler(), userId);
     }
 
-    public boolean addUserVipReward(User user) {
+    public boolean addUserVipReward(User user, Builder responseBuilder) {
     	if (!CommonUtil.isNextDay(user.getVipLastRewardTime()) || !CommonUtil.isTimeExpried(user.getVipEndTime()))
     		return false;
     	user.setVipLastRewardTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT));
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataByVipId(1);
     	List<RewardBean> rewardList = rechargeData.getRewardList();
-    	rewardService.doRewards(user, rewardList);
+    	rewardService.doRewards(user, rewardList, responseBuilder);
     	
     	return true;
     }

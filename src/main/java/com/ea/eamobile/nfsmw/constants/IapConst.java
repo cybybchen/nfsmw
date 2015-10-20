@@ -103,6 +103,8 @@ public class IapConst {
             put("lamborghini_countach_5000qv_1985_desc", "兰博基尼COUNTACH");
             put("mercedesbenz_sl65_amg_blackseries_2009_desc", "梅赛德斯奔驰 SL65");
             put("porsche_911_carrera_s_2012_desc", "保时捷 911 CARRERA");
+            put("pagani_huayra_2011_desc", "帕加尼 HUAYRA");
+            put("porsche_911_carrera_s_2012_nfs_desc", "保时捷 911 CARRERA典藏版");
         }
     };
     

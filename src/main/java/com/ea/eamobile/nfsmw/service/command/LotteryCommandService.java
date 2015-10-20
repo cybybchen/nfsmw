@@ -15,6 +15,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseLotteryCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RewardList;
 import com.ea.eamobile.nfsmw.protoc.Commands.RewardN;
 import com.ea.eamobile.nfsmw.service.LotteryService;
 import com.ea.eamobile.nfsmw.service.RewardService;
@@ -57,11 +58,13 @@ public class LotteryCommandService {
     public ResponseLotteryCommand getResponseLotteryCommand(RequestLotteryCommand reqcmd, User user, 
     		Commands.ResponseCommand.Builder responseBuilder) {
     	ResponseLotteryCommand.Builder builder = ResponseLotteryCommand.newBuilder();
-    	List<RewardN> list = new ArrayList<RewardN>();
+    	List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
     	int type = reqcmd.getLotteryType();
     	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type);
         
     	for (LotteryBean lottery : lotteryList) {
+    		RewardList.Builder rewardListBuilder = RewardList.newBuilder();
+    		List<RewardN> list = new ArrayList<RewardN>();
     		List<RewardBean> rewardList = lottery.getLotteryRewardList();
     		rewardService.doRewards(user, rewardList);
     		for (RewardBean reward : rewardList) {
@@ -71,8 +74,10 @@ public class LotteryCommandService {
     			rewardBuilder.setCount(reward.getRewardCount());
     			list.add(rewardBuilder.build());	
     		}
+    		rewardListBuilder.addAllRewards(list);
+    		rewardBuilderList.add(rewardListBuilder.build());
     	}
-    	builder.addAllRewards(list);
+    	builder.addAllRewards(rewardBuilderList);
                 
         return builder.build();
     }

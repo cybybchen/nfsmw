@@ -193,17 +193,21 @@ public class IapCheckCommandService extends BaseCommandService {
     		User user) {
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeData(productId);
     	if (rechargeData != null) {
-    		List<RewardBean> rewardList = rechargeData.getRewardList();
-        	rewardService.doRewards(user, rewardList);
+    		if (rechargeData.getId() != RewardConst.PACKAGE_GOLDCARD_MONTH_ID && rechargeData.getId() != RewardConst.PACKAGE_VIP_ID) {
+    			List<RewardBean> rewardList = rechargeData.getRewardList();
+    			rewardService.doRewards(user, rewardList, responseBuilder);
+    		}
         	int packageBuyStatus = user.getPackageBuyRecord();
         	if ((packageBuyStatus >> rechargeData.getId() & 1) == 0)
         		user.setPackageBuyRecord(user.getPackageBuyRecord() + (1 << rechargeData.getId()));
-        	if (rechargeData.getId() == RewardConst.PACKAGE_GOLD_ID)
+        	if (rechargeData.getId() == RewardConst.PACKAGE_VIP_ID)
+        		user.setVipEndTime(CommonUtil.getExpiredTime(user.getVipEndTime(), rechargeData.getLastTime() * 24));
+        	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLD_ID)
         		user.setGoldModeUnlockStatus(1);
         	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLDCARD_MONTH_ID)
         		user.setMonthGoldCardEndTime(CommonUtil.getExpiredTime(user.getMonthGoldCardEndTime(), rechargeData.getLastTime() * 24));
         	log.debug("user package buy record is:" + user.getPackageBuyRecord());
-        	//领取贵族奖励
+        	//领取贵族和金币月卡奖励
             doVipReward(responseBuilder, user);
             doMonthGoldCardReward(responseBuilder, user);
     	}
@@ -378,7 +382,7 @@ public class IapCheckCommandService extends BaseCommandService {
     }
     
     private void doVipReward(Builder responseBuilder, User user) {
-        boolean ret = userVipService.addUserVipReward(user);
+        boolean ret = userVipService.addUserVipReward(user, responseBuilder);
         if (ret) {
         	pushService.pushPopupCommand(responseBuilder, null, Match.SEND_VIPREWARD_POPUP, "每日登录获得[color=fbce54]10金币，$100，免费抽奖1次[/color] ", 0, 0);
         }

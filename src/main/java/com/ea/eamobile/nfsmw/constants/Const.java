@@ -74,6 +74,8 @@ public class Const {
     public static final String GET_FANSREWARD = "NFS21周年粉丝回馈";
     
     public static final String GET_VIP_REWARD = "贵族年卡";
+    
+    public static final String GET_BUY_PACKAGE = "购买成功";
 
     public static final int HAVE_GET_REWARD = 1;
 

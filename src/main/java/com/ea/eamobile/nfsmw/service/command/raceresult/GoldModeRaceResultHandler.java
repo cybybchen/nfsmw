@@ -172,16 +172,16 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
                 }
             }
             // 构建解锁车辆
-            List<CarView> unlockCars = userCarService.getUnlockCarViews(user, originalMwNum, currentMwNum);
-            if (unlockCars.size() > 0) {
-                List<String> unlockCarIds = new ArrayList<String>();
-                for (CarView cv : unlockCars) {
-                    unlockCarIds.add(cv.getCarId());
-                }
-                unlockBuilder.addAllUnlockedCar(unlockCarIds);
-                pushService.pushUserCarInfoCommand(responseBuilder, unlockCars, user.getId());
-
-            }
+//            List<CarView> unlockCars = userCarService.getUnlockCarViews(user, originalMwNum, originalMwNum);
+//            if (unlockCars.size() > 0) {
+//                List<String> unlockCarIds = new ArrayList<String>();
+//                for (CarView cv : unlockCars) {
+//                    unlockCarIds.add(cv.getCarId());
+//                }
+//                unlockBuilder.addAllUnlockedCar(unlockCarIds);
+//                pushService.pushUserCarInfoCommand(responseBuilder, unlockCars, user.getId());
+//
+//            }
         }
         
 //        if (trackFinishRatio == Const.TRACK_FINISH_RATIO && userTrack.getIsFinish() == 0) {

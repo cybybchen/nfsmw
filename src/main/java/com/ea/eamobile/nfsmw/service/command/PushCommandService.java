@@ -242,7 +242,10 @@ public class PushCommandService {
     public void pushPopupCommand(Builder responseBuilder, com.ea.eamobile.nfsmw.model.Reward reward, int type,
             String content, int days, int tier) {
         ResponsePopupCommand cmd = getResponsePopupCommand(reward, type, content, days, tier);
-        responseBuilder.setPopupCommand(cmd);
+        if (responseBuilder.getPopupCommand() != null)
+        	responseBuilder.mergePopupCommand(cmd);
+        else 
+        	responseBuilder.setPopupCommand(cmd);
     }
 
     public void pushNotificationCommand(Builder responseBuilder, List<CarView> carViewList) {

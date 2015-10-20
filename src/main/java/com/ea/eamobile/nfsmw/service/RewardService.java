@@ -1,12 +1,17 @@
 package com.ea.eamobile.nfsmw.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.cache.InProcessCache;
 import com.ea.eamobile.nfsmw.constants.CacheKey;
+import com.ea.eamobile.nfsmw.constants.IapConst;
+import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.constants.ProfileComparisonType;
 import com.ea.eamobile.nfsmw.constants.RewardConst;
 import com.ea.eamobile.nfsmw.model.GotchaFragment;
@@ -17,6 +22,7 @@ import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.UserCarFragment;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.mapper.RewardMapper;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.service.command.PushCommandService;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
 import com.ea.eamobile.nfsmw.service.gotcha.GotchaFragmentService;
@@ -29,7 +35,8 @@ import com.ea.eamobile.nfsmw.view.ResultInfo;
  */
 @Service
 public class RewardService {
-
+	private static final Logger log = LoggerFactory.getLogger(RewardService.class);
+	
     @Autowired
     private RewardMapper rewardMapper;
     @Autowired
@@ -216,8 +223,13 @@ public class RewardService {
     }
     
     public void doRewards(User user, List<RewardBean> rewardList) {
+    	doRewards(user, rewardList, null);
+    }
+    
+    public void doRewards(User user, List<RewardBean> rewardList, Builder responseBuilder) {
     	int money = user.getMoney();
     	int gold = user.getGold();
+    	long userId = user.getId();
     	int energy = user.getEnergy();
     	for (RewardBean reward : rewardList) {
     		int rewardId = reward.getRewardId();
@@ -255,15 +267,20 @@ public class RewardService {
     				} else if (carId > 0) {
 //    					String carIdStr = RewardConst.REWARD_CAR_MAP.get(carId);
     					String carIdStr = carService.getCar(carId).getId();
+    					log.debug("carId is:" + carIdStr);
     					if (carIdStr != null) {
     			    		ResultInfo result = userCarService.sendCar(user.getId(), carIdStr);
-//    			    		if (result.isSuccess()) {
-//    			    			log.debug("send car success,carId is {}", carId);
-//    			    			pushService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarListByCarId(userId, carId),
-//    			                        userId);
-//    			    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
-//    			                        0);
-//    			    		}
+    			    		if (result.isSuccess() && responseBuilder != null) {
+    			    			log.debug("send car success,carId is {}", carId);
+    			    			try {
+									pushService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarList(userId),
+									        userId);
+								} catch (SQLException e) {
+									
+								}
+    			    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
+    			                        0);
+    			    		}
     			    	}
     				} else if (propId > 0) {
     					userPropService.addUserProp(user.getId(), propId, rewardCount);
