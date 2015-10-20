@@ -39,6 +39,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseNotificationCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponsePopupCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponsePopupListCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseRegistJaguarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseStoreDetailCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseSystemCommand;
@@ -242,10 +243,22 @@ public class PushCommandService {
     public void pushPopupCommand(Builder responseBuilder, com.ea.eamobile.nfsmw.model.Reward reward, int type,
             String content, int days, int tier) {
         ResponsePopupCommand cmd = getResponsePopupCommand(reward, type, content, days, tier);
-        if (responseBuilder.getPopupCommand() != null)
-        	responseBuilder.mergePopupCommand(cmd);
-        else 
-        	responseBuilder.setPopupCommand(cmd);
+    	responseBuilder.setPopupCommand(cmd);
+    }
+    
+    public void pushPopupListCommand(Builder responseBuilder, com.ea.eamobile.nfsmw.model.Reward reward, int type,
+            String content, int days, int tier) {
+        ResponsePopupCommand cmd = getResponsePopupCommand(reward, type, content, days, tier);
+        ResponsePopupListCommand.Builder popupListBuilder = responseBuilder.getPopuplistCommandBuilder();
+        List<ResponsePopupCommand> popupList = responseBuilder.getPopuplistCommand().getPopupsList();
+        if (popupList != null && popupList.size() > 0) {
+        	popupList.add(cmd);
+        } else {
+        	popupList = new ArrayList<ResponsePopupCommand>();
+        	popupList.add(cmd);
+        }
+        popupListBuilder.addAllPopups(popupList);
+    	responseBuilder.setPopuplistCommand(popupListBuilder.build());
     }
 
     public void pushNotificationCommand(Builder responseBuilder, List<CarView> carViewList) {

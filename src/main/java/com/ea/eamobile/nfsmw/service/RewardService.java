@@ -278,7 +278,7 @@ public class RewardService {
 								} catch (SQLException e) {
 									
 								}
-    			    			pushService.pushPopupCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
+    			    			pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_CAR_POPUP, IapConst.SENDCAR_CNNAME_MAP.get(carId), 0,
     			                        0);
     			    		}
     			    	}
