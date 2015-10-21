@@ -3,10 +3,10 @@
 	<fansreward id="1" name="24汽油" countdown="0.35" >
 		<reward id="1" rewardid="1001" rewardcount="24" />
 	</fansreward>
-	<fansreward id="2" name="10金币" countdown="21" >
+	<fansreward id="3" name="10金币" countdown="21" >
 		<reward id="1" rewardid="1003" rewardcount="10" />
 	</fansreward>
-	<fansreward id="3" name="LANCER EVOLUTION" countdown="21" >
+	<fansreward id="2" name="LANCER EVOLUTION" countdown="21" >
 		<reward id="1" rewardid="3039" rewardcount="1" />
 	</fansreward>   
 </root>
