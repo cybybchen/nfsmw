@@ -28,9 +28,9 @@ public class PayService {
 
     private static final Logger log = LoggerFactory.getLogger(PayService.class);
 
-    private static final int GOLD = 1;
+    public static final int GOLD = 1;
 
-    private static final int CURRENCY = 2;
+    public static final int CURRENCY = 2;
 
     /**
      * 购买商品
@@ -43,6 +43,37 @@ public class PayService {
         boolean success = false;
         String message = "";
         User user = userService.getUser(userId);
+        int userMoney = 0;
+        if (item.getPriceType() == GOLD) {
+        	
+            userMoney = user.getGold();
+            log.info(">>>>>>>>>>>>>>>>use gold, the amount is: " + userMoney + ", the item price is: " + item.getPrice());
+            user.setGold(userMoney - item.getPrice());
+        } else if (item.getPriceType() == CURRENCY) {
+            userMoney = user.getMoney();
+            log.info(">>>>>>>>>>>>>>>>use gold, the amount is: " + userMoney + ", the item price is: " + item.getPrice());
+            user.setMoney(userMoney - item.getPrice());
+        }
+        
+        
+        if (userMoney >= item.getPrice()) {
+            success = true;
+            message = ctaContentService.getCtaContent(CtaContentConst.BUY_SUCCESS).getContent();
+            // inc money
+            userService.updateUser(user);
+            // log
+            log.debug("buy merchandise: item={},userid={}", item, userId);
+        } else {
+            message = ctaContentService.getCtaContent(CtaContentConst.NOT_ENOUGH_MONEY).getContent();
+        }
+        ResultInfo result = new ResultInfo(success, message, user);
+        return result;
+    }
+    
+    public ResultInfo buy(Merchandise item, User user) {
+    	long userId = user.getId();
+        boolean success = false;
+        String message = "";
         int userMoney = 0;
         if (item.getPriceType() == GOLD) {
         	

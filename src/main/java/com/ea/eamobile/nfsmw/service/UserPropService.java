@@ -1,7 +1,5 @@
 package com.ea.eamobile.nfsmw.service;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,15 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ea.eamobile.nfsmw.constants.CacheKey;
-import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.RewardConst;
-import com.ea.eamobile.nfsmw.model.CarChartlet;
-import com.ea.eamobile.nfsmw.model.UserChartlet;
+import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.bean.PropBean;
 import com.ea.eamobile.nfsmw.model.bean.UserPropBean;
 import com.ea.eamobile.nfsmw.model.mapper.UserPropMapper;
-import com.ea.eamobile.nfsmw.utils.DateUtil;
 import com.ea.eamobile.nfsmw.view.ResultInfo;
 
 @Service
@@ -79,32 +73,35 @@ public class UserPropService {
     	return userProp;
     }
     
-    public UserPropBean useUserProp(long userId, int propId, int propCount) {
+    public UserPropBean useUserProp(User user, int propId, int propCount) {
+    	long userId = user.getId();
     	UserPropBean userProp = getUserPropByPropId(userId, propId);
-    	if (userProp != null) {
-    		if (userProp.getPropCount() >= 1) {
-    			userProp.setPropCount(userProp.getPropCount() - propCount);
-    			updateUserProp(userProp);
-    			return userProp;
-    		} else {
-    			userProp = buyProp(userId, propId, propCount - userProp.getPropCount());
-    			if (userProp != null) {
-    				userProp.setPropCount(userProp.getPropCount() - propCount);
-    				updateUserProp(userProp);
-    				return userProp;
-    			}
-    		}
-    	}
+		if (userProp != null && userProp.getPropCount() >= propCount) {
+			userProp.setPropCount(userProp.getPropCount() - propCount);
+			updateUserProp(userProp);
+			return userProp;
+		} else {
+			int originalPropCount = 0;
+			if (userProp != null)
+				originalPropCount = userProp.getPropCount();
+			userProp = buyProp(user, propId, propCount - originalPropCount);
+			if (userProp != null) {
+				userProp.setPropCount(userProp.getPropCount() - propCount);
+				updateUserProp(userProp);
+				return userProp;
+			}
+		}
     	
     	return null;
     }
     
-    public UserPropBean buyProp(long userId, int propId, int propCount) {
+    public UserPropBean buyProp(User user, int propId, int propCount) {
+    	long userId = user.getId();
         ResultInfo result = new ResultInfo(false, "");
         
         PropBean prop = propService.queryProp(propId);
         prop.setPrice(prop.getPrice() * propCount);
-        result = payService.buy(prop, userId);
+        result = payService.buy(prop, user);
         if (result.isSuccess()) {
             // insert car for user
 

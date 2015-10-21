@@ -103,6 +103,7 @@ public class GoldModeRaceResultHandler extends BaseCommandService implements Rac
                     .getGhosts().getCarID());
             float changedRaceTime = changedRaceTime(modeStandardResult, reqcmd);
             raceTime = changedRaceTime;
+            raceTime = reqcmd.getGhosts().getRaceTime();
             RequestRaceResultCommand.Builder raceResultCommandBuilder = RequestRaceResultCommand.newBuilder(reqcmd);
             GhostInfo.Builder ghosBuilder = GhostInfo.newBuilder(reqcmd.getGhosts());
             ghosBuilder.setRaceTime(changedRaceTime);

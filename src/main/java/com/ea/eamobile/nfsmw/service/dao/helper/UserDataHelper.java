@@ -63,6 +63,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.monthGoldCardLastRewardTime = data.getMonthGoldCardLastRewardTime();
 		this.isNewUser = data.getIsNewUser();
 		this.playGameTimes = data.getPlayGameTimes();
+		this.lotteryTimes = data.getLotteryTimes();
 
 		setMarks(data.getMarks());
 	}
@@ -115,6 +116,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.monthGoldCardLastRewardTime = rs.getString(MONTH_GOLD_CARD_LAST_REWARD_TIME);
 		this.isNewUser = rs.getInt(IS_NEW_USER);
 		this.playGameTimes = rs.getInt(PLAY_GAME_TIMES);
+		this.lotteryTimes = rs.getInt(LOTTERY_TIMES);
 	}
 
 	@Override

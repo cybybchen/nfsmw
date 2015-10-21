@@ -251,7 +251,7 @@ public class CoreScreen extends RequestScreen {
             try {
             	List<Prop> usePropList = cmd.getPropnumList();
             	for (Prop prop : usePropList) {
-            		userPropService.useUserProp(user.getId(), prop.getId(), prop.getCount());
+            		userPropService.useUserProp(user, prop.getId(), prop.getCount());
             	}
                 response = raceResultCommandService.getResponseRaceResultCommand(cmd, user, responseBuilder);
                 if (response != null) {

@@ -81,6 +81,7 @@ public class UserInfoMessageService {
         		DateUtil.getDateTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT))));
         builder.setIsNewUser(user.getIsNewUser() == 1);
         builder.setRaceTimes(user.getPlayGameTimes());
+        builder.setLotteryTimes(user.getLotteryTimes());
         
         try {
 //            if (weiboInfo == null && user.getCertType() == Const.CERT_TYPE_WEIBO) {

@@ -1,5 +1,6 @@
 package com.ea.eamobile.nfsmw.service.command;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,22 +9,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ea.eamobile.nfsmw.constants.ErrorConst;
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.protoc.Commands;
+import com.ea.eamobile.nfsmw.protoc.Commands.ErrorCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestLotteryCommand;
-import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseLotteryCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RewardList;
 import com.ea.eamobile.nfsmw.protoc.Commands.RewardN;
+import com.ea.eamobile.nfsmw.protoc.Commands.UserInfo;
 import com.ea.eamobile.nfsmw.service.LotteryService;
+import com.ea.eamobile.nfsmw.service.PayService;
 import com.ea.eamobile.nfsmw.service.RewardService;
 import com.ea.eamobile.nfsmw.service.UserInfoMessageService;
-import com.ea.eamobile.nfsmw.service.UserService;
+import com.ea.eamobile.nfsmw.view.ResultInfo;
 
 @Service
-public class LotteryCommandService {
+public class LotteryCommandService extends BaseCommandService {
 	
 	@Autowired
     private UserInfoMessageService userInfoMessageService;
@@ -31,23 +35,12 @@ public class LotteryCommandService {
     private RewardService rewardService;
 	@Autowired
     private LotteryService lotteryService;
+	@Autowired
+	private PayService payService;
+	@Autowired
+	private PushCommandService pushCommandService;
 	
 	private static final Logger log = LoggerFactory.getLogger(LotteryCommandService.class);
-	
-	/**
-     * 获取抽奖内容
-     * 
-     * @param 
-     * @return
-     */
-    public ResponseEnergyTimeCommand getEnergyTimeCommand(User user) {
-        ResponseEnergyTimeCommand.Builder builder = ResponseEnergyTimeCommand.newBuilder();
-        
-        List<LotteryBean> lotteryList = lotteryService.getLotteryList(LotteryService.TPYE_RANDOM_ONETIME);
-        List<LotteryBean> speLotteryList = lotteryService.getLotteryList(LotteryService.TYPE_RANDOM_TENTIME);
-        
-        return builder.build();
-    }
     
     /**
      * 抽奖
@@ -60,25 +53,48 @@ public class LotteryCommandService {
     	ResponseLotteryCommand.Builder builder = ResponseLotteryCommand.newBuilder();
     	List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
     	int type = reqcmd.getLotteryType();
-    	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type);
-        
-    	for (LotteryBean lottery : lotteryList) {
-    		RewardList.Builder rewardListBuilder = RewardList.newBuilder();
-    		List<RewardN> list = new ArrayList<RewardN>();
-    		List<RewardBean> rewardList = lottery.getLotteryRewardList();
-    		rewardService.doRewards(user, rewardList);
-    		for (RewardBean reward : rewardList) {
-    			log.debug("reward string is:" + reward.toJson());
-    			RewardN.Builder rewardBuilder = RewardN.newBuilder();
-    			rewardBuilder.setId(reward.getRewardId());
-    			rewardBuilder.setCount(reward.getRewardCount());
-    			list.add(rewardBuilder.build());	
-    		}
-    		rewardListBuilder.addAllRewards(list);
-    		rewardBuilderList.add(rewardListBuilder.build());
+    	LotteryBean lotteryPay = new LotteryBean();
+    	lotteryPay.setPriceType(PayService.GOLD);
+    	if (user.getLotteryTimes() == 0)
+    		lotteryPay.setPrice(0);
+    	else if (type == LotteryService.TPYE_RANDOM_ONETIME)
+    		lotteryPay.setPrice(100);
+    	else if (type == LotteryService.TYPE_RANDOM_TENTIME)
+    		lotteryPay.setPrice(1000);
+    	
+    	ResultInfo result = payService.buy(lotteryPay, user);
+    	if (result.isSuccess()) {
+    		user.setLotteryTimes(user.getLotteryTimes() + 1);
+	    	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type);
+	    	List<RewardBean> addRewardList = new ArrayList<RewardBean>();
+	    	for (LotteryBean lottery : lotteryList) {
+	    		RewardList.Builder rewardListBuilder = RewardList.newBuilder();
+	    		List<RewardN> list = new ArrayList<RewardN>();
+	    		List<RewardBean> rewardList = lottery.getLotteryRewardList();
+	    		addRewardList.addAll(rewardList);
+	    		for (RewardBean reward : rewardList) {
+	    			log.debug("reward string is:" + reward.toJson());
+	    			RewardN.Builder rewardBuilder = RewardN.newBuilder();
+	    			rewardBuilder.setId(reward.getRewardId());
+	    			rewardBuilder.setCount(reward.getRewardCount());
+	    			list.add(rewardBuilder.build());	
+	    		}
+	    		rewardListBuilder.addAllRewards(list);
+	    		rewardBuilderList.add(rewardListBuilder.build());
+	    	}
+	    	rewardService.doRewards(user, addRewardList);
+    	} else {
+    		ErrorCommand errorCommand = buildErrorCommand(ErrorConst.NOT_ENOUGH_GOLD);
+            responseBuilder.setErrorCommand(errorCommand);
     	}
     	builder.addAllRewards(rewardBuilderList);
-                
+    	pushCommandService.pushUserInfoCommand(responseBuilder, user);
+    	try {
+    		pushCommandService.pushUserCarInfoCommand(responseBuilder, userCarService.getGarageCarList(user.getId()),
+			        user.getId());
+		} catch (SQLException e) {
+			
+		}
         return builder.build();
     }
 }

@@ -77,9 +77,9 @@ public class RaceResultFilterService {
             if (carIds == null || carIds.size() == 0) {
                 return true;
             }
-            if (!carIds.contains(carId)) {
-                return true;
-            }
+//            if (!carIds.contains(carId)) {
+//                return true;
+//            }
         }
         if (gameMode == Match.TOURNAMENT_MODE) {
             TournamentUser tournamentUser = tournamentUserService.getTournamentUserByUserIdAndTOnlineId(userId, raceId);

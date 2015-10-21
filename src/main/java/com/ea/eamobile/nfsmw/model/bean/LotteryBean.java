@@ -8,9 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.ea.eamobile.nfsmw.model.Merchandise;
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 
-public class LotteryBean implements Serializable {
+public class LotteryBean extends Merchandise implements Serializable {
 	/**
 	 * 
 	 */
@@ -19,6 +20,8 @@ public class LotteryBean implements Serializable {
 	private String name = "";
 	private int weight = 0;
 	private int leastTimes = 0;
+	private int price = 0;
+    private int priceType = 0;
 	private List<RewardBean> lotteryRewardList = new ArrayList<RewardBean>();
 	public int getId() {
 		return id;
@@ -49,6 +52,18 @@ public class LotteryBean implements Serializable {
 	}
 	public void setLotteryRewardList(List<RewardBean> lotteryRewardList) {
 		this.lotteryRewardList = lotteryRewardList;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getPriceType() {
+		return priceType;
+	}
+	public void setPriceType(int priceType) {
+		this.priceType = priceType;
 	}
 	public String toJson() {
 		JSONObject json = new JSONObject();

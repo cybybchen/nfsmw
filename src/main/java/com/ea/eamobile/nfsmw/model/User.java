@@ -106,6 +106,8 @@ public class User extends Markable implements Serializable {
     protected int isNewUser;
     
     protected int playGameTimes;
+    
+    protected int lotteryTimes;
 
     // db field
     protected static final String ID = "id";
@@ -154,6 +156,7 @@ public class User extends Markable implements Serializable {
     protected static final String MONTH_GOLD_CARD_LAST_REWARD_TIME = "month_gold_card_last_reward_time";
     protected static final String IS_NEW_USER = "new_user";
     protected static final String PLAY_GAME_TIMES = "play_game_times";
+    protected static final String LOTTERY_TIMES = "lottery_times";
 
     public int getAccountStatus() {
         return accountStatus;
@@ -590,6 +593,15 @@ public class User extends Markable implements Serializable {
 	public void setPlayGameTimes(int playGameTimes) {
 		this.playGameTimes = playGameTimes;
 		mark(PLAY_GAME_TIMES, playGameTimes);
+	}
+
+	public int getLotteryTimes() {
+		return lotteryTimes;
+	}
+
+	public void setLotteryTimes(int lotteryTimes) {
+		this.lotteryTimes = lotteryTimes;
+		mark(LOTTERY_TIMES, lotteryTimes);
 	}
 
 	@Override

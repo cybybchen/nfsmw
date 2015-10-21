@@ -146,7 +146,7 @@ public class UserService {
         user.setVersion(0);
         user.setIsRaceStart(0);
 
-        user.setGold(190);
+        user.setGold(30);
         user.setIsNicknameChanged(false);
         user.setIsOldUser(0);
         user.setIsWriteJaguar(0);
