@@ -250,13 +250,14 @@ public class PushCommandService {
             String content, int days, int tier) {
         ResponsePopupCommand cmd = getResponsePopupCommand(reward, type, content, days, tier);
         ResponsePopupListCommand.Builder popupListBuilder = responseBuilder.getPopuplistCommandBuilder();
-        List<ResponsePopupCommand> popupList = responseBuilder.getPopuplistCommand().getPopupsList();
-        List<ResponsePopupCommand> returnPopupList = new ArrayList<ResponsePopupCommand>();
-        if (popupList != null && popupList.size() > 0) {
-        	returnPopupList.addAll(popupList);
-        } 
-        returnPopupList.add(cmd);
-        popupListBuilder.addAllPopups(returnPopupList);
+//        List<ResponsePopupCommand> popupList = responseBuilder.getPopuplistCommand().getPopupsList();
+//        List<ResponsePopupCommand> returnPopupList = new ArrayList<ResponsePopupCommand>();
+//        if (popupList != null && popupList.size() > 0) {
+//        	returnPopupList.addAll(popupList);
+//        } 
+//        returnPopupList.add(cmd);
+        popupListBuilder.addPopups(cmd);
+//        popupListBuilder.addAllPopups(returnPopupList);
     	responseBuilder.setPopuplistCommand(popupListBuilder.build());
     }
 

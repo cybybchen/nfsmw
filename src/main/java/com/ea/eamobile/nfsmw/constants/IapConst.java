@@ -91,7 +91,7 @@ public class IapConst {
             put("com.ea.mtx.860051", "lamborghini_countach_5000qv_1985_desc");
             put("com.ea.mtx.860052", "mercedesbenz_sl65_amg_blackseries_2009_desc");
             put("com.ea.mtx.860053", "porsche_911_carrera_s_2012_desc");
-//            put("com.ea.mtx.859318", "porsche_911_carrera_s_2012_desc");
+            put("com.ea.mtx.860055", "lamborghini_gallardo_lp570_4_superleggera_2011_desc");
         }
     };
     
@@ -105,6 +105,7 @@ public class IapConst {
             put("porsche_911_carrera_s_2012_desc", "保时捷 911 CARRERA");
             put("pagani_huayra_2011_desc", "帕加尼 HUAYRA");
             put("porsche_911_carrera_s_2012_nfs_desc", "保时捷 911 CARRERA典藏版");
+            put("lamborghini_gallardo_lp570_4_superleggera_2011_desc", "兰博基尼GALLARDO");
         }
     };
     
