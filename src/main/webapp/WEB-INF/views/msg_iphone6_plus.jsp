@@ -20,6 +20,7 @@
 					<div class="announce_title">版本更新公告</div>
 				</div>
 				<div class="announce">${new_notice}</div>
+				<!--  -->
 				<div class="title_line" id="ann_logo">
 					<div class="title_bg"></div>
 					<div class="announce_title">活动</div>

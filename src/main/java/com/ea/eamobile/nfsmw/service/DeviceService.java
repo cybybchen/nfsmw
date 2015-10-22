@@ -19,17 +19,19 @@ public class DeviceService {
             deviceName = deviceName.toLowerCase();
             if (deviceName.contains("ipad")) {
                 return Const.DEVICE_IS_IPAD;
+            } else if (deviceName.contains("iphone4") || deviceName.contains("iphone3")) { 
+            	return Const.DEVICE_IS_IPHONE;
             } else if (deviceName.contains("iphone5") || deviceName.contains("ipod5") || deviceName.contains("iphone6")) {
                 return Const.DEVICE_IS_IPHONE5;
-            } /*else if (deviceName.contains("iphone7,1")) {
+            } else if (deviceName.contains("iphone7,1") || deviceName.contains("iphone8,1")) {
             	return Const.DEVICE_IS_IPHONE6_PLUS;
-            } else if (deviceName.contains("iphone7,2")) {
+            } else if (deviceName.contains("iphone7,2") || deviceName.contains("iphone8,2")) {
             	return Const.DEVICE_IS_IPHONE6;
-            } else {
+            } /*else {
                 return Const.DEVICE_IS_IPHONE;
             }*/
             else {
-                return Const.DEVICE_IS_IPHONE;
+                return Const.DEVICE_IS_IPHONE6;
             }
         }
         return Const.DEVICE_IS_IPAD;

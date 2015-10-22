@@ -289,7 +289,7 @@ public class RewardService {
     		}
     	}
     	
-    	user.setEnergy(energy);
+    	user.setEnergy(Math.min(energy, Match.ENERGY_BUY_MAX));
     	user.setGold(gold);
     	user.setMoney(money);
     	userService.updateUser(user);
