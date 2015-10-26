@@ -69,10 +69,10 @@ public class UserInfoMessageService {
         builder.setPackageStatus(user.getPackageBuyRecord());
         builder.setFansRewardStatus(user.getFansRewardStatus());
         if (user.getFansRewardStatus() > 0)
-        	builder.setFansRewardLastTime((int)((0.1 * DateUtil.MILLIONSECONDS_PER_HOUR + 
+        	builder.setFansRewardLastTime((int)((21 * DateUtil.MILLIONSECONDS_PER_HOUR + 
         			user.getFansRewardLastTime() * DateUtil.MILLIONSECONDS_PER_SECOND - System.currentTimeMillis()) / DateUtil.MILLIONSECONDS_PER_SECOND));
         else
-        	builder.setFansRewardLastTime((int)((0.1 * DateUtil.MILLIONSECONDS_PER_HOUR + 
+        	builder.setFansRewardLastTime((int)((0.35 * DateUtil.MILLIONSECONDS_PER_HOUR +	 
         			user.getFansRewardLastTime() * DateUtil.MILLIONSECONDS_PER_SECOND - System.currentTimeMillis()) / DateUtil.MILLIONSECONDS_PER_SECOND));
         builder.setMissionFinishStatus(user.getMissionFinishStatus());
         builder.setMissionRewardStatus(user.getMissionRewardStatus());

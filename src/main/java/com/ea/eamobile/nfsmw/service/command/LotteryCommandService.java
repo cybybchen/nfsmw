@@ -91,6 +91,8 @@ public class LotteryCommandService extends BaseCommandService {
 	    		for (RewardBean reward : rewardList) {
 	    			if (reward.getRewardId() > RewardConst.TYPE_REWARD_CAR && reward.getRewardId() < RewardConst.TYPE_REWARD_FRAGMENT)
 	    				isSendCar = true;
+	    			if (reward.getRewardId() > RewardConst.TYPE_REWARD_FRAGMENT)
+	    				isSendCar = true;
 	    			log.debug("reward string is:" + reward.toJson());
 	    			RewardN.Builder rewardBuilder = RewardN.newBuilder();
 	    			rewardBuilder.setId(reward.getRewardId());

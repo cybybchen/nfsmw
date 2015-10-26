@@ -17,9 +17,6 @@
 	<lottery id="5" name="srt viper 碎片*5" weight="3" >
 		<reward id="1" rewardid="4008" rewardcount="5" />
 	</lottery> 
-	<lottery id="6" name="porsche 911 carrera_s 碎片*5" weight="3" >
-		<reward id="1" rewardid="4012" rewardcount="5" />
-	</lottery> 
 	<lottery id="7" name="chevrolet corvette zr1 碎片*5" weight="3" >
 		<reward id="1" rewardid="4017" rewardcount="5" />
 	</lottery> 

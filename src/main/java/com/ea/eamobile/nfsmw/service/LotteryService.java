@@ -23,6 +23,8 @@ public class LotteryService {
 	public static final int TYPE_RANDOM_TENTIME = 1;
 	public static final int RANDOM_COUNT_ONETIME = 1;
 	public static final int RANDOM_COUNT_TENTIME = 10;
+	public static final int RANDOM_SENDCAR_PERCENT_ONETIME = 1;
+	public static final int RANDOM_SENDCAR_PERCENT_TENTIME = 20;
 	
     @Autowired
     private LotteryRedisService lotteryRedis;
@@ -80,9 +82,14 @@ public class LotteryService {
     			randomLotteryList.add(lottery);
     	}
     	
+    	int sendCarPercent = RANDOM_SENDCAR_PERCENT_ONETIME;
     	if (type == TYPE_RANDOM_TENTIME) {
-	    	LotteryBean specialLottery = randomLottery(TYPE_RANDOM_TENTIME);
-	    	randomLotteryList.add(specialLottery);
+    		sendCarPercent = RANDOM_SENDCAR_PERCENT_TENTIME;
+    	}
+    	
+    	if (rand.nextInt(100) + 1 < sendCarPercent) {
+    		LotteryBean specialLottery = randomLottery(TYPE_RANDOM_TENTIME);
+    		randomLotteryList.add(specialLottery);
     	}
     	
     	return randomLotteryList;
