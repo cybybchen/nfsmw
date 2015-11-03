@@ -43,7 +43,9 @@ public class RecordRankService {
         }
         int from = 0;
         int to = NUM;
-        while (true) {
+        boolean isWhile = false;
+//        while (true) {
+        while (isWhile) {
             if (from >= maxId) {
                 log.warn("all record data read done!!!");
                 return;

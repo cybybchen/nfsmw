@@ -81,7 +81,7 @@ public class LotteryCommandService extends BaseCommandService {
     			userPropService.updateUserProp(userProp);
     		}
     		user.setLotteryTimes(user.getLotteryTimes() + 1);
-	    	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type);
+	    	List<LotteryBean> lotteryList = lotteryService.randomLotteryList(type, user.getId());
 	    	List<RewardBean> addRewardList = new ArrayList<RewardBean>();
 	    	for (LotteryBean lottery : lotteryList) {
 	    		RewardList.Builder rewardListBuilder = RewardList.newBuilder();
