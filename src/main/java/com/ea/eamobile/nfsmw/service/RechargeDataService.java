@@ -36,7 +36,7 @@ public class RechargeDataService {
     
     public List<RechargeDataBean> getRechargeDataList() {
     	List<RechargeDataBean> rechargeDataList = rechargeDataRedis.getRechargeDataList();
-        if (rechargeDataList == null) {
+        if (rechargeDataList == null || rechargeDataList.size() == 0) {
         	rechargeDataList = parseAndSaveRechargeDataList();
         }
         return rechargeDataList;

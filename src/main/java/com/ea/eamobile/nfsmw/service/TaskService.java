@@ -43,7 +43,7 @@ public class TaskService {
     
     public List<TaskBean> getTaskList() {
     	List<TaskBean> taskList = taskRedis.getTaskList();
-        if (taskList == null) {
+        if (taskList == null || taskList.size() == 0) {
         	taskList = parseAndSaveTaskList();
         }
         return taskList;
