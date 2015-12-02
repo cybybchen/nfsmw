@@ -116,7 +116,6 @@ public class IapConst {
 		 */
 		private static final long serialVersionUID = 1L;
 		{
-			add("com.ea.mtx.871593");
 			add("com.ea.mtx.871595");
 			add("com.ea.mtx.871592");
 			add("com.ea.mtx.871606");
