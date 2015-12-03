@@ -22,6 +22,11 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -32,6 +37,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
@@ -170,6 +176,18 @@ public abstract class RequestScreen implements RequestHandle {
     
     protected abstract boolean handleCommand(RequestLotteryCommand cmd, Builder responseBuilder, User user);
 
+    protected abstract boolean handleCommand(RequestFleetRaceCommand cmd ,Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestFleetStartCommand cmd ,Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestFleetEndCommand cmd ,Builder responseBuilder, User user);
+    	
+    protected abstract boolean handleCommand(RequestFleetDoubleCommand cmd ,Builder responseBuilder, User user);
+    				 
+    protected abstract boolean handleCommand(RequestFixCarLimitCommand cmd ,Builder responseBuilder, User user);
+    						 
+    protected abstract boolean handleCommand(RequestProfileCarCommand cmd ,Builder responseBuilder, User user);
+    		
     @Override
     public boolean handleRequest(NFSRequest req, NFSResponse rep) {
         boolean result = true;
@@ -460,6 +478,41 @@ public abstract class RequestScreen implements RequestHandle {
             }
         }
         
+        if(request.hasFleetStartCommand()){
+        	RequestFleetStartCommand cmd = request.getFleetStartCommand();
+        	if(result){
+        		 result = handleCommand(cmd, responseBuilder, user);
+        	}
+        }
+        
+		if (request.hasFleetEndCommand()) {
+			RequestFleetEndCommand cmd = request.getFleetEndCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+		
+		if(request.hasFleetDoubleCommand()){
+			RequestFleetDoubleCommand cmd = request.getFleetDoubleCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+		
+		if (request.hasFleetRaceCommand()) {
+			RequestFleetRaceCommand cmd = request.getFleetRaceCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+
+		if (request.hasFixCarLimitCommand()) {
+			RequestFixCarLimitCommand cmd = request.getFixCarLimitCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+		
         if (request.hasCollectEnergyCommand()) {
         	RequestCollectEnergyCommand cmd = request.getCollectEnergyCommand();
             if (result) {

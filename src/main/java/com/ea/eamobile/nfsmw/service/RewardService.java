@@ -222,7 +222,7 @@ public class RewardService {
         return reward != null ? reward.getGold() : 0;
     }
     
-    public void doRewards_newversion(User user, List<RewardBean> rewardList) {
+    public void doRewardList(User user, List<RewardBean> rewardList) {
     	doRewards(user, rewardList, null);
     }
     

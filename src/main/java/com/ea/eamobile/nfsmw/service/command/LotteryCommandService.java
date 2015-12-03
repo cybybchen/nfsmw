@@ -105,7 +105,7 @@ public class LotteryCommandService extends BaseCommandService {
 	    		rewardListBuilder.addAllRewards(list);
 	    		rewardBuilderList.add(rewardListBuilder.build());
 	    	}
-	    	rewardService.doRewards_newversion(user, addRewardList);
+	    	rewardService.doRewardList(user, addRewardList);
     	} else {
 //    		ErrorCommand errorCommand = buildErrorCommand(ErrorConst.NOT_ENOUGH_GOLD);
 //            responseBuilder.setErrorCommand(errorCommand);

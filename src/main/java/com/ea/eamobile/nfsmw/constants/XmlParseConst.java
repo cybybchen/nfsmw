@@ -15,6 +15,13 @@ public class XmlParseConst {
 	public static final String COUNTDOWN = "countdown";
 	public static final String TYPE = "type";
 	public static final String LEASTTIMES = "leasttimes";
+	public static final String TIE = "tie";
+	public static final String CAR= "car";
+	public static final String NEEDTIME = "needtime";
+	public static final String LIMIT = "limit";
+	public static final String ENERGY = "energy";
+	public static final String SCORE = "score";
+	public static final String INDEX = "index";
 	//lottery_ + type + .xml
 	public static final String LOTTERY_FILE_PREFIX = "random_";
 	//recharge_data.xml
@@ -23,4 +30,6 @@ public class XmlParseConst {
 	public static final String FANS_REWARD_FILE = "fans_reward.xml";
 	//task.xml
 	public static final String TASK_FILE = "task.xml";
+	//hangup.xml
+	public static final String HANG_UP_FILE = "hangup.xml";
 }

@@ -23,6 +23,11 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -33,6 +38,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
@@ -65,13 +71,18 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseBuyItemCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
-import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFansRewardTimeCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFixCarLimitCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetDoubleCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetEndCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGotchaCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseIapCheckCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseLotteryCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseProfileCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseProfileLikeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseProfileReportCommand;
@@ -101,6 +112,7 @@ import com.ea.eamobile.nfsmw.service.command.ChanllengeMatchInfoCommandService;
 import com.ea.eamobile.nfsmw.service.command.ConfigCommandService;
 import com.ea.eamobile.nfsmw.service.command.EnergyCommandService;
 import com.ea.eamobile.nfsmw.service.command.FansRewardCommandService;
+import com.ea.eamobile.nfsmw.service.command.FleetRaceCommandService;
 import com.ea.eamobile.nfsmw.service.command.GarageCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostCommandService;
 import com.ea.eamobile.nfsmw.service.command.GhostRecordCommandService;
@@ -217,6 +229,8 @@ public class CoreScreen extends RequestScreen {
     private LotteryCommandService lotteryCommandService;
     @Autowired
     private UserPropService userPropService;
+    @Autowired
+    private FleetRaceCommandService fleetraceService;
     
     @Override
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
@@ -761,11 +775,62 @@ public class CoreScreen extends RequestScreen {
 		responseBuilder.setLotteryCommand(lotterycmd);
 		return true;
 	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetRaceCommand cmd, 
+			Builder responseBuilder, User user) {
+		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
+		responseBuilder.setFleetRaceCommand(fleetracecmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetStartCommand cmd,
+			Builder responseBuilder, User user) {
+		try {
+			ResponseFleetStartCommand fleetracestartcmd = fleetraceService.FleetRaceStartCommand(user, cmd.getId(), cmd.getCarsList());
+			responseBuilder.setFleetStartCommand(fleetracestartcmd);
+		} catch (SQLException e) {
+		}
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetEndCommand cmd, 
+			Builder responseBuilder, User user) {
+		ResponseFleetEndCommand fleetraceendcmd = fleetraceService.FleetRaceEndCommand(cmd.getId(), cmd.getAdvanced(), user);
+		responseBuilder.setFleetEndCommand(fleetraceendcmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetDoubleCommand cmd,
+			Builder responseBuilder, User user) {
+		ResponseFleetDoubleCommand fleetracecmd = fleetraceService.FleetRaceDoubleCommand(cmd.getId());
+		responseBuilder.setFleetDoubleCommand(fleetracecmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFixCarLimitCommand cmd, 
+			Builder responseBuilder, User user) {
+		ResponseFixCarLimitCommand fixcarcmd = fleetraceService.FixCarLimitCommand(cmd.getCarId());
+		responseBuilder.setFixCarLimitCommand(fixcarcmd);
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestProfileCarCommand cmd, 
+			Builder responseBuilder, User user) {
+		ResponseProfileCarCommand profilecarcmd = fleetraceService.ProfileCarCommand(user);
+		responseBuilder.setProfileCarCommand(profilecarcmd);
+		return true;
+	}
 	
 //	@Override
 //	protected boolean handleCommand(RequestSendCar cmd,
 //			Builder responseBuilder, User user) {
-//		//ResponseBuyCarCommand response;
+//		//ResponseBuyCarCommand response;\
 //		ResponseSendCar response;
 //        try {
 //            response = garageCommandService.getSendCarCommand(user, cmd, responseBuilder);

@@ -280,21 +280,21 @@ public class UserCarService {
      * @param userCar
      * @return
      */
-    private CarView buildCarView(Car car, UserCar userCar, User u, boolean checkUnlock) {
-    	if (userCar == null && car.getId().equals("jaguar_cx16_concept_2012_desc"))
-    		return null;
-        int currentTime = (int) (System.currentTimeMillis() / 1000);
-        CarExt carExt = carExtService.getCarExt(car.getId());
-        if (carExt != null) {
-            car.setEndTime(carExt.getEndTime());
-            car.setStartTime(carExt.getStartTime());
-            car.setPrice(carExt.getPrice());
-            car.setPriceType(carExt.getPriceType());
-            car.setVisible(carExt.getVisible());
-            if (carExt.getVisible() == 1) {
-                return null;
-            }
-        }
+	public CarView buildCarView(Car car, UserCar userCar, User u, boolean checkUnlock) {
+		if (userCar == null && car.getId().equals("jaguar_cx16_concept_2012_desc"))
+			return null;
+		int currentTime = (int) (System.currentTimeMillis() / 1000);
+		CarExt carExt = carExtService.getCarExt(car.getId());
+		if (carExt != null) {
+			car.setEndTime(carExt.getEndTime());
+			car.setStartTime(carExt.getStartTime());
+			car.setPrice(carExt.getPrice());
+			car.setPriceType(carExt.getPriceType());
+			car.setVisible(carExt.getVisible());
+			if (carExt.getVisible() == 1) {
+				return null;
+			}
+		}
         CarView view = new CarView();
         view.setCarId(car.getId());
         view.setType(car.getType());

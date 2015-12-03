@@ -15,6 +15,11 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFansRewardCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGhostRecordCommand;
@@ -25,6 +30,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionFinishCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestMissionRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModeInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestModifyUserInfoCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileLikeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileNextCarCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestProfileReportCommand;
@@ -341,6 +347,42 @@ public class ResponseScreen extends RequestScreen {
 	@Override
 	protected boolean handleCommand(RequestLotteryCommand cmd,
 			Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetRaceCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetStartCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetEndCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetDoubleCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFixCarLimitCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestProfileCarCommand cmd, Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
 		return true;
 	}

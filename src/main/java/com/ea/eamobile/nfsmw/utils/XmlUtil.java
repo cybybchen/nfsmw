@@ -2,6 +2,7 @@ package com.ea.eamobile.nfsmw.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
 import com.ea.eamobile.nfsmw.model.bean.RechargeDataBean;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.bean.TaskBean;
+import com.ea.eamobile.nfsmw.model.bean.hangUpBean;
+import com.ea.eamobile.nfsmw.model.bean.hangUpRacesBean;
+import com.ea.eamobile.nfsmw.model.bean.hangUpRankBean;
 
 public class XmlUtil extends CommonUtil {
 	private static Logger logger = Logger.getLogger(XmlUtil.class);
@@ -196,6 +200,75 @@ public class XmlUtil extends CommonUtil {
 		}
 		
 		return taskList;
+	}
+	
+	public static List<hangUpBean> getHangUpList(){
+		List<hangUpBean> hangUpList = new ArrayList<hangUpBean>();
+		try {
+			String filePath = CommonUtil.getConfigFilePath(XmlParseConst.HANG_UP_FILE);
+			SAXReader reader = new SAXReader();
+			InputStream inStream = new FileInputStream(new File(filePath));
+			Document doc = reader.read(inStream);
+			Element root = doc.getRootElement();
+			List< ?> rootList = root.elements();
+			for(int i = 0 ; i<rootList.size();i++){
+				hangUpBean hangUp = new hangUpBean();
+				Element hangupelement  = (Element)rootList.get(i);
+				hangUp.setTie(CommonUtil.stringToInt(
+						getElementAttr(hangupelement, XmlParseConst.TIE)));
+				hangUp.setType(CommonUtil.stringToInt(
+						getElementAttr(hangupelement, XmlParseConst.TYPE)));
+				List<?> hangupracesNodeList = hangupelement.elements();
+				List<hangUpRacesBean> hangUpRacesList  = new ArrayList<hangUpRacesBean>();
+				for(int j = 0 ; j<hangupracesNodeList.size();j++){
+					Element hangupraceelement = (Element)hangupracesNodeList.get(j);
+					hangUpRacesBean hangUpRaces = new hangUpRacesBean();
+					hangUpRaces.setId(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.ID)));
+					hangUpRaces.setName(getElementAttr(hangupraceelement, XmlParseConst.NAME));
+					hangUpRaces.setCarDesc(getElementAttr(hangupraceelement, XmlParseConst.CAR));
+					hangUpRaces.setNeedEnergy(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.ENERGY)));
+					hangUpRaces.setNeedLimit(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.LIMIT)));
+					hangUpRaces.setNeedTime(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.NEEDTIME)));
+					hangUpRaces.setScore(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.SCORE)));
+					List<?> hanguprankNodeList = hangupraceelement.elements();
+					List<hangUpRankBean> hanguprankList = new ArrayList<hangUpRankBean>();
+					for(int k = 0;k<hanguprankNodeList.size();k++){
+						Element hanguprankelement = (Element)hanguprankNodeList.get(k);
+						hangUpRankBean hangUpRank = new hangUpRankBean();
+						hangUpRank.setIndex(CommonUtil.stringToInt(
+								getElementAttr(hanguprankelement, XmlParseConst.INDEX)));
+						List<?> rewardNodeList = hanguprankelement.elements();
+						List<RewardBean> rewardList = new ArrayList<RewardBean>();
+						for(int m = 0;m<rewardNodeList.size();m++){
+							Element rewardElement = (Element)rewardNodeList.get(m);
+							RewardBean reward = new RewardBean();
+							reward.setId(CommonUtil.stringToInt(
+									getElementAttr(rewardElement, XmlParseConst.ID)));
+							reward.setRewardId(CommonUtil.stringToInt(
+									getElementAttr(rewardElement, XmlParseConst.REWARDID)));
+							reward.setRewardCount(CommonUtil.stringToInt(
+									getElementAttr(rewardElement, XmlParseConst.REWARDCOUNT)));
+							rewardList.add(reward);
+						}
+						hangUpRank.setRewardList(rewardList);
+						hanguprankList.add(hangUpRank);
+					}
+					hangUpRaces.setHangUpRankList(hanguprankList);
+					hangUpRacesList.add(hangUpRaces);
+				}
+				hangUp.setHangUpRacesList(hangUpRacesList);
+				hangUpList.add(hangUp);
+			}
+		} catch (Exception e) {
+		}
+		logger.debug(hangUpList.iterator().next().toString());
+		return hangUpList;
+		
 	}
 	
 	public static String getElementText(Element element, String name) {

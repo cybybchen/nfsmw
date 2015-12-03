@@ -57,7 +57,7 @@ public class FansRewardService {
     	user.setFansRewardStatus(user.getFansRewardStatus() + (1 << fansReward.getId()));
     	
     	List<RewardBean> rewardList = fansReward.getRewardList();
-    	rewardService.doRewards_newversion(user, rewardList);
+    	rewardService.doRewardList(user, rewardList);
     	
     	return fansReward;
     }

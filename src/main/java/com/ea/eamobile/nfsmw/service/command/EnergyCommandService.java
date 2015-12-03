@@ -7,13 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ea.eamobile.nfsmw.constants.Const;
 import com.ea.eamobile.nfsmw.constants.Match;
-import com.ea.eamobile.nfsmw.model.Reward;
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.protoc.Commands;
-import com.ea.eamobile.nfsmw.protoc.Commands.RequestCollectEnergyCommand;
-import com.ea.eamobile.nfsmw.protoc.Commands.RequestEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseEnergyTimeCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.UserInfo;
