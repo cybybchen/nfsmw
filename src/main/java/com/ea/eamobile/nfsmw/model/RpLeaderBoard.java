@@ -24,6 +24,8 @@ public class RpLeaderBoard implements Serializable {
     
     private long userId;
     
+    private int rpNumWeek;
+    
     
     public String getHeadUrl() {
         return headUrl;
@@ -80,6 +82,14 @@ public class RpLeaderBoard implements Serializable {
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
+	public int getRpNumWeek() {
+		return rpNumWeek;
+	}
+
+	public void setRpNumWeek(int rpNumWeek) {
+		this.rpNumWeek = rpNumWeek;
+	}
     
     
 

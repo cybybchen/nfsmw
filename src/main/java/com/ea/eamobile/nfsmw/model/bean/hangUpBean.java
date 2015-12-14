@@ -75,7 +75,7 @@ public class hangUpBean implements Serializable {
 		for (int i = 0; i < hangupracesArray.length(); i++) {
 			String hangUpRacesStr = "";
 			try {
-				hangUpRacesStr = hangupracesArray.toString(i);
+				hangUpRacesStr = hangupracesArray.getString(i);
 			} catch (JSONException e) {
 			}
 			hangUpRacesBean hangUpRaces = hangUpRacesBean.fromJson(hangUpRacesStr);

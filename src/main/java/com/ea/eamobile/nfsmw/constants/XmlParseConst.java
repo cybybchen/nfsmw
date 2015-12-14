@@ -22,6 +22,9 @@ public class XmlParseConst {
 	public static final String ENERGY = "energy";
 	public static final String SCORE = "score";
 	public static final String INDEX = "index";
+	public static final String INDEXMIN = "indexmin";
+	public static final String INDEXMAX = "indexmax";
+	
 	//lottery_ + type + .xml
 	public static final String LOTTERY_FILE_PREFIX = "random_";
 	//recharge_data.xml
@@ -32,4 +35,6 @@ public class XmlParseConst {
 	public static final String TASK_FILE = "task.xml";
 	//hangup.xml
 	public static final String HANG_UP_FILE = "hangup.xml";
+	//FleetRaceRewards
+	public static final String FLEET_RACE_REWARDS = "FleetRaceRewards.xml";
 }

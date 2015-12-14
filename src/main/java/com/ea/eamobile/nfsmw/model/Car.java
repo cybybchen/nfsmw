@@ -46,6 +46,8 @@ public class Car extends Merchandise implements Serializable {
     private int isSpecialCar;
     
     private int primaryId;
+    
+    private int maxlimit;
 
     public boolean needTransport() {
         return needTransport > 0;
@@ -199,4 +201,14 @@ public class Car extends Merchandise implements Serializable {
 	public void setPrimaryId(int primaryId) {
 		this.primaryId = primaryId;
 	}
+
+	public int getMaxlimit() {
+		return maxlimit;
+	}
+
+	public void setMaxlimit(int maxlimit) {
+		this.maxlimit = maxlimit;
+	}
+	
+	
 }

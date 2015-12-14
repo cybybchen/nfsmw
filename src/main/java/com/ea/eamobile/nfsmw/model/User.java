@@ -108,6 +108,8 @@ public class User extends Markable implements Serializable {
     protected int playGameTimes;
     
     protected int lotteryTimes;
+    
+    protected int rpExpWeek;
 
     // db field
     protected static final String ID = "id";
@@ -157,8 +159,18 @@ public class User extends Markable implements Serializable {
     protected static final String IS_NEW_USER = "new_user";
     protected static final String PLAY_GAME_TIMES = "play_game_times";
     protected static final String LOTTERY_TIMES = "lottery_times";
+	protected static final String RPEXPWEEK = "rpExpWeek";
+	
+	
+    public int getRpExpWeek() {
+		return rpExpWeek;
+	}
 
-    public int getAccountStatus() {
+	public void setRpExpWeek(int rpExpWeek) {
+		this.rpExpWeek = rpExpWeek;
+	}
+
+	public int getAccountStatus() {
         return accountStatus;
     }
 

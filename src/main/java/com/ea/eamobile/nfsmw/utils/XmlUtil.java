@@ -2,7 +2,6 @@ package com.ea.eamobile.nfsmw.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.dom4j.io.SAXReader;
 
 import com.ea.eamobile.nfsmw.constants.XmlParseConst;
 import com.ea.eamobile.nfsmw.model.bean.FansRewardBean;
+import com.ea.eamobile.nfsmw.model.bean.FleetRaceReawardBean;
 import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
 import com.ea.eamobile.nfsmw.model.bean.RechargeDataBean;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
@@ -266,9 +266,43 @@ public class XmlUtil extends CommonUtil {
 			}
 		} catch (Exception e) {
 		}
-		logger.debug(hangUpList.iterator().next().toString());
 		return hangUpList;
 		
+	}
+	
+	public static List<FleetRaceReawardBean> getFleetRaceRewardList() {
+		List<FleetRaceReawardBean> fleetRaceRewardList = new ArrayList<FleetRaceReawardBean>();
+		try {
+			String filePath = CommonUtil.getConfigFilePath(XmlParseConst.FLEET_RACE_REWARDS);
+			SAXReader reader = new SAXReader();
+			InputStream inStream = new FileInputStream(new File(filePath));
+			Document doc = reader.read(inStream);
+			Element root = doc.getRootElement();
+			List<?> rootList = root.elements();
+			for (int i = 0; i < rootList.size(); i++) {
+				FleetRaceReawardBean FleetRaceReward = new FleetRaceReawardBean();
+				Element fleetRaceRewardElement = (Element) rootList.get(i);
+				FleetRaceReward.setIndexMax(
+						CommonUtil.stringToInt(getElementAttr(fleetRaceRewardElement, XmlParseConst.INDEXMAX)));
+				FleetRaceReward.setIndexMin(
+						CommonUtil.stringToInt(getElementAttr(fleetRaceRewardElement, XmlParseConst.INDEXMIN)));
+				List<?> rewardNodeList = fleetRaceRewardElement.elements();
+				List<RewardBean> rewardList = new ArrayList<RewardBean>();
+				for (int m = 0; m < rewardNodeList.size(); m++) {
+					Element rewardElement = (Element) rewardNodeList.get(m);
+					RewardBean reward = new RewardBean();
+					reward.setId(CommonUtil.stringToInt(getElementAttr(rewardElement, XmlParseConst.ID)));
+					reward.setRewardId(CommonUtil.stringToInt(getElementAttr(rewardElement, XmlParseConst.REWARDID)));
+					reward.setRewardCount(
+							CommonUtil.stringToInt(getElementAttr(rewardElement, XmlParseConst.REWARDCOUNT)));
+					rewardList.add(reward);
+				}
+				FleetRaceReward.setRewardList(rewardList);
+				fleetRaceRewardList.add(FleetRaceReward);
+			}
+		} catch (Exception e) {
+		}
+		return fleetRaceRewardList;
 	}
 	
 	public static String getElementText(Element element, String name) {
@@ -280,7 +314,6 @@ public class XmlUtil extends CommonUtil {
 		}
 		if (text == null)
 			text = "";
-		logger.debug("text is:"+text);
 		return text;
 	}
 	
@@ -293,7 +326,6 @@ public class XmlUtil extends CommonUtil {
 		}
 		if (attr == null)
 			attr = "";
-		logger.debug("attr is:"+attr);
 		return attr;
 	}
 }

@@ -34,8 +34,31 @@ public class CarView implements Serializable {
     private boolean isSpecialCar;
     
     private List<CarSlotView> slots;
+    
+    private int maxlimit;
+    
+    private int limit;
+    
+    private String racetime;
+    
 
-    public String getCarId() {
+    public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public String getRacetime() {
+		return racetime;
+	}
+
+	public void setRacetime(String racetime) {
+		this.racetime = racetime;
+	}
+
+	public String getCarId() {
         return carId;
     }
 
@@ -152,4 +175,12 @@ public class CarView implements Serializable {
         return "carview=[carId=" + carId + ",tier=" + tier + ",type=" + type + ",score=" + score + ",price=" + price
                 + ",islock=" + isLock + ",status=" + status + ",chartletid=" + chartletId + "]";
     }
+
+	public int getMaxlimit() {
+		return maxlimit;
+	}
+
+	public void setMaxlimit(int maxlimit) {
+		this.maxlimit = maxlimit;
+	}
 }

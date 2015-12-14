@@ -24,6 +24,10 @@ public class UserCar implements Serializable {
     private int chartletId;
 
     private int createTime;
+    
+    private int limit;
+
+    private String racetime;
 
     public long getId() {
         return id;
@@ -82,4 +86,22 @@ public class UserCar implements Serializable {
         this.createTime = createTime;
 
     }
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public String getRacetime() {
+		return racetime;
+	}
+
+	public void setRacetime(String racetime) {
+		this.racetime = racetime;
+	}
+    
+    
 }

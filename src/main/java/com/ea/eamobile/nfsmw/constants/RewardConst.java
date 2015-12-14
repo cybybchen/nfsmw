@@ -13,7 +13,9 @@ public class RewardConst {
 	public static final int TYPE_REWARD_PROP = 2000;
 	public static final int TYPE_REWARD_CAR = 3000;
 	public static final int TYPE_REWARD_FRAGMENT = 4000;
-	public static final int TYPE_REWARD_RPNUM = 5001;
+	public static final int TYPE_REWARD_RPEXPWEEK = 5001;// fleetrace rpexp
+	public static final int TYPE_REWARD_RPNUM = 5002;// rpnum outside fleetrace
+	
 	
 	public static final int TYPE_REWARD_PROP_FREELOTTERY = 4;
 	

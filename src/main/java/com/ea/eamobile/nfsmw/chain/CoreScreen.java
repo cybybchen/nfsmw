@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.User;
+import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.Prop;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingConfirmCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingInfoCommand;
@@ -231,6 +232,8 @@ public class CoreScreen extends RequestScreen {
     private UserPropService userPropService;
     @Autowired
     private FleetRaceCommandService fleetraceService;
+    @Autowired
+	private PushCommandService pushCommandService;
     
     @Override
     protected boolean handleLoginCommand(RequestCommand request, Builder responseBuilder) {
@@ -788,10 +791,12 @@ public class CoreScreen extends RequestScreen {
 	protected boolean handleCommand(RequestFleetStartCommand cmd,
 			Builder responseBuilder, User user) {
 		try {
-			ResponseFleetStartCommand fleetracestartcmd = fleetraceService.FleetRaceStartCommand(user, cmd.getId(), cmd.getCarsList());
+			ResponseFleetStartCommand fleetracestartcmd = fleetraceService.FleetRaceStartCommand(user, cmd.getId(), cmd.getCarsList(),responseBuilder);
 			responseBuilder.setFleetStartCommand(fleetracestartcmd);
 		} catch (SQLException e) {
 		}
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
+
 		return true;
 	}
 
@@ -800,6 +805,9 @@ public class CoreScreen extends RequestScreen {
 			Builder responseBuilder, User user) {
 		ResponseFleetEndCommand fleetraceendcmd = fleetraceService.FleetRaceEndCommand(cmd.getId(), cmd.getAdvanced(), user);
 		responseBuilder.setFleetEndCommand(fleetraceendcmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
+		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
+		pushCommandService.pushFleetRaceInfoCommand(responseBuilder, fleetracecmd);
 		return true;
 	}
 
@@ -814,15 +822,16 @@ public class CoreScreen extends RequestScreen {
 	@Override
 	protected boolean handleCommand(RequestFixCarLimitCommand cmd, 
 			Builder responseBuilder, User user) {
-		ResponseFixCarLimitCommand fixcarcmd = fleetraceService.FixCarLimitCommand(cmd.getCarId());
+		ResponseFixCarLimitCommand fixcarcmd = fleetraceService.FixCarLimitCommand(cmd.getCarIdList(),user,responseBuilder);
 		responseBuilder.setFixCarLimitCommand(fixcarcmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		return true;
 	}
 
 	@Override
 	protected boolean handleCommand(RequestProfileCarCommand cmd, 
 			Builder responseBuilder, User user) {
-		ResponseProfileCarCommand profilecarcmd = fleetraceService.ProfileCarCommand(user);
+		ResponseProfileCarCommand profilecarcmd = fleetraceService.ProfileCarCommand(cmd.getUserId(),responseBuilder);
 		responseBuilder.setProfileCarCommand(profilecarcmd);
 		return true;
 	}

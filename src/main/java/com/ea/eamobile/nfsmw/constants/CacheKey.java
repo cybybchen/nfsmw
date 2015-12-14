@@ -119,5 +119,7 @@ public class CacheKey {
     public static final String SYSTEM_CONFIG = "system_config_";
     
     public static final String USER_FILTER = "user_filter_";
+    
+    public static final String USER_BEST_CARLIST = "user_best_carlist";
 
 }

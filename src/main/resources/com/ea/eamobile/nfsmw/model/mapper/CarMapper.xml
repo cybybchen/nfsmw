@@ -21,6 +21,7 @@
 		<result property="endTime" column="end_time" />
 		<result property="isSpecialCar" column="is_special_car" />
 		<result property="primaryId" column="primary_id" />
+		<result property="maxlimit" column="max_limit" />
 	</resultMap>
 
 	<select id="getCar" parameterType="int" resultMap="baseMap">

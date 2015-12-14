@@ -35,6 +35,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ItemMessage;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseChallengeMatchInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFeedCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetRaceCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseModifyUserInfoCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseNotificationCommand;
@@ -180,6 +181,9 @@ public class PushCommandService {
         responseBuilder.setModifyUserInfoCommand(cmd);
     }
 
+    public void pushFleetRaceInfoCommand(Builder responseBuilder,ResponseFleetRaceCommand cmd){
+    	responseBuilder.setFleetRaceCommand(cmd);
+    }
     public void pushUserInfoAndFeedCommand(Builder responseBuilder, User user) {
         ResponseModifyUserInfoCommand cmd = getResponseUserInfoCommand(user);
         responseBuilder.setModifyUserInfoCommand(cmd);

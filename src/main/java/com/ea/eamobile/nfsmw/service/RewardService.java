@@ -231,6 +231,9 @@ public class RewardService {
     	int gold = user.getGold();
     	long userId = user.getId();
     	int energy = user.getEnergy();
+    	int rpnum = user.getRpNum();
+    	int rpexpweek = user.getRpExpWeek();
+    	
     	for (RewardBean reward : rewardList) {
     		int rewardId = reward.getRewardId();
     		int rewardCount = reward.getRewardCount();
@@ -243,6 +246,13 @@ public class RewardService {
     				break;
     			case RewardConst.TYPE_REWARD_MONEY:
     				money += rewardCount;
+    				break;
+    			case RewardConst.TYPE_REWARD_RPEXPWEEK:
+    				rpexpweek+=rewardCount;
+    				rpnum += rewardCount;
+    				break;
+    			case RewardConst.TYPE_REWARD_RPNUM:
+    				rpnum += rewardCount;
     				break;
     			default :
     				int fragmentId = rewardId - RewardConst.TYPE_REWARD_FRAGMENT;
@@ -292,6 +302,8 @@ public class RewardService {
     	user.setEnergy(Math.min(energy, Match.ENERGY_BUY_MAX));
     	user.setGold(gold);
     	user.setMoney(money);
+    	user.setRpNum(rpnum);
+    	user.setRpExpWeek(rpexpweek);
     	userService.updateUser(user);
     }
 

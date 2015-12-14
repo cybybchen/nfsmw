@@ -1,5 +1,7 @@
 package com.ea.eamobile.nfsmw.service.gotcha;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import com.ea.eamobile.nfsmw.model.mapper.GotchaCarMapper;
  */
 @Service
 public class GotchaCarService {
-
+	private static final Logger log = LoggerFactory.getLogger(GotchaCarService.class);
     @Autowired
     private GotchaCarMapper gotchaCarMapper;
 

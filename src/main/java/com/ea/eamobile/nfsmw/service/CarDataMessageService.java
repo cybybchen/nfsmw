@@ -1,8 +1,10 @@
 package com.ea.eamobile.nfsmw.service;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,20 @@ public class CarDataMessageService {
         builder.setRemainTime(view.getRemainTime());
         builder.setSellFlag(view.getSellFlag());
         builder.setIsSpecialCar(view.getIsSpecialCar());
+        builder.setLimit(view.getLimit());
+        builder.setMaxlimit(view.getMaxlimit());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date starttime = new Date();
+		try {
+			String time  = view.getRacetime();
+			starttime = df.parse(time);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		if(System.currentTimeMillis()/1000 -starttime.getTime() > 24*3600*1000 )
+			builder.setState(0);
+		else
+			builder.setState(1);
         List<CarSlotInfo> slots = buildCarSlotInfos(view.getSlots());
         builder.addAllSlots(slots);
         // chartlet

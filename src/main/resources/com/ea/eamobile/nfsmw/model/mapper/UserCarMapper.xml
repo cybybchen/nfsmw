@@ -10,6 +10,8 @@
     <result property="status" column="status"/>
     <result property="chartletId" column="chartlet_id"/>
     <result property="createTime" column="create_time"/>
+    <result property="limit" column="car_limit"/>
+    <result property="racetime" column="race_time"/>
   </resultMap>
 
 	<!-- only admin use -->
@@ -34,8 +36,8 @@
 	</select>
 
 	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.UserCar" keyProperty="id" useGeneratedKeys="true">
-	    insert into user_car(user_id,car_id,score,status,chartlet_id,create_time) 
-	    values(#{userId},#{carId},#{score},#{status},#{chartletId},#{createTime})
+	    insert into user_car(user_id,car_id,score,status,chartlet_id,create_time,car_limit) 
+	    values(#{userId},#{carId},#{score},#{status},#{chartletId},#{createTime},#{limit})
 	</insert>
 	
 	<update id="update"  parameterType="com.ea.eamobile.nfsmw.model.UserCar">
@@ -43,7 +45,10 @@
       car_id=#{carId},
       score=#{score},
       status=#{status},
+      car_limit=#{limit},
+      race_time=#{racetime},
       chartlet_id=#{chartletId} where id = #{id}
+      
 	</update>
 	
 	<delete id="deleteById" parameterType="int">

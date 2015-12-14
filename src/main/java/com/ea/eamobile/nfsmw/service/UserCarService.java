@@ -132,7 +132,7 @@ public class UserCarService {
         return getUserCarView(userId, carId);
     }
 
-    private boolean isUserCarOwned(Car car, UserCar userCar, User u) {
+    public boolean isUserCarOwned(Car car, UserCar userCar, User u) {
         boolean isOwned = false;
 
         int currentTime = (int) (System.currentTimeMillis() / 1000);
@@ -301,6 +301,9 @@ public class UserCarService {
         view.setTier(car.getTier());
         view.setPrice(car.getPrice());
         view.setScore(car.getScore());
+        view.setMaxlimit(car.getMaxlimit());
+        view.setLimit(userCar != null ? userCar.getLimit() : 0);
+        view.setRacetime(userCar != null ? userCar.getRacetime() : "2015-01-01 00:00:00.");
         view.setChartletId(userCar != null ? userCar.getChartletId() : 0);
         view.setUnlockMwNum(car.getUnlockMwNum());
         view.setPriceType(car.getPriceType());

@@ -513,6 +513,13 @@ public abstract class RequestScreen implements RequestHandle {
 			}
 		}
 		
+		if (request.hasProfileCarCommand()) {
+			RequestProfileCarCommand cmd = request.getProfileCarCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+		
         if (request.hasCollectEnergyCommand()) {
         	RequestCollectEnergyCommand cmd = request.getCollectEnergyCommand();
             if (result) {
