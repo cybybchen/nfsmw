@@ -92,7 +92,7 @@ public class UserVipService {
     	user.setMonthGoldCardLastRewardTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT));
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataById(RewardConst.PACKAGE_GOLDCARD_MONTH_ID);
     	List<RewardBean> rewardList = rechargeData.getRewardList();
-    	rewardService.doRewards(user, rewardList);
+    	rewardService.doRewards_newversion(user, rewardList);
     	return true;
     }
 }

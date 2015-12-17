@@ -75,7 +75,7 @@ public class TaskService {
     		
     		missionRewardStatus += (1 << task.getId());
     		List<RewardBean> rewardList = task.getRewardList();
-        	rewardService.doRewards(user, rewardList);
+        	rewardService.doRewards_newversion(user, rewardList);
     	}
     	
     	user.setMissionRewardStatus(missionRewardStatus);

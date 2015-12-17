@@ -89,8 +89,11 @@ public class LotteryCommandService extends BaseCommandService {
 	    		List<RewardBean> rewardList = lottery.getLotteryRewardList();
 	    		addRewardList.addAll(rewardList);
 	    		for (RewardBean reward : rewardList) {
-	    			if (reward.getRewardId() > RewardConst.TYPE_REWARD_CAR && reward.getRewardId() < RewardConst.TYPE_REWARD_FRAGMENT)
+	    			if (reward.getRewardId() > RewardConst.TYPE_REWARD_CAR && reward.getRewardId() < RewardConst.TYPE_REWARD_FRAGMENT) {
 	    				isSendCar = true;
+	    				if (reward.getRewardId() > RewardConst.TYPE_REWARD_CAR + 2)
+	    					reward.setRewardId(reward.getRewardId() - 2);
+	    			}
 	    			if (reward.getRewardId() > RewardConst.TYPE_REWARD_FRAGMENT)
 	    				isSendCar = true;
 	    			log.debug("reward string is:" + reward.toJson());
@@ -102,7 +105,7 @@ public class LotteryCommandService extends BaseCommandService {
 	    		rewardListBuilder.addAllRewards(list);
 	    		rewardBuilderList.add(rewardListBuilder.build());
 	    	}
-	    	rewardService.doRewards(user, addRewardList);
+	    	rewardService.doRewards_newversion(user, addRewardList);
     	} else {
     		ErrorCommand errorCommand = buildErrorCommand(ErrorConst.NOT_ENOUGH_GOLD);
             responseBuilder.setErrorCommand(errorCommand);

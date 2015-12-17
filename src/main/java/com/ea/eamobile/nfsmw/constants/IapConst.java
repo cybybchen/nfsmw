@@ -80,6 +80,10 @@ public class IapConst {
             put("com.ea.mtx.860052", 188);
             put("com.ea.mtx.860053", 348);
             put("com.ea.mtx.860055", 618);
+            put("com.ea.mtx.871592", 30);
+            put("com.ea.mtx.872417", 1);
+            put("com.ea.mtx.872477", 98);
+            put("com.ea.mtx.871594", 18);
         }
     };
     
@@ -116,7 +120,7 @@ public class IapConst {
 		 */
 		private static final long serialVersionUID = 1L;
 		{
-			add("com.ea.mtx.871595");
+			add("com.ea.mtx.872477");
 			add("com.ea.mtx.871592");
 			add("com.ea.mtx.871606");
 		}

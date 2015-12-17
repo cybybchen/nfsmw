@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.DigestInputStream;
@@ -25,11 +24,6 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class CommonUtil {
 	private static Logger logger = Logger.getLogger(CommonUtil.class);
@@ -393,47 +387,6 @@ public class CommonUtil {
         return sb.toString();
 	}
 	
-	public static String getBASE64(String s) {   
-		if (s == null) return null;   
-		return (new BASE64Encoder()).encode( s.getBytes());   
-	} 
-	
-	public static String getBASE64(byte[] buffer) {   
-		if (buffer == null) return null;
-		BASE64Encoder encode = new BASE64Encoder();
-		return encode.encode(buffer);   
-	} 
-	
-	public static String decodeBase64String(String s) {
-		if (s == null)
-			return null;
-		byte[] bt = null;  
-	    try {  
-	    	s = s.replace(' ', '+');
-	        BASE64Decoder decoder = new BASE64Decoder();  
-	        bt = decoder.decodeBuffer(s);  
-	    } catch (IOException e) {  
-	        logger.error("decodebase64 failed " + e);  
-	    }  
-	    
-	    return new String(bt);
-	}
-	
-	public static String decodeBase64String(InputStream is) {
-		if (is == null)
-			return null;
-		byte[] bt = null;  
-	    try {  
-//	    	String s = buffer.replace(' ', '+');
-	        BASE64Decoder decoder = new BASE64Decoder();  
-	        bt = decoder.decodeBuffer(is); 
-	    } catch (IOException e) {  
-	        logger.error("decodebase64 failed " + e);  
-	    }  
-	    
-	    return new String(bt);
-	}
-	
 	public static String toHexString(String str) {
         String hexStr = "";  
         for (int i = 0; i < str.length(); i++) {  
@@ -443,27 +396,6 @@ public class CommonUtil {
         }  
         return "0x" + hexStr;//0x表示十六进制  
 	}
-	
-	public static String base64URLDecode(String str) {
-		str = str.replace('-', '+');
-		str = str.replace('_', '/');
-		if (str.length() % 4 != 0) {
-			StringBuilder builder = new StringBuilder(str);
-			int padding = str.length() % 4;
-			while (padding++ < 4)
-				builder.append('=');
-			str = builder.toString();
-		}
-		
-		String result = "";
-		try {
-			result = new String(Base64.decode(str), "UTF-8");
-		} catch (Exception e) {
-			logger.error("base64 decode failed:" + str);
-		}
-		
-		return result;
-	} 
 	
 	public static String UTF8Decode(String str) {
 		String decodeStr = "";

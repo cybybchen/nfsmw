@@ -17,7 +17,7 @@
 	<select id="getIapCheckInfoByTransactionId" parameterType="long"
 		resultMap="baseMap">
 		SELECT * from iap_check_info where transaction_id =
-		#{transactionId}
+		#{transactionId} limit 1
 	</select>
 
 
