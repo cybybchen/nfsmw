@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 
 
-public class FleetRaceReawardBean {
+public class FleetRaceRewardBean {
 	private static final long serialVersionUID = 1L;
 	public int indexMin = 0;			
     public int indexMax = 0;			
@@ -34,7 +34,7 @@ public class FleetRaceReawardBean {
 		this.rewardList = rewardList;
 	}
     
-	private String toJson(){
+	public String toJson(){
 		JSONObject json = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 		try {
@@ -51,10 +51,10 @@ public class FleetRaceReawardBean {
 		return json.toString();
 	}
 	
-	public static FleetRaceReawardBean fromJson(String lotteryStr) {
+	public static FleetRaceRewardBean fromJson(String lotteryStr) {
 		if (lotteryStr == null)
 			return null;
-		FleetRaceReawardBean lottery = new FleetRaceReawardBean();
+		FleetRaceRewardBean lottery = new FleetRaceRewardBean();
 		JSONObject json = null;
 		try {
 			json = new JSONObject(lotteryStr);

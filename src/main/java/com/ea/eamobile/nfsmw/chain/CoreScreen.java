@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.ea.eamobile.nfsmw.constants.Match;
 import com.ea.eamobile.nfsmw.model.User;
-import com.ea.eamobile.nfsmw.protoc.Commands;
 import com.ea.eamobile.nfsmw.protoc.Commands.Prop;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingConfirmCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestBindingInfoCommand;
@@ -28,6 +27,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
@@ -76,6 +76,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseGotchaCommand;
@@ -784,6 +785,7 @@ public class CoreScreen extends RequestScreen {
 			Builder responseBuilder, User user) {
 		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
 		responseBuilder.setFleetRaceCommand(fleetracecmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		return true;
 	}
 
@@ -808,14 +810,18 @@ public class CoreScreen extends RequestScreen {
 		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
 		pushCommandService.pushFleetRaceInfoCommand(responseBuilder, fleetracecmd);
+//		pushCommandService.push
 		return true;
 	}
 
 	@Override
 	protected boolean handleCommand(RequestFleetDoubleCommand cmd,
 			Builder responseBuilder, User user) {
-		ResponseFleetDoubleCommand fleetracecmd = fleetraceService.FleetRaceDoubleCommand(cmd.getId());
-		responseBuilder.setFleetDoubleCommand(fleetracecmd);
+		ResponseFleetDoubleCommand fleetracedoublecmd = fleetraceService.FleetRaceDoubleCommand(cmd.getId(),user);
+		responseBuilder.setFleetDoubleCommand(fleetracedoublecmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
+		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
+		pushCommandService.pushFleetRaceInfoCommand(responseBuilder, fleetracecmd);
 		return true;
 	}
 
@@ -833,6 +839,16 @@ public class CoreScreen extends RequestScreen {
 			Builder responseBuilder, User user) {
 		ResponseProfileCarCommand profilecarcmd = fleetraceService.ProfileCarCommand(cmd.getUserId(),responseBuilder);
 		responseBuilder.setProfileCarCommand(profilecarcmd);
+		
+		return true;
+	}
+	
+	@Override
+	protected boolean handleCommand(RequestFleetRankRewardCommand cmd,
+			Builder responseBuilder,User user){
+		ResponseFleetRankRewardCommand fleetrankcmd = fleetraceService.FleetRankRewardCommand(user, responseBuilder);
+		responseBuilder.setFleetRankRewardCommand(fleetrankcmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		return true;
 	}
 	

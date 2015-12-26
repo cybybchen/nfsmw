@@ -26,6 +26,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
@@ -187,6 +188,8 @@ public abstract class RequestScreen implements RequestHandle {
     protected abstract boolean handleCommand(RequestFixCarLimitCommand cmd ,Builder responseBuilder, User user);
     						 
     protected abstract boolean handleCommand(RequestProfileCarCommand cmd ,Builder responseBuilder, User user);
+    
+    protected abstract boolean handleCommand(RequestFleetRankRewardCommand cmd,Builder responseBuilder,User user);
     		
     @Override
     public boolean handleRequest(NFSRequest req, NFSResponse rep) {
@@ -515,6 +518,14 @@ public abstract class RequestScreen implements RequestHandle {
 		
 		if (request.hasProfileCarCommand()) {
 			RequestProfileCarCommand cmd = request.getProfileCarCommand();
+			if (result) {
+				result = handleCommand(cmd, responseBuilder, user);
+			}
+		}
+		
+		//new 
+		if (request.hasFleetRankRewardCommand()) {
+			RequestFleetRankRewardCommand cmd = request.getFleetRankRewardCommand();
 			if (result) {
 				result = handleCommand(cmd, responseBuilder, user);
 			}

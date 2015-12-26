@@ -28,7 +28,17 @@ public class hangUpRacesBean implements Serializable {
 	private int status = 0;
 	private List<hangUpRankBean> hangUpRankList = new ArrayList<hangUpRankBean>();
 	private String startTime = ""; 
+	public List<RewardBean> getMyrewards() {
+		return myrewards;
+	}
+
+	public void setMyrewards(List<RewardBean> myrewards) {
+		this.myrewards = myrewards;
+	}
+
 	private int rank = 0;
+	private List<RewardBean> myrewards = new ArrayList<RewardBean>();
+	
 	private boolean useRefCar = false ;
 
 	public FleetRace toFleetRace() {
@@ -46,9 +56,18 @@ public class hangUpRacesBean implements Serializable {
 		fleetRace.setCartype(1);// don't know
 		fleetRace.setRemainTime(getFleetRaceRamainTime());
 		fleetRace.setMyrank(getRank());
+		{
+			List<RewardN> rewardList = new ArrayList<RewardN>();
+			for (RewardBean hangupreward : getMyrewards()) {
+				RewardN.Builder reward = RewardN.newBuilder();
+				reward.setId(hangupreward.getRewardId());
+				reward.setCount(hangupreward.getRewardCount());
+				rewardList.add(reward.build());
+			}
+			fleetRace.addAllMyrewards(rewardList);
+		}
 		fleetRace.setType((getId() / 10) % 2);
 		fleetRace.setTier(((getId() / 10) + 1) >> 1);
-		// fleetRace.addAllMyrewards(rewardList);// TODO
 		List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
 		for (hangUpRankBean hangUpRank : getHangUpRankList()) {
 			RewardList.Builder rewardListBuilder = RewardList.newBuilder();
@@ -165,6 +184,7 @@ public class hangUpRacesBean implements Serializable {
 
 	public JSONObject toJsonObject() {
 		JSONObject json = new JSONObject();
+		JSONArray myrewardArray = new JSONArray();
 		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("raceid", raceid);
@@ -177,6 +197,10 @@ public class hangUpRacesBean implements Serializable {
 			json.put("status", status);
 			json.put("startTime", startTime);
 			json.put("rank",rank);
+			for (RewardBean reward : myrewards) {
+				myrewardArray.put(reward.toJsonObject());
+			}
+			json.put("myrewards", myrewardArray);
 			for (hangUpRankBean hangUpRank : hangUpRankList) {
 				jsonArray.put(hangUpRank.toJsonObject());
 			}
@@ -188,6 +212,7 @@ public class hangUpRacesBean implements Serializable {
 
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray myrewardArray = new JSONArray();
 		JSONArray jsonArray = new JSONArray();
 		try {
 			json.put("raceid", raceid);
@@ -200,6 +225,10 @@ public class hangUpRacesBean implements Serializable {
 			json.put("status" ,status);
 			json.put("startTime", startTime);
 			json.put("rank", rank);
+			for (RewardBean reward : myrewards) {
+				myrewardArray.put(reward.toJsonObject());
+			}
+			json.put("myrewards", myrewardArray);
 			for (hangUpRankBean hangUpRank : hangUpRankList) {
 				jsonArray.put(hangUpRank.toJsonObject());
 			}
@@ -229,6 +258,18 @@ public class hangUpRacesBean implements Serializable {
 		hangUpRaces.setStatus(CommonUtil.jsonGetInt(json, "status"));
 		hangUpRaces.setStartTime(CommonUtil.jsonGetString(json, "startTime"));
 		hangUpRaces.setRank(CommonUtil.jsonGetInt(json, "rank"));
+		List<RewardBean> rewads = new ArrayList<RewardBean>();
+		JSONArray rewardArray = CommonUtil.jsonGetArray(json, "myrewards");
+		for (int i = 0; i < rewardArray.length(); i++) {
+			String string = "";
+			try {
+				string =rewardArray.getString(i);
+				RewardBean reward = RewardBean.fromJson(string);
+				rewads.add(reward);
+			} catch (JSONException e) {
+			}
+		}
+		hangUpRaces.setMyrewards(rewads);
 		
 		List<hangUpRankBean> hangUpRankList = new ArrayList<hangUpRankBean>();
 		JSONArray hangUpRankArray = CommonUtil.jsonGetArray(json, "hangUpRankList");
@@ -236,10 +277,10 @@ public class hangUpRacesBean implements Serializable {
 			String rankstring = "";
 			try {
 				rankstring = hangUpRankArray.getString(i);
+				hangUpRankBean hangUpRank = hangUpRankBean.fromJson(rankstring);
+				hangUpRankList.add(hangUpRank);
 			} catch (JSONException e) {
 			}
-			hangUpRankBean hangUpRank = hangUpRankBean.fromJson(rankstring);
-			hangUpRankList.add(hangUpRank);
 		}
 		hangUpRaces.setHangUpRankList(hangUpRankList);
 
@@ -266,9 +307,7 @@ public class hangUpRacesBean implements Serializable {
 	}
 	
 	private int getCountByType(int type) {
-		if ((type % 2) == 0) {
 			return 5;
-		}
-		return 3;
 	}
+
 }

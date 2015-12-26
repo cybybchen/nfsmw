@@ -13,13 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ea.eamobile.nfsmw.constants.CacheKey;
-import com.ea.eamobile.nfsmw.constants.ErrorConst;
 import com.ea.eamobile.nfsmw.model.Car;
 import com.ea.eamobile.nfsmw.model.CarChartlet;
 import com.ea.eamobile.nfsmw.model.RpLeaderBoard;
+import com.ea.eamobile.nfsmw.model.RpLevel;
 import com.ea.eamobile.nfsmw.model.User;
 import com.ea.eamobile.nfsmw.model.UserCar;
+import com.ea.eamobile.nfsmw.model.bean.FansRewardBean;
+import com.ea.eamobile.nfsmw.model.bean.FleetRaceRewardBean;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
 import com.ea.eamobile.nfsmw.model.bean.RpLeaderboardBean;
 import com.ea.eamobile.nfsmw.model.bean.hangUpBean;
@@ -41,6 +42,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RewardN;
 import com.ea.eamobile.nfsmw.protoc.Commands.RpLeaderboardMessage;
 import com.ea.eamobile.nfsmw.service.CarService;
 import com.ea.eamobile.nfsmw.service.RewardService;
+import com.ea.eamobile.nfsmw.service.RpLevelService;
 import com.ea.eamobile.nfsmw.service.UserCarService;
 import com.ea.eamobile.nfsmw.service.UserChartletService;
 import com.ea.eamobile.nfsmw.service.UserService;
@@ -73,6 +75,8 @@ public class FleetRaceCommandService {
     private MemcachedClient cache;
     @Autowired
     private BaseCommandService baseCommandService;
+    @Autowired
+    private RpLevelService levelService;
 
 	private static final Logger log = LoggerFactory.getLogger(FleetRaceCommandService.class);
 
@@ -80,13 +84,12 @@ public class FleetRaceCommandService {
 	public ResponseFleetRaceCommand getFleetRaceCommand(User user) {
 		ResponseFleetRaceCommand.Builder builder = ResponseFleetRaceCommand.newBuilder();
 		builder.addAllRaces(getAllFleetRaceList(user));
-		
 //		builder.addAllRpLeaderboard(values);
-		builder.setSelfRank(1000);// TODO
-		buildRpLeaderboardCommand(builder,getRpLeaderboard(),user.getId());
-		builder.setAnnounce("nihao");// TODO
-		// builder.addAllRewards(getRankReward(user,id));// error??
-		builder.setCanReward(true);
+		builder.setSelfRank(1000);
+		buildRpLeaderboardCommand(builder,getRpLeaderboard(),user);
+		builder.setAnnounce("nihao");
+		builder.addAllRewards(getTopListReward(user));
+		builder.setCanReward(sendTopListReward(user));
 		return builder.build();
 	}
 
@@ -94,16 +97,13 @@ public class FleetRaceCommandService {
 			Commands.ResponseCommand.Builder responseBuilder) throws SQLException {
 		ResponseFleetStartCommand.Builder builder = ResponseFleetStartCommand.newBuilder();
 		builder.setId(id);
-		builder.setResult(0);// TODO
+		builder.setResult(0);
 		builder.setDisplayName("chenggong");
 		long userId = user.getId();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = df.format(new Date());
 		FleetRace.Builder fleetRace = FleetRace.newBuilder();
 		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
-		hangUpRaces.setStartTime(now);
-		hangUpRaces.setRank(getMyrank(cars, 1, user,hangUpRaces.getCarDesc(),hangUpRaces));
-		hangUpRaces.setStatus(1);
 		fleetRace.setCarid(hangUpRaces.getCarDesc());
 		fleetRace.setName(hangUpRaces.getName());
 		fleetRace.setId(id);
@@ -115,15 +115,43 @@ public class FleetRaceCommandService {
 		fleetRace.setCount(getCountByType(id/10)); // 支持同时使用的车辆数
 		fleetRace.setState(hangUpRaces.getStatus());// 赛事状态,ok
 		fleetRace.setTier(getFleetRaceTier(id / 10));// 赛道等级T1～4,ok
-//		fleetRace.setCartype(1);// 可以使用的跑车类型
+		fleetRace.setCartype(1);// 可以使用的跑车类型
 		fleetRace.setRemainTime(hangUpRaces.getFleetRaceRamainTime());// 剩余时间
-		fleetRace.setMyrank(hangUpRaces.getRank());
-		fleetRace.addAllMyrewards(getClosingReward(user,id));// TODO
+		fleetRace.addAllMyrewards(getClosingReward(user,id));
 		List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
 		RewardList.Builder rewardListBuilder = RewardList.newBuilder();
-		List<RewardN> rewardList = new ArrayList<RewardN>();
+		ArrayList<RewardN> rewardList = new ArrayList<RewardN>();
+		modifyCarLimit(cars, user, hangUpRaces.getNeedLimit());
+		modifyUserEnergy(user, hangUpRaces.getNeedEnergy());
+		modifyCarStatus(cars,user,1,id);
+		pushCommandService.pushUserCarInfoCommand(responseBuilder, getCarViewByCars(cars,user), userId);
+		rewardListBuilder.addAllRewards(rewardList);
+		rewardBuilderList.add(rewardListBuilder.build());
+		fleetRace.addAllRewards(rewardBuilderList);
+
+		hangUpRaces.setStartTime(now);
+		hangUpRaces.setRank(getMyrank(cars, 1, user,hangUpRaces.getCarDesc(),hangUpRaces));
+		fleetRace.setMyrank(hangUpRaces.getRank());
 		for (hangUpRankBean hangUpRank : hangUpRaces.getHangUpRankList()) {
 			rewardListBuilder.setName("" + hangUpRank.getIndex());
+			if( hangUpRank.getIndex() == fleetRace.getMyrank())
+			{
+				List<RewardBean> rewards =  hangUpRank.getRewardList();
+				if(!cars.contains(fleetRace.getCarid() ))
+				{
+					Iterator<RewardBean> it = rewards.iterator();
+					while(it.hasNext())
+					{
+						RewardBean reward = it.next();
+						if(reward .getId()/1000 == 2  )
+						{
+							it.remove();
+							break;
+						}
+					}
+				}
+				hangUpRaces.setMyrewards(rewards);
+			}
 			for (RewardBean hangupreward : hangUpRank.getRewardList()) {
 				RewardN.Builder reward = RewardN.newBuilder();
 				reward.setId(hangupreward.getRewardId());
@@ -131,12 +159,8 @@ public class FleetRaceCommandService {
 				rewardList.add(reward.build());
 			}
 		}
-		modifyCarLimit(cars, user, hangUpRaces.getNeedLimit());
-		modifyUserEnergy(user, hangUpRaces.getNeedEnergy());
-		pushCommandService.pushUserCarInfoCommand(responseBuilder, getCarViewByCars(cars,user), userId);
-		rewardListBuilder.addAllRewards(rewardList);
-		rewardBuilderList.add(rewardListBuilder.build());
-		fleetRace.addAllRewards(rewardBuilderList);
+		
+		hangUpRaces.setStatus(1);
 		fleetRaceRedis.addRacebyUserid(userId, id, hangUpRaces);
 		builder.setRace(hangUpRaces.toFleetRace());
 		return builder.build();
@@ -152,19 +176,40 @@ public class FleetRaceCommandService {
 		fleetRaceRedis.addRacebyUserid(userId, id, hangUpRaces);
 		builder.setRank(hangUpRaces.getRank());
 		builder.addAllRewards(getClosingReward(user,id));
-		List<RewardBean> rewardList = getRankReward(user,id);
+		List<RewardBean> rewardList = hangUpRaces.getMyrewards();
 		rewardService.doRewardList(user, rewardList);
 		fleetRaceRedis.addRankUser(createRpBoardUser(user));
 		fleetRaceRedis.addFleetRaceRank(createRpBoardUser(user));
+		List<String> cars = fleetRaceRedis.getUserCarStatus(user, id);
+		for(int i=0;i<cars.size();i++){
+			log.debug("cars is"+cars.get(i));
+		}
+		modifyCarStatus(cars, user, 0, id);
 		builder.setDisplayName("yes");
 		return builder.build();
 	}
 
-	public ResponseFleetDoubleCommand FleetRaceDoubleCommand(int id) {
+	public ResponseFleetDoubleCommand FleetRaceDoubleCommand(int id,User user) {
 		ResponseFleetDoubleCommand.Builder builder = ResponseFleetDoubleCommand.newBuilder();
+		long userId = user.getId();
 		builder.setId(id);
 		builder.setResult(0);
 		builder.setDisplayName("ok");
+		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
+		hangUpRaces.setStatus(2);
+		fleetRaceRedis.addRacebyUserid(userId, id, hangUpRaces);
+		List<String> cars = fleetRaceRedis.getUserCarStatus(user, id);
+		modifyCarStatus(cars, user, 0, id);
+		builder.addAllRewards(getDoubleClosingReward(user,id));
+		List<RewardBean> rewardList = getDoubleRankReward(user,id);
+		rewardService.doRewardList(user, rewardList);
+		int rank = 0;
+		if(fleetRaceRedis.getFleetRaceRankFromRedis(user)==0){
+			rank = 10000;
+		}else{
+			rank = fleetRaceRedis.getFleetRaceRankFromRedis(user);
+		}
+		builder.setRank(rank);
 		return builder.build();
 	}
 
@@ -175,12 +220,11 @@ public class FleetRaceCommandService {
 			String carId = iter.next();
 			builder.setCarId(carId);
 		}
-//		builder.se
 		FixCarLimit(cars, user);
 		try {
 			pushCommandService.pushUserCarInfoCommand(responseBuilder, getCarViewByCars(cars,user), user.getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		builder.setResult(0);
@@ -224,19 +268,61 @@ public class FleetRaceCommandService {
 	
 	public ResponseFleetRankRewardCommand  FleetRankRewardCommand(User user,Commands.ResponseCommand.Builder responseBuilder){
 		ResponseFleetRankRewardCommand.Builder builder = ResponseFleetRankRewardCommand.newBuilder();
-		builder.setRank(00);//TODO
-		builder.setResult(0);
+		builder.setRank( fleetRaceRedis.getFleetRaceRankFromRedis(user));
+		//succeed --1 fail--0
 		builder.setDisplayName("keyi");
-//		builder.addAllRewards(values);
+		builder.addAllRewards(sendFleetRaceRewardsList(user,builder));
 		return builder.build();
 	}
+	
 
 	public List<hangUpBean> getFleetRaceList() {
-		List<hangUpBean> hangUpList = XmlUtil.getHangUpList();
+		List<hangUpBean> hangUpList = XmlUtil.getHangUpList();//TODO redis
 		for (hangUpBean hangup : hangUpList) {
-			fleetRaceRedis.setFleetRacet(hangup);
+			fleetRaceRedis.setFleetRace(hangup);
 		}
 		return hangUpList;
+	}
+	
+	public List<FleetRaceRewardBean> getFleetRaceReawardList(){//TODO redis
+		List<FleetRaceRewardBean> fleetracerewardlist = XmlUtil.getFleetRaceRewardList();
+		for(FleetRaceRewardBean fleetracereward : fleetracerewardlist ){
+			fleetRaceRedis.setFleetRankReward(fleetracereward);
+		}
+		return fleetracerewardlist;
+	}
+	
+	private List<RewardN> sendFleetRaceRewardsList(User user, ResponseFleetRankRewardCommand.Builder builder) {
+		int rank = fleetRaceRedis.getFleetRaceRankFromRedis(user);
+		if (rank == 0) {
+			List<RewardN> rewardList = new ArrayList<RewardN>();
+			builder.setRank(10000);
+			builder.setResult(0);
+			return rewardList;
+		} else {
+			List<RewardN> rewardList = new ArrayList<RewardN>();
+			List<FleetRaceRewardBean> fleetracerewardlist = XmlUtil.getFleetRaceRewardList();
+			List<RewardBean> topListRewardList = new ArrayList<RewardBean>();
+			for (FleetRaceRewardBean FleetRaceReward : fleetracerewardlist) {
+				int rankIndexMin = FleetRaceReward.getIndexMin();
+				int rankIndexMax = FleetRaceReward.getIndexMax();
+				while (rank >= rankIndexMin && rank <= rankIndexMax) {
+					topListRewardList = FleetRaceReward.getRewardList();
+					for (RewardBean topListReward : topListRewardList) {
+						RewardN.Builder reward = RewardN.newBuilder();
+						reward.setId(topListReward.getRewardId());
+						reward.setCount(topListReward.getRewardCount());
+						rewardList.add(reward.build());
+					 }
+				break;
+				}
+			}
+			fleetRaceRedis.addPAId(user.getId(), 1);
+			rewardService.doRewardList(user, topListRewardList);
+			user.setAccFleetRaceReward(1);
+			builder.setResult(1);
+			return rewardList;
+		}
 	}
 	
 	private List<RpLeaderBoard> getRpLeaderboard(){
@@ -250,8 +336,9 @@ public class FleetRaceCommandService {
 	}
 	
 	private void buildRpLeaderboardCommand(ResponseFleetRaceCommand.Builder builder,
-			List<RpLeaderBoard> rpLeaderBoardList, long userId) {
+			List<RpLeaderBoard> rpLeaderBoardList, User user) {
 		List<RpLeaderboardMessage> list = new ArrayList<Commands.RpLeaderboardMessage>();
+		long userId = user.getId();
 		if (rpLeaderBoardList != null && rpLeaderBoardList.size() > 0) {
 			for (int i = 0; i < rpLeaderBoardList.size(); i++) {
 				RpLeaderboardMessage.Builder msgBuilder = RpLeaderboardMessage.newBuilder();
@@ -263,7 +350,9 @@ public class FleetRaceCommandService {
 				msgBuilder.setRank(i + 1);
 				msgBuilder.setRpLevel(rpLeaderBoard.getRpLevel());
 				msgBuilder.setRpNum(rpLeaderBoard.getRpNum());
-				msgBuilder.setWeekrpNum(rpLeaderBoard.getRpNumWeek());
+				msgBuilder.setWeekrpNum(rpLeaderBoard.getRpExpWeek());
+				user.setRpExpWeek(rpLeaderBoard.getRpExpWeek());
+				userService.updateUser(user);
 				list.add(msgBuilder.build());
 				if (userId == rpLeaderBoard.getUserId()) {
 					builder.setSelfRank(i + 1);
@@ -278,9 +367,12 @@ public class FleetRaceCommandService {
 		rpboard.setHeadIndex(user.getHeadIndex());
 		rpboard.setHeadUrl(user.getHeadUrl());
 		rpboard.setName(user.getName());
-		rpboard.setRpNumWeek(user.getRpExpWeek());
+		rpboard.setRpExpWeek(user.getRpExpWeek());
 		rpboard.setRpLevelWeek(0);
 		rpboard.setUserId(user.getId());
+		RpLevel currentLevel = levelService.getLevel(user.getLevel());
+        int exp = currentLevel != null ? user.getRpNum() - currentLevel.getRpNum() : user.getRpNum();
+		rpboard.setRpNum(exp);
 		return rpboard;
 	}
 	
@@ -296,6 +388,16 @@ public class FleetRaceCommandService {
 		userService.updateUser(user);
 	}
 	
+	private boolean sendTopListReward(User user){
+		long userId = user.getId();
+		int state = 0;
+		state = fleetRaceRedis.getPaRewardStatus(userId);
+		if(state == 0){
+			return true;
+		}else
+			return false;
+	}
+	
 	private void FixCarLimit(List<String>cars,User user){
 		long userId = user.getId();
 		Iterator<String> iter = cars.iterator();
@@ -304,14 +406,43 @@ public class FleetRaceCommandService {
 		int money = 0;
 		String carId =iter.next();
 		UserCar userCar = userCarService.getUserCarByUserIdAndCarId(userId, carId);
-		log.debug("user money :"+user.getMoney());
-		log.debug("userCar limit :"+userCar.getLimit());
-		money = (user.getMoney() - 70 * (100 - userCar.getLimit()));
+		Car car = carService.getCar(userCar.getCarId());
+		int tie = car.getTier();
+			switch (tie) {
+			case 1:
+				money = (user.getMoney() - 40 * (100 - userCar.getLimit()));
+				break;
+			case 2:
+				money = (int) (user.getMoney() - 40 * 1.4 * (100 - userCar.getLimit()));
+				break;
+			case 3:
+				money = (int) (user.getMoney() - 40 * 1.8 * (100 - userCar.getLimit()));
+				break;
+			case 4:
+				money = (int) (user.getMoney() - 40 * 2.5 * (100 - userCar.getLimit()));
+				break;
+			default:
+				money = (user.getMoney() - 40 * (100 - userCar.getLimit()));
+				break;
+			}
 		user.setMoney(money);
 		userCar.setLimit(100);
 		userCarService.update(userCar);
 		userService.updateUser(user);
 		}
+	}
+	
+	private void modifyCarStatus(List<String>cars,User user ,int Status,int id){//TODO
+		long userId = user.getId();
+		Iterator<String> iter = cars.iterator();
+		while(iter.hasNext())  
+		{  
+		String carId =iter.next();
+		UserCar userCar = userCarService.getUserCarByUserIdAndCarId(userId, carId);
+		userCar.setStates(Status);
+		userCarService.update(userCar);
+		}
+		fleetRaceRedis.userCarStatus(user, cars, id);
 	}
 	
    private void modifyCarLimit(List<String>cars,User user,int needlimit){
@@ -339,10 +470,9 @@ public class FleetRaceCommandService {
 		List<CarView> carViewList = new ArrayList<CarView>();
 		UserCar theBestUserCar = new UserCar();
 		if (carId == null) {
-		
 			List<UserCar> ucList = getUserCarList(userId);
 			User u = userService.getUser(userId);
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < ucList.size(); i++) {
 				int score = 0;
 				for (UserCar ucTmp : ucList) {
 					Car car = carService.getCar(ucTmp.getCarId());
@@ -350,12 +480,13 @@ public class FleetRaceCommandService {
 						score = ucTmp.getScore();
 						carId = ucTmp.getCarId();
 						theBestUserCar = ucTmp;
-//						 ucList.remove(index)
 					}
 				}
 				carview = userCarService.getUserCarView(userId, carId);
 				carViewList.add(carview);
 				ucList.remove(theBestUserCar);
+				if (i == 6)
+					break;
 			}
 //			cache.set(CacheKey.USER_BEST_CAR + userId, carId, MemcachedClient.MIN);
 		}
@@ -409,50 +540,37 @@ public class FleetRaceCommandService {
 				}
 				totalFc += score;
 				if (carId.equals(refCar))
+				{
 					hanguprace.setUseRefCar(true);
-				totalFc += score;
+					totalFc += 0.5*score;
+				}
 			}
 		}
-		int rank = getFleetRaceRank(totalFc, 1000);
-		log.debug("rank is 11111111111"+rank);
+		
+		int rank = getFleetRaceRank(totalFc, hanguprace.getScore());
+		log.debug("getFleetRaceRank: "+totalFc+" rank is "+rank);
 		return rank;
 	}
  
 	private int getFleetRaceRank(int totalFC, int basicFC) {
-		double roll;
-		roll = Math.random() * 2;
-		if (totalFC >= 0) {
-			int the1stPL = totalFC / basicFC;
-			int the2ndPL = (int) (the1stPL * 1.1);
-			int the3rdPL = (int) (the1stPL * 1.2);
-			int the4thPL = (int) (the1stPL * 1.3);
-			int the5thPL = (int) (the1stPL * 1.4);
-			if (the1stPL >= 1) {
-				return 1;
-			}
-			roll = Math.random() * 2;
-			if (roll <= the1stPL) {
-				return 1;
-			}
-			roll = Math.random() * 2;
-			if (roll <= the2ndPL) {
-				return 2;
-			}
-			roll = Math.random() * 2;
-			if (roll <= the3rdPL) {
-				return 3;
-			}
-			roll = Math.random() * 2;
-			if (roll <= the4thPL) {
-				return 4;
-			}
-			roll = Math.random() * 2;
-			if (roll <= the5thPL) {
-				return 5;
-			}
+		if (totalFC <= 0) 
 			return 6;
-		}
-		return -1;
+		double the1stPL = Math.min(1, totalFC / (double)basicFC);
+		if (Math.random() <= the1stPL) 
+			return 1;
+		double the2ndPL =Math.min(1,  the1stPL * 1.1);
+		if (Math.random() <= the2ndPL) 
+			return 2;
+		double the3rdPL =Math.min(1,  the1stPL * 1.2);
+		if (Math.random() <= the3rdPL) 
+			return 3;
+		double the4thPL = Math.min(1, the1stPL * 1.3);
+		if (Math.random() <= the4thPL) 
+			return 4;
+		double the5thPL = Math.min(1, the1stPL * 1.4);
+		if (Math.random() <= the5thPL) 
+			return 5;
+		return 6;
 	}
 
 	private List<RewardN> getClosingReward(User user, int id) {
@@ -475,7 +593,66 @@ public class FleetRaceCommandService {
 		}
 		return rewardList;
 	}
+	
+	public List<RewardBean> setClosingReward(User user, int id) {
+		long userId = user.getId();
+		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
+		int rank = hangUpRaces.getRank();
+		List<RewardBean> reward = new ArrayList<RewardBean>();
+		for (hangUpRankBean hangUpRank : hangUpRaces.getHangUpRankList()) {
+			if (hangUpRank.getIndex() == rank) {
+				reward = hangUpRank.getRewardList();
+			}
+		}
+		return reward;
+	}
+	
+	
+	private List<RewardN> getDoubleClosingReward(User user, int id) {
+		long userId = user.getId();
+		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
+		int rank = hangUpRaces.getRank();
+		List<RewardN> rewardList = new ArrayList<RewardN>();
+		for (hangUpRankBean hangUpRank : hangUpRaces.getHangUpRankList()) {
+			if (hangUpRank.getIndex() == rank) {
+				for (RewardBean hangupreward : hangUpRank.getRewardList()) {
+					RewardN.Builder reward = RewardN.newBuilder();
+					reward.setId(hangupreward.getRewardId());
+					reward.setCount(hangupreward.getRewardCount()*2);
+					if(hangUpRaces.isUseRefCar() || reward.getId()/1000 != 2){
+						rewardList.add(reward.build());
+						hangUpRaces.setUseRefCar(false);
+						}
+				}
+			}
+		}
+		return rewardList;
+	}
+	
+	private List<RewardList> getTopListReward(User user) {
+		List<FleetRaceRewardBean> fleetracerewardlist = XmlUtil.getFleetRaceRewardList();
+		List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
+		
+		for (FleetRaceRewardBean fleetracereward : fleetracerewardlist) {
+			RewardList.Builder rewardListBuilder = RewardList.newBuilder();
+			int rankIndexMin = fleetracereward.getIndexMin();
+			int rankIndexMax = fleetracereward.getIndexMax();
+			rewardListBuilder.setName(rankIndexMin + " - " + rankIndexMax);
+			List<RewardN> rewardList = new ArrayList<RewardN>();
+			for (RewardBean hangupreward : fleetracereward.getRewardList()) {
+				RewardN.Builder reward = RewardN.newBuilder();
+				reward.setId(hangupreward.getRewardId());
+				reward.setCount(hangupreward.getRewardCount());
+				rewardList.add(reward.build());
+			}
+			rewardListBuilder.addAllRewards(rewardList);
+			rewardBuilderList.add(rewardListBuilder.build());
+		}
+		return rewardBuilderList;
+	}
 
+	
+	
 	private List<RewardBean> getRankReward(User user, int id) {
 		long userId = user.getId();
 		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
@@ -484,6 +661,23 @@ public class FleetRaceCommandService {
 		for (hangUpRankBean hangUpRank : hangUpRaces.getHangUpRankList()) {
 			if (hangUpRank.getIndex() == rank) {
 				reward=hangUpRank.getRewardList();
+				}
+			}
+		return reward;
+	}
+	
+	private List<RewardBean> getDoubleRankReward(User user, int id) {
+		long userId = user.getId();
+		hangUpRacesBean hangUpRaces = fleetRaceRedis.getRacebyUserId(userId, id);
+		List<RewardBean> reward = new ArrayList<RewardBean>();
+	
+		int rank = hangUpRaces.getRank();
+		for (hangUpRankBean hangUpRank : hangUpRaces.getHangUpRankList()) {
+			if (hangUpRank.getIndex() == rank) {
+				for(RewardBean rwd :hangUpRank.getRewardList()){
+					rwd.setRewardCount(rwd.getRewardCount()*2);
+					reward.add(rwd);
+				}
 				}
 			}
 		return reward;
@@ -516,13 +710,15 @@ public class FleetRaceCommandService {
 				}
 			}
 		}
-		return null;
+		return hanupList.get(0).getHangUpRacesList().get(0).toFleetRace();
 	}
 	
 	private List<FleetRace> getAllFleetRaceList(User user) {
 		int types[] = {1,2,3,4,5,7,6,8,1,3,5,7};
 		List<FleetRace> fleetRace = new ArrayList<FleetRace>();
-		int rpnum = user.getRpNum();
+		RpLevel currentLevel = levelService.getLevel(user.getLevel());
+		int exp = currentLevel != null ? user.getRpNum() - currentLevel.getRpNum() : user.getRpNum();
+		int rpnum = exp;
 		long userId = user.getId();
 		
 		List<hangUpRacesBean> hangupRaceList = new  ArrayList<hangUpRacesBean>();
@@ -537,7 +733,6 @@ public class FleetRaceCommandService {
 				String time  = hangupRaceList.get(i).getStartTime();
 				starttime = df.parse(time);
 			} catch (Exception e1) {
-				e1.printStackTrace();
 			}
 			Date thistime = new Date();
 			int startday = (int) (starttime.getTime() / 300 / 1000);
@@ -576,7 +771,6 @@ public class FleetRaceCommandService {
 		for(int i = hangupRaceList.size() ; i <  racesize; i++){
 			fleetRace.add(getFleetRace_type(user, types[i],races));
 		}
-		
 		return fleetRace;
 	}
 	

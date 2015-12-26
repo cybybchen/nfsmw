@@ -26,10 +26,20 @@ public class UserCar implements Serializable {
     private int createTime;
     
     private int limit;
+    
+    private int states;
+    
+    
 
-    private String racetime;
+    public int getStates() {
+		return states;
+	}
 
-    public long getId() {
+	public void setStates(int states) {
+		this.states = states;
+	}
+
+	public long getId() {
         return id;
     }
 
@@ -94,14 +104,5 @@ public class UserCar implements Serializable {
 	public void setLimit(int limit) {
 		this.limit = limit;
 	}
-
-	public String getRacetime() {
-		return racetime;
-	}
-
-	public void setRacetime(String racetime) {
-		this.racetime = racetime;
-	}
-    
     
 }

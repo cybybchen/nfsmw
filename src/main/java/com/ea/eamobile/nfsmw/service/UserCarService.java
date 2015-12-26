@@ -303,7 +303,6 @@ public class UserCarService {
         view.setScore(car.getScore());
         view.setMaxlimit(car.getMaxlimit());
         view.setLimit(userCar != null ? userCar.getLimit() : 0);
-        view.setRacetime(userCar != null ? userCar.getRacetime() : "2015-01-01 00:00:00.");
         view.setChartletId(userCar != null ? userCar.getChartletId() : 0);
         view.setUnlockMwNum(car.getUnlockMwNum());
         view.setPriceType(car.getPriceType());
@@ -455,7 +454,7 @@ public class UserCarService {
         }
         buyCarRecord.setFragNum(userCarFragment.getCount());
         float count = Math.min(userCarFragment.getCount(), gotchaCar.getPartNum());
-        price = (int) (car.getPrice() * (1 - Math.pow((count / gotchaCar.getPartNum()), 2)));
+        price = (int)(car.getPrice() * (1 - (count / gotchaCar.getPartNum()*0.9)));
         buyCayUserFragView.setPrice(price);
         userCarFragment.setCount(Math.max(userCarFragment.getCount() - gotchaCar.getPartNum(), 0));
         buyCayUserFragView.setUserCarFragment(userCarFragment);
@@ -469,6 +468,7 @@ public class UserCarService {
         userCar.setScore(car.getScore());
         userCar.setStatus(car.needTransport() ? CarConst.TRANSPORTING : CarConst.OWN);
         userCar.setChartletId(0);
+        userCar.setLimit(car.getMaxlimit());
         userCar.setCreateTime((int) (System.currentTimeMillis() / 1000));
         return userCar;
     }

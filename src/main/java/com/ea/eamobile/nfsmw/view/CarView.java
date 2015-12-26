@@ -39,23 +39,24 @@ public class CarView implements Serializable {
     
     private int limit;
     
-    private String racetime;
+    private int states;
+    
     
 
-    public int getLimit() {
+    public int getStates() {
+		return states;
+	}
+
+	public void setStates(int states) {
+		this.states = states;
+	}
+
+	public int getLimit() {
 		return limit;
 	}
 
 	public void setLimit(int limit) {
 		this.limit = limit;
-	}
-
-	public String getRacetime() {
-		return racetime;
-	}
-
-	public void setRacetime(String racetime) {
-		this.racetime = racetime;
 	}
 
 	public String getCarId() {

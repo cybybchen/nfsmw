@@ -53,8 +53,9 @@ public class UserInfoMessageService {
         builder.setTutorialRewardIsGiven(user.getIsGetTutorialReward() == 1);
         builder.setIsNameChanged(user.getIsNicknameChanged());
         builder.setIsNoble(CommonUtil.isTimeExpried(user.getVipEndTime()));
-        builder.setLeftNobleTime(DateUtil.intervalSeconds(DateUtil.getDateTime(user.getVipEndTime()), 
+        builder.setLeftNobleTime(DateUtil.intervalSeconds(DateUtil.getDateTime(user.getVipEndTime()),
         		DateUtil.getDateTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT))));
+        builder.setRpExpWeek(user.getRpExpWeek());
         List<Prop> propListBuilder = new ArrayList<Prop>();
         List<UserPropBean> userPropList = userPropService.getUserProps(user.getId());
         if (userPropList != null && userPropList.size() != 0) {

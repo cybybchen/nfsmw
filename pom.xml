@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<name>nfsmostwanted</name>
 	<description>nfsmostwanted</description>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -249,6 +249,7 @@
        		</dependency>
 	</dependencies>
 	<build>
+		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

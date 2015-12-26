@@ -12,8 +12,18 @@ public class RpLeaderboardBean {
 	private String headUrl = "";
 	private String name = "";
 	private int rpLevelWeek = 0;
-	private int rpNumWeek = 0;
+	private int RpExpWeek = 0;
 	private long userId = 0;
+	private int rpNum = 0;
+	
+
+	public int getRpNum() {
+		return rpNum;
+	}
+
+	public void setRpNum(int rpNum) {
+		this.rpNum = rpNum;
+	}
 
 	public RpLeaderBoard toRpLeaderBoard() {
 		RpLeaderBoard rpboard = new RpLeaderBoard();
@@ -21,8 +31,9 @@ public class RpLeaderboardBean {
 		rpboard.setHeadUrl(headUrl);
 		rpboard.setName(name);
 		rpboard.setRpLevel(rpLevelWeek);
-		rpboard.setRpNumWeek(rpNumWeek);
+		rpboard.setRpExpWeek(RpExpWeek);
 		rpboard.setUserId(userId);
+		rpboard.setRpNum(rpNum);
 		return rpboard;
 	}
 
@@ -74,12 +85,14 @@ public class RpLeaderboardBean {
 		this.rpLevelWeek = rpLevelWeek;
 	}
 
-	public int getRpNumWeek() {
-		return rpNumWeek;
+
+
+	public int getRpExpWeek() {
+		return RpExpWeek;
 	}
 
-	public void setRpNumWeek(int rpNumWeek) {
-		this.rpNumWeek = rpNumWeek;
+	public void setRpExpWeek(int rpExpWeek) {
+		RpExpWeek = rpExpWeek;
 	}
 
 	public JSONObject toJsonObject() {
@@ -90,8 +103,9 @@ public class RpLeaderboardBean {
 			json.put("headUrl", headUrl);
 			json.put("name", name);
 			json.put("rpLevelWeek", rpLevelWeek);
-			json.put("rpNumWeek", rpNumWeek);
+			json.put("RpExpWeek", RpExpWeek);
 			json.put("	userId", userId);
+			json.put("rpNum", rpNum);
 		} catch (JSONException e) {
 		}
 		return json;
@@ -105,8 +119,9 @@ public class RpLeaderboardBean {
 			json.put("headUrl", headUrl);
 			json.put("name", name);
 			json.put("rpLevelWeek", rpLevelWeek);
-			json.put("rpNumWeek", rpNumWeek);
+			json.put("RpExpWeek", RpExpWeek);
 			json.put("userId", userId);
+			json.put("rpNum", rpNum);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -128,8 +143,9 @@ public class RpLeaderboardBean {
 		rpboard.setHeadUrl(CommonUtil.jsonGetString(json, "hearUrl"));
 		rpboard.setName(CommonUtil.jsonGetString(json, "name"));
 		rpboard.setRpLevelWeek(CommonUtil.jsonGetInt(json, "rpLevelWeek"));
-		rpboard.setRpNumWeek(CommonUtil.jsonGetInt(json, "rpNumWeek"));
+		rpboard.setRpExpWeek(CommonUtil.jsonGetInt(json, "RpExpWeek"));
 		rpboard.setUserId(CommonUtil.jsonGetInt(json, "userId"));
+		rpboard.setRpNum(CommonUtil.jsonGetInt(json, "rpNum"));
 
 		return rpboard;
 	}

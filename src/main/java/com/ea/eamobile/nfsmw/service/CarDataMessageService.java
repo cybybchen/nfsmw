@@ -61,18 +61,8 @@ public class CarDataMessageService {
         builder.setIsSpecialCar(view.getIsSpecialCar());
         builder.setLimit(view.getLimit());
         builder.setMaxlimit(view.getMaxlimit());
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date starttime = new Date();
-		try {
-			String time  = view.getRacetime();
-			starttime = df.parse(time);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		if(System.currentTimeMillis()/1000 -starttime.getTime() > 24*3600*1000 )
-			builder.setState(0);
-		else
-			builder.setState(1);
+        builder.setState(view.getStates());
+        
         List<CarSlotInfo> slots = buildCarSlotInfos(view.getSlots());
         builder.addAllSlots(slots);
         // chartlet
@@ -107,8 +97,7 @@ public class CarDataMessageService {
             count = frag.getCount();
         }
         count = Math.min(count, gotchaCar.getPartNum());
-        return (int) (view.getPrice() * (1 - Math.pow((count / gotchaCar.getPartNum()), 2)));
-
+        return  (int)(view.getPrice() * (1 - (count / gotchaCar.getPartNum()*0.9)));
     }
 
     private List<ChartletInfo> buildChartletInfos(String carId, long userId) throws SQLException {

@@ -28,6 +28,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGetRewardCommand;
@@ -588,6 +589,12 @@ public class OperateScreen extends RequestScreen {
 
 	@Override
 	protected boolean handleCommand(RequestProfileCarCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetRankRewardCommand cmd, Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
 		return true;
 	}

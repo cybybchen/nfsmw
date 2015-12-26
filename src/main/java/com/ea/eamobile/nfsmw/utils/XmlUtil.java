@@ -13,7 +13,7 @@ import org.dom4j.io.SAXReader;
 
 import com.ea.eamobile.nfsmw.constants.XmlParseConst;
 import com.ea.eamobile.nfsmw.model.bean.FansRewardBean;
-import com.ea.eamobile.nfsmw.model.bean.FleetRaceReawardBean;
+import com.ea.eamobile.nfsmw.model.bean.FleetRaceRewardBean;
 import com.ea.eamobile.nfsmw.model.bean.LotteryBean;
 import com.ea.eamobile.nfsmw.model.bean.RechargeDataBean;
 import com.ea.eamobile.nfsmw.model.bean.RewardBean;
@@ -270,8 +270,8 @@ public class XmlUtil extends CommonUtil {
 		
 	}
 	
-	public static List<FleetRaceReawardBean> getFleetRaceRewardList() {
-		List<FleetRaceReawardBean> fleetRaceRewardList = new ArrayList<FleetRaceReawardBean>();
+	public static List<FleetRaceRewardBean> getFleetRaceRewardList() {
+		List<FleetRaceRewardBean> fleetRaceRewardList = new ArrayList<FleetRaceRewardBean>();
 		try {
 			String filePath = CommonUtil.getConfigFilePath(XmlParseConst.FLEET_RACE_REWARDS);
 			SAXReader reader = new SAXReader();
@@ -280,7 +280,7 @@ public class XmlUtil extends CommonUtil {
 			Element root = doc.getRootElement();
 			List<?> rootList = root.elements();
 			for (int i = 0; i < rootList.size(); i++) {
-				FleetRaceReawardBean FleetRaceReward = new FleetRaceReawardBean();
+				FleetRaceRewardBean FleetRaceReward = new FleetRaceRewardBean();
 				Element fleetRaceRewardElement = (Element) rootList.get(i);
 				FleetRaceReward.setIndexMax(
 						CommonUtil.stringToInt(getElementAttr(fleetRaceRewardElement, XmlParseConst.INDEXMAX)));

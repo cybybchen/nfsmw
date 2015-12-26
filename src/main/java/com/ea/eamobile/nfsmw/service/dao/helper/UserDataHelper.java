@@ -64,7 +64,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.isNewUser = data.getIsNewUser();
 		this.playGameTimes = data.getPlayGameTimes();
 		this.lotteryTimes = data.getLotteryTimes();
-
+		this.rpExpWeek = data.getRpExpWeek();
 		setMarks(data.getMarks());
 	}
 
@@ -117,6 +117,7 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.isNewUser = rs.getInt(IS_NEW_USER);
 		this.playGameTimes = rs.getInt(PLAY_GAME_TIMES);
 		this.lotteryTimes = rs.getInt(LOTTERY_TIMES);
+		this.rpExpWeek = rs.getInt(RPEXPWEEK);
 	}
 
 	@Override
