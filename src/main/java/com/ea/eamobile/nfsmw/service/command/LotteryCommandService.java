@@ -57,6 +57,7 @@ public class LotteryCommandService extends BaseCommandService {
     	ResponseLotteryCommand.Builder builder = ResponseLotteryCommand.newBuilder();
     	List<RewardList> rewardBuilderList = new ArrayList<RewardList>();
     	int type = reqcmd.getLotteryType();
+    	boolean fixcarid = reqcmd.hasFixCarId();
     	UserPropBean userProp = new UserPropBean();
     	 ResultInfo result = new ResultInfo(false, "", user);
     	if (type == LotteryService.TPYE_RANDOM_ONETIME) {

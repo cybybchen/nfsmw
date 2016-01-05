@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.CarData;
 import com.ea.eamobile.nfsmw.protoc.Commands.CarSlotInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.ChartletInfo;
 import com.ea.eamobile.nfsmw.protoc.Commands.ConsumableData;
+import com.ea.eamobile.nfsmw.service.command.FleetRaceCommandService;
 import com.ea.eamobile.nfsmw.service.gotcha.GotchaCarService;
 import com.ea.eamobile.nfsmw.service.gotcha.GotchaExpenseService;
 import com.ea.eamobile.nfsmw.service.gotcha.GotchaService;
@@ -43,6 +46,8 @@ public class CarDataMessageService {
     private GotchaCarService gotchaCarService;
     @Autowired
     private GotchaExpenseService gotchaExpenseService;
+    
+	private static final Logger log = LoggerFactory.getLogger(CarDataMessageService.class);
 
     public CarData buildCarData(CarView view, long userId) throws SQLException {
         CarData.Builder builder = CarData.newBuilder();
@@ -61,7 +66,6 @@ public class CarDataMessageService {
         builder.setIsSpecialCar(view.getIsSpecialCar());
         builder.setLimit(view.getLimit());
         builder.setMaxlimit(view.getMaxlimit());
-        builder.setState(view.getStates());
         
         List<CarSlotInfo> slots = buildCarSlotInfos(view.getSlots());
         builder.addAllSlots(slots);
@@ -87,6 +91,10 @@ public class CarDataMessageService {
         if (gotchaCar != null) {
             builder.setRemainPriceType(view.getPriceType());
             builder.setRemainPrice(getRemainGotchaCarPrice(gotchaCar, frag, view));
+        }
+        if(view.getCarId() .indexOf("f150")>=0){
+        	log.debug("fragement is " + builder.getFragmentNumber() +"/"+gotchaCar.getPartNum());
+        	log.debug("ramainprice:"+view.getPriceType()+"/"+getRemainGotchaCarPrice(gotchaCar, frag, view));
         }
         builder.addAllGotchaExpense(expenses);
     }

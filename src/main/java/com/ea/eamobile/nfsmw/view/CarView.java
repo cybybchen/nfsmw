@@ -39,17 +39,6 @@ public class CarView implements Serializable {
     
     private int limit;
     
-    private int states;
-    
-    
-
-    public int getStates() {
-		return states;
-	}
-
-	public void setStates(int states) {
-		this.states = states;
-	}
 
 	public int getLimit() {
 		return limit;

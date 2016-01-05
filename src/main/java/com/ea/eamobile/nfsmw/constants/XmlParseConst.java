@@ -24,6 +24,7 @@ public class XmlParseConst {
 	public static final String INDEX = "index";
 	public static final String INDEXMIN = "indexmin";
 	public static final String INDEXMAX = "indexmax";
+	public static final String COST = "cost";
 	
 	//lottery_ + type + .xml
 	public static final String LOTTERY_FILE_PREFIX = "random_";

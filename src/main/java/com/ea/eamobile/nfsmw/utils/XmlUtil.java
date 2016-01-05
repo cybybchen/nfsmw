@@ -235,6 +235,8 @@ public class XmlUtil extends CommonUtil {
 							getElementAttr(hangupraceelement, XmlParseConst.NEEDTIME)));
 					hangUpRaces.setScore(CommonUtil.stringToInt(
 							getElementAttr(hangupraceelement, XmlParseConst.SCORE)));
+					hangUpRaces.setCost(CommonUtil.stringToInt(
+							getElementAttr(hangupraceelement, XmlParseConst.COST)));
 					List<?> hanguprankNodeList = hangupraceelement.elements();
 					List<hangUpRankBean> hanguprankList = new ArrayList<hangUpRankBean>();
 					for(int k = 0;k<hanguprankNodeList.size();k++){

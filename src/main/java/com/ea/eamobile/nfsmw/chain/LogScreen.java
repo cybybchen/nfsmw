@@ -20,6 +20,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceRefreshCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
@@ -391,6 +392,12 @@ public class LogScreen extends RequestScreen {
 
 	@Override
 	protected boolean handleCommand(RequestFleetRankRewardCommand cmd, Builder responseBuilder, User user) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected boolean handleCommand(RequestFleetRaceRefreshCommand cmd, Builder responseBuilder, User user) {
 		// TODO Auto-generated method stub
 		return true;
 	}

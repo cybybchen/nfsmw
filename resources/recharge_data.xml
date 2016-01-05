@@ -21,8 +21,13 @@
 	<recharge id="4" transactionid="com.ea.mtx.871592" name="黄金典藏包" expense="30" >
 		<reward id="4" rewardid="3043" rewardcount="1" />
 	</recharge>
-	<recharge id="5" transactionid="com.ea.mtx.871606" name="金币月卡" expense="25" lasttime="30" >
-		<reward id="1" rewardid="1003" rewardcount="50" iscontinued="true" />
+	<recharge id="5" transactionid="com.ea.mtx.871606" name="赛车联盟特权" expense="25" lasttime="30" >
+		<reward id="1" rewardid="1003" rewardcount="80" iscontinued="true" />
 	</recharge> 
+    <recharge id="5" transactionid="com.ea.mtx.871606" name="地下联盟特权" expense="25" lasttime="30" >
+		<reward id="1" rewardid="1003" rewardcount="160" iscontinued="true" />
+    </recharge>
+
+
 </root>
  

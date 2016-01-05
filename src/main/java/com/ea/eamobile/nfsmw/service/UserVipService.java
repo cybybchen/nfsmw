@@ -95,4 +95,15 @@ public class UserVipService {
     	rewardService.doRewardList(user, rewardList);
     	return true;
     }
+    
+    public boolean doUserMonthGoldCard2Reward(User user) {
+    	if (!CommonUtil.isNextDay(user.getMonthGoldCard2LastRewardTime()) || !CommonUtil.isTimeExpried(user.getMonthGoldCard2EndTime()))
+    		return false;
+    	
+    	user.setMonthGoldCard2LastRewardTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT));
+    	RechargeDataBean rechargeData = rechargeDataService.getRechargeDataById(RewardConst.PACKAGE_GOLDCARD2_MONTH_ID);
+    	List<RewardBean> rewardList = rechargeData.getRewardList();
+    	rewardService.doRewardList(user, rewardList);
+    	return true;
+    }
 }

@@ -61,10 +61,13 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.goldModeUnlockStatus = data.getGoldModeUnlockStatus();
 		this.monthGoldCardEndTime = data.getMonthGoldCardEndTime();
 		this.monthGoldCardLastRewardTime = data.getMonthGoldCardLastRewardTime();
+		this.monthGoldCard2EndTime = data.getMonthGoldCard2EndTime();
+		this.monthGoldCard2LastRewardTime = data.getMonthGoldCard2LastRewardTime();
 		this.isNewUser = data.getIsNewUser();
 		this.playGameTimes = data.getPlayGameTimes();
 		this.lotteryTimes = data.getLotteryTimes();
 		this.rpExpWeek = data.getRpExpWeek();
+		this.refreshTime = data.getRefreshTime();
 		setMarks(data.getMarks());
 	}
 
@@ -114,10 +117,13 @@ public class UserDataHelper extends User implements GeneralDataHelper {
 		this.goldModeUnlockStatus = rs.getInt(GOLD_MODE_UNLOCK_STATUS);
 		this.monthGoldCardEndTime = rs.getString(MONTH_GOLD_CARD_END_TIME);
 		this.monthGoldCardLastRewardTime = rs.getString(MONTH_GOLD_CARD_LAST_REWARD_TIME);
+		this.monthGoldCard2EndTime = rs.getString(MONTH_GOLD_CARD2_END_TIME);
+		this.monthGoldCard2LastRewardTime = rs.getString(MONTH_GOLD_CARD2_LAST_REWARD_TIME);
 		this.isNewUser = rs.getInt(IS_NEW_USER);
 		this.playGameTimes = rs.getInt(PLAY_GAME_TIMES);
 		this.lotteryTimes = rs.getInt(LOTTERY_TIMES);
 		this.rpExpWeek = rs.getInt(RPEXPWEEK);
+		this.refreshTime = rs.getString(REFRESHTIME);
 	}
 
 	@Override

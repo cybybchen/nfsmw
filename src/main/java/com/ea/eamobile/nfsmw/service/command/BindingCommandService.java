@@ -350,7 +350,7 @@ public class BindingCommandService {
         if (returnUser == null) {
             return originalToken;
         }
-       
+
         User user = userService.getUserByUid(uid);
         if (user == null) {
             user = userService.getUserByWillowtreeToken(originalToken);
@@ -362,58 +362,49 @@ public class BindingCommandService {
             	user.setName(nickName);
             user.setUid(uid);
             user.setCertType(Const.CERT_TYPE_WEIBO);
-//            user.setCertType(Long.parseLong(uid));
-//            if (user.getCertType() != Const.CERT_TYPE_DEVICE) {
-//                return;
-//            }
-            //开始删除数据 避免出错暂时不清理 rename
-//            user.setName("DELETE_" + user.getId());
             userService.updateUser(user);
-//            long userId = user.getId();
-//            leaderboardService.deleteByUserId(userId);
-//            careerBestRacetimeRecordService.deleteByUserId(userId);
-//            tournamentLeaderboardService.deleteByUserId(userId);
-//            tournamentUserService.deleteByUserId(userId);
-            //clear cache
             userService.clearCacheUser(user.getId());
         } else if (isOverride){
         	User deleteUser = userService.getUserByWillowtreeToken(originalToken);
             if (deleteUser != null) {
-            	//开始删除数据 避免出错暂时不清理 rename
-            	deleteUser.setName("DELETE_" + deleteUser.getId());
-                userService.updateUser(deleteUser);
-                long userId = deleteUser.getId();
-                leaderboardService.deleteByUserId(userId);
-                careerBestRacetimeRecordService.deleteByUserId(userId);
-                tournamentLeaderboardService.deleteByUserId(userId);
-                tournamentUserService.deleteByUserId(userId);
-                //clear cache
-                userService.clearCacheUser(deleteUser.getId());
+            	if(!deleteUser.getAccessToken().equals(accessToken)){
+	            	deleteUser.setUid("");
+	            	deleteUser.setAccessToken("");
+	            	//开始删除数据 避免出错暂时不清理 rename
+	//            	deleteUser.setName("DELETE_" + deleteUser.getId());
+	                userService.updateUser(deleteUser);
+	                long userId = deleteUser.getId();
+	                leaderboardService.deleteByUserId(userId);
+	                careerBestRacetimeRecordService.deleteByUserId(userId);
+	                tournamentLeaderboardService.deleteByUserId(userId);
+	                tournamentUserService.deleteByUserId(userId);
+	                userService.clearCacheUser(deleteUser.getId());
+            	}
             }
         } else {
-        	user.setUid("");
-        	user.setAccessToken("");
-        	//开始删除数据 避免出错暂时不清理 rename
-//            user.setName("DELETE_" + user.getId());
-            userService.updateUser(user);
-            long userId = user.getId();
-            leaderboardService.deleteByUserId(userId);
-            careerBestRacetimeRecordService.deleteByUserId(userId);
-            tournamentLeaderboardService.deleteByUserId(userId);
-            tournamentUserService.deleteByUserId(userId);
-            //clear cache
-            userService.clearCacheUser(user.getId());
-            
-            user = userService.getUserByWillowtreeToken(originalToken);
-            user.setAccessToken(accessToken);
-            if (!nickName.trim().equals(""))
-            	user.setName(nickName);
-            user.setUid(uid);
-            user.setCertType(Const.CERT_TYPE_WEIBO);
-//            user.setCertType(Long.parseLong(uid));
-            userService.updateUser(user);
-            //clear cache
-            userService.clearCacheUser(user.getId());
+        	User newUser = userService.getUserByWillowtreeToken(originalToken);
+        	if(!newUser.getAccessToken().equals(accessToken)){
+	        	user.setUid("");
+	        	user.setAccessToken("");
+	            userService.updateUser(user);
+	            long userId = user.getId();
+	            leaderboardService.deleteByUserId(userId);
+	            careerBestRacetimeRecordService.deleteByUserId(userId);
+	            tournamentLeaderboardService.deleteByUserId(userId);
+	            tournamentUserService.deleteByUserId(userId);
+	            //clear cache
+	            userService.clearCacheUser(user.getId());
+	            
+	            user = newUser;
+	            user.setAccessToken(accessToken);
+	            if (!nickName.trim().equals(""))
+	            	user.setName(nickName);
+	            user.setUid(uid);
+	            user.setCertType(Const.CERT_TYPE_WEIBO);
+	            userService.updateUser(user);
+	            //clear cache
+	            userService.clearCacheUser(user.getId());
+        	}
         }
 
      

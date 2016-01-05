@@ -27,6 +27,7 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RequestFixCarLimitCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetDoubleCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetEndCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceCommand;
+import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRaceRefreshCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetRankRewardCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestFleetStartCommand;
 import com.ea.eamobile.nfsmw.protoc.Commands.RequestGarageCommand;
@@ -790,6 +791,15 @@ public class CoreScreen extends RequestScreen {
 	}
 
 	@Override
+	protected boolean handleCommand(RequestFleetRaceRefreshCommand cmd, 
+			Builder responseBuilder, User user) {
+		ResponseFleetRaceCommand fleetracecmd = fleetraceService.refreshFleetRaceCommand(user);
+		responseBuilder.setFleetRaceCommand(fleetracecmd);
+		pushCommandService.pushUserInfoCommand(responseBuilder, user);
+		return true;
+	}
+	
+	@Override
 	protected boolean handleCommand(RequestFleetStartCommand cmd,
 			Builder responseBuilder, User user) {
 		try {
@@ -805,7 +815,7 @@ public class CoreScreen extends RequestScreen {
 	@Override
 	protected boolean handleCommand(RequestFleetEndCommand cmd, 
 			Builder responseBuilder, User user) {
-		ResponseFleetEndCommand fleetraceendcmd = fleetraceService.FleetRaceEndCommand(cmd.getId(), cmd.getAdvanced(), user);
+		ResponseFleetEndCommand fleetraceendcmd = fleetraceService.FleetRaceEndCommand(cmd.getId(), cmd.getAdvanced(), user,responseBuilder);
 		responseBuilder.setFleetEndCommand(fleetraceendcmd);
 		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);
@@ -817,7 +827,7 @@ public class CoreScreen extends RequestScreen {
 	@Override
 	protected boolean handleCommand(RequestFleetDoubleCommand cmd,
 			Builder responseBuilder, User user) {
-		ResponseFleetDoubleCommand fleetracedoublecmd = fleetraceService.FleetRaceDoubleCommand(cmd.getId(),user);
+		ResponseFleetDoubleCommand fleetracedoublecmd = fleetraceService.FleetRaceDoubleCommand(cmd.getId(),user,cmd.getAdvanced());
 		responseBuilder.setFleetDoubleCommand(fleetracedoublecmd);
 		pushCommandService.pushUserInfoCommand(responseBuilder, user);
 		ResponseFleetRaceCommand fleetracecmd = fleetraceService.getFleetRaceCommand(user);

@@ -15,8 +15,8 @@
   </resultMap>
 
 	<insert id="insert" parameterType="com.ea.eamobile.nfsmw.model.ProfileTrackLog" keyProperty="id" useGeneratedKeys="true">
-	    insert into profile_track_log(user_id,viewed_user_id,page_id,source_id,tournament_online_id,tournament_group_id,car_id,time) 
-	    values(#{userId},#{viewedUserId},#{pageId},#{sourceId},#{tournamentOnlineId},#{tournamentGroupId},#{carId},#{time})
+	    insert into profile_track_log(user_id,viewed_user_id,page_id,source_id,tournament_online_id,tournament_group_id,car_id) 
+	    values(#{userId},#{viewedUserId},#{pageId},#{sourceId},#{tournamentOnlineId},#{tournamentGroupId},#{carId})
 	</insert>
 	
 </mapper>

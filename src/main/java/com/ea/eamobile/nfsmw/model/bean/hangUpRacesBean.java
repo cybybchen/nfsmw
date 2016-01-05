@@ -15,7 +15,6 @@ import com.ea.eamobile.nfsmw.protoc.Commands.RewardList;
 import com.ea.eamobile.nfsmw.protoc.Commands.RewardN;
 import com.ea.eamobile.nfsmw.utils.CommonUtil;
 
-
 public class hangUpRacesBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int raceid = 0;
@@ -26,20 +25,22 @@ public class hangUpRacesBean implements Serializable {
 	private int needLimit = 0;
 	private int needEnergy = 0;
 	private int status = 0;
+	private int cost = 0;
 	private List<hangUpRankBean> hangUpRankList = new ArrayList<hangUpRankBean>();
-	private String startTime = ""; 
-	public List<RewardBean> getMyrewards() {
-		return myrewards;
-	}
-
-	public void setMyrewards(List<RewardBean> myrewards) {
-		this.myrewards = myrewards;
-	}
-
+	private String startTime = "";
 	private int rank = 0;
+	private List<String> carids = new ArrayList<String>();
+	public List<String> getCarids() {
+		return carids;
+	}
+
+	public void setCarids(List<String> carids) {
+		this.carids = carids;
+	}
+
 	private List<RewardBean> myrewards = new ArrayList<RewardBean>();
-	
-	private boolean useRefCar = false ;
+
+	private boolean useRefCar = false;
 
 	public FleetRace toFleetRace() {
 		FleetRace.Builder fleetRace = FleetRace.newBuilder();
@@ -48,14 +49,16 @@ public class hangUpRacesBean implements Serializable {
 		fleetRace.setId(getId());
 		fleetRace.setLimitCost(getNeedLimit());
 		fleetRace.setEnergyCost(getNeedEnergy());
-		fleetRace.setTime(getNeedTime());
+		fleetRace.setTime(getNeedTime()*60);
 		fleetRace.setPoints(getScore());
-		fleetRace.setType(getId()/10);
-		fleetRace.setCount(getCountByType(getId()/10)); 
+		fleetRace.setType(getId() / 10);
+		fleetRace.setCount(getCountByType(getId() / 10));
 		fleetRace.setState(getStatus());
 		fleetRace.setCartype(1);// don't know
+		fleetRace.addAllCarids(carids);
 		fleetRace.setRemainTime(getFleetRaceRamainTime());
 		fleetRace.setMyrank(getRank());
+		fleetRace.setAdvancedcost(getCost());
 		{
 			List<RewardN> rewardList = new ArrayList<RewardN>();
 			for (RewardBean hangupreward : getMyrewards()) {
@@ -86,6 +89,16 @@ public class hangUpRacesBean implements Serializable {
 		return fleetRace.build();
 	}
 	
+	
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
 	public boolean isUseRefCar() {
 		return useRefCar;
 	}
@@ -184,6 +197,7 @@ public class hangUpRacesBean implements Serializable {
 
 	public JSONObject toJsonObject() {
 		JSONObject json = new JSONObject();
+		JSONArray caridsArray = new JSONArray();
 		JSONArray myrewardArray = new JSONArray();
 		JSONArray jsonArray = new JSONArray();
 		try {
@@ -194,9 +208,14 @@ public class hangUpRacesBean implements Serializable {
 			json.put("needLimit", needLimit);
 			json.put("needEnergy", needEnergy);
 			json.put("score", score);
+			json.put("cost", cost);
 			json.put("status", status);
+			for (String carid : carids) {
+				caridsArray.put(carid);
+			}
+			json.put("carids", caridsArray);
 			json.put("startTime", startTime);
-			json.put("rank",rank);
+			json.put("rank", rank);
 			for (RewardBean reward : myrewards) {
 				myrewardArray.put(reward.toJsonObject());
 			}
@@ -212,6 +231,7 @@ public class hangUpRacesBean implements Serializable {
 
 	public String toJson() {
 		JSONObject json = new JSONObject();
+		JSONArray caridsArray = new JSONArray();
 		JSONArray myrewardArray = new JSONArray();
 		JSONArray jsonArray = new JSONArray();
 		try {
@@ -222,7 +242,12 @@ public class hangUpRacesBean implements Serializable {
 			json.put("needLimit", needLimit);
 			json.put("needEnergy", needEnergy);
 			json.put("score", score);
-			json.put("status" ,status);
+			json.put("cost", cost);
+			json.put("status", status);
+			for (String carid : carids) {
+				caridsArray.put(carid);
+			}
+			json.put("carids", caridsArray);
 			json.put("startTime", startTime);
 			json.put("rank", rank);
 			for (RewardBean reward : myrewards) {
@@ -236,6 +261,29 @@ public class hangUpRacesBean implements Serializable {
 		} catch (JSONException e) {
 		}
 		return json.toString();
+	}
+
+	public List<RewardBean> getMyrewards() {
+		return myrewards;
+	}
+
+	public List<RewardN> getMyrewardList() {
+		return getMyrewardList(1);
+	}
+
+	public List<RewardN> getMyrewardList(int times) {
+		List<RewardN> list = new ArrayList<RewardN>();
+		for (RewardBean rewardBean : myrewards) {
+			RewardN.Builder reward = RewardN.newBuilder();
+			reward.setId(rewardBean.getRewardId());
+			reward.setCount(rewardBean.getRewardCount() * times);
+			list.add(reward.build());
+		}
+		return list;
+	}
+
+	public void setMyrewards(List<RewardBean> myrewards) {
+		this.myrewards = myrewards;
 	}
 
 	public static hangUpRacesBean fromJson(String hangUpRacesString) {
@@ -255,7 +303,16 @@ public class hangUpRacesBean implements Serializable {
 		hangUpRaces.setScore(CommonUtil.jsonGetInt(json, "score"));
 		hangUpRaces.setNeedLimit(CommonUtil.jsonGetInt(json, "needLimit"));
 		hangUpRaces.setNeedEnergy(CommonUtil.jsonGetInt(json, "needEnergy"));
+		hangUpRaces.setCost(CommonUtil.jsonGetInt(json, "cost"));
 		hangUpRaces.setStatus(CommonUtil.jsonGetInt(json, "status"));
+		List<String> carids = new ArrayList<String>();
+		JSONArray caridsArray = CommonUtil.jsonGetArray(json, "carids");
+		for (int i = 0; i <caridsArray.length(); i++) {
+			try {
+				carids.add(caridsArray.getString(i));
+			} catch (JSONException e) {
+			}
+		}
 		hangUpRaces.setStartTime(CommonUtil.jsonGetString(json, "startTime"));
 		hangUpRaces.setRank(CommonUtil.jsonGetInt(json, "rank"));
 		List<RewardBean> rewads = new ArrayList<RewardBean>();
@@ -263,14 +320,14 @@ public class hangUpRacesBean implements Serializable {
 		for (int i = 0; i < rewardArray.length(); i++) {
 			String string = "";
 			try {
-				string =rewardArray.getString(i);
+				string = rewardArray.getString(i);
 				RewardBean reward = RewardBean.fromJson(string);
 				rewads.add(reward);
 			} catch (JSONException e) {
 			}
 		}
 		hangUpRaces.setMyrewards(rewads);
-		
+
 		List<hangUpRankBean> hangUpRankList = new ArrayList<hangUpRankBean>();
 		JSONArray hangUpRankArray = CommonUtil.jsonGetArray(json, "hangUpRankList");
 		for (int i = 0; i < hangUpRankArray.length(); i++) {
@@ -286,7 +343,7 @@ public class hangUpRacesBean implements Serializable {
 
 		return hangUpRaces;
 	}
-	
+
 	public int getFleetRaceRamainTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date firsttime = new Date();
@@ -297,17 +354,17 @@ public class hangUpRacesBean implements Serializable {
 		}
 		SimpleDateFormat mdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = mdf.format(new Date());
-		Date thistime =  new Date();
+		Date thistime = new Date();
 		try {
 			thistime = sdf.parse(now);
 		} catch (Exception e) {
 		}
-		int time = (int) (firsttime.getTime() - thistime.getTime())/1000+getNeedTime();
+		int time = (int) (firsttime.getTime() - thistime.getTime()) / 1000 + getNeedTime() * 60;
 		return time;
 	}
-	
+
 	private int getCountByType(int type) {
-			return 5;
+		return 5;
 	}
 
 }

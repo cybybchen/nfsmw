@@ -120,9 +120,11 @@ public class IapConst {
 		 */
 		private static final long serialVersionUID = 1L;
 		{
-			add("com.ea.mtx.872477");
-			add("com.ea.mtx.871592");
-			add("com.ea.mtx.871606");
+//			add("com.ea.mtx.872417");//green hand
+			add("com.ea.mtx.872477");//vip
+			add("com.ea.mtx.871592");//gold edition
+			add("com.ea.mtx.872626");//gold card1
+			add("com.ea.mtx.872627");//gold card2
 		}
     };
 }

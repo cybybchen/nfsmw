@@ -188,12 +188,22 @@ public class IapCheckCommandService extends BaseCommandService {
     	}
     }
     
+    boolean IsMonthPackage(int id)
+    {
+    	if(id == RewardConst.PACKAGE_GOLDCARD_MONTH_ID)
+    		return true;
+    	else if(id == RewardConst.PACKAGE_GOLDCARD2_MONTH_ID)
+    		return true;
+    	else if(id == RewardConst.PACKAGE_VIP_ID)
+    		return true;
+    	return false;
+    }
     //check购买礼包结果
     private void checkBuyPackageResult(String productId, Commands.ResponseCommand.Builder responseBuilder, 
     		User user) {
     	RechargeDataBean rechargeData = rechargeDataService.getRechargeData(productId);
     	if (rechargeData != null) {
-    		if (rechargeData.getId() != RewardConst.PACKAGE_GOLDCARD_MONTH_ID && rechargeData.getId() != RewardConst.PACKAGE_VIP_ID) {
+    		if (!IsMonthPackage(rechargeData.getId())) {
     			List<RewardBean> rewardList = rechargeData.getRewardList();
     			rewardService.doRewards(user, rewardList, responseBuilder);
     		}
@@ -206,10 +216,13 @@ public class IapCheckCommandService extends BaseCommandService {
         		user.setGoldModeUnlockStatus(1);
         	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLDCARD_MONTH_ID)
         		user.setMonthGoldCardEndTime(CommonUtil.getExpiredTime(user.getMonthGoldCardEndTime(), rechargeData.getLastTime() * 24));
+        	else if (rechargeData.getId() == RewardConst.PACKAGE_GOLDCARD2_MONTH_ID)
+        		user.setMonthGoldCard2EndTime(CommonUtil.getExpiredTime(user.getMonthGoldCard2EndTime(), rechargeData.getLastTime() * 24));
         	log.debug("user package buy record is:" + user.getPackageBuyRecord());
         	//领取贵族和金币月卡奖励
             doVipReward(responseBuilder, user);
             doMonthGoldCardReward(responseBuilder, user);
+            doMonthGoldCard2Reward(responseBuilder, user);
     	}
     }
     
@@ -391,8 +404,14 @@ public class IapCheckCommandService extends BaseCommandService {
 	private void doMonthGoldCardReward(Builder responseBuilder, User user) {
         boolean ret = userVipService.doUserMonthGoldCardReward(user);
         if (ret) {
-        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]50金币[/color] ", 0, 0);
+        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]80金币[/color] ", 0, 0);
         }
     }
 
+	private void doMonthGoldCard2Reward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.doUserMonthGoldCard2Reward(user);
+        if (ret) {
+        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP2, "每日登录获得[color=fbce54]160金币[/color] ", 0, 0);
+        }
+    }
 }

@@ -11,7 +11,6 @@
     <result property="chartletId" column="chartlet_id"/>
     <result property="createTime" column="create_time"/>
     <result property="limit" column="car_limit"/>
-    <result property="states" column="states"/>
   </resultMap>
 
 	<!-- only admin use -->
@@ -46,7 +45,6 @@
       score=#{score},
       status=#{status},
       car_limit=#{limit},
-      states=#{states},
       chartlet_id=#{chartletId} where id = #{id}
       
 	</update>

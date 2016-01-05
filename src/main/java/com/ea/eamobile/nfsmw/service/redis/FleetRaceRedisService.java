@@ -30,17 +30,16 @@ import com.ea.eamobile.nfsmw.utils.CommonUtil;
 
 @Service
 public class FleetRaceRedisService {
-	private Logger logger = Logger.getLogger(FansRewardRedisService.class);
+	private Logger log = Logger.getLogger(FansRewardRedisService.class);
 
 	private static final String FLEET_RACE_KEY = "fleet_race";
-	private static final int FLEET_RACE_EXPIRED_TIME = 1;
-	private static final String FLEET_RACE_ = "fleet_race_";
+	private static final int FLEET_RACE_EXPIRED_TIME = 7;
+	private static final String FLEET_RACE_ = "fleet_user_";
 	private static final String USERIDZSET_PREFIX = "userIdZSet";
 	private static final String FLEET_RANKMAP = "fleet_rankmap";
 	private static final int RANK_TOTAL_SIZE = 10000;
 	private static final String FLEET_RANK_REWARD ="fleet_rankreward";
 	private static final String SEND_REWARD_STATE = "send_reward_state";
-	private static final String USER_CAR_STATE = "user_car_state";
 	
 	@Resource
 	public RedisTemplate<String, String> redisTemplate;
@@ -81,15 +80,15 @@ public class FleetRaceRedisService {
 		});
 	}
 	
-	public void addPAId(final long l,final int status){
+	public void addPAId(final long userId,final int status){
 		redisTemplate.execute(new RedisCallback<Object>() {
 		@Override
 		public Object doInRedis(RedisConnection arg0)
 			throws DataAccessException{
 			BoundHashOperations<String, String, String> bhOps = redisTemplate
 					.boundHashOps(RedisKey.PREFIX+SEND_REWARD_STATE);
-			bhOps.put(""+l, ""+status);
-			bhOps.expire(FLEET_RACE_EXPIRED_TIME, TimeUnit.DAYS);
+			bhOps.put(""+userId, ""+status);
+//			bhOps.expire(FLEET_RACE_EXPIRED_TIME, TimeUnit.DAYS);//TODO
 			return null;
 		}
 		});
@@ -126,9 +125,6 @@ public class FleetRaceRedisService {
 			public Object doInRedis(RedisConnection arg0) throws DataAccessException {
 				BoundHashOperations<String, String, String> bhOps = redisTemplate
 						.boundHashOps(RedisKey.PREFIX + FLEET_RACE_ + userId);
-				List<RewardBean> ClosingReward = new ArrayList<RewardBean>();
-				
-				
 				bhOps.put("" + id, race.toJson());
 				bhOps.expire(FLEET_RACE_EXPIRED_TIME, TimeUnit.DAYS);
 				return null;
@@ -259,51 +255,12 @@ public class FleetRaceRedisService {
 					throws DataAccessException {
 				BoundHashOperations<String, String, String> bhOps = redisTemplate
 						.boundHashOps(RedisKey.PREFIX + FLEET_RANKMAP);
-				
+			
 				return RpLeaderboardBean.fromJson(bhOps.get("" + userId));
 			}
 		});
 	}
 	
-	public void userCarStatus(final User user, final List<String> cars, final int id) {
-		redisTemplate.execute(new RedisCallback<Object>() {
-			@Override
-			public Object doInRedis(RedisConnection arg0) throws DataAccessException {
-				BoundHashOperations<String, String, String> bhOps = redisTemplate.
-						boundHashOps(RedisKey.PREFIX+USER_CAR_STATE);
-				String value = "";
-				long userId = user.getId();
-				for (int i = 0; i < cars.size(); i++) {
-					value = value.concat(":" + cars.get(i));
 
-				}
-				bhOps.put("" + userId + id, value);
-				return null;
-			}
-		});
-	}
-	
-	public List<String> getUserCarStatus(final User user, final int id) {
-		return redisTemplate.execute(new RedisCallback<List<String>>() {
-			@Override
-			public List<String> doInRedis(RedisConnection arg0) throws DataAccessException {
-				BoundHashOperations<String, String, String> bhOps = redisTemplate.
-						boundHashOps(RedisKey.PREFIX+USER_CAR_STATE);
-				long userId = user.getId();
-				String value = bhOps.get("" + userId + id);
-				logger.debug("value is"+value);
-				String[] carsA = value.split(":");
-				List<String> cars = new ArrayList<String>();
-				for (int i = 0; i < carsA.length; i++) {
-					if (!carsA[i].equals(""))
-						cars.add(carsA[i]);
-				}
-				bhOps.delete(""+userId+id);
-				return cars;
-			}
-		});
-	}
-	
-//	public void  setClosingReward(List<RewardBean> )
 
 }

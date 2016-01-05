@@ -80,6 +80,8 @@ public class UserInfoMessageService {
         builder.setIsGoldUnlocked(user.getGoldModeUnlockStatus() == 1);
         builder.setLeftGoldTime(DateUtil.intervalSeconds(DateUtil.getDateTime(user.getMonthGoldCardEndTime()), 
         		DateUtil.getDateTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT))));
+        builder.setLeftGold2Time(DateUtil.intervalSeconds(DateUtil.getDateTime(user.getMonthGoldCard2EndTime()), 
+        		DateUtil.getDateTime(CommonUtil.getCurrentTimeStr(DateUtil.DEFAULT_DATETIME_FORMAT))));
         builder.setIsNewUser(user.getIsNewUser() == 1);
         builder.setRaceTimes(user.getPlayGameTimes());
         builder.setLotteryTimes(user.getLotteryTimes());

@@ -101,6 +101,7 @@ public class LoginCommandService {
         //领取贵族奖励
         doVipReward(response, user);
         doMonthGoldCardReward(response, user);
+        doMonthGoldCard2Reward(response, user);
         
         head = headBuilder.build();
         response.setHead(head);
@@ -412,7 +413,14 @@ public class LoginCommandService {
 	private void doMonthGoldCardReward(Builder responseBuilder, User user) {
         boolean ret = userVipService.doUserMonthGoldCardReward(user);
         if (ret) {
-        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]50金币[/color] ", 0, 0);
+        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP, "每日登录获得[color=fbce54]80金币[/color] ", 0, 0);
+        }
+    }
+	
+	private void doMonthGoldCard2Reward(Builder responseBuilder, User user) {
+        boolean ret = userVipService.doUserMonthGoldCard2Reward(user);
+        if (ret) {
+        	pushService.pushPopupListCommand(responseBuilder, null, Match.SEND_MONTH_GOLD_POPUP2, "每日登录获得[color=fbce54]160金币[/color] ", 0, 0);
         }
     }
 }

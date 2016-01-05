@@ -103,6 +103,10 @@ public class User extends Markable implements Serializable {
     
     protected String monthGoldCardLastRewardTime;
     
+    protected String monthGoldCard2EndTime;
+
+	protected String monthGoldCard2LastRewardTime;
+    
     protected int isNewUser;
     
     protected int playGameTimes;
@@ -112,6 +116,8 @@ public class User extends Markable implements Serializable {
     protected int rpExpWeek;
     
     protected int accFleetRaceReward = 0;
+    
+    protected String refreshTime ;
 
     // db field
     protected static final String ID = "id";
@@ -158,14 +164,27 @@ public class User extends Markable implements Serializable {
     protected static final String GOLD_MODE_UNLOCK_STATUS = "gold_mode_unlock_status";
     protected static final String MONTH_GOLD_CARD_END_TIME = "month_gold_card_end_time";
     protected static final String MONTH_GOLD_CARD_LAST_REWARD_TIME = "month_gold_card_last_reward_time";
+    protected static final String MONTH_GOLD_CARD2_END_TIME = "month_gold_card2_end_time";
+    protected static final String MONTH_GOLD_CARD2_LAST_REWARD_TIME = "month_gold_card2_last_reward_time";
     protected static final String IS_NEW_USER = "new_user";
     protected static final String PLAY_GAME_TIMES = "play_game_times";
     protected static final String LOTTERY_TIMES = "lottery_times";
 	protected static final String RPEXPWEEK = "rpExpWeek";
 	protected static final String ACCFLEETRACEREWARD = "accFleetRaceReward";
+	protected static final String REFRESHTIME = "refresh_time";
 	
 	
-    public int getAccFleetRaceReward() {
+	
+    public String getRefreshTime() {
+		return refreshTime;
+	}
+
+	public void setRefreshTime(String refreshTime) {
+		this.refreshTime = refreshTime;
+		mark(REFRESHTIME, refreshTime);
+	}
+
+	public int getAccFleetRaceReward() {
 		return accFleetRaceReward;
 	}
 
@@ -599,6 +618,24 @@ public class User extends Markable implements Serializable {
 	public void setMonthGoldCardLastRewardTime(String monthGoldCardLastRewardTime) {
 		this.monthGoldCardLastRewardTime = monthGoldCardLastRewardTime;
 		mark(MONTH_GOLD_CARD_LAST_REWARD_TIME, monthGoldCardLastRewardTime);
+	}
+	
+    public String getMonthGoldCard2EndTime() {
+		return monthGoldCard2EndTime;
+	}
+
+	public void setMonthGoldCard2EndTime(String monthGoldCard2EndTime) {
+		this.monthGoldCard2EndTime = monthGoldCard2EndTime;
+		mark(MONTH_GOLD_CARD2_END_TIME, monthGoldCard2EndTime);
+	}
+
+	public String getMonthGoldCard2LastRewardTime() {
+		return monthGoldCard2LastRewardTime;
+	}
+
+	public void setMonthGoldCard2LastRewardTime(String monthGoldCard2LastRewardTime) {
+		this.monthGoldCard2LastRewardTime = monthGoldCard2LastRewardTime;
+		mark(MONTH_GOLD_CARD2_LAST_REWARD_TIME, monthGoldCard2LastRewardTime);
 	}
 
 	public int getIsNewUser() {

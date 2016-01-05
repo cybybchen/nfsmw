@@ -22,4 +22,5 @@ public class RewardConst {
 	public static final int PACKAGE_VIP_ID = 3;
 	public static final int PACKAGE_GOLD_ID = 4;
 	public static final int PACKAGE_GOLDCARD_MONTH_ID = 5;
+	public static final int PACKAGE_GOLDCARD2_MONTH_ID = 6;
 }

@@ -25,6 +25,7 @@ import com.ea.eamobile.nfsmw.model.mapper.RewardMapper;
 import com.ea.eamobile.nfsmw.protoc.Commands.ResponseCommand.Builder;
 import com.ea.eamobile.nfsmw.service.command.PushCommandService;
 import com.ea.eamobile.nfsmw.service.dao.helper.util.MemcachedClient;
+import com.ea.eamobile.nfsmw.service.gotcha.GotchaCarService;
 import com.ea.eamobile.nfsmw.service.gotcha.GotchaFragmentService;
 import com.ea.eamobile.nfsmw.view.ResultInfo;
 
@@ -56,7 +57,7 @@ public class RewardService {
     @Autowired
     private PushCommandService pushService;
     @Autowired
-    private GotchaFragmentService gotchaFragmentService;
+    private GotchaCarService gotchaCarService;
     @Autowired
     private UserCarFragmentService userCarFragmentService;
     @Autowired
@@ -231,7 +232,7 @@ public class RewardService {
     	int gold = user.getGold();
     	long userId = user.getId();
     	int energy = user.getEnergy();
-    	int rpnum = user.getRpNum();
+    	int rpnum = 0;
     	int rpexpweek = user.getRpExpWeek();
     	
     	for (RewardBean reward : rewardList) {
@@ -259,12 +260,10 @@ public class RewardService {
     				int propId = rewardId - RewardConst.TYPE_REWARD_PROP;
     				int carId = rewardId - RewardConst.TYPE_REWARD_CAR;
     				if (fragmentId > 0) {
-    					GotchaFragment gotchaFragment = gotchaFragmentService.getGotchaPart(fragmentId);
-    		            if (gotchaFragment == null) {
+    		            if ( gotchaCarService.getGotchaCarById(fragmentId) == null) {
     		                break;
     		            }
     		            UserCarFragment userCarFragment = userCarFragmentService.getUserCarFragment(user.getId(), fragmentId);
-
     		            if (userCarFragment == null) {
     		                userCarFragment = new UserCarFragment();
     		                userCarFragment.setCount(0);
@@ -272,6 +271,7 @@ public class RewardService {
     		                userCarFragment.setUserId(user.getId());
     		                userCarFragmentService.insert(userCarFragment);
     		            }
+    		            log.debug("addFragment " + fragmentId +" : "+rewardCount);
     		            userCarFragment.setCount(userCarFragment.getCount() + rewardCount);
     		            userCarFragmentService.update(userCarFragment);
     				} else if (carId > 0) {
@@ -299,10 +299,22 @@ public class RewardService {
     		}
     	}
     	
+    	if (rpnum > 0) {
+            int level = rpLevelService.getLevelByRpNum(user.getRpNum() + rpnum);
+            if (level > user.getLevel()) {
+                for (int i = user.getLevel() + 1; i <= level; i++) {
+                    RpLevel rpLevel = rpLevelService.getLevel(i);
+                    Reward reward = getReward(rpLevel.getRewardId());
+                    rpnum += reward.getRpNum();
+                }
+            }
+        	user.setRpNum(user.getRpNum() + rpnum);
+            user.setLevel(level);
+    	}
+    	
     	user.setEnergy(Math.min(energy, Match.ENERGY_BUY_MAX));
     	user.setGold(gold);
     	user.setMoney(money);
-    	user.setRpNum(rpnum);
     	user.setRpExpWeek(rpexpweek);
     	userService.updateUser(user);
     }
